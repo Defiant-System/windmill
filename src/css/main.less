@@ -44,6 +44,11 @@ content {
 			&.junc-nw { border-bottom-left-radius: var( --brick ); }
 			&.junc-ne { border-bottom-right-radius: var( --brick ); }
 
+			&.junc-n { border-bottom-left-radius: var( --brick ); border-bottom-right-radius: var( --brick ); }
+			&.junc-s { border-top-left-radius: var( --brick ); border-top-right-radius: var( --brick ); }
+			&.junc-w { border-top-left-radius: var( --brick ); border-bottom-left-radius: var( --brick ); }
+			&.junc-e { border-top-right-radius: var( --brick ); border-bottom-right-radius: var( --brick ); }
+
 			&.path-ns { height: var( --path ); }
 			&.path-we { width: var( --path ); }
 
@@ -129,6 +134,16 @@ content {
 					background: inherit;
 					position: absolute;
 				}
+
+				&.junc-n.e:before { border-bottom-right-radius: var( --brick ); }
+				&.junc-s.e:before { border-top-right-radius: var( --brick ); }
+				&.junc-w.n:before { border-bottom-left-radius: var( --brick ); }
+				&.junc-e.s:before { border-top-right-radius: var( --brick ); }
+
+				&.junc-e.n:before { border-bottom-right-radius: var( --brick ); }
+				&.junc-w.s:before { border-top-left-radius: var( --brick ); }
+				&.junc-s.w:before { border-top-left-radius: var( --brick ); }
+				&.junc-n.w:before { border-bottom-left-radius: var( --brick ); }
 
 				&.s:before,
 				&.junc-nwe:before {

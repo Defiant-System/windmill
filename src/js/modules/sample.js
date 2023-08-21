@@ -38,10 +38,10 @@ lvl["plus"] =
 	"jnw;e,pwe;e,jnwe;E,pwe,jne;X,pwe;e,jne;e";
 
 lvl["plus-x"] =
-	"jws;e,pwe;e,jws;Xe,pwe,jse;Xn,pwe;e,jse;e,"+
+	"jws;e,pwe;e,js;Xe,pwe;e,js;Xw,pwe;e,jse;e,"+
 	"pns;e,b,pns,b,pns,b,pns;e,"+
-	"jws;Xn,pwe,jnwse,pwe,jnwse,pwe,jse;Xw,"+
-	"pns,b,pns,b,pns,b,pns,"+
-	"jnw;Xe,pwe,jnwse,pwe,jnwse,pwe,jne;Xs,"+
+	"jw;Xn,pwe,jnwse,pwe,jnwse,pwe,je;Xn,"+
 	"pns;e,b,pns,b,pns,b,pns;e,"+
-	"jnw;e,pwe;e,jnw;Xe,pwe,jne;Xs,pwe;e,jne;e";
+	"jw;Xs,pwe,jnwse,pwe,jnwse,pwe,je;Xs,"+
+	"pns;e,b,pns,b,pns,b,pns;e,"+
+	"jnw;e,pwe;e,jn;Xe,pwe;e,jn;Xw,pwe;e,jne;e";
