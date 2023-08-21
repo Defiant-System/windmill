@@ -96,6 +96,7 @@ content {
 					position: absolute;
 				}
 
+				&.s:before,
 				&.junc-nwe:before {
 					top: 0;
 					left: 0;
@@ -104,6 +105,7 @@ content {
 					border-radius: 0 0 var( --brick ) var( --brick );
 				}
 
+				&.n:before,
 				&.junc-wse:before {
 					bottom: 0;
 					left: 0;
@@ -112,6 +114,7 @@ content {
 					border-radius: var( --brick ) var( --brick ) 0 0;
 				}
 
+				&.e:before,
 				&.junc-nws:before {
 					right: 0;
 					top: 0;
@@ -120,6 +123,7 @@ content {
 					border-radius: var( --brick ) 0 0 var( --brick );
 				}
 
+				&.w:before,
 				&.junc-nse:before {
 					left: 0;
 					top: 0;
@@ -128,7 +132,7 @@ content {
 					border-radius: 0 var( --brick ) var( --brick ) 0;
 				}
 
-				&.junc-ws:before {
+				&.junc-ws:not(.e):not(.n):before {
 					right: calc( var( --brick ) / 2 );
 					top: 0;
 					width: 25px;
@@ -138,7 +142,7 @@ content {
 					border-radius: var( --brick ) 0 0 var( --brick );
 				}
 
-				&.junc-se:before {
+				&.junc-se:not(.w):not(.n):before {
 					right: calc( var( --brick ) / 2 );
 					top: 0;
 					width: 25px;
@@ -148,7 +152,7 @@ content {
 					border-radius: var( --brick ) 0 0 var( --brick );
 				}
 
-				&.junc-nw:before {
+				&.junc-nw:not(.e):not(.s):before {
 					right: calc( var( --brick ) / 2 );
 					top: 0;
 					width: 25px;
@@ -158,7 +162,7 @@ content {
 					border-radius: var( --brick ) 0 0 var( --brick );
 				}
 
-				&.junc-ne:before {
+				&.junc-ne:not(.w):not(.s):before {
 					right: calc( var( --brick ) / 2 );
 					top: 0;
 					width: 25px;
