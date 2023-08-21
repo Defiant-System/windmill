@@ -26,7 +26,7 @@ lvl["exits"] =
 	"pns,b,pns,b,pns,b,pns,"+
 	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnse;X,"+
 	"pns,b,pns,b,pns,b,pns,"+
-	"jnw;X,pwe,jnwe;X,pwe,jnwe,pwe,jne;X";
+	"jnw;E,pwe,jnwe;X,pwe,jnwe,pwe,jne;X";
 
 lvl["plus"] =
 	"jws;e,pwe;e,jws,pwe,jse,pwe;e,jse;e,"+

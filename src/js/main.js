@@ -9,10 +9,11 @@ const windmill = {
 		this.content = window.find("content");
 
 		Maps.draw({ name: "plus", el: window.find(".puzzle.p1") });
-		Maps.draw({ name: "exits", el: window.find(".puzzle.p2") });
+		// Maps.draw({ name: "exits", el: window.find(".puzzle.p2") });
+		Maps.draw({ dim: "4x3", el: window.find(".puzzle.p2") });
 
 		let snake = [];
-		snake.push(`<circle cx="91" cy="231" r="21"/>`);
+		snake.push(`<circle cx="91" cy="231" r="19"/>`);
 		snake.push(`<line x1="91" y1="231" x2="91" y2="21"/>`);
 		snake.push(`<line x1="91" y1="21" x2="131" y2="21"/>`);
 
