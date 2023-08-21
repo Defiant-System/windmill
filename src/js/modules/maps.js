@@ -14,6 +14,7 @@ let lexer = {
 	"bwe": "break-we",
 	"bns": "break-ns",
 	"b": "box",
+	"e": "empty",
 	"E": "entry",
 	"X": "exit",
 	"Xn": "exit n",
