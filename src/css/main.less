@@ -1,0 +1,173 @@
+
+content {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+	.puzzle {
+		--width: 3;
+		--height: 3;
+		--brick: 14px;
+		--path: calc( var( --brick ) * 4 );
+		--fg: #393;
+		display: inline-block;
+		position: relative;
+		top: 40px;
+		left: 40px;
+		font-size: 0;
+		width: calc( var( --path ) * 4 );
+		height: calc( var( --path ) * 4 );
+
+		span {
+			background: var( --fg );
+			position: relative;
+			width: var( --brick );
+			height: var( --brick );
+			display: inline-block;
+
+			&.box { background: transparent; width: var( --path ); height: var( --path ); }
+
+			&.junc-wse {  }
+			&.junc-nws {  }
+			&.junc-nwse {  }
+			&.junc-nse {  }
+			&.junc-nwe {  }
+			&.junc-ws { border-top-left-radius: var( --brick ); }
+			&.junc-se { border-top-right-radius: var( --brick ); }
+			&.junc-nw { border-bottom-left-radius: var( --brick ); }
+			&.junc-ne { border-bottom-right-radius: var( --brick ); }
+
+			&.path-ns { height: var( --path ); }
+			&.path-we { width: var( --path ); }
+
+			&.break-ns {
+				height: var( --path );
+				background: transparent;
+
+				&:before,
+				&:after {
+					content: "";
+					background: var( --fg );
+					position: absolute;
+					left: 0;
+					right: 0;
+					height: calc( var( --brick ) * 1.5 );
+				}
+
+				&:before { top: 0; }
+				&:after { bottom: 0; }
+			}
+
+			&.break-we {
+				width: var( --path );
+				background: transparent;
+
+				&:before,
+				&:after {
+					content: "";
+					background: var( --fg );
+					position: absolute;
+					top: 0;
+					bottom: 0;
+					width: calc( var( --brick ) * 1.5 );
+				}
+
+				&:before { left: 0; }
+				&:after { right: 0; }
+			}
+
+			&.entry:before {
+				content: "";
+				position: absolute;
+				top: -10px;
+				left: -10px;
+				right: -10px;
+				bottom: -10px;
+				border-radius: 50%;
+				background: inherit;
+			}
+
+			&.exit {
+				&:before {
+					content: "";
+					background: inherit;
+					position: absolute;
+				}
+
+				&.junc-nwe:before {
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: calc( var( --brick ) * -1 );
+					border-radius: 0 0 var( --brick ) var( --brick );
+				}
+
+				&.junc-wse:before {
+					bottom: 0;
+					left: 0;
+					right: 0;
+					top: calc( var( --brick ) * -1 );
+					border-radius: var( --brick ) var( --brick ) 0 0;
+				}
+
+				&.junc-nws:before {
+					right: 0;
+					top: 0;
+					bottom: 0;
+					left: calc( var( --brick ) * -1 );
+					border-radius: var( --brick ) 0 0 var( --brick );
+				}
+
+				&.junc-nse:before {
+					left: 0;
+					top: 0;
+					bottom: 0;
+					right: calc( var( --brick ) * -1 );
+					border-radius: 0 var( --brick ) var( --brick ) 0;
+				}
+
+				&.junc-ws:before {
+					right: calc( var( --brick ) / 2 );
+					top: 0;
+					width: 25px;
+					height: 15px;
+					transform-origin: 100% 50%;
+					transform: rotate(45deg);
+					border-radius: var( --brick ) 0 0 var( --brick );
+				}
+
+				&.junc-se:before {
+					right: calc( var( --brick ) / 2 );
+					top: 0;
+					width: 25px;
+					height: 15px;
+					transform-origin: 100% 50%;
+					transform: rotate(135deg);
+					border-radius: var( --brick ) 0 0 var( --brick );
+				}
+
+				&.junc-nw:before {
+					right: calc( var( --brick ) / 2 );
+					top: 0;
+					width: 25px;
+					height: 15px;
+					transform-origin: 100% 50%;
+					transform: rotate(-45deg);
+					border-radius: var( --brick ) 0 0 var( --brick );
+				}
+
+				&.junc-ne:before {
+					right: calc( var( --brick ) / 2 );
+					top: 0;
+					width: 25px;
+					height: 15px;
+					transform-origin: 100% 50%;
+					transform: rotate(-135deg);
+					border-radius: var( --brick ) 0 0 var( --brick );
+				}
+			}
+		}
+	}
+}
