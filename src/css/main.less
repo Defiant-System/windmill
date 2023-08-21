@@ -13,6 +13,7 @@ content {
 		--path: calc( var( --brick ) * 4 );
 		--fg: #393;
 		--hl: #fff;
+		--snake: #f90;
 		display: inline-block;
 		position: relative;
 		top: 40px;
@@ -29,6 +30,7 @@ content {
 			width: var( --brick );
 			height: var( --brick );
 			display: inline-block;
+			pointer-events: none;
 
 			&.box { background: transparent; width: var( --path ); height: var( --path ); }
 
@@ -94,10 +96,10 @@ content {
 				&:before {
 					content: "";
 					position: absolute;
-					top: calc( var( --brick ) * -1 );
-					left: calc( var( --brick ) * -1 );
-					right: calc( var( --brick ) * -1 );
-					bottom: calc( var( --brick ) * -1 );
+					top: calc( calc( var( --brick ) * -1 ) + 2px );
+					left: calc( calc( var( --brick ) * -1 ) + 2px );
+					right: calc( calc( var( --brick ) * -1 ) + 2px );
+					bottom: calc( calc( var( --brick ) * -1 ) + 2px );
 					border-radius: 50%;
 					background: inherit;
 				}
@@ -105,10 +107,10 @@ content {
 				&:after {
 					content: "";
 					position: absolute;
-					top: calc( var( --brick ) * -1 );
-					left: calc( var( --brick ) * -1 );
-					right: calc( var( --brick ) * -1 );
-					bottom: calc( var( --brick ) * -1 );
+					top: calc( calc( var( --brick ) * -1 ) + 2px );
+					left: calc( calc( var( --brick ) * -1 ) + 2px );
+					right: calc( calc( var( --brick ) * -1 ) + 2px );
+					bottom: calc( calc( var( --brick ) * -1 ) + 2px );
 					border-radius: 50%;
 					background: radial-gradient(circle, transparent, var( --hl ));
 					animation: pulsate 1500ms ease-out infinite;
@@ -233,6 +235,27 @@ content {
 				}
 				&.junc-ne:not(.w):not(.s):after { top: 0; left: 0; }
 			}
+		}
+	}
+
+	.snake {
+		// display: none;
+		position: absolute;
+		z-index: 3;
+		top: calc( var( --brick ) * -1 );
+		left: calc( var( --brick ) * -1 );
+		width: calc( calc( var( --path ) * 4 ) + calc( var( --brick ) * 2 ) );
+		height: calc( calc( var( --path ) * 4 ) + calc( var( --brick ) * 2 ) );
+
+		circle {
+			fill: var( --snake );
+		}
+
+		line {
+			stroke: var( --snake );
+			stroke-width: 14;
+			stroke-linecap: round;
+			stroke-miterlimit: 10;
 		}
 	}
 }
