@@ -5,8 +5,8 @@
 		<meta name="author" value="Hakan Bilgin" namespace="ant"/>
 		<meta name="license" value="AGPL-3.0"/>
 		<meta name="repository" value="https://github.com/Defiant-System/windmill"/>
-		<meta name="width" value="400"/>
-		<meta name="height" value="400"/>
+		<meta name="width" value="700"/>
+		<meta name="height" value="370"/>
 		<meta name="top" value="230"/>
 		<meta name="left" value="220"/>
 		<meta name="minimize"/>

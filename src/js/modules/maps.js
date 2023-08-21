@@ -24,14 +24,14 @@ let lexer = {
 };
 
 let Maps = {
-	draw(map) {
+	draw(opt) {
 		let out = [];
 
-		map.split(",").map(cell => {
+		lvl[opt.name].split(",").map(cell => {
 			let names = cell.split(";").map(p => lexer[p]).join(" ");
 			out.push(`<span class="${names}"></span>`);
 		});
 
-		window.find(".puzzle").html(out.join(""));
+		opt.el.html(out.join(""));
 	}
 };

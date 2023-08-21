@@ -12,13 +12,16 @@ content {
 		--brick: 14px;
 		--path: calc( var( --brick ) * 4 );
 		--fg: #393;
+		--hl: #f00;
 		display: inline-block;
 		position: relative;
 		top: 40px;
-		left: 40px;
 		font-size: 0;
 		width: calc( var( --path ) * 4 );
 		height: calc( var( --path ) * 4 );
+
+		&.p1 { left: 40px; }
+		&.p2 { left: 100px; }
 
 		span {
 			background: var( --fg );
@@ -80,18 +83,46 @@ content {
 				&:after { right: 0; }
 			}
 
-			&.entry:before {
-				content: "";
-				position: absolute;
-				top: -10px;
-				left: -10px;
-				right: -10px;
-				bottom: -10px;
-				border-radius: 50%;
-				background: inherit;
+			&.entry {
+				z-index: 2;
+
+				&:before {
+					content: "";
+					position: absolute;
+					top: calc( var( --brick ) * -1 );
+					left: calc( var( --brick ) * -1 );
+					right: calc( var( --brick ) * -1 );
+					bottom: calc( var( --brick ) * -1 );
+					border-radius: 50%;
+					background: inherit;
+				}
+
+				&:after {
+					content: "";
+					position: absolute;
+					top: calc( var( --brick ) * -1 );
+					left: calc( var( --brick ) * -1 );
+					right: calc( var( --brick ) * -1 );
+					bottom: calc( var( --brick ) * -1 );
+					border-radius: 50%;
+					background: radial-gradient(circle, transparent, var( --hl ));
+					animation: pulsate 1500ms ease-out infinite;
+				}
 			}
 
 			&.exit {
+				z-index: 2;
+
+				&:after {
+					content: "";
+					position: absolute;
+					width: calc( var( --brick ) * 2 );
+					height: calc( var( --brick ) * 2 );
+					border-radius: 50%;
+					background: radial-gradient(circle, transparent, var( --hl ));
+					animation: pulsate 1500ms ease-out infinite;
+				}
+
 				&:before {
 					content: "";
 					background: inherit;
@@ -106,6 +137,8 @@ content {
 					bottom: calc( var( --brick ) * -1 );
 					border-radius: 0 0 var( --brick ) var( --brick );
 				}
+				&.s:after,
+				&.junc-nwe:after { top: 4px; left: -8px; }
 
 				&.n:before,
 				&.junc-wse:before {
@@ -115,6 +148,8 @@ content {
 					top: calc( var( --brick ) * -1 );
 					border-radius: var( --brick ) var( --brick ) 0 0;
 				}
+				&.n:after,
+				&.junc-wse:after { top: -20px; left: -8px; }
 
 				&.e:before,
 				&.junc-nws:before {
@@ -124,6 +159,8 @@ content {
 					left: calc( var( --brick ) * -1 );
 					border-radius: var( --brick ) 0 0 var( --brick );
 				}
+				&.e:after,
+				&.junc-nws:after { top: -8px; left: -20px; }
 
 				&.w:before,
 				&.junc-nse:before {
@@ -133,6 +170,8 @@ content {
 					right: calc( var( --brick ) * -1 );
 					border-radius: 0 var( --brick ) var( --brick ) 0;
 				}
+				&.w:after,
+				&.junc-nse:after { top: -8px; left: 4px; }
 
 				&.junc-ws:not(.e):not(.n):before {
 					right: calc( var( --brick ) / 2 );
@@ -143,6 +182,7 @@ content {
 					transform: rotate(45deg);
 					border-radius: var( --brick ) 0 0 var( --brick );
 				}
+				&.junc-ws:not(.n):not(.e):after { top: -20px; left: -20px; }
 
 				&.junc-se:not(.w):not(.n):before {
 					right: calc( var( --brick ) / 2 );
@@ -153,6 +193,7 @@ content {
 					transform: rotate(135deg);
 					border-radius: var( --brick ) 0 0 var( --brick );
 				}
+				&.junc-se:not(.w):not(.n):after { top: -20px; left: 4px; }
 
 				&.junc-nw:not(.e):not(.s):before {
 					right: calc( var( --brick ) / 2 );
@@ -163,6 +204,7 @@ content {
 					transform: rotate(-45deg);
 					border-radius: var( --brick ) 0 0 var( --brick );
 				}
+				&.junc-nw:not(.e):not(.s):after { top: 4px; left: -20px; }
 
 				&.junc-ne:not(.w):not(.s):before {
 					right: calc( var( --brick ) / 2 );
@@ -173,7 +215,15 @@ content {
 					transform: rotate(-135deg);
 					border-radius: var( --brick ) 0 0 var( --brick );
 				}
+				&.junc-ne:not(.w):not(.s):after { top: 4px; left: 4px; }
 			}
 		}
 	}
+}
+
+
+@keyframes pulsate {
+	0% { opacity: 1; transform: scale(.1); }
+	80%,
+	100% { opacity: 0; transform: scale(1); }
 }

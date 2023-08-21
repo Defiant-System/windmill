@@ -8,7 +8,8 @@ const windmill = {
 		// fast references
 		this.content = window.find("content");
 
-		Maps.draw(plus);
+		Maps.draw({ name: "plus-x", el: window.find(".puzzle.p1") });
+		Maps.draw({ name: "exits", el: window.find(".puzzle.p2") });
 	},
 	dispatch(event) {
 		switch (event.type) {
