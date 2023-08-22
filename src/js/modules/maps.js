@@ -17,6 +17,7 @@ let lexer = {
 	"jwe": "junc-we",
 	"jns": "junc-ns",
 
+	"h": "hex",
 	"pwe": "path-we",
 	"pns": "path-ns",
 	"bwe": "break-we",
@@ -32,6 +33,16 @@ let lexer = {
 	"Dg": "dot green",
 	"Dn": "dot navy",
 	"Do": "dot orange",
+
+	"Sb": "star black",
+	"Sw": "star white",
+	"Sc": "star cyan",
+	"Sm": "star magenta",
+	"Sy": "star yellow",
+	"Sr": "star red",
+	"Sg": "star green",
+	"Sn": "star navy",
+	"So": "star orange",
 
 	"e": "empty",
 	"E": "entry",

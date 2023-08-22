@@ -12,7 +12,7 @@ const witney = {
 		Snake.init();
 
 		Maps.draw({ name: "plus-x", el: window.find(".puzzle.p1") });
-		Maps.draw({ name: "level1", el: window.find(".puzzle.p2") });
+		Maps.draw({ name: "stars", el: window.find(".puzzle.p2") });
 		// Maps.draw({ name: "exits", el: window.find(".puzzle.p2") });
 		// Maps.draw({ gen: "4x3", el: window.find(".puzzle.p2") });
 

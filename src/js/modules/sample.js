@@ -22,6 +22,15 @@ lvl["blank"] = "[3x3]"+
 	"pns,b,pns,b,pns,b,pns,"+
 	"jnw;E,pwe,jnwe,pwe,jnwe,pwe,jne";
 
+lvl["stars"] = "[3x3]"+
+	"jws,pwe,jwse,pwe,jwse,pwe,jse,"+
+	"pns,b;Sb,pns,b;Sr,pns,b;Sn,pns,"+
+	"jnws,pwe;h,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b,pns;h,b,pns,b,pns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b,pns,b,pns,b,pns,"+
+	"jnw;E,pwe,jnwe,pwe,jnwe,pwe,jne";
+
 lvl["exits"] = "[3x3]"+
 	"jws;X,pwe,jwse;X,pwe,jwse,pwe,jse;X,"+
 	"pns,b,pns,b,pns,b,pns,"+
