@@ -9,8 +9,9 @@ const windmill = {
 		this.content = window.find("content");
 
 		Maps.draw({ name: "plus", el: window.find(".puzzle.p1") });
+		Maps.draw({ name: "level1", el: window.find(".puzzle.p2") });
 		// Maps.draw({ name: "exits", el: window.find(".puzzle.p2") });
-		Maps.draw({ gen: "4x3", el: window.find(".puzzle.p2") });
+		// Maps.draw({ gen: "4x3", el: window.find(".puzzle.p2") });
 
 		let snake = [];
 		snake.push(`<circle cx="91" cy="231" r="19"/>`);

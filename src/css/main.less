@@ -9,9 +9,9 @@ content {
 	.puzzle {
 		--width: 3;
 		--height: 3;
-		--brick: 14px;
-		--path: calc( var( --brick ) * 4 );
-		--cell: calc( var( --brick ) * 5 );
+		--unit: 14px;
+		--path: calc( var( --unit ) * 4 );
+		--cell: calc( var( --unit ) * 5 );
 		--fg: #393;
 		--hl: #fff;
 		--snake: #f90;
@@ -19,8 +19,8 @@ content {
 		position: absolute;
 		top: 40px;
 		font-size: 0;
-		width: calc( calc( var( --cell ) * var( --width ) ) + var( --brick ) );
-		height: calc( calc( var( --cell ) * var( --height ) ) + var( --brick ) );
+		width: calc( calc( var( --cell ) * var( --width ) ) + var( --unit ) );
+		height: calc( calc( var( --cell ) * var( --height ) ) + var( --unit ) );
 
 		&.p1 { left: 40px; }
 		&.p2 { left: 320px; }
@@ -28,8 +28,8 @@ content {
 		span {
 			background: var( --fg );
 			position: relative;
-			width: var( --brick );
-			height: var( --brick );
+			width: var( --unit );
+			height: var( --unit );
 			display: inline-block;
 			// pointer-events: none;
 
@@ -42,15 +42,15 @@ content {
 			&.junc-nwse {  }
 			&.junc-nse {  }
 			&.junc-nwe {  }
-			&.junc-ws { border-top-left-radius: var( --brick ); }
-			&.junc-se { border-top-right-radius: var( --brick ); }
-			&.junc-nw { border-bottom-left-radius: var( --brick ); }
-			&.junc-ne { border-bottom-right-radius: var( --brick ); }
+			&.junc-ws { border-top-left-radius: var( --unit ); }
+			&.junc-se { border-top-right-radius: var( --unit ); }
+			&.junc-nw { border-bottom-left-radius: var( --unit ); }
+			&.junc-ne { border-bottom-right-radius: var( --unit ); }
 
-			&.junc-n { border-bottom-left-radius: var( --brick ); border-bottom-right-radius: var( --brick ); }
-			&.junc-s { border-top-left-radius: var( --brick ); border-top-right-radius: var( --brick ); }
-			&.junc-w { border-top-left-radius: var( --brick ); border-bottom-left-radius: var( --brick ); }
-			&.junc-e { border-top-right-radius: var( --brick ); border-bottom-right-radius: var( --brick ); }
+			&.junc-n { border-bottom-left-radius: var( --unit ); border-bottom-right-radius: var( --unit ); }
+			&.junc-s { border-top-left-radius: var( --unit ); border-top-right-radius: var( --unit ); }
+			&.junc-w { border-top-left-radius: var( --unit ); border-bottom-left-radius: var( --unit ); }
+			&.junc-e { border-top-right-radius: var( --unit ); border-bottom-right-radius: var( --unit ); }
 
 			&.path-ns { height: var( --path ); }
 			&.path-we { width: var( --path ); }
@@ -66,7 +66,7 @@ content {
 					position: absolute;
 					left: 0;
 					right: 0;
-					height: calc( var( --brick ) * 1.5 );
+					height: calc( var( --unit ) * 1.5 );
 				}
 
 				&:before { top: 0; }
@@ -84,7 +84,7 @@ content {
 					position: absolute;
 					top: 0;
 					bottom: 0;
-					width: calc( var( --brick ) * 1.5 );
+					width: calc( var( --unit ) * 1.5 );
 				}
 
 				&:before { left: 0; }
@@ -97,10 +97,10 @@ content {
 				&:before {
 					content: "";
 					position: absolute;
-					top: calc( calc( var( --brick ) * -1 ) + 3px );
-					left: calc( calc( var( --brick ) * -1 ) + 3px );
-					right: calc( calc( var( --brick ) * -1 ) + 3px );
-					bottom: calc( calc( var( --brick ) * -1 ) + 3px );
+					top: calc( calc( var( --unit ) * -1 ) + 3px );
+					left: calc( calc( var( --unit ) * -1 ) + 3px );
+					right: calc( calc( var( --unit ) * -1 ) + 3px );
+					bottom: calc( calc( var( --unit ) * -1 ) + 3px );
 					border-radius: 50%;
 					background: inherit;
 				}
@@ -108,10 +108,10 @@ content {
 				&:after {
 					content: "";
 					position: absolute;
-					top: calc( calc( var( --brick ) * -1 ) + 3px );
-					left: calc( calc( var( --brick ) * -1 ) + 3px );
-					right: calc( calc( var( --brick ) * -1 ) + 3px );
-					bottom: calc( calc( var( --brick ) * -1 ) + 3px );
+					top: calc( calc( var( --unit ) * -1 ) + 3px );
+					left: calc( calc( var( --unit ) * -1 ) + 3px );
+					right: calc( calc( var( --unit ) * -1 ) + 3px );
+					bottom: calc( calc( var( --unit ) * -1 ) + 3px );
 					border-radius: 50%;
 					background: radial-gradient(circle, transparent, var( --hl ));
 					animation: pulsate 1500ms ease-out infinite;
@@ -124,8 +124,8 @@ content {
 				&:after {
 					content: "";
 					position: absolute;
-					width: calc( var( --brick ) * 2 );
-					height: calc( var( --brick ) * 2 );
+					width: calc( var( --unit ) * 2 );
+					height: calc( var( --unit ) * 2 );
 					border-radius: 50%;
 					background: radial-gradient(circle, transparent, var( --hl ));
 					animation: pulsate 1500ms ease-out infinite;
@@ -138,101 +138,101 @@ content {
 					position: absolute;
 				}
 
-				&.junc-n.e:before { border-bottom-right-radius: var( --brick ); }
-				&.junc-s.e:before { border-top-right-radius: var( --brick ); }
-				&.junc-w.n:before { border-bottom-left-radius: var( --brick ); }
-				&.junc-e.s:before { border-top-right-radius: var( --brick ); }
+				&.junc-n.e:before { border-bottom-right-radius: var( --unit ); }
+				&.junc-s.e:before { border-top-right-radius: var( --unit ); }
+				&.junc-w.n:before { border-bottom-left-radius: var( --unit ); }
+				&.junc-e.s:before { border-top-right-radius: var( --unit ); }
 
-				&.junc-e.n:before { border-bottom-right-radius: var( --brick ); }
-				&.junc-w.s:before { border-top-left-radius: var( --brick ); }
-				&.junc-s.w:before { border-top-left-radius: var( --brick ); }
-				&.junc-n.w:before { border-bottom-left-radius: var( --brick ); }
+				&.junc-e.n:before { border-bottom-right-radius: var( --unit ); }
+				&.junc-w.s:before { border-top-left-radius: var( --unit ); }
+				&.junc-s.w:before { border-top-left-radius: var( --unit ); }
+				&.junc-n.w:before { border-bottom-left-radius: var( --unit ); }
 
 				&.s:before,
 				&.junc-nwe:before {
 					top: 0;
 					left: 0;
 					right: 0;
-					bottom: calc( var( --brick ) * -1 );
-					border-radius: 0 0 var( --brick ) var( --brick );
+					bottom: calc( var( --unit ) * -1 );
+					border-radius: 0 0 var( --unit ) var( --unit );
 				}
 				&.s:after,
-				&.junc-nwe:after { top: calc( var( --brick ) / 2 ); left: calc( calc( var( --brick ) / 2 ) * -1 ); }
+				&.junc-nwe:after { top: calc( var( --unit ) / 2 ); left: calc( calc( var( --unit ) / 2 ) * -1 ); }
 
 				&.n:before,
 				&.junc-wse:before {
 					bottom: 0;
 					left: 0;
 					right: 0;
-					top: calc( var( --brick ) * -1 );
-					border-radius: var( --brick ) var( --brick ) 0 0;
+					top: calc( var( --unit ) * -1 );
+					border-radius: var( --unit ) var( --unit ) 0 0;
 				}
 				&.n:after,
-				&.junc-wse:after { top: calc( calc( var( --brick ) * 1.5 ) * -1 ); left: calc( calc( var( --brick ) / 2 ) * -1 ); }
+				&.junc-wse:after { top: calc( calc( var( --unit ) * 1.5 ) * -1 ); left: calc( calc( var( --unit ) / 2 ) * -1 ); }
 
 				&.e:before,
 				&.junc-nws:before {
 					right: 0;
 					top: 0;
 					bottom: 0;
-					left: calc( var( --brick ) * -1 );
-					border-radius: var( --brick ) 0 0 var( --brick );
+					left: calc( var( --unit ) * -1 );
+					border-radius: var( --unit ) 0 0 var( --unit );
 				}
 				&.e:after,
-				&.junc-nws:after { top: calc( calc( var( --brick ) / 2 ) * -1 ); left: calc( calc( var( --brick ) * 1.5 ) * -1 ); }
+				&.junc-nws:after { top: calc( calc( var( --unit ) / 2 ) * -1 ); left: calc( calc( var( --unit ) * 1.5 ) * -1 ); }
 
 				&.w:before,
 				&.junc-nse:before {
 					left: 0;
 					top: 0;
 					bottom: 0;
-					right: calc( var( --brick ) * -1 );
-					border-radius: 0 var( --brick ) var( --brick ) 0;
+					right: calc( var( --unit ) * -1 );
+					border-radius: 0 var( --unit ) var( --unit ) 0;
 				}
 				&.w:after,
-				&.junc-nse:after { top: calc( calc( var( --brick ) / 2 ) * -1 ); left: calc( var( --brick ) / 2 ); }
+				&.junc-nse:after { top: calc( calc( var( --unit ) / 2 ) * -1 ); left: calc( var( --unit ) / 2 ); }
 
 				&.junc-ws:not(.e):not(.n):before {
-					right: calc( var( --brick ) / 2 );
+					right: calc( var( --unit ) / 2 );
 					top: 0;
-					width: calc( calc( var( --brick ) * 1.25 ) + 1px );
-					height: calc( var( --brick ) + 1px );
+					width: calc( calc( var( --unit ) * 1.25 ) + 1px );
+					height: calc( var( --unit ) + 1px );
 					transform-origin: 100% 50%;
 					transform: rotate(45deg);
-					border-radius: var( --brick ) 0 0 var( --brick );
+					border-radius: var( --unit ) 0 0 var( --unit );
 				}
-				&.junc-ws:not(.n):not(.e):after { top: calc( var( --brick ) * -1 ); left: calc( var( --brick ) * -1 ); }
+				&.junc-ws:not(.n):not(.e):after { top: calc( var( --unit ) * -1 ); left: calc( var( --unit ) * -1 ); }
 
 				&.junc-se:not(.w):not(.n):before {
-					right: calc( var( --brick ) / 2 );
+					right: calc( var( --unit ) / 2 );
 					top: 0;
-					width: calc( calc( var( --brick ) * 1.25 ) + 1px );
-					height: calc( var( --brick ) + 1px );
+					width: calc( calc( var( --unit ) * 1.25 ) + 1px );
+					height: calc( var( --unit ) + 1px );
 					transform-origin: 100% 50%;
 					transform: rotate(135deg);
-					border-radius: var( --brick ) 0 0 var( --brick );
+					border-radius: var( --unit ) 0 0 var( --unit );
 				}
-				&.junc-se:not(.w):not(.n):after { top: calc( var( --brick ) * -1 ); left: 0; }
+				&.junc-se:not(.w):not(.n):after { top: calc( var( --unit ) * -1 ); left: 0; }
 
 				&.junc-nw:not(.e):not(.s):before {
-					right: calc( var( --brick ) / 2 );
+					right: calc( var( --unit ) / 2 );
 					top: 0;
-					width: calc( calc( var( --brick ) * 1.25 ) + 1px );
-					height: calc( var( --brick ) + 1px );
+					width: calc( calc( var( --unit ) * 1.25 ) + 1px );
+					height: calc( var( --unit ) + 1px );
 					transform-origin: 100% 50%;
 					transform: rotate(-45deg);
-					border-radius: var( --brick ) 0 0 var( --brick );
+					border-radius: var( --unit ) 0 0 var( --unit );
 				}
-				&.junc-nw:not(.e):not(.s):after { top: 0; left: calc( var( --brick ) * -1 ); }
+				&.junc-nw:not(.e):not(.s):after { top: 0; left: calc( var( --unit ) * -1 ); }
 
 				&.junc-ne:not(.w):not(.s):before {
-					right: calc( var( --brick ) / 2 );
+					right: calc( var( --unit ) / 2 );
 					top: 0;
-					width: calc( calc( var( --brick ) * 1.25 ) + 1px );
-					height: calc( var( --brick ) + 1px );
+					width: calc( calc( var( --unit ) * 1.25 ) + 1px );
+					height: calc( var( --unit ) + 1px );
 					transform-origin: 100% 50%;
 					transform: rotate(-135deg);
-					border-radius: var( --brick ) 0 0 var( --brick );
+					border-radius: var( --unit ) 0 0 var( --unit );
 				}
 				&.junc-ne:not(.w):not(.s):after { top: 0; left: 0; }
 			}
@@ -243,10 +243,10 @@ content {
 		// display: none;
 		position: absolute;
 		z-index: 3;
-		top: calc( var( --brick ) * -1 );
-		left: calc( var( --brick ) * -1 );
-		width: calc( calc( var( --path ) * 4 ) + calc( var( --brick ) * 2 ) );
-		height: calc( calc( var( --path ) * 4 ) + calc( var( --brick ) * 2 ) );
+		top: calc( var( --unit ) * -1 );
+		left: calc( var( --unit ) * -1 );
+		width: calc( calc( var( --path ) * 4 ) + calc( var( --unit ) * 2 ) );
+		height: calc( calc( var( --path ) * 4 ) + calc( var( --unit ) * 2 ) );
 
 		circle {
 			fill: var( --snake );

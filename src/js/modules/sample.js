@@ -1,6 +1,9 @@
 
 let lvl = {};
 
+lvl["level1"] = "[3x0]"+
+	"jw;E,pwe,jwe,pwe,jwe,pwe,jwe;Xw";
+
 lvl["all"] = "[3x3]"+
 	"jws;X,pwe,jwse;X,bwe,jwse,pwe,jse;X,"+
 	"pns,b,pns,b,pns,b,pns,"+

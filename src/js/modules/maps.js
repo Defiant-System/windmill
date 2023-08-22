@@ -32,9 +32,11 @@ let Maps = {
 		let out = [];
 		let grid = opt.gen ? this.generate(opt.gen) : lvl[opt.name];
 		let info = grid.split("]")[0].slice(1);
+		let [w,h,u] = info.split("x");
 		let dim = {
-				"--width": info.split("x")[0],
-				"--height": info.split("x")[1],
+				"--width": w || 3,
+				"--height": h || 3,
+				"--unit": `${u || 14}px`,
 			};
 
 		grid.slice(info.length+2).split(",").map(cell => {
@@ -45,7 +47,7 @@ let Maps = {
 		opt.el.css(dim).html(out.join(""));
 	},
 	generate(dim) {
-		let [w, h] = dim.split("x").map(i => +i),
+		let [w, h, u] = dim.split("x").map(i => +i),
 			out = [];
 
 		[...Array(h)].map((r, y) => {
@@ -69,6 +71,6 @@ let Maps = {
 		row.push(`jne`);
 		out.push(row.join(","));
 
-		return `[${w}x${h}]`+ out.join(",");
+		return `[${w}x${h}x${u || 14}]`+ out.join(",");
 	}
 };
