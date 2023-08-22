@@ -250,13 +250,13 @@ content {
 	.snake {
 		// display: none;
 		// background: rgba(255,0,0,.15);
+		// opacity: .75;
 		position: absolute;
 		z-index: 3;
 		top: calc( var( --unit ) * -1 );
 		left: calc( var( --unit ) * -1 );
 		width: calc( calc( var( --cell ) * var( --width ) ) + calc( var( --unit ) * 3 ) );
 		height: calc( calc( var( --cell ) * var( --height ) ) + calc( var( --unit ) * 3 ) );
-		opacity: .75;
 
 		circle {
 			fill: var( --snake );

@@ -8,6 +8,8 @@ const windmill = {
 	init() {
 		// fast references
 		this.content = window.find("content");
+		// init sub objects
+		Snake.init();
 
 		Maps.draw({ name: "plus", el: window.find(".puzzle.p1") });
 		Maps.draw({ name: "level1", el: window.find(".puzzle.p2") });
