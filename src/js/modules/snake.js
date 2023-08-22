@@ -15,14 +15,17 @@ let Snake = {
 			sR = unit + 5,
 			snake = [];
 		// snake nest
-		snake.push(`<circle cx="${sX}" cy="${sY}" r="${sR}"/>`);
-
-		snake.push(`<line x1="${sX}" y1="${sY}" x2="${sX+50}" y2="${sY}"/>`);
-		
+		snake.push(`<circle class="nest" cx="${sX}" cy="${sY}" r="${sR}"/>`);
+		snake.push(`<line class="neck" x1="${sX}" y1="${sY}" x2="${sX+50}" y2="${sY}"/>`);
 		snake.push(`<circle class="head" cx="${sX+50}" cy="${sY}" r="${unit * .5}"/>`);
 
 		// add snake to DOM
-		puzzle.append(`<svg class="snake" viewBox="0 0 ${pW} ${pH}">${snake.join("")}</svg>`);
+		let el = puzzle.append(`<svg class="snake" viewBox="0 0 ${pW} ${pH}">${snake.join("")}</svg>`),
+			head = el.find(".head"),
+			neck = el.find(".neck"),
+			nest = el.find(".nest");
+		this.els = { el, nest, head, neck };
+
 		// save refernce to puzzle
 		this.puzzle = puzzle;
 		// cover app content
@@ -44,6 +47,7 @@ let Snake = {
 				Self.doc.unbind("click mousemove", Self.move);
 				break;
 			case "mousemove":
+
 				break;
 		}
 	}
