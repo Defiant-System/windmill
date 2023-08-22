@@ -90,7 +90,7 @@ let Snake = {
 		let span = this.puzzle.el.find("> span"),
 			onIndex = this.els.onEl.index(),
 			colIndex = onIndex % grid.cols,
-			rowIndex = Math.floor(onIndex / grid.rows),
+			rowIndex = Math.floor(onIndex / grid.cols),
 			rowEls = span.filter((e, i) => i >= rowIndex * grid.cols && i < (rowIndex + 1) * grid.cols),
 			colEls = span.filter((e, i) => i % grid.cols == colIndex);
 
@@ -113,12 +113,12 @@ let Snake = {
 			if (i > colIndex) max.x += +el.offsetWidth;
 		});
 
-
 		rowEls.map(el => {
-			if (this.pos.x > el.offsetLeft && this.pos.x < el.offsetLeft + el.offsetWidth) {
-				if (this.els.onEl[0] !== el) {
-					// this.els.onEl = $(el);
-				}
+			if (this.pos.x > el.offsetLeft &&
+				this.pos.x < el.offsetLeft + el.offsetWidth &&
+				this.els.onEl[0] !== el) {
+					// keeps track of grid part snake head is on
+					this.els.onEl = $(el);
 			}
 		});
 		
