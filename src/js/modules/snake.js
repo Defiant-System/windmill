@@ -34,6 +34,7 @@ let Snake = {
 			},
 			grid: {
 				unit,
+				u2: unit / 2,
 				width: +puzzle.cssProp("--width"),
 				height: +puzzle.cssProp("--height"),
 				cols: (+puzzle.cssProp("--width") * 2) + 1,
@@ -87,7 +88,6 @@ let Snake = {
 		
 		// traverse from current element
 		let span = this.puzzle.el.find("> span"),
-			u2 = grid.unit / 2,
 			onIndex = this.els.onEl.index(),
 			colIndex = onIndex % grid.cols,
 			rowIndex = Math.floor(onIndex / grid.rows),
@@ -95,13 +95,14 @@ let Snake = {
 			colEls = span.filter((e, i) => i % grid.cols == colIndex);
 
 		let min = {
-				x: +this.els.onEl.prop("offsetLeft") + u2,
-				y: +this.els.onEl.prop("offsetTop") + u2,
+				x: +this.els.onEl.prop("offsetLeft") + grid.u2,
+				y: +this.els.onEl.prop("offsetTop") + grid.u2,
 			},
 			max = {
-				x: +this.els.onEl.prop("offsetLeft") + u2,
-				y: +this.els.onEl.prop("offsetTop") + u2,
+				x: +this.els.onEl.prop("offsetLeft") + grid.u2,
+				y: +this.els.onEl.prop("offsetTop") + grid.u2,
 			};
+		
 		colEls.map((el, i) => {
 			if (i < rowIndex) min.y -= +el.offsetHeight;
 			if (i > rowIndex) max.y += +el.offsetHeight;
@@ -115,9 +116,9 @@ let Snake = {
 
 		rowEls.map(el => {
 			if (this.pos.x > el.offsetLeft && this.pos.x < el.offsetLeft + el.offsetWidth) {
-				el.classList.add("onIt");
-			} else {
-				el.classList.remove("onIt");
+				if (this.els.onEl[0] !== el) {
+					// this.els.onEl = $(el);
+				}
 			}
 		});
 		
