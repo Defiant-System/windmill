@@ -25,6 +25,13 @@ content {
 		&.p1 { left: 40px; }
 		&.p2 { left: 320px; }
 
+		&.started {
+			span {
+				&.entry:after { display: none; }
+				&.exit:after { display: block; }
+			}
+		}
+
 		span {
 			background: var( --fg );
 			position: relative;
@@ -122,6 +129,7 @@ content {
 				z-index: 2;
 
 				&:after {
+					display: none;
 					content: "";
 					position: absolute;
 					width: calc( var( --unit ) * 2 );
@@ -241,12 +249,14 @@ content {
 
 	.snake {
 		// display: none;
+		// background: rgba(255,0,0,.15);
 		position: absolute;
 		z-index: 3;
 		top: calc( var( --unit ) * -1 );
 		left: calc( var( --unit ) * -1 );
-		width: calc( calc( var( --path ) * 4 ) + calc( var( --unit ) * 2 ) );
-		height: calc( calc( var( --path ) * 4 ) + calc( var( --unit ) * 2 ) );
+		width: calc( calc( var( --cell ) * var( --width ) ) + calc( var( --unit ) * 3 ) );
+		height: calc( calc( var( --cell ) * var( --height ) ) + calc( var( --unit ) * 3 ) );
+		opacity: .75;
 
 		circle {
 			fill: var( --snake );

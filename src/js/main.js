@@ -1,6 +1,7 @@
 
 @import "modules/sample.js";
 @import "modules/maps.js";
+@import "modules/snake.js";
 
 
 const windmill = {
@@ -19,11 +20,17 @@ const windmill = {
 		snake.push(`<line x1="91" y1="21" x2="131" y2="21"/>`);
 
 		window.find(".puzzle.p1")
+			.addClass("started")
 			.append(`<svg class="snake" viewBox="0 0 252 252">${snake.join("")}</svg>`);
 	},
 	dispatch(event) {
 		switch (event.type) {
+			// system events
 			case "window.init":
+				break;
+			// custom events
+			case "start-snake":
+				Snake.start(event);
 				break;
 			case "open-help":
 				karaqu.shell("fs -u '~/help/index.md'");
