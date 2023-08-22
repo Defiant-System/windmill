@@ -6,6 +6,19 @@ content {
 	right: 0;
 	bottom: 0;
 
+	&.cover {
+		&:after1 {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 99;
+			cursor: none;
+		}
+	}
+
 	.puzzle {
 		--width: 3;
 		--height: 3;
@@ -260,6 +273,14 @@ content {
 
 		circle {
 			fill: var( --snake );
+			position: relative;
+			z-index: 2;
+
+			&.head {
+				filter: drop-shadow(0 0 3px rgba(#000,.25));
+				position: relative;
+				z-index: 3;
+			}
 		}
 
 		line {
@@ -267,6 +288,8 @@ content {
 			stroke-width: 14;
 			stroke-linecap: round;
 			stroke-miterlimit: 10;
+			position: relative;
+			z-index: 1;
 		}
 	}
 }
