@@ -122,14 +122,14 @@ let Snake = {
 			}
 		});
 
-		rowEls.map(el => {
-			if (this.pos.x > el.offsetLeft &&
-				this.pos.x < el.offsetLeft + el.offsetWidth &&
-				this.els.onEl[0] !== el) {
-					// keeps track of grid part snake head is on
-					this.els.onEl = $(el);
-			}
-		});
+		// rowEls.map(el => {
+		// 	if (this.pos.x > el.offsetLeft &&
+		// 		this.pos.x < el.offsetLeft + el.offsetWidth &&
+		// 		this.els.onEl[0] !== el) {
+		// 			// keeps track of grid part snake head is on
+		// 			this.els.onEl = $(el);
+		// 	}
+		// });
 		
 		this.pos.min = min;
 		this.pos.max = max;

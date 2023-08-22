@@ -25,7 +25,7 @@ content {
 		--unit: 14px;
 		--path: calc( var( --unit ) * 4 );
 		--cell: calc( var( --unit ) * 5 );
-		--bg: #eee;
+		--bg: #999;
 		--fg: #393;
 		--hl: #fff;
 		--snake: #f90;
@@ -35,6 +35,18 @@ content {
 		font-size: 0;
 		width: calc( calc( var( --cell ) * var( --width ) ) + var( --unit ) );
 		height: calc( calc( var( --cell ) * var( --height ) ) + var( --unit ) );
+
+		&:before {
+			content: "";
+			position: absolute;
+			top: calc( var( --unit ) * -1.5 );
+			left: calc( var( --unit ) * -1.5 );
+			right: calc( var( --unit ) * -1.5 );
+			bottom: calc( var( --unit ) * -1.5 );
+			border-radius: calc( var( --unit ) * 2 );
+			background: var( --bg );
+			opacity: .5;
+		}
 
 		&.p1 { left: 40px; }
 		&.p2 { left: 320px; }
