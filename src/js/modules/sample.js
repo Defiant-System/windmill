@@ -1,8 +1,11 @@
 
 let lvl = {};
 
-lvl["level1"] = "[3x0]"+
+lvl["level1-H"] = "[3x0]"+
 	"jw;E,pwe,jwe,pwe,jwe,pwe,jwe;Xw";
+
+lvl["level1-V"] = "[0x2]"+
+	"js;Xn,pns,jns,pns,jns;E";
 
 lvl["all"] = "[3x3]"+
 	"jws;X,pwe,jwse;X,bwe,jwse,pwe,jse;X,"+

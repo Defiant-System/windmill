@@ -99,18 +99,27 @@ let Snake = {
 				y: +this.els.onEl.prop("offsetTop") + grid.u2,
 			},
 			max = {
-				x: +this.els.onEl.prop("offsetLeft") + grid.u2,
-				y: +this.els.onEl.prop("offsetTop") + grid.u2,
+				x: +this.els.onEl.prop("offsetLeft") - grid.u2,
+				y: +this.els.onEl.prop("offsetTop") - grid.u2,
 			};
 		
 		colEls.map((el, i) => {
 			if (i < rowIndex) min.y -= +el.offsetHeight;
-			if (i > rowIndex) max.y += +el.offsetHeight;
+			if (i >= rowIndex) max.y += +el.offsetHeight;
 		});
 
 		rowEls.map((el, i) => {
 			if (i < colIndex) min.x -= +el.offsetWidth;
-			if (i > colIndex) max.x += +el.offsetWidth;
+			if (i >= colIndex) max.x += +el.offsetWidth;
+		});
+
+		colEls.map(el => {
+			if (this.pos.x > el.offsetTop &&
+				this.pos.x < el.offsetTop + el.offsetHeight &&
+				this.els.onEl[0] !== el) {
+					// keeps track of grid part snake head is on
+					this.els.onEl = $(el);
+			}
 		});
 
 		rowEls.map(el => {
