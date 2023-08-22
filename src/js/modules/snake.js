@@ -33,6 +33,7 @@ let Snake = {
 				height: oH,
 			},
 			grid: {
+				unit,
 				width: +puzzle.cssProp("--width"),
 				height: +puzzle.cssProp("--height"),
 				cols: (+puzzle.cssProp("--width") * 2) + 1,
@@ -81,20 +82,32 @@ let Snake = {
 		
 		// traverse from current element
 		let span = this.puzzle.el.find("> span"),
+			u2 = grid.unit / 2,
 			onIndex = this.els.onEl.index(),
 			colIndex = onIndex % grid.cols,
 			rowIndex = Math.floor(onIndex / grid.rows),
 			rowEls = span.filter((e, i) => i >= rowIndex * grid.cols && i < (rowIndex + 1) * grid.cols),
 			colEls = span.filter((e, i) => i % grid.cols == colIndex);
-		console.log( colEls );
 
-		this.origo.min = {
-			x: +neck.attr("x1"),
-			y: +neck.attr("y1"),
-		};
-		this.origo.max = {
-			x: 231,
-			y: +neck.attr("y1"),
-		};
+		let min = {
+				x: +this.els.onEl.prop("offsetLeft") + u2,
+				y: +this.els.onEl.prop("offsetTop") + u2,
+			},
+			max = {
+				x: +this.els.onEl.prop("offsetLeft") + u2,
+				y: +this.els.onEl.prop("offsetTop") + u2,
+			};
+		colEls.map((el, i) => {
+			if (i < rowIndex) min.y -= +el.offsetHeight;
+			if (i > rowIndex) max.y += +el.offsetHeight;
+		});
+
+		rowEls.map((el, i) => {
+			if (i < colIndex) min.x -= +el.offsetWidth;
+			if (i > colIndex) max.x += +el.offsetWidth;
+		});
+		
+		this.origo.min = min;
+		this.origo.max = max;
 	}
 };
