@@ -1,8 +1,8 @@
 <MenuBar>
-	<Menu name="The Windmill">
-		<Menu name="About The Windmill" shell="win -a"/>
+	<Menu name="Witney">
+		<Menu name="About Witney" shell="win -a"/>
 		<Menu type="divider"/>
-		<Menu name="Quit The Windmill" shell="win -c"/>
+		<Menu name="Quit Witney" shell="win -c"/>
 	</Menu>
 	<Menu name="Help">
 		<Menu name="Help" click="open-help"/>

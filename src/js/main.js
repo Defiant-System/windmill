@@ -4,7 +4,7 @@
 @import "modules/snake.js";
 
 
-const windmill = {
+const witney = {
 	init() {
 		// fast references
 		this.content = window.find("content");
@@ -41,4 +41,4 @@ const windmill = {
 	}
 };
 
-window.exports = windmill;
+window.exports = witney;

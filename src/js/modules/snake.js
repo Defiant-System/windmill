@@ -1,8 +1,8 @@
 
 let Snake = {
 	init() {
-		this.APP = windmill;
-		this.content = windmill.content;
+		this.APP = witney;
+		this.content = witney.content;
 		this.doc = $(document);
 	},
 	start(event) {

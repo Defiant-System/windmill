@@ -1,10 +1,10 @@
 <Application>
 	<Head>
-		<meta name="id" value="windmill"/>
-		<meta name="title" value="The Windmill" version="1.0"/>
+		<meta name="id" value="witney"/>
+		<meta name="title" value="Witney" version="1.0"/>
 		<meta name="author" value="Hakan Bilgin" namespace="ant"/>
 		<meta name="license" value="AGPL-3.0"/>
-		<meta name="repository" value="https://github.com/Defiant-System/windmill"/>
+		<meta name="repository" value="https://github.com/Defiant-System/witney"/>
 		<meta name="width" value="700"/>
 		<meta name="height" value="370"/>
 		<meta name="top" value="230"/>
