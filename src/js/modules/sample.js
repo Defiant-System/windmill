@@ -1,7 +1,7 @@
 
 let lvl = {};
 
-lvl["all"] =
+lvl["all"] = "[3x3]"+
 	"jws;X,pwe,jwse;X,bwe,jwse,pwe,jse;X,"+
 	"pns,b,pns,b,pns,b,pns,"+
 	"jnws;X,bwe,jnwse,bwe,jnwse,pwe,jnse,"+
@@ -10,7 +10,7 @@ lvl["all"] =
 	"pns,b,pns,b,pns,b,pns,"+
 	"jnw;X,bwe,jnwe;X,bwe,jnwe,pwe,jne;X";
 
-lvl["blank"] =
+lvl["blank"] = "[3x3]"+
 	"jws,pwe,jwse,pwe,jwse,pwe,jse,"+
 	"pns,b,pns,b,pns,b,pns,"+
 	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
@@ -19,7 +19,7 @@ lvl["blank"] =
 	"pns,b,pns,b,pns,b,pns,"+
 	"jnw;E,pwe,jnwe,pwe,jnwe,pwe,jne";
 
-lvl["exits"] =
+lvl["exits"] = "[3x3]"+
 	"jws;X,pwe,jwse;X,pwe,jwse,pwe,jse;X,"+
 	"pns,b,pns,b,pns,b,pns,"+
 	"jnws;X,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
@@ -28,7 +28,7 @@ lvl["exits"] =
 	"pns,b,pns,b,pns,b,pns,"+
 	"jnw;E,pwe,jnwe;X,pwe,jnwe,pwe,jne;X";
 
-lvl["plus"] =
+lvl["plus"] = "[3x3]"+
 	"jws;e,pwe;e,jws,pwe,jse,pwe;e,jse;e,"+
 	"pns;e,b,pns,b,pns,b,pns;e,"+
 	"jws,pwe,jnwse,pwe,jnwse,pwe,jse,"+
@@ -37,7 +37,7 @@ lvl["plus"] =
 	"pns;e,b,pns,b,pns,b,pns;e,"+
 	"jnw;e,pwe;e,jnwe;E,pwe,jne;X,pwe;e,jne;e";
 
-lvl["plus-x"] =
+lvl["plus-x"] = "[3x3]"+
 	"jws;e,pwe;e,js;Xe,pwe;e,js;Xw,pwe;e,jse;e,"+
 	"pns;e,b,pns,b,pns,b,pns;e,"+
 	"jw;Xn,pwe,jnwse,pwe,jnwse,pwe,je;Xn,"+

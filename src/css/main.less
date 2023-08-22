@@ -11,18 +11,19 @@ content {
 		--height: 3;
 		--brick: 14px;
 		--path: calc( var( --brick ) * 4 );
+		--cell: calc( var( --brick ) * 5 );
 		--fg: #393;
 		--hl: #fff;
 		--snake: #f90;
 		display: inline-block;
-		position: relative;
+		position: absolute;
 		top: 40px;
 		font-size: 0;
-		width: calc( var( --path ) * 4 );
-		height: calc( var( --path ) * 4 );
+		width: calc( calc( var( --cell ) * var( --width ) ) + var( --brick ) );
+		height: calc( calc( var( --cell ) * var( --height ) ) + var( --brick ) );
 
 		&.p1 { left: 40px; }
-		&.p2 { left: 100px; }
+		&.p2 { left: 320px; }
 
 		span {
 			background: var( --fg );
