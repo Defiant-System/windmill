@@ -8,8 +8,8 @@ let Snake = {
 	start(event) {
 		let puzzle = event.el.parents(".puzzle").addClass("started"),
 			unit = parseInt(puzzle.cssProp("--unit"), 10),
-			pW = puzzle.prop("offsetWidth"),
-			pH = puzzle.prop("offsetHeight"),
+			oW = puzzle.prop("offsetWidth"),
+			oH = puzzle.prop("offsetHeight"),
 			sX = +event.el.prop("offsetLeft") + 7,
 			sY = +event.el.prop("offsetTop") + 7,
 			sR = unit + 5,
@@ -20,11 +20,25 @@ let Snake = {
 		snake.push(`<circle class="head" cx="${sX}" cy="${sY}" r="${unit * .75}"/>`);
 
 		// add snake to DOM
-		let el = puzzle.append(`<svg class="snake" viewBox="0 0 ${pW} ${pH}">${snake.join("")}</svg>`),
+		let el = puzzle.append(`<svg class="snake" viewBox="0 0 ${oW} ${oH}">${snake.join("")}</svg>`),
 			head = el.find(".head"),
 			neck = el.find(".neck"),
 			nest = el.find(".nest");
-		this.els = { el, nest, head, neck };
+		this.els = { el, nest, head, neck, onEl: event.el };
+		// fast references
+		this.puzzle = {
+			el: puzzle,
+			offset: {
+				width: oW,
+				height: oH,
+			},
+			grid: {
+				width: +puzzle.cssProp("--width"),
+				height: +puzzle.cssProp("--height"),
+				cols: (+puzzle.cssProp("--width") * 2) + 1,
+				rows: (+puzzle.cssProp("--height") * 2) + 1,
+			},
+		};
 
 		this.origo = {
 			x: event.clientX,
@@ -33,8 +47,6 @@ let Snake = {
 		// get constraints
 		this.getMaxMin();
 
-		// save refernce to puzzle
-		this.puzzle = puzzle;
 		// cover app content
 		this.content.addClass("cover");
 		// bind event handler
@@ -46,8 +58,8 @@ let Snake = {
 		switch (event.type) {
 			case "click":
 				// dispose snake & reset puzzle
-				Self.puzzle.find("svg.snake").remove();
-				Self.puzzle.removeClass("started");
+				Self.puzzle.el.find("svg.snake").remove();
+				Self.puzzle.el.removeClass("started");
 				// reset app content
 				Self.content.removeClass("cover");
 				// bind event handler
@@ -64,7 +76,18 @@ let Snake = {
 		}
 	},
 	getMaxMin() {
-		let neck = this.els.neck;
+		let neck = this.els.neck,
+			grid = this.puzzle.grid;
+		
+		// traverse from current element
+		let span = this.puzzle.el.find("> span"),
+			onIndex = this.els.onEl.index(),
+			colIndex = onIndex % grid.cols,
+			rowIndex = Math.floor(onIndex / grid.rows),
+			rowEls = span.filter((e, i) => i >= rowIndex * grid.cols && i < (rowIndex + 1) * grid.cols),
+			colEls = span.filter((e, i) => i % grid.cols == colIndex);
+		console.log( colEls );
+
 		this.origo.min = {
 			x: +neck.attr("x1"),
 			y: +neck.attr("y1"),

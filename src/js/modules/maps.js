@@ -13,6 +13,10 @@ let lexer = {
 	"js": "junc-s",
 	"je": "junc-e",
 	"jw": "junc-w",
+
+	"jwe": "junc-we",
+	"jns": "junc-ns",
+
 	"pwe": "path-we",
 	"pns": "path-ns",
 	"bwe": "break-we",

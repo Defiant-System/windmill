@@ -11,19 +11,20 @@ const witney = {
 		// init sub objects
 		Snake.init();
 
-		Maps.draw({ name: "plus", el: window.find(".puzzle.p1") });
+		Maps.draw({ name: "plus-x", el: window.find(".puzzle.p1") });
 		Maps.draw({ name: "level1", el: window.find(".puzzle.p2") });
 		// Maps.draw({ name: "exits", el: window.find(".puzzle.p2") });
 		// Maps.draw({ gen: "4x3", el: window.find(".puzzle.p2") });
 
-		let snake = [];
-		snake.push(`<circle class="nest" cx="77" cy="217" r="19"/>`);
-		snake.push(`<line x1="77" y1="218" x2="77" y2="7"/>`);
-		snake.push(`<line class="neck" x1="77" y1="7" x2="113" y2="7"/>`);
+		// Maps.draw({ name: "plus", el: window.find(".puzzle.p1") });
+		// let snake = [];
+		// snake.push(`<circle class="nest" cx="77" cy="217" r="19"/>`);
+		// snake.push(`<line x1="77" y1="218" x2="77" y2="7"/>`);
+		// snake.push(`<line class="neck" x1="77" y1="7" x2="113" y2="7"/>`);
 
-		window.find(".puzzle.p1")
-			.addClass("started")
-			.append(`<svg class="snake" viewBox="0 0 224 224">${snake.join("")}</svg>`);
+		// window.find(".puzzle.p1")
+		// 	.addClass("started")
+		// 	.append(`<svg class="snake" viewBox="0 0 224 224">${snake.join("")}</svg>`);
 	},
 	dispatch(event) {
 		switch (event.type) {
