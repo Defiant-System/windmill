@@ -41,9 +41,9 @@ let Snake = {
 			},
 		};
 
-		this.origo = {
-			x: event.clientX,
-			y: event.clientY,
+		this.pos = {
+			origoX: event.clientX,
+			origoY: event.clientY,
 		};
 		// get constraints
 		this.getMaxMin();
@@ -67,12 +67,17 @@ let Snake = {
 				Self.doc.unbind("click mousemove", Self.move);
 				break;
 			case "mousemove":
-				let x2 = event.clientX - Self.origo.x,
-					y2 = event.clientY - Self.origo.y;
-				x2 = Math.min(Math.max(Self.origo.min.x, x2), Self.origo.max.x);
-				y2 = Math.min(Math.max(Self.origo.min.y, y2), Self.origo.max.y);
+				let x2 = event.clientX - Self.pos.origoX,
+					y2 = event.clientY - Self.pos.origoY;
+				x2 = Math.min(Math.max(Self.pos.min.x, x2), Self.pos.max.x);
+				y2 = Math.min(Math.max(Self.pos.min.y, y2), Self.pos.max.y);
 				Self.els.neck.attr({ x2, y2 });
 				Self.els.head.attr({ cx: x2, cy: y2 });
+				// save head pos
+				Self.pos.x = x2;
+				Self.pos.y = y2;
+
+				Self.getMaxMin();
 				break;
 		}
 	},
@@ -106,8 +111,17 @@ let Snake = {
 			if (i < colIndex) min.x -= +el.offsetWidth;
 			if (i > colIndex) max.x += +el.offsetWidth;
 		});
+
+
+		rowEls.map(el => {
+			if (this.pos.x > el.offsetLeft && this.pos.x < el.offsetLeft + el.offsetWidth) {
+				el.classList.add("onIt");
+			} else {
+				el.classList.remove("onIt");
+			}
+		});
 		
-		this.origo.min = min;
-		this.origo.max = max;
+		this.pos.min = min;
+		this.pos.max = max;
 	}
 };
