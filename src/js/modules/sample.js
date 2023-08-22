@@ -48,3 +48,15 @@ lvl["plus-x"] = "[3x3]"+
 	"jw;Xs,pwe,jnwse,pwe,jnwse,pwe,je;Xs,"+
 	"pns;e,b,pns,b,pns,b,pns;e,"+
 	"jnw;e,pwe;e,jn;Xe,pwe;e,jn;Xw,pwe;e,jne;e";
+
+lvl["enigmeto"] = "[4x4]"+
+	"jws;X,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jse;X,"+
+	"pns,b,pns,b;Db,pns,b;Db,pns,b,pns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b;Db,pns,b;Do,pns,b;Db,pns,b;Do,pns,"+
+	"jnws;E,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse;E,"+
+	"pns,b;Do,pns,b;Do,pns,b;Db,pns,b,pns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b;Db,pns,b;Do,pns,b;Db,pns,b;Do,pns,"+
+	"jnw;X,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jne;X";
+

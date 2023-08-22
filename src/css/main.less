@@ -53,7 +53,33 @@ content {
 			display: inline-block;
 			// pointer-events: none;
 
-			&.box { background: transparent; width: var( --path ); height: var( --path ); }
+			&.box {
+				background: transparent;
+				width: var( --path );
+				height: var( --path );
+
+				&.dot {
+					&:before {
+						content: "";
+						position: absolute;
+						top: var( --unit );
+						left: var( --unit );
+						right: var( --unit );
+						bottom: var( --unit );
+						border-radius: calc( var( --unit ) * .75 );
+					}
+
+					&.white:before   { background: white; }
+					&.black:before   { background: black; }
+					&.cyan:before    { background: cyan; }
+					&.magenta:before { background: magenta; }
+					&.yellow:before  { background: yellow; }
+					&.red:before     { background: red; }
+					&.green:before   { background: green; }
+					&.navy:before    { background: navy; }
+					&.orange:before  { background: orange; }
+				}
+			}
 
 			&.empty { background: transparent; }
 
@@ -262,24 +288,23 @@ content {
 
 	.snake {
 		// display: none;
-		// background: rgba(255,0,0,.15);
+		// background: rgba(0,0,0,.15);
 		// opacity: .75;
 		position: absolute;
+		overflow: visible;
 		z-index: 3;
-		top: calc( var( --unit ) * -1 );
-		left: calc( var( --unit ) * -1 );
-		width: calc( calc( var( --cell ) * var( --width ) ) + calc( var( --unit ) * 3 ) );
-		height: calc( calc( var( --cell ) * var( --height ) ) + calc( var( --unit ) * 3 ) );
+		top: 0;
+		left: 0;
+		width: calc( calc( var( --cell ) * var( --width ) ) + var( --unit ) );
+		height: calc( calc( var( --cell ) * var( --height ) ) + var( --unit ) );
 
 		circle {
 			fill: var( --snake );
-			position: relative;
-			z-index: 2;
+			// opacity: .35;
 
 			&.head {
 				filter: drop-shadow(0 0 3px rgba(#000,.25));
-				position: relative;
-				z-index: 3;
+				// opacity: .9;
 			}
 		}
 
@@ -288,8 +313,6 @@ content {
 			stroke-width: 14;
 			stroke-linecap: round;
 			stroke-miterlimit: 10;
-			position: relative;
-			z-index: 1;
 		}
 	}
 }

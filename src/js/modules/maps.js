@@ -18,6 +18,17 @@ let lexer = {
 	"bwe": "break-we",
 	"bns": "break-ns",
 	"b": "box",
+
+	"Db": "dot black",
+	"Dw": "dot white",
+	"Dc": "dot cyan",
+	"Dm": "dot magenta",
+	"Dy": "dot yellow",
+	"Dr": "dot red",
+	"Dg": "dot green",
+	"Dn": "dot navy",
+	"Do": "dot orange",
+
 	"e": "empty",
 	"E": "entry",
 	"X": "exit",
