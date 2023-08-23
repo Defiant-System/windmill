@@ -1,10 +1,14 @@
 
 let lvl = {};
 
-lvl["level1-H"] = "[3x0]"+
+lvl["level1a-H"] = "[3x0]"+
 	"jw;E,pwe,jwe,pwe,jwe,pwe,jwe;Xw";
+lvl["level1b-H"] = "[3x0]"+
+	"jw;Xe,pwe,jwe,pwe,jwe,pwe,jwe;E";
 
-lvl["level1-V"] = "[0x2]"+
+lvl["level1a-V"] = "[0x2]"+
+	"js;E,pns,jns,pns,jns;Xs";
+lvl["level1b-V"] = "[0x2]"+
 	"js;Xn,pns,jns,pns,jns;E";
 
 lvl["all"] = "[3x3]"+

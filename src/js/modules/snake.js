@@ -12,7 +12,7 @@ let Snake = {
 
 		// temp
 		// this.content.find(".puzzle").addClass("debug");
-		this.content.on("mousedown", ".puzzle", this.move);
+		// this.content.on("mousedown", ".puzzle", this.move);
 	},
 	startPuzzle(event) {
 		let puzzle = event.el.parents(".puzzle").addClass("started"),
@@ -62,7 +62,7 @@ let Snake = {
 			origoY: event.clientY,
 		};
 		// get constraints
-		// this.getLimits();
+		this.getLimits();
 
 		// cover app content
 		this.content.addClass("cover");
@@ -82,24 +82,24 @@ let Snake = {
 				// bind event handler
 				Self.doc.unbind("click mousemove", Self.move);
 				break;
-			case "mousedown":
-				Self.startPuzzle({ el: $(event.target) });
-				Self.getLimits();
-				break;
+			// case "mousedown":
+			// 	Self.startPuzzle({ el: $(event.target) });
+			// 	Self.getLimits();
+			// 	break;
 			case "mousemove":
-				let p1 = {
-						x: Self.pos.origoX,
-						y: Self.pos.origoY,
-					},
-					p2 = {
-						x: event.clientX,
-						y: event.clientY,
-					},
-					dirs = Self.getDirection(p2, p1);
+				// let p1 = {
+				// 		x: Self.pos.origoX,
+				// 		y: Self.pos.origoY,
+				// 	},
+				// 	p2 = {
+				// 		x: event.clientX,
+				// 		y: event.clientY,
+				// 	},
+				// 	dirs = Self.getDirection(p2, p1);
 				
-				if (Self.direction !== dirs) {
-					Self.getLimits(dirs);
-				}
+				// if (Self.direction !== dirs) {
+				// 	Self.getLimits(dirs);
+				// }
 
 				let x2 = event.clientX - Self.pos.origoX,
 					y2 = event.clientY - Self.pos.origoY;
@@ -134,12 +134,12 @@ let Snake = {
 			rowEls = span.filter((e, i) => i >= rowIndex * grid.cols && i < (rowIndex + 1) * grid.cols),
 			colEls = span.filter((e, i) => i % grid.cols == colIndex),
 			min = {
-				x: +this.onEl.prop("offsetLeft"),
-				y: +this.onEl.prop("offsetTop"),
+				x: +this.onEl.prop("offsetLeft") + grid.u2,
+				y: +this.onEl.prop("offsetTop") + grid.u2,
 			},
 			max = {
-				x: +this.onEl.prop("offsetLeft"),
-				y: +this.onEl.prop("offsetTop"),
+				x: +this.onEl.prop("offsetLeft") + grid.u2,
+				y: +this.onEl.prop("offsetTop") + grid.u2,
 			};
 		// horisontal - backwards from "onEl"
 		for (let i=colIndex; i>0; i--) {
@@ -228,7 +228,9 @@ let Snake = {
 				}
 			});
 		}
-		// console.log(min.x, max.x);
-		// console.log(min.y, max.y);
+		console.log(min.x, max.x);
+		console.log(min.y, max.y);
+		this.pos.min = min;
+		this.pos.max = max;
 	}
 };
