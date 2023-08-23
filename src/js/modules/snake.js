@@ -11,7 +11,7 @@ let Snake = {
 		this.direction = false;
 
 		// temp
-		this.content.find(".puzzle").addClass("debug");
+		// this.content.find(".puzzle").addClass("debug");
 		this.content.on("mousedown", ".puzzle", this.move);
 	},
 	startPuzzle(event) {
@@ -170,6 +170,36 @@ let Snake = {
 			}
 		}
 
+		// vertical - backwards from "onEl"
+		for (let i=rowIndex; i>0; i--) {
+			if (colEls[i-1].classList.contains("empty")) {
+				rowIndex -= i;
+				colEls = colEls.splice(i);
+				break;
+			}
+		}
+		for (let i=rowIndex; i>0; i--) {
+			if (colEls[i-1].classList.contains("break-ns")) {
+				rowIndex -= i-1;
+				colEls = colEls.splice(i-1);
+				break;
+			}
+		}
+		// vertical - forwards from "onEl"
+		for (let i=rowIndex, il=colEls.length; i<il; i++) {
+			if (colEls[i].classList.contains("empty")) {
+				colEls.splice(i);
+				break;
+			}
+		}
+		for (let i=rowIndex, il=colEls.length; i<il; i++) {
+			if (colEls[i].classList.contains("break-ns")) {
+				colEls.splice(i+1);
+				break;
+			}
+		}
+
+		// decrease constraints
 		if (dirs.includes(1) || dirs.includes(3)) {
 			rowEls.map((el, i) => {
 				if (i < colIndex) {
@@ -184,7 +214,21 @@ let Snake = {
 				}
 			});
 		}
-		console.log(min.x, max.x);
+		if (dirs.includes(0) || dirs.includes(2)) {
+			colEls.map((el, i) => {
+				if (i < rowIndex) {
+					min.y -= el.classList.contains("break-ns")
+							? grid.unit * 1.5
+							: +el.offsetHeight;
+				}
+				if (i >= rowIndex) {
+					max.y += el.classList.contains("break-ns")
+							? grid.unit * 1.5
+							: +el.offsetHeight;
+				}
+			});
+		}
+		// console.log(min.x, max.x);
 		// console.log(min.y, max.y);
 	}
 };
