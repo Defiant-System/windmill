@@ -16,6 +16,17 @@ lvl["all"] = "[3x3]"+
 	"pns,b,pns,b,pns,b,pns,"+
 	"jnw;X,bwe,jnwe;X,bwe,jnwe,pwe,jne;X";
 
+
+lvl["large"] = "[5x3]"+
+	"jws,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jse,"+
+	"pns,b,pns;e,b,bns,b,pns,b,pns,b,pns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnwse,bwe,jnse,"+
+	"pns,b,pns,b,pns,b,pns,b,pns,b,pns,"+
+	"jnws,pwe,jnwse,bwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b,pns,b,pns,b,pns,b,pns,b,pns,"+
+	"jnw;E,pwe,jne,pwe;e,jnw,pwe,jne,pwe;e,jnw,pwe,jne";
+
+
 lvl["blank"] = "[3x3]"+
 	"jws,pwe,jwse,pwe,jwse,pwe,jse,"+
 	"pns,b,pns,b,pns,b,pns,"+
@@ -57,9 +68,9 @@ lvl["plus-x"] = "[3x3]"+
 	"pns;e,b,pns,b,pns,b,pns;e,"+
 	"jw;Xn,pwe,jnwse;E,pwe,jnwse,bwe,je;Xn,"+
 	"pns;e,b,pns,b,pns,b,pns;e,"+
-	"jws,pwe,jnwse,pwe,jnwse,pwe,je;Xs,"+
-	"pns,b,pns,b,pns,b,pns;e,"+
-	"jnw,pwe,jne,pwe;e,jn;Xw,pwe;e,jne;e";
+	"jws;e,pwe;e,jnws,pwe,jnwse,bwe,je;Xs,"+
+	"pns;e,b,pns,b,pns,b,pns;e,"+
+	"jw;X,pwe,jne,pwe;e,jn;Xw,pwe;e,jne;e";
 
 lvl["enigmeto"] = "[4x4]"+
 	"jws;X,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jse;X,"+

@@ -132,8 +132,59 @@ let Snake = {
 			colIndex = onIndex % grid.cols,
 			rowIndex = Math.floor(onIndex / grid.cols),
 			rowEls = span.filter((e, i) => i >= rowIndex * grid.cols && i < (rowIndex + 1) * grid.cols),
-			colEls = span.filter((e, i) => i % grid.cols == colIndex);
+			colEls = span.filter((e, i) => i % grid.cols == colIndex),
+			min = {
+				x: +this.onEl.prop("offsetLeft"),
+				y: +this.onEl.prop("offsetTop"),
+			},
+			max = {
+				x: +this.onEl.prop("offsetLeft"),
+				y: +this.onEl.prop("offsetTop"),
+			};
+		// horisontal - backwards from "onEl"
+		for (let i=colIndex; i>0; i--) {
+			if (rowEls[i-1].classList.contains("empty")) {
+				colIndex -= i;
+				rowEls = rowEls.splice(i);
+				break;
+			}
+		}
+		for (let i=colIndex; i>0; i--) {
+			if (rowEls[i-1].classList.contains("break-we")) {
+				colIndex -= i-1;
+				rowEls = rowEls.splice(i-1);
+				break;
+			}
+		}
+		// horisontal - forwards from "onEl"
+		for (let i=colIndex, il=rowEls.length; i<il; i++) {
+			if (rowEls[i].classList.contains("empty")) {
+				rowEls.splice(i);
+				break;
+			}
+		}
+		for (let i=colIndex, il=rowEls.length; i<il; i++) {
+			if (rowEls[i].classList.contains("break-we")) {
+				rowEls.splice(i+1);
+				break;
+			}
+		}
 
-		console.log(dirs);
+		if (dirs.includes(1) || dirs.includes(3)) {
+			rowEls.map((el, i) => {
+				if (i < colIndex) {
+					min.x -= el.classList.contains("break-we")
+							? grid.unit * 1.5
+							: +el.offsetWidth;
+				}
+				if (i >= colIndex) {
+					max.x += el.classList.contains("break-we")
+							? grid.unit * 1.5
+							: +el.offsetWidth;
+				}
+			});
+		}
+		console.log(min.x, max.x);
+		// console.log(min.y, max.y);
 	}
 };
