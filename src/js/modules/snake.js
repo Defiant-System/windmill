@@ -12,7 +12,6 @@ let Snake = {
 
 		// temp
 		this.content.find(".puzzle").addClass("debug");
-		// this.content.on("mousedown", ".puzzle", this.move);
 
 		// let p1 = { x: 0, y: 0 },
 		// 	p2 = { x: -2, y: 10 },
@@ -81,7 +80,7 @@ let Snake = {
 			},
 		};
 		// get constraints
-		this.setLimits();
+		// this.setLimits();
 
 		// cover app content
 		this.content.addClass("cover");
@@ -103,31 +102,32 @@ let Snake = {
 				// bind event handler
 				Self.doc.unbind("click mousemove", Self.move);
 				break;
-			// case "mousedown":
-			// 	Self.startPuzzle({ el: $(event.target) });
-			// 	Self.setLimits();
-			// 	break;
 			case "mousemove":
 				let x = event.clientX - Self.pos.origo.x + Self.pos.joint.x,
-					y = event.clientY - Self.pos.origo.y + Self.pos.joint.y;
+					y = event.clientY - Self.pos.origo.y + Self.pos.joint.y,
+					onEl = Self.getOnEl();
 
-				let onEl = Self.getOnEl();
-				if (onEl && onEl[0] !== Self.onEl[0]) {
-					let p1 = { x: event.clientX, y: event.clientY },
-						p2 = Self.pos.origo,
-						d = Self.getDirection(p1, p2);
+				let p1 = { x: event.clientX, y: event.clientY },
+					p2 = Self.pos.origo,
+					d = Self.getDirection(p1, p2);
+
+				if (!Self.pos.min || onEl && onEl.el[0] !== Self.onEl[0] && onEl.el.hasClass("junc-*")) {
 					Self.setLimits(d);
 
-					Self.onEl.removeClass("snake-body");
-					Self.onEl = onEl.addClass("snake-body");
+					if (Self.onEl) Self.onEl.removeClass("snake-body");
+					if (onEl) Self.onEl = onEl.el.addClass("snake-body");
+
+					// let line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+					// line.setAttribute("x1", Self.els.neck.attr("x1"));
+					// line.setAttribute("y1", Self.els.neck.attr("y1"));
+					// line.setAttribute("x2", Self.els.neck.attr("x2"));
+					// line.setAttribute("y2", Self.els.neck.attr("y2"));
+					// Self.els.neck.before(line);
+
+					// let x1 = onEl.rect.x,
+					// 	y1 = onEl.rect.y;
+					// Self.els.neck.attr({ x1, y1 });
 				}
-				// let p1 = Self.pos.origo,
-				// 	p2 = {
-				// 		x: event.clientX,
-				// 		y: event.clientY,
-				// 	},
-				// 	dir = Self.getDirection(p1, p2);
-				// console.log(dir);
 
 				x = Math.min(Math.max(Self.pos.min.x, x), Self.pos.max.x);
 				y = Math.min(Math.max(Self.pos.min.y, y), Self.pos.max.y);
@@ -146,12 +146,14 @@ let Snake = {
 			x = p1.x - p2.x,
 			theta = Math.atan2(y, x) * (180/Math.PI);
 		if (theta < 0) theta = 360 + theta;
-		return [Math.max((Math.round(theta / 90) - 1) % 4, 0)];
+		return y == 0 && x == 0 ? null : [Math.max((Math.round(theta / 90) - 1) % 4, 0)];
 	},
 	getOnEl() {
 		let head = this.els.head[0].getBBox();
-		head.x += this.puzzle.grid.u2;
-		head.y += this.puzzle.grid.u2;
+		head.x += this.puzzle.grid.u2 + 2;
+		head.y += this.puzzle.grid.u2 + 2;
+		head.width -= 4;
+		head.height -= 4;
 		for (let i=0, il=this.puzzle.rects.length; i<il; i++) {
 			let rect = this.puzzle.rects[i];
 			if (head.x < rect.x + rect.width &&
@@ -159,7 +161,7 @@ let Snake = {
 				head.y < rect.y + rect.height &&
 				head.height + head.y > rect.y &&
 				this.onEl[0] !== this.puzzle.spans[i]) {
-				return $(this.puzzle.spans[i]);
+				return { rect, el: $(this.puzzle.spans[i]) };
 			}
 		}
 	},
