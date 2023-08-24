@@ -13,10 +13,10 @@ let Snake = {
 		// temp
 		this.content.find(".puzzle").addClass("debug");
 
-		// let p1 = { x: 0, y: 0 },
-		// 	p2 = { x: -2, y: 10 },
-		// 	dir = this.getDirection(p1, p2);
-		// console.log(dir);
+		// console.log( this.getDirection({ x: 0, y: 0 }, { x: 0, y: -2 }) ); // up
+		// console.log( this.getDirection({ x: 0, y: 0 }, { x: 2, y: 0 }) ); // right
+		// console.log( this.getDirection({ x: 0, y: 0 }, { x: 0, y: 2 }) ); // down
+		// console.log( this.getDirection({ x: 0, y: 0 }, { x: -2, y: 0 }) ); // left
 	},
 	startPuzzle(event) {
 		let puzzle = event.el.parents(".puzzle").addClass("started"),
@@ -45,6 +45,8 @@ let Snake = {
 				rows: (+puzzle.cssProp("--height") * 2) + 1,
 			},
 		};
+		// calculate max/min for all junctions
+		this.puzzle.junctions = this.getJuntions();
 		// reference to active el
 		this.onEl = event.el.addClass("snake-body");
 	},
@@ -106,11 +108,30 @@ let Snake = {
 				let x = event.clientX - Self.pos.origo.x + Self.pos.joint.x,
 					y = event.clientY - Self.pos.origo.y + Self.pos.joint.y,
 					onEl = Self.getOnEl();
+				
+				if (onEl.classList[0].startsWith("junc-")) {
+					let onIndex = Self.puzzle.junctions.els.indexOf(onEl),
+						limit = Self.puzzle.junctions.maxMins[onIndex],
+						p1 = Self.pos.origo,
+						p2 = { x: event.clientX, y: event.clientY },
+						d = Self.getDirection(p1, p2);
+					
+					if (d == null) return;
+					Self.pos.min = { ...limit.min };
+					Self.pos.max = { ...limit.max };
 
-				let p1 = { x: event.clientX, y: event.clientY },
-					p2 = Self.pos.origo,
-					d = Self.getDirection(p1, p2);
+					// console.log("on junction", d);
 
+					if (d % 2 === 0) {
+						Self.pos.min.x =
+						Self.pos.max.x = onEl.offsetLeft;
+					} else {
+						Self.pos.min.y =
+						Self.pos.max.y = onEl.offsetTop;
+					}
+				}
+
+				/*
 				if (!Self.pos.min || onEl && onEl.el[0] !== Self.onEl[0] && onEl.el.hasClass("junc-*")) {
 					Self.setLimits(d);
 
@@ -128,6 +149,7 @@ let Snake = {
 					// 	y1 = onEl.rect.y;
 					// Self.els.neck.attr({ x1, y1 });
 				}
+				*/
 
 				x = Math.min(Math.max(Self.pos.min.x, x), Self.pos.max.x);
 				y = Math.min(Math.max(Self.pos.min.y, y), Self.pos.max.y);
@@ -136,8 +158,13 @@ let Snake = {
 				break;
 		}
 	},
-	getCardinals(opt) {
-		let [type, dir] = this.onEl.prop("classList")[0].split("-"),
+	getJuntions() {
+		let els = this.puzzle.spans.filter(el => el.classList[0].startsWith("junc-") && !el.classList.contains("empty"));
+		let maxMins = els.map(el => this.getLimits($(el)));
+		return { els, maxMins };
+	},
+	getCardinals(el) {
+		let [type, dir] = el.prop("classList")[0].split("-"),
 			cardinals = "nwse".split("");
 		return dir.split("").map(c => cardinals.indexOf(c));
 	},
@@ -146,7 +173,7 @@ let Snake = {
 			x = p1.x - p2.x,
 			theta = Math.atan2(y, x) * (180/Math.PI);
 		if (theta < 0) theta = 360 + theta;
-		return y == 0 && x == 0 ? null : [Math.max((Math.round(theta / 90) - 1) % 4, 0)];
+		return y == 0 && x == 0 ? null : Math.max((Math.round(theta / 90) + 3) % 4, 0);
 	},
 	getOnEl() {
 		let head = this.els.head[0].getBBox();
@@ -159,28 +186,27 @@ let Snake = {
 			if (head.x < rect.x + rect.width &&
 				head.x + head.width > rect.x &&
 				head.y < rect.y + rect.height &&
-				head.height + head.y > rect.y &&
-				this.onEl[0] !== this.puzzle.spans[i]) {
-				return { rect, el: $(this.puzzle.spans[i]) };
+				head.height + head.y > rect.y) {
+				return this.puzzle.spans[i];
 			}
 		}
 	},
-	setLimits(d) {
-		let dirs = d || this.getCardinals(),
+	getLimits(el) {
+		let dirs = this.getCardinals(el),
 			grid = this.puzzle.grid,
 			span = this.puzzle.spans,
-			onIndex = this.onEl.index(),
+			onIndex = el.index(),
 			colIndex = onIndex % grid.cols,
 			rowIndex = Math.floor(onIndex / grid.cols),
 			rowEls = span.filter((e, i) => i >= rowIndex * grid.cols && i < (rowIndex + 1) * grid.cols),
 			colEls = span.filter((e, i) => i % grid.cols == colIndex),
 			min = {
-				x: +this.onEl.prop("offsetLeft"),
-				y: +this.onEl.prop("offsetTop"),
+				x: +el.prop("offsetLeft"),
+				y: +el.prop("offsetTop"),
 			},
 			max = {
-				x: +this.onEl.prop("offsetLeft"),
-				y: +this.onEl.prop("offsetTop"),
+				x: +el.prop("offsetLeft"),
+				y: +el.prop("offsetTop"),
 			};
 		// horisontal - backwards from "onEl"
 		for (let i=colIndex; i>0; i--) {
@@ -210,7 +236,6 @@ let Snake = {
 				break;
 			}
 		}
-
 		// vertical - backwards from "onEl"
 		for (let i=rowIndex; i>0; i--) {
 			if (colEls[i-1].classList.contains("empty")) {
@@ -239,7 +264,6 @@ let Snake = {
 				break;
 			}
 		}
-
 		// decrease constraints
 		if (dirs.includes(1) || dirs.includes(3)) {
 			rowEls.map((el, i) => {
@@ -273,7 +297,8 @@ let Snake = {
 		}
 		// console.log(min.x, max.x);
 		// console.log(min.y, max.y);
-		this.pos.min = min;
-		this.pos.max = max;
+		// this.pos.min = min;
+		// this.pos.max = max;
+		return { min, max };
 	}
 };
