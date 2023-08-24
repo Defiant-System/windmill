@@ -11,16 +11,28 @@ let Snake = {
 		this.direction = false;
 
 		// temp
-		// this.content.find(".puzzle").addClass("debug");
+		this.content.find(".puzzle").addClass("debug");
 		// this.content.on("mousedown", ".puzzle", this.move);
+
+		// let p1 = { x: 0, y: 0 },
+		// 	p2 = { x: -2, y: 10 },
+		// 	dir = this.getDirection(p1, p2);
+		// console.log(dir);
 	},
 	startPuzzle(event) {
 		let puzzle = event.el.parents(".puzzle").addClass("started"),
-			unit = parseInt(puzzle.cssProp("--unit"), 10);
+			unit = parseInt(puzzle.cssProp("--unit"), 10),
+			spans = puzzle.find("> span");
 		// fast references
 		this.puzzle = {
 			el: puzzle,
-			spans: puzzle.find("> span"),
+			spans,
+			rects: spans.map(el => ({
+				y: el.offsetTop,
+				x: el.offsetLeft,
+				width: el.offsetWidth,
+				height: el.offsetHeight,
+			})),
 			offset: {
 				width: +puzzle.prop("offsetWidth"),
 				height: +puzzle.prop("offsetHeight"),
@@ -35,7 +47,7 @@ let Snake = {
 			},
 		};
 		// reference to active el
-		this.onEl = event.el;
+		this.onEl = event.el.addClass("snake-body");
 	},
 	start(event) {
 		let sX = +event.el.prop("offsetLeft"),
@@ -84,6 +96,8 @@ let Snake = {
 				// dispose snake & reset puzzle
 				Self.puzzle.el.find("svg.snake").remove();
 				Self.puzzle.el.removeClass("started");
+				// reset "onEl"
+				Self.onEl.removeClass("snake-body");
 				// reset app content
 				Self.content.removeClass("cover");
 				// bind event handler
@@ -98,9 +112,22 @@ let Snake = {
 					y = event.clientY - Self.pos.origo.y + Self.pos.joint.y;
 
 				let onEl = Self.getOnEl();
+				if (onEl && onEl[0] !== Self.onEl[0]) {
+					let p1 = { x: event.clientX, y: event.clientY },
+						p2 = Self.pos.origo,
+						d = Self.getDirection(p1, p2);
+					Self.setLimits(d);
 
-				let d = Self.getDirection({ x, y }, Self.pos.joint);
-				Self.setLimits(d);
+					Self.onEl.removeClass("snake-body");
+					Self.onEl = onEl.addClass("snake-body");
+				}
+				// let p1 = Self.pos.origo,
+				// 	p2 = {
+				// 		x: event.clientX,
+				// 		y: event.clientY,
+				// 	},
+				// 	dir = Self.getDirection(p1, p2);
+				// console.log(dir);
 
 				x = Math.min(Math.max(Self.pos.min.x, x), Self.pos.max.x);
 				y = Math.min(Math.max(Self.pos.min.y, y), Self.pos.max.y);
@@ -117,15 +144,24 @@ let Snake = {
 	getDirection(p1, p2) {
 		let y = p1.y - p2.y,
 			x = p1.x - p2.x,
-			direction = Math.atan2(y, x) * (180/Math.PI);
-		return [Math.round(((direction + 450) % 360) / 90)];
+			theta = Math.atan2(y, x) * (180/Math.PI);
+		if (theta < 0) theta = 360 + theta;
+		return [Math.max((Math.round(theta / 90) - 1) % 4, 0)];
 	},
 	getOnEl() {
-		let spans = this.puzzle.spans,
-			head = this.els.head,
-			el;
-
-		// console.log(el);
+		let head = this.els.head[0].getBBox();
+		head.x += this.puzzle.grid.u2;
+		head.y += this.puzzle.grid.u2;
+		for (let i=0, il=this.puzzle.rects.length; i<il; i++) {
+			let rect = this.puzzle.rects[i];
+			if (head.x < rect.x + rect.width &&
+				head.x + head.width > rect.x &&
+				head.y < rect.y + rect.height &&
+				head.height + head.y > rect.y &&
+				this.onEl[0] !== this.puzzle.spans[i]) {
+				return $(this.puzzle.spans[i]);
+			}
+		}
 	},
 	setLimits(d) {
 		let dirs = d || this.getCardinals(),
