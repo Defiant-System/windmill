@@ -5,7 +5,6 @@ lvl["level1a-H"] = "[2x0]"+
 	"jw;E,pwe,jwe,pwe,je";
 lvl["level1b-H"] = "[2x0]"+
 	"jw,pwe,jwe,pwe,jwe;E";
-
 lvl["level1a-V"] = "[0x2]"+
 	"js;E,pns,jns,pns,jn";
 lvl["level1b-V"] = "[0x2]"+
@@ -24,11 +23,11 @@ lvl["all"] = "[3x3]"+
 lvl["large"] = "[5x3]"+
 	"jws,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jse,"+
 	"pns,b,pns;e,b,bns,b,pns,b,pns,b,pns,"+
-	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnwse,bwe,jnse,"+
+	"jnws,pwe,jwse;E,pwe,jnwse,pwe,jnwse,pwe,jnwse,bwe,jnse,"+
 	"pns,b,pns,b,pns,b,pns,b,pns;e,b,pns,"+
-	"jnws,pwe,jnwse,bwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
-	"pns,b,pns,b,pns,b,pns,b,pns,b,pns,"+
-	"jnw;E,pwe,jne,pwe;e,jnw,pwe,jne,pwe;e,jnw,pwe,jne";
+	"jnws,pwe,jnwe,bwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b,pns;e,b,pns,b,pns,b,pns,b,pns,"+
+	"jnw;E,pwe;e,jne;e,pwe;e,jnw,pwe,jne,pwe;e,jnw,pwe,jne";
 
 
 lvl["blank"] = "[3x3]"+
