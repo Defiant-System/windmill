@@ -112,17 +112,15 @@ let Snake = {
 				if (onEl.classList[0].startsWith("junc-")) {
 					let onIndex = Self.puzzle.junctions.els.indexOf(onEl),
 						limit = Self.puzzle.junctions.maxMins[onIndex],
-						p1 = Self.pos.origo,
-						p2 = { x: event.clientX, y: event.clientY },
-						d = Self.getDirection(p1, p2);
+						dir = Self.getDirection(Self.pos.joint, { x, y });
 					
-					if (d == null) return;
+					if (dir == null) return;
 					Self.pos.min = { ...limit.min };
 					Self.pos.max = { ...limit.max };
 
-					// console.log("on junction", d);
+					console.log("on junction", limit);
 
-					if (d % 2 === 0) {
+					if (dir % 2 === 0) {
 						Self.pos.min.x =
 						Self.pos.max.x = onEl.offsetLeft;
 					} else {
