@@ -95,10 +95,12 @@ let Snake = {
 			// 	break;
 			case "mousemove":
 				let x = event.clientX - Self.pos.origo.x + Self.pos.joint.x,
-					y = event.clientY - Self.pos.origo.y + Self.pos.joint.y,
-					d = Self.getDirection({ x, y }, Self.pos.joint);
+					y = event.clientY - Self.pos.origo.y + Self.pos.joint.y;
 
-				Self.setLimits([d]);
+				let onEl = Self.getOnEl();
+
+				let d = Self.getDirection({ x, y }, Self.pos.joint);
+				Self.setLimits(d);
 
 				x = Math.min(Math.max(Self.pos.min.x, x), Self.pos.max.x);
 				y = Math.min(Math.max(Self.pos.min.y, y), Self.pos.max.y);
@@ -116,11 +118,14 @@ let Snake = {
 		let y = p1.y - p2.y,
 			x = p1.x - p2.x,
 			direction = Math.atan2(y, x) * (180/Math.PI);
-		return Math.round(((direction + 450) % 360) / 90);
+		return [Math.round(((direction + 450) % 360) / 90)];
 	},
 	getOnEl() {
 		let spans = this.puzzle.spans,
-			head = this.els.head;
+			head = this.els.head,
+			el;
+
+		// console.log(el);
 	},
 	setLimits(d) {
 		let dirs = d || this.getCardinals(),
@@ -154,7 +159,7 @@ let Snake = {
 				break;
 			}
 		}
-		// horisontal - forwards from "onEl"
+		// vertical - forwards from "onEl"
 		for (let i=colIndex, il=rowEls.length; i<il; i++) {
 			if (rowEls[i].classList.contains("empty")) {
 				rowEls.splice(i);
@@ -205,12 +210,13 @@ let Snake = {
 							? grid.unit * 1.5
 							: +el.offsetWidth;
 				}
-				if (i >= colIndex && i < rowEls.length-1) {
+				if (i >= colIndex) {
 					max.x += el.classList.contains("break-we")
 							? grid.unit * 1.5
 							: +el.offsetWidth;
 				}
 			});
+			max.x -= grid.unit;
 		}
 		if (dirs.includes(0) || dirs.includes(2)) {
 			colEls.map((el, i) => {
@@ -219,12 +225,13 @@ let Snake = {
 							? grid.unit * 1.5
 							: +el.offsetHeight;
 				}
-				if (i >= rowIndex && i < colEls.length-1) {
+				if (i >= rowIndex) {
 					max.y += el.classList.contains("break-ns")
 							? grid.unit * 1.5
 							: +el.offsetHeight;
 				}
 			});
+			max.y -= grid.unit;
 		}
 		// console.log(min.x, max.x);
 		// console.log(min.y, max.y);
