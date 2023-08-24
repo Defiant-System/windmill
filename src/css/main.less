@@ -57,8 +57,13 @@ content {
 			}
 		}
 
+		// &.p1 { left: 40px; }
+		// &.p2 { left: 320px; }
+
 		&.p1 { left: 40px; }
 		&.p2 { left: 320px; }
+		&.p3 { left: 40px; top: 120px; }
+		&.p4 { left: 320px; top: 120px; }
 
 		&.started {
 			span {
@@ -381,8 +386,8 @@ content {
 		position: absolute;
 		overflow: visible;
 		z-index: 3;
-		top: 0;
-		left: 0;
+		top: 7px;
+		left: 7px;
 		width: calc( calc( var( --cell ) * var( --width ) ) + var( --unit ) );
 		height: calc( calc( var( --cell ) * var( --height ) ) + var( --unit ) );
 

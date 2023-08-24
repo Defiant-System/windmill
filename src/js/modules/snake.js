@@ -37,8 +37,8 @@ let Snake = {
 		this.onEl = event.el;
 	},
 	start(event) {
-		let sX = +event.el.prop("offsetLeft") + 7,
-			sY = +event.el.prop("offsetTop") + 7,
+		let sX = +event.el.prop("offsetLeft"),
+			sY = +event.el.prop("offsetTop"),
 			snake = [];
 
 		// prepare puzzle
@@ -123,12 +123,12 @@ let Snake = {
 			rowEls = span.filter((e, i) => i >= rowIndex * grid.cols && i < (rowIndex + 1) * grid.cols),
 			colEls = span.filter((e, i) => i % grid.cols == colIndex),
 			min = {
-				x: +this.onEl.prop("offsetLeft") + grid.u2,
-				y: +this.onEl.prop("offsetTop") + grid.u2,
+				x: +this.onEl.prop("offsetLeft"),
+				y: +this.onEl.prop("offsetTop"),
 			},
 			max = {
-				x: +this.onEl.prop("offsetLeft") + grid.u2,
-				y: +this.onEl.prop("offsetTop") + grid.u2,
+				x: +this.onEl.prop("offsetLeft"),
+				y: +this.onEl.prop("offsetTop"),
 			};
 		// horisontal - backwards from "onEl"
 		for (let i=colIndex; i>0; i--) {
@@ -196,7 +196,7 @@ let Snake = {
 							? grid.unit * 1.5
 							: +el.offsetWidth;
 				}
-				if (i >= colIndex) {
+				if (i >= colIndex && i < rowEls.length-1) {
 					max.x += el.classList.contains("break-we")
 							? grid.unit * 1.5
 							: +el.offsetWidth;
@@ -210,7 +210,7 @@ let Snake = {
 							? grid.unit * 1.5
 							: +el.offsetHeight;
 				}
-				if (i >= rowIndex) {
+				if (i >= rowIndex && i < colEls.length-1) {
 					max.y += el.classList.contains("break-ns")
 							? grid.unit * 1.5
 							: +el.offsetHeight;
