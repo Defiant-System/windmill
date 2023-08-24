@@ -20,6 +20,7 @@ let Snake = {
 		// fast references
 		this.puzzle = {
 			el: puzzle,
+			spans: puzzle.find("> span"),
 			offset: {
 				width: +puzzle.prop("offsetWidth"),
 				height: +puzzle.prop("offsetHeight"),
@@ -68,7 +69,7 @@ let Snake = {
 			},
 		};
 		// get constraints
-		this.getLimits();
+		this.setLimits();
 
 		// cover app content
 		this.content.addClass("cover");
@@ -90,15 +91,19 @@ let Snake = {
 				break;
 			// case "mousedown":
 			// 	Self.startPuzzle({ el: $(event.target) });
-			// 	Self.getLimits();
+			// 	Self.setLimits();
 			// 	break;
 			case "mousemove":
-				let x2 = event.clientX - Self.pos.origo.x + Self.pos.joint.x,
-					y2 = event.clientY - Self.pos.origo.y + Self.pos.joint.y;
-				x2 = Math.min(Math.max(Self.pos.min.x, x2), Self.pos.max.x);
-				y2 = Math.min(Math.max(Self.pos.min.y, y2), Self.pos.max.y);
-				Self.els.neck.attr({ x2, y2 });
-				Self.els.head.attr({ cx: x2, cy: y2 });
+				let x = event.clientX - Self.pos.origo.x + Self.pos.joint.x,
+					y = event.clientY - Self.pos.origo.y + Self.pos.joint.y,
+					d = Self.getDirection({ x, y }, Self.pos.joint);
+
+				Self.setLimits([d]);
+
+				x = Math.min(Math.max(Self.pos.min.x, x), Self.pos.max.x);
+				y = Math.min(Math.max(Self.pos.min.y, y), Self.pos.max.y);
+				Self.els.neck.attr({ x2: x, y2: y });
+				Self.els.head.attr({ cx: x, cy: y });
 				break;
 		}
 	},
@@ -113,10 +118,14 @@ let Snake = {
 			direction = Math.atan2(y, x) * (180/Math.PI);
 		return Math.round(((direction + 450) % 360) / 90);
 	},
-	getLimits() {
-		let dirs = this.getCardinals(),
+	getOnEl() {
+		let spans = this.puzzle.spans,
+			head = this.els.head;
+	},
+	setLimits(d) {
+		let dirs = d || this.getCardinals(),
 			grid = this.puzzle.grid,
-			span = this.puzzle.el.find("> span"),
+			span = this.puzzle.spans,
 			onIndex = this.onEl.index(),
 			colIndex = onIndex % grid.cols,
 			rowIndex = Math.floor(onIndex / grid.cols),
