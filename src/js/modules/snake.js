@@ -58,8 +58,14 @@ let Snake = {
 		this.els = { el, nest, head, neck };
 
 		this.pos = {
-			origoX: event.clientX,
-			origoY: event.clientY,
+			origo: {
+				x: event.clientX,
+				y: event.clientY,
+			},
+			joint: {
+				x: sX,
+				y: sY,
+			},
 		};
 		// get constraints
 		this.getLimits();
@@ -87,29 +93,12 @@ let Snake = {
 			// 	Self.getLimits();
 			// 	break;
 			case "mousemove":
-				// let p1 = {
-				// 		x: Self.pos.origoX,
-				// 		y: Self.pos.origoY,
-				// 	},
-				// 	p2 = {
-				// 		x: event.clientX,
-				// 		y: event.clientY,
-				// 	},
-				// 	dirs = Self.getDirection(p2, p1);
-				
-				// if (Self.direction !== dirs) {
-				// 	Self.getLimits(dirs);
-				// }
-
-				let x2 = event.clientX - Self.pos.origoX,
-					y2 = event.clientY - Self.pos.origoY;
+				let x2 = event.clientX - Self.pos.origo.x + Self.pos.joint.x,
+					y2 = event.clientY - Self.pos.origo.y + Self.pos.joint.y;
 				x2 = Math.min(Math.max(Self.pos.min.x, x2), Self.pos.max.x);
 				y2 = Math.min(Math.max(Self.pos.min.y, y2), Self.pos.max.y);
 				Self.els.neck.attr({ x2, y2 });
 				Self.els.head.attr({ cx: x2, cy: y2 });
-				// save head pos
-				Self.pos.x = x2;
-				Self.pos.y = y2;
 				break;
 		}
 	},
@@ -228,8 +217,8 @@ let Snake = {
 				}
 			});
 		}
-		console.log(min.x, max.x);
-		console.log(min.y, max.y);
+		// console.log(min.x, max.x);
+		// console.log(min.y, max.y);
 		this.pos.min = min;
 		this.pos.max = max;
 	}
