@@ -38,6 +38,7 @@ const witney = {
 		// 	.append(`<svg class="snake" viewBox="0 0 224 224">${snake.join("")}</svg>`);
 	},
 	dispatch(event) {
+		let Self = witney;
 		switch (event.type) {
 			// system events
 			case "window.init":
@@ -45,6 +46,9 @@ const witney = {
 			// custom events
 			case "start-snake":
 				Snake.start(event);
+				break;
+			case "move-range":
+				Particles.moveAlongPath(event.value / 100);;
 				break;
 			case "open-help":
 				karaqu.shell("fs -u '~/help/index.md'");
