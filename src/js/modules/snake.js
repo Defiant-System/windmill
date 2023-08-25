@@ -107,14 +107,15 @@ let Snake = {
 			case "mousemove":
 				let x = event.clientX - Self.pos.origo.x + Self.pos.joint.x,
 					y = event.clientY - Self.pos.origo.y + Self.pos.joint.y,
-					onEl = Self.getOnEl();
+					onEl = Self.getOnEl(),
+					dir = Self.getDirection(Self.pos.joint, { x, y });
 				
-				if (onEl.classList[0].startsWith("junc-")) {
+				if ((Self.pos.dir != dir || !Self.pos.min) && onEl.classList[0].startsWith("junc-")) {
 					let onIndex = Self.puzzle.junctions.els.indexOf(onEl),
-						limit = Self.puzzle.junctions.maxMins[onIndex],
-						dir = Self.getDirection(Self.pos.joint, { x, y });
+						limit = Self.puzzle.junctions.maxMins[onIndex];
 					
 					if (dir == null) return;
+					Self.pos.dir = dir;
 					Self.pos.min = { ...limit.min };
 					Self.pos.max = { ...limit.max };
 
@@ -127,6 +128,9 @@ let Snake = {
 						Self.pos.min.y =
 						Self.pos.max.y = onEl.offsetTop;
 					}
+
+					// Self.onEl.removeClass("snake-body");
+					// Self.onEl = $(onEl).addClass("snake-body");
 				}
 
 				/*
