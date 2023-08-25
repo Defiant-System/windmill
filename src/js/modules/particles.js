@@ -85,13 +85,15 @@ let Particles = {
 			}
 		}
 
+		if (dir % 180 === 0) {
+			// horizontal
+			y += (Math.random() * 10 | 0) - 5;
+		} else {
+			// vertical
+			x += (Math.random() * 10 | 0) - 5;
+		}
+
 		this.cvs.attr({ width: this.cvs.width() });
-
-		// switch (dir % 90) {
-		// 	case 0: break;
-		// }
-		// console.log( dir % 90 );
-
 		this.ctx.save();
 		this.ctx.translate(this.oX, this.oY);
 
