@@ -17,6 +17,11 @@ const witney = {
 		// Maps.draw({ name: "level1b-V", el: window.find(".puzzle.p4").addClass("show") });
 
 		Maps.draw({ name: "large", el: window.find(".puzzle.p1") });
+
+		Snake.draw({
+			path: "0,3,N;0,2;1,2;1,1;3,1;3,0;4,0;4,1;5,1;5,2;3,2;3,3",
+			el: window.find(".puzzle.p1")
+		});
 		// Maps.draw({ name: "exits", el: window.find(".puzzle.p2") });
 		// Maps.draw({ gen: "4x3", el: window.find(".puzzle.p2") });
 

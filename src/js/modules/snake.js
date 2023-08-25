@@ -11,12 +11,43 @@ let Snake = {
 		this.direction = false;
 
 		// temp
-		this.content.find(".puzzle").addClass("debug");
+		this.content.find(".puzzle").addClass("solved");
 
 		// console.log( this.getDirection({ x: 0, y: 0 }, { x: 0, y: -2 }) ); // up
 		// console.log( this.getDirection({ x: 0, y: 0 }, { x: 2, y: 0 }) ); // right
 		// console.log( this.getDirection({ x: 0, y: 0 }, { x: 0, y: 2 }) ); // down
 		// console.log( this.getDirection({ x: 0, y: 0 }, { x: -2, y: 0 }) ); // left
+	},
+	draw(opt) {
+		let snake = [],
+			o = {
+				width: +opt.el.prop("offsetWidth"),
+				height: +opt.el.prop("offsetHeight"),
+			},
+			unit = parseInt(opt.el.cssProp("--unit"), 10),
+			segment = unit * 4,
+			cell = unit * 5,
+			x1, y1,
+			x2, y2;
+		// loop path
+		opt.path.split(";").map(point => {
+			let [x,y,type] = point.split(",");
+			switch (type) {
+				case "N":
+					x2 = x * cell;
+					y2 = y * cell;
+					snake.push(`<circle class="nest" cx="${x2}" cy="${y2}" r="${unit + 5}"/>`);
+					break;
+				default:
+					x1 = x2;
+					y1 = y2;
+					x2 = x * cell;
+					y2 = y * cell;
+					snake.push(`<line class="neck" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/>`);
+			}
+		});
+		// append snake body to DOM
+		opt.el.append(`<svg class="snake" viewBox="0 0 ${o.width} ${o.height}">${snake.join("")}</svg>`);
 	},
 	startPuzzle(event) {
 		let puzzle = event.el.parents(".puzzle").addClass("started"),
@@ -53,15 +84,16 @@ let Snake = {
 	start(event) {
 		let sX = +event.el.prop("offsetLeft"),
 			sY = +event.el.prop("offsetTop"),
+			unit = this.puzzle.grid.unit,
 			snake = [];
 
 		// prepare puzzle
 		this.startPuzzle(event);
 
 		// snake nest
-		snake.push(`<circle class="nest" cx="${sX}" cy="${sY}" r="${this.puzzle.grid.unit + 5}"/>`);
+		snake.push(`<circle class="nest" cx="${sX}" cy="${sY}" r="${unit + 5}"/>`);
 		snake.push(`<line class="neck" x1="${sX}" y1="${sY}" x2="${sX}" y2="${sY}"/>`);
-		snake.push(`<circle class="head" cx="${sX}" cy="${sY}" r="${this.puzzle.grid.unit * .5}"/>`);
+		snake.push(`<circle class="head" cx="${sX}" cy="${sY}" r="${unit * .5}"/>`);
 
 		// add snake to DOM
 		let o = this.puzzle.offset,
@@ -82,7 +114,7 @@ let Snake = {
 			},
 		};
 		// get constraints
-		// this.setLimits();
+		this.move({ type: "mousemove", clientX: event.clientX, clientY: event.clientY });
 
 		// cover app content
 		this.content.addClass("cover");
@@ -110,27 +142,34 @@ let Snake = {
 					onEl = Self.getOnEl(),
 					dir = Self.getDirection(Self.pos.joint, { x, y });
 				
-				if ((Self.pos.dir != dir || !Self.pos.min) && onEl.classList[0].startsWith("junc-")) {
+				// if ((Self.pos.dir != dir || !Self.pos.min) && onEl.classList[0].startsWith("junc-")) {
+				if (onEl.classList[0].startsWith("junc-")) {
+					// console.log("on junction", onEl);
 					let onIndex = Self.puzzle.junctions.els.indexOf(onEl),
 						limit = Self.puzzle.junctions.maxMins[onIndex];
 					
 					if (dir == null) return;
+
+					// Self.els.neck.attr({
+					// 	x1: onEl.offsetLeft,
+					// 	y1: onEl.offsetTop,
+					// });
+
 					Self.pos.dir = dir;
 					Self.pos.min = { ...limit.min };
 					Self.pos.max = { ...limit.max };
-
-					console.log("on junction", limit);
+					Self.pos.joint = Self.pos.joint;
 
 					if (dir % 2 === 0) {
 						Self.pos.min.x =
-						Self.pos.max.x = onEl.offsetLeft;
+						Self.pos.max.x = Self.pos.joint.x;
 					} else {
 						Self.pos.min.y =
-						Self.pos.max.y = onEl.offsetTop;
+						Self.pos.max.y = Self.pos.joint.y;
 					}
 
-					// Self.onEl.removeClass("snake-body");
-					// Self.onEl = $(onEl).addClass("snake-body");
+					Self.onEl.removeClass("snake-body");
+					Self.onEl = $(onEl).addClass("snake-body");
 				}
 
 				/*
