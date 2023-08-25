@@ -20,10 +20,8 @@ let Snake = {
 	},
 	draw(opt) {
 		let snake = [],
-			o = {
-				width: +opt.el.prop("offsetWidth"),
-				height: +opt.el.prop("offsetHeight"),
-			},
+			oW = +opt.el.prop("offsetWidth"),
+			oH = +opt.el.prop("offsetHeight"),
 			unit = parseInt(opt.el.cssProp("--unit"), 10),
 			segment = unit * 4,
 			cell = unit * 5,
@@ -47,7 +45,7 @@ let Snake = {
 			}
 		});
 		// append snake body to DOM
-		opt.el.append(`<svg class="snake" viewBox="0 0 ${o.width} ${o.height}">${snake.join("")}</svg>`);
+		opt.el.append(`<svg class="snake" viewBox="0 0 ${oW} ${oH}">${snake.join("")}</svg>`);
 	},
 	startPuzzle(event) {
 		let puzzle = event.el.parents(".puzzle").addClass("started"),
