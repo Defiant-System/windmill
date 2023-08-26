@@ -22,7 +22,7 @@ const witney = {
 
 		let path = "0,3,N;0,2;1,2;1,1;3,1;3,0;4,0;4,1;5,1;5,2;3,2;3,3";
 		Snake.draw({ path, el: window.find(".puzzle.p1") });
-		Particles.draw({ path, el: window.find(".puzzle.p1") });
+		Particles.setup({ path, el: window.find(".puzzle.p1") });
 
 		// Maps.draw({ name: "exits", el: window.find(".puzzle.p2") });
 		// Maps.draw({ gen: "4x3", el: window.find(".puzzle.p2") });
@@ -48,7 +48,7 @@ const witney = {
 				Snake.start(event);
 				break;
 			case "move-range":
-				Particles.moveAlongPath(event.value / 100);;
+				Particles.update(event.value / 100);;
 				break;
 			case "open-help":
 				karaqu.shell("fs -u '~/help/index.md'");
