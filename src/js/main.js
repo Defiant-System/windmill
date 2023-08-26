@@ -5,6 +5,12 @@
 @import "modules/snake.js";
 
 
+let Input = {
+	keys: "UP RIGHT DOWN LEFt".split(" "),
+	key: {},
+};
+
+
 const witney = {
 	init() {
 		// fast references
@@ -20,35 +26,42 @@ const witney = {
 
 		Maps.draw({ name: "large", el: window.find(".puzzle.p1") });
 
-		let path = "0,3,N;0,2;1,2;1,1;3,1;3,0;4,0;4,1;5,1;5,2;3,2;3,3";
-		Snake.draw({ path, el: window.find(".puzzle.p1") });
-		Particles.setup({ path, el: window.find(".puzzle.p1") });
+		// let path = "0,3,N;0,2;1,2;1,1;3,1;3,0;4,0;4,1;5,1;5,2;3,2;3,3";
+		// Snake.draw({ path, el: window.find(".puzzle.p1") });
+		// Particles.setup({ path, el: window.find(".puzzle.p1") });
 
 		// Maps.draw({ name: "exits", el: window.find(".puzzle.p2") });
 		// Maps.draw({ gen: "4x3", el: window.find(".puzzle.p2") });
 
-		// Maps.draw({ name: "plus", el: window.find(".puzzle.p1") });
-		// let snake = [];
-		// snake.push(`<circle class="nest" cx="77" cy="217" r="19"/>`);
-		// snake.push(`<line x1="77" y1="218" x2="77" y2="7"/>`);
-		// snake.push(`<line class="neck" x1="77" y1="7" x2="113" y2="7"/>`);
-
-		// window.find(".puzzle.p1")
-		// 	.addClass("started")
-		// 	.append(`<svg class="snake" viewBox="0 0 224 224">${snake.join("")}</svg>`);
+		let ev = {
+			el: window.find(".puzzle span.entry:nth(1)"),
+		};
+		Snake.start(ev);
 	},
 	dispatch(event) {
-		let Self = witney;
+		let Self = witney,
+			value;
 		switch (event.type) {
 			// system events
 			case "window.init":
+				break;
+			case "window.keyup":
+				// reset all keys
+				Input.keys.map(k => Input.key[k] = false);
+				Input.dir = false;
+				break;
+			case "window.keystroke":
+				value = event.char.toUpperCase();
+				Input.dir = Input.keys.indexOf(value);
+				Input.key[value] = true;
+				Snake.move(Input.dir);
 				break;
 			// custom events
 			case "start-snake":
 				Snake.start(event);
 				break;
 			case "move-range":
-				Particles.update(event.value / 100);;
+				// Particles.update(event.value / 100);;
 				break;
 			case "open-help":
 				karaqu.shell("fs -u '~/help/index.md'");

@@ -75,9 +75,8 @@ content {
 		&.p3 { left: 40px; top: 120px; }
 		&.p4 { left: 320px; top: 120px; }
 
-		&.hidden {
-			display: none;
-		}
+		&.hidden { display: none; }
+		&.show { display: block; }
 
 		&.debug {
 			span {
@@ -438,10 +437,12 @@ content {
 			}
 		}
 
-		line {
+		polyline {
+			fill: none;
 			stroke: var( --snake );
 			stroke-width: 14;
 			stroke-linecap: round;
+			stroke-linejoin: round;
 			stroke-miterlimit: 10;
 		}
 	}

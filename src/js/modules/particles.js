@@ -85,7 +85,7 @@ let Particles = {
 		// snake nest
 		[...Array(this.opt.dots.length * .15 | 0)].map(e => {
 			let a = Math.random() * 360 | 0,
-				r = unit + 7 - (this.opt.radius >> 1),
+				r = unit + 7 - (this.opt.radius * .5),
 				x = nest[0] + r * Math.cos(a),
 				y = nest[1] + r * Math.sin(a);
 			this.ctx.beginPath();
