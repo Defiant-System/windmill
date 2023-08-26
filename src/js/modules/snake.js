@@ -3,7 +3,6 @@ let Snake = {
 	init() {
 		this.APP = witney;
 		this.content = witney.content;
-		this.doc = $(document);
 		// 0 : up
 		// 1 : right
 		// 2 : down
@@ -71,6 +70,8 @@ let Snake = {
 			head: svg.find(".head"),
 			spans: puzzle.find("> span"),
 		};
+		// reference to element snake currently is on
+		this.onEl = opt.el;
 		// grid details
 		this.grid = {
 			unit,
@@ -80,6 +81,13 @@ let Snake = {
 			cols: (+puzzle.cssProp("--width") * 2) + 1,
 			rows: (+puzzle.cssProp("--height") * 2) + 1,
 		};
+		// span rectangles
+		this.rects = this.els.spans.map(el => ({
+			y: el.offsetTop,
+			x: el.offsetLeft,
+			width: el.offsetWidth,
+			height: el.offsetHeight,
+		}));
 		// calculate max/min for all junctions
 		this.junctions = this.getJuntions();
 
@@ -97,7 +105,7 @@ let Snake = {
 		};
 
 		// bind event handler
-		this.doc.bind("click mousemove", this.mouse);
+		this.content.bind("click mousemove", this.mouse);
 	},
 	move(opt) {
 		let end = this.body.length - 1,
@@ -118,12 +126,49 @@ let Snake = {
 				break;
 			case "mousemove":
 				let x = event.clientX - Self.pos.origo.x + Self.pos.joint.x,
-					y = event.clientY - Self.pos.origo.y + Self.pos.joint.y;
+					y = event.clientY - Self.pos.origo.y + Self.pos.joint.y,
+					onEl = Self.getOnEl(),
+					points = Self.body,
+					neck = points[points.length-1];
 				
+				if (onEl.hasClass("junc-*")) {
+					let onIndex = Self.junctions.els.indexOf(onEl[0]),
+						limit = Self.junctions.maxMins[onIndex];
+					
+					// snap to junction
+					let joint = {
+						x: +onEl.prop("offsetLeft"),
+						y: +onEl.prop("offsetTop"),
+					};
+
+					Self.pos.min = { ...limit.min };
+					Self.pos.max = { ...limit.max };
+
+					let dir = Self.getDirection(joint, { x, y });
+					if (dir % 2 === 0) {
+						Self.pos.min.x =
+						Self.pos.max.x = joint.x;
+					} else {
+						Self.pos.min.y =
+						Self.pos.max.y = joint.y;
+					}
+					// Self.pos.joint = joint;
+
+					// points.push([x, y]);
+					// neck = points[points.length-1];
+
+					// update reference
+					Self.onEl = onEl;
+				}
+
 				x = Math.min(Math.max(Self.pos.min.x, x), Self.pos.max.x);
 				y = Math.min(Math.max(Self.pos.min.y, y), Self.pos.max.y);
-				
 				Self.els.head.attr({ cx: x, cy: y });
+				
+				neck[0] = x;
+				neck[1] = y;
+				// console.log( points.join(" ") );
+				Self.els.body.attr({ points: points.join(" ") });
 				break;
 		}
 	},
@@ -143,6 +188,23 @@ let Snake = {
 			theta = Math.atan2(y, x) * (180/Math.PI);
 		if (theta < 0) theta = 360 + theta;
 		return y == 0 && x == 0 ? null : Math.max((Math.round(theta / 90) + 3) % 4, 0);
+	},
+	getOnEl() {
+		let head = this.els.head[0].getBBox();
+		head.x += this.grid.u2 + 2;
+		head.y += this.grid.u2 + 2;
+		head.width -= 4;
+		head.height -= 4;
+		for (let i=0, il=this.rects.length; i<il; i++) {
+			let rect = this.rects[i];
+			if (head.x > rect.x &&
+				head.x + head.width < rect.x + rect.width &&
+				head.y > rect.y &&
+				head.y + head.height < rect.y + rect.height) {
+				return $(this.els.spans[i]);
+			}
+		}
+		return this.onEl;
 	},
 	getLimits(el) {
 		let dirs = this.getCardinals(el),
