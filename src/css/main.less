@@ -1,5 +1,21 @@
 
-background: #6e0f6c;
+@bg: #6e0f6c;
+@puzzle-bg: #a0a;
+@puzzle-fg: #5d1395;
+@puzzle-hl: #fff;
+@snake: #fff;
+
+
+@bg: #6a6a6a;
+@puzzle-bg: #7c7c7c;
+@puzzle-fg: #464646;
+@puzzle-hl: #fff;
+@snake: #f90;
+
+
+
+
+background: @bg;
 
 content {
 	position: absolute;
@@ -44,10 +60,10 @@ content {
 		--unit: 14px;
 		--path: calc( var( --unit ) * 4 );
 		--cell: calc( var( --unit ) * 5 );
-		--bg: #a0a;
-		--fg: #5d1395;
-		--hl: #fff;
-		--snake: #fff;
+		--bg: @puzzle-bg;
+		--fg: @puzzle-fg;
+		--hl: @puzzle-hl;
+		--snake: @snake;
 		display: inline-block;
 		position: absolute;
 		top: 40px;

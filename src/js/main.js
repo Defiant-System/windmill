@@ -35,6 +35,8 @@ const witney = {
 
 		let ev = {
 			el: window.find(".puzzle span.entry:nth(1)"),
+			clientX: 267,
+			clientY: 525,
 		};
 		Snake.start(ev);
 	},
@@ -54,7 +56,7 @@ const witney = {
 				value = event.char.toUpperCase();
 				Input.dir = Input.keys.indexOf(value);
 				Input.key[value] = true;
-				Snake.move(Input.dir);
+				Snake.move({ dir: Input.dir });
 				break;
 			// custom events
 			case "start-snake":
