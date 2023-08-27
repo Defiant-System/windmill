@@ -31,10 +31,28 @@ content {
 	right: 0;
 	bottom: 0;
 
-	input[type="range"] {
+	.tools {
 		position: absolute;
-		top: 20px;
+		bottom: 20px;
 		right: 20px;
+		width: 400px;
+		padding: 15px;
+		border-radius: 5px;
+		background: rgba(#fff,.15);
+
+		input[type="range"] {
+			position: absolute;
+			top: -30px;
+			right: 20px;
+			width: 200px;
+			margin-bottom: 15px;
+			display: i;
+		}
+
+		input[type="text"] {
+			font-family: Monaco;
+			font-size: 11px;
+		}
 	}
 
 	&.cover {

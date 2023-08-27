@@ -27,7 +27,7 @@ lvl["large"] = "[5x3]"+
 	"pns,b,pns,b,pns,b,pns,b,pns;e,b,pns,"+
 	"jnws,pwe,jnwe,bwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
 	"pns,b,pns;e,b,bns,b,pns,b,pns,b,pns,"+
-	"jnw;E,pwe;e,jne;e,pwe;e,jnw,pwe,jne,pwe;e,jnw,pwe,jne";
+	"jn;E,pwe;e,jne;e,pwe;e,jnw,pwe,jne,pwe;e,jnw,pwe,jne";
 
 
 lvl["blank"] = "[3x3]"+

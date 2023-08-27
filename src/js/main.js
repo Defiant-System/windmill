@@ -15,6 +15,7 @@ const witney = {
 	init() {
 		// fast references
 		this.content = window.find("content");
+		this.coords = window.find(`.tools input[name="coords"]`);
 		// init sub objects
 		Particles.init();
 		Snake.init();
@@ -39,6 +40,9 @@ const witney = {
 		// 	clientY: 525,
 		// };
 		// Snake.start(ev);
+
+		// this.content.find(".puzzle span.entry:nth(0)").trigger("click");
+		// Snake.getMaxMin([0,210]);
 	},
 	dispatch(event) {
 		let Self = witney,
