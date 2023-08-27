@@ -20,10 +20,10 @@ lvl["all"] = "[3x3]"+
 	"jnw;X,bwe,jnwe;X,bwe,jnwe,pwe,jne;X";
 
 
-lvl["large"] = "[5x3]"+
+lvl["large"] = "[5x3x14x4]"+
 	"jws,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jse,"+
 	"pns,b,pns;e,b,pns,b,pns,b,pns,b,pns,"+
-	"jnws,bwe,jwse,pwe,jnwse;E,pwe,jnwse,bwe,jnwse,pwe,jnse,"+
+	"jnws,bwe,jwse,pwe,jwe;E,pwe,jnwse,bwe,jnwse,pwe,jnse,"+
 	"pns,b,pns,b,pns,b,pns,b,pns;e,b,pns,"+
 	"jnws,pwe,jnwe,bwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
 	"pns,b,pns;e,b,bns,b,pns,b,pns,b,pns,"+

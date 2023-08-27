@@ -58,11 +58,12 @@ let Maps = {
 		let out = [];
 		let grid = opt.gen ? this.generate(opt.gen) : lvl[opt.name];
 		let info = grid.split("]")[0].slice(1);
-		let [w,h,u] = info.split("x");
+		let [w,h,u,f] = info.split("x");
 		let dim = {
 				"--width": w || 3,
 				"--height": h || 3,
 				"--unit": `${u || 14}px`,
+				"--fat": f || 4,
 			};
 
 		grid.slice(info.length+2).split(",").map(cell => {

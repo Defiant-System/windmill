@@ -83,8 +83,9 @@ content {
 		--width: 3;
 		--height: 3;
 		--unit: 14px;
-		--path: calc( var( --unit ) * 4 );
-		--cell: calc( var( --unit ) * 5 );
+		--fat: 3;
+		--path: calc( var( --unit ) * var( --fat ) );
+		--cell: calc( var( --unit ) * calc( var( --fat ) + 1 ) );
 		--bg: @puzzle-bg;
 		--fg: @puzzle-fg;
 		--hl: @puzzle-hl;
@@ -277,7 +278,7 @@ content {
 					position: absolute;
 					left: 0;
 					right: 0;
-					height: calc( var( --unit ) * 1.5 );
+					height: calc( calc( var( --path ) - var( --unit ) ) * .5 );
 				}
 
 				&:before { top: 0; }
@@ -295,7 +296,7 @@ content {
 					position: absolute;
 					top: 0;
 					bottom: 0;
-					width: calc( var( --unit ) * 1.5 );
+					width: calc( calc( var( --path ) - var( --unit ) ) * .5 );
 				}
 
 				&:before { left: 0; }
