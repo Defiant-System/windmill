@@ -65,6 +65,7 @@ let Snake = {
 		let svg = puzzle.append(`<svg class="snake" viewBox="0 0 ${oW} ${oH}">${els.join("")}</svg>`);
 		// fast references to snake parts
 		this.els = {
+			puzzle,
 			nest: svg.find(".nest"),
 			body: svg.find(".body"),
 			head: svg.find(".head"),
@@ -109,66 +110,39 @@ let Snake = {
 	},
 	move(opt) {
 		let end = this.body.length - 1,
+			step = opt.step || 10,
+			neck = this.body[end].map(i => +i),
 			d = (opt.dir + 1) % 2,
-			step = (opt.step || 10) * ((opt.dir + 1) % 4 <= 1 ? -1 : 1),
-			neck = this.body[end];
+			value = neck[d] + step;
 
-		neck[d] += step;
+		neck[d] = value;
 		let points = this.body.join(" ");
 		this.els.body.attr({ points });
 		this.els.head.attr({ cx: neck[0], cy: neck[1] });
+
 	},
 	mouse(event) {
 		let Self = Snake,
 			APP = Self.APP;
 		switch (event.type) {
 			case "click":
+				// dispose snake & reset puzzle
+				Self.els.puzzle.find("svg.snake").remove();
+				Self.els.puzzle.removeClass("started");
+				// reset app content
+				Self.content.removeClass("cover");
+				// bind event handler
+				Self.content.unbind("click mousemove", Self.mouse);
 				break;
 			case "mousemove":
-				let x = event.clientX - Self.pos.origo.x + Self.pos.joint.x,
-					y = event.clientY - Self.pos.origo.y + Self.pos.joint.y,
-					onEl = Self.getOnEl(),
-					points = Self.body,
-					neck = points[points.length-1];
-				
-				if (onEl.hasClass("junc-*")) {
-					let onIndex = Self.junctions.els.indexOf(onEl[0]),
-						limit = Self.junctions.maxMins[onIndex];
-					
-					// snap to junction
-					let joint = {
-						x: +onEl.prop("offsetLeft"),
-						y: +onEl.prop("offsetTop"),
-					};
+				let x1 = Self.pos.origo.x,
+					y1 = Self.pos.origo.y,
+					x2 = event.clientX,
+					y2 = event.clientY,
+					dir = Self.getDirection({ x: x1, y: y1 }, { x: x2, y: y2 }),
+					step = dir % 2 === 0 ? y2 - y1 : x2 - x1;
 
-					Self.pos.min = { ...limit.min };
-					Self.pos.max = { ...limit.max };
-
-					let dir = Self.getDirection(joint, { x, y });
-					if (dir % 2 === 0) {
-						Self.pos.min.x =
-						Self.pos.max.x = joint.x;
-					} else {
-						Self.pos.min.y =
-						Self.pos.max.y = joint.y;
-					}
-					// Self.pos.joint = joint;
-
-					// points.push([x, y]);
-					// neck = points[points.length-1];
-
-					// update reference
-					Self.onEl = onEl;
-				}
-
-				x = Math.min(Math.max(Self.pos.min.x, x), Self.pos.max.x);
-				y = Math.min(Math.max(Self.pos.min.y, y), Self.pos.max.y);
-				Self.els.head.attr({ cx: x, cy: y });
-				
-				neck[0] = x;
-				neck[1] = y;
-				// console.log( points.join(" ") );
-				Self.els.body.attr({ points: points.join(" ") });
+				Self.move({ dir, step });
 				break;
 		}
 	},
