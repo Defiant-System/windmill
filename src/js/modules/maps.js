@@ -66,9 +66,8 @@ let Maps = {
 			};
 
 		grid.slice(info.length+2).split(",").map(cell => {
-			let names = cell.split(";").map(p => lexer[p]).join(" "),
-				entry = names.includes("entry") ? `data-click="start-snake"` : "";
-			out.push(`<span class="${names}" ${entry}></span>`);
+			let names = cell.split(";").map(p => lexer[p]).join(" ");
+			out.push(`<span class="${names}"></span>`);
 		});
 
 		opt.el.css(dim).html(out.join(""));

@@ -3,11 +3,6 @@ let Snake = {
 	init() {
 		this.APP = witney;
 		this.content = witney.content;
-		// 0 : up
-		// 1 : right
-		// 2 : down
-		// 3 : left
-		this.direction = false;
 
 		// temp
 		// this.content.find(".puzzle").addClass("solved");
@@ -56,10 +51,10 @@ let Snake = {
 			unit = parseInt(puzzle.cssProp("--unit"), 10),
 			els = [];
 		// snake body in points
-		this.body = [[oX, oY], [oX, oY]];
+		this.bodyPoints = [[oX, oY], [oX, oY]];
 		// snake SVG
 		els.push(`<circle class="nest" cx="${oX}" cy="${oY}" r="${unit + 5}"/>`);
-		els.push(`<polyline class="body" points="${this.body.join(" ")}"/>`);
+		els.push(`<polyline class="body" points="${this.bodyPoints.join(" ")}"/>`);
 		els.push(`<circle class="head" cx="${oX}" cy="${oY}" r="${unit * .5}""/>`);
 		// add snake SVG to DOM
 		let svg = puzzle.append(`<svg class="snake" viewBox="0 0 ${oW} ${oH}">${els.join("")}</svg>`);
@@ -81,6 +76,7 @@ let Snake = {
 			height: +puzzle.cssProp("--height"),
 			cols: (+puzzle.cssProp("--width") * 2) + 1,
 			rows: (+puzzle.cssProp("--height") * 2) + 1,
+			limits: this.els.spans.map(el => {}),
 		};
 		// span rectangles
 		this.rects = this.els.spans.map(el => ({
@@ -90,53 +86,42 @@ let Snake = {
 			height: el.offsetHeight,
 		}));
 		// calculate max/min for all junctions
-		this.junctions = this.getJuntions();
+		// this.junctions = this.getJuntions();
 
 		this.pos = {
-			origo: {
-				x: opt.clientX || oX,
-				y: opt.clientY || oY,
-			},
-			joint: {
-				x: oX,
-				y: oY,
-			},
-			min: { x: 0, y: 0 },
-			max: { x: 0, y: 210 },
+			origo: [opt.clientX, opt.clientY],
+			joint: [oX, oY],
 		};
 
 		// bind event handler
-		this.content.bind("click mousemove", this.mouse);
+		this.content.bind("mousemove", this.dispatch);
 	},
-	move(opt) {
-		let end = this.body.length - 1,
-			step = opt.step || 10,
-			neck = this.body[end].map(i => +i),
-			d = (opt.dir + 1) % 2,
-			value = neck[d] + step;
-
-		neck[d] = value;
-		let points = this.body.join(" ");
-		this.els.body.attr({ points });
-		this.els.head.attr({ cx: neck[0], cy: neck[1] });
-
-	},
-	mouse(event) {
+	dispatch(event) {
 		let Self = Snake,
-			APP = Self.APP;
+			APP = Self.APP,
+			el;
 		switch (event.type) {
-			case "click":
+			case "start-snake":
+
+				// return Self.getMaxMin(event.offset(".puzzle"));
+
+				if (!event.el.hasClass("started")) {
+					el = $(event.target);
+					if (!el.hasClass("entry")) return;
+					return Self.start({ el, clientX: event.clientX, clientY: event.clientY });
+				}
+
 				// dispose snake & reset puzzle
 				Self.els.puzzle.find("svg.snake").remove();
 				Self.els.puzzle.removeClass("started");
 				// reset app content
 				Self.content.removeClass("cover");
 				// bind event handler
-				Self.content.unbind("click mousemove", Self.mouse);
+				Self.content.unbind("mousemove", Self.dispatch);
 				break;
 			case "mousemove":
-				let x1 = Self.pos.origo.x,
-					y1 = Self.pos.origo.y,
+				let x1 = Self.pos.origo[0],
+					y1 = Self.pos.origo[1],
 					x2 = event.clientX,
 					y2 = event.clientY,
 					dir = Self.getDirection({ x: x1, y: y1 }, { x: x2, y: y2 }),
@@ -145,6 +130,37 @@ let Snake = {
 				Self.move({ dir, step });
 				break;
 		}
+	},
+	move(opt) {
+		let head = {
+				x: +this.els.head.attr("cx"),
+				y: +this.els.head.attr("cy"),
+			},
+			d = (opt.dir + 1) % 2,
+			step = opt.step || 10,
+			neck = this.bodyPoints[this.bodyPoints.length - 1],
+			limit = this.getMaxMin(head);
+
+		neck[d] = this.pos.joint[d] + step;
+		neck[0] = Math.min(Math.max(limit.min.x, neck[0]), limit.max.x);
+		neck[1] = Math.min(Math.max(limit.min.y, neck[1]), limit.max.y);
+
+		let points = this.bodyPoints.join(" ");
+		this.els.body.attr({ points });
+		this.els.head.attr({ cx: neck[0], cy: neck[1] });
+	},
+	getMaxMin(pos) {
+		let out = {
+			min: {
+				x: 0,
+				y: 0,
+			},
+			max: {
+				x: 0,
+				y: 210,
+			},
+		};
+		return out;
 	},
 	getJuntions() {
 		let els = this.els.spans.filter(el => el.classList[0].startsWith("junc-") && !el.classList.contains("empty")),

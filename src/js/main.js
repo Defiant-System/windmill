@@ -33,12 +33,12 @@ const witney = {
 		// Maps.draw({ name: "exits", el: window.find(".puzzle.p2") });
 		// Maps.draw({ gen: "4x3", el: window.find(".puzzle.p2") });
 
-		let ev = {
-			el: window.find(".puzzle span.entry:nth(1)"),
-			clientX: 267,
-			clientY: 525,
-		};
-		Snake.start(ev);
+		// let ev = {
+		// 	el: window.find(".puzzle span.entry:nth(1)"),
+		// 	clientX: 267,
+		// 	clientY: 525,
+		// };
+		// Snake.start(ev);
 	},
 	dispatch(event) {
 		let Self = witney,
@@ -56,11 +56,11 @@ const witney = {
 				value = event.char.toUpperCase();
 				Input.dir = Input.keys.indexOf(value);
 				Input.key[value] = true;
-				Snake.move({ dir: Input.dir });
+				if (Snake.pos) Snake.move({ dir: Input.dir });
 				break;
 			// custom events
 			case "start-snake":
-				Snake.start(event);
+				Snake.dispatch(event);
 				break;
 			case "move-range":
 				// Particles.update(event.value / 100);;
