@@ -141,8 +141,10 @@ let Snake = {
 			limit = this.getLimits(neck);
 
 		neck[d] = this.pos.joint[d] + step;
-		neck[0] = Math.min(Math.max(limit.min.x, neck[0]), limit.max.x);
-		neck[1] = Math.min(Math.max(limit.min.y, neck[1]), limit.max.y);
+		neck[0] = Math.min(Math.max(limit[3], neck[0]), limit[1]);
+		neck[1] = Math.min(Math.max(limit[0], neck[1]), limit[2]);
+		// neck[0] = Math.min(Math.max(limit.min.x, neck[0]), limit.max.x);
+		// neck[1] = Math.min(Math.max(limit.min.y, neck[1]), limit.max.y);
 
 		// this.APP.coords.val( JSON.stringify(limit) );
 
@@ -222,9 +224,7 @@ let Snake = {
 			}
 		});
 
-		console.log( limits );
-
-		return { min: { x: 0, y: 0 }, max: { x: 0, y: 210 } };
-		// return { min, max };
+		// console.log( dirs, limits );
+		return limits;
 	}
 };
