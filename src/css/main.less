@@ -36,7 +36,7 @@ content {
 		bottom: 20px;
 		right: 20px;
 		width: 400px;
-		padding: 15px;
+		padding: 10px;
 		border-radius: 5px;
 		background: rgba(#fff,.15);
 
@@ -52,6 +52,7 @@ content {
 		input[type="text"] {
 			font-family: Monaco;
 			font-size: 11px;
+			background: rgba(#fff,.15);
 		}
 	}
 
@@ -477,6 +478,18 @@ content {
 				filter: drop-shadow(0 0 3px rgba(#000,.25));
 				// opacity: .9;
 			}
+		}
+
+		line {
+			fill: none;
+			stroke-width: 5;
+			stroke-miterlimit: 10;
+			opacity: .5;
+
+			&.debug0 { stroke: #b55; }
+			&.debug1 { stroke: #5b5; }
+			&.debug2 { stroke: #77f; }
+			&.debug3 { stroke: #ffb; }
 		}
 
 		polyline {

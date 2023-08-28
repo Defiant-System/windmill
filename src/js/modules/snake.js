@@ -43,7 +43,7 @@ let Snake = {
 			.append(`<svg class="snake" viewBox="0 0 ${oW} ${oH}">${snake.join("")}</svg>`);
 	},
 	start(opt) {
-		let puzzle = opt.el.parents(".puzzle").addClass("started"),
+		let puzzle = opt.el.parents(".puzzle").addClass("started debug"),
 			oW = +puzzle.prop("offsetWidth"),
 			oH = +puzzle.prop("offsetHeight"),
 			oX = +opt.el.prop("offsetLeft"),
@@ -56,6 +56,11 @@ let Snake = {
 		els.push(`<circle class="nest" cx="${oX}" cy="${oY}" r="${unit + 5}"/>`);
 		els.push(`<polyline class="body" points="${this.bodyPoints.join(" ")}"/>`);
 		els.push(`<circle class="head" cx="${oX}" cy="${oY}" r="${unit * .5}""/>`);
+		// used for debug purposes
+		els.push(`<line class="debug0" x1="0" y1="0" x2="0" y2="0"/>`);
+		els.push(`<line class="debug1" x1="0" y1="0" x2="0" y2="0"/>`);
+		els.push(`<line class="debug2" x1="0" y1="0" x2="0" y2="0"/>`);
+		els.push(`<line class="debug3" x1="0" y1="0" x2="0" y2="0"/>`);
 		// add snake SVG to DOM
 		let svg = puzzle.append(`<svg class="snake" viewBox="0 0 ${oW} ${oH}">${els.join("")}</svg>`);
 		// fast references to snake parts
@@ -64,6 +69,10 @@ let Snake = {
 			nest: svg.find(".nest"),
 			body: svg.find(".body"),
 			head: svg.find(".head"),
+			debug0: svg.find(".debug0"),
+			debug1: svg.find(".debug1"),
+			debug2: svg.find(".debug2"),
+			debug3: svg.find(".debug3"),
 			spans: puzzle.find("> span"),
 		};
 		// reference to element snake currently is on
@@ -203,28 +212,102 @@ let Snake = {
 			case 3: return rowEls.get(colIndex-1);
 		}
 	},
+	tread(opt) {
+		let grid = this.grid,
+			spans = this.els.spans,
+			onIndex = opt.el.index(),
+			colIndex = onIndex % grid.cols,
+			rowIndex = Math.floor(onIndex / grid.cols),
+			rowEls = spans.filter((e, i) => i >= rowIndex * grid.cols && i < (rowIndex + 1) * grid.cols),
+			colEls = spans.filter((e, i) => i % grid.cols == colIndex),
+			aboveEls, belowEls,
+			leftEls, rightEls;
+		
+		switch (opt.d) {
+			case 0:
+				// elements above
+				aboveEls = colEls.slice(0, rowIndex);
+				for (let i=rowIndex; i>0; i--) {
+					if (colEls.get(i-1).hasClass("break-*")) {
+						aboveEls = colEls.slice(i-1, rowIndex);
+						break;
+					}
+				}
+				break;
+			case 1:
+				// elements to the right
+				if (rowEls.get(colIndex).hasClass("break-*")) {
+					// colIndex += 1;
+				}
+				rightEls = rowEls.slice(colIndex, rowEls.length);
+				for (let i=colIndex, il=rowEls.length; i<il; i++) {
+					if (rowEls.get(i).hasClass("break-*")) {
+						rightEls = rowEls.slice(colIndex, i+1);
+						break;
+					}
+				}
+				opt.limits[opt.d] = rightEls[rightEls.length-1].offsetLeft + 7;
+				opt.limits[opt.d] = 230;
+				break;
+			case 2:
+				// elements below
+				belowEls = colEls.slice(rowIndex, colEls.length);
+				for (let i=rowIndex, il=colEls.length; i<il; i++) {
+					if (colEls.get(i).hasClass("break-*")) {
+						belowEls = colEls.slice(rowIndex, i+1);
+						break;
+					}
+				}
+				break;
+			case 3:
+				// elements to the left
+				if (rowEls.get(colIndex).hasClass("break-*")) {
+					for (let i=0, il=rowEls.length; i<il; i++) {
+						if (rowEls.get(i).hasClass("break-*")) {
+							leftEls = rowEls.slice(i, i+1);
+							break;
+						}
+					}
+				} else {
+					leftEls = rowEls.slice(0, colIndex);
+					for (let i=colIndex; i>0; i--) {
+						if (rowEls.get(i-1).hasClass("break-*")) {
+							leftEls = rowEls.slice(i-1, colIndex);
+							break;
+						}
+					}
+				}
+				opt.limits[opt.d] = leftEls[0].offsetLeft + leftEls[0].offsetWidth - 21;
+				break;
+		}
+		
+		return opt;
+
+		// let test = [0, 350, 220, 0];
+		// return test[opt.d];
+	},
 	getLimits(pos) {
 		let el = this.getElFromPos(pos),
 			dirs = this.getCardinals(el),
-			p = "offsetTop offsetLeft".split(" "),
-			y = +el.prop(p[0]),
-			x = +el.prop(p[1]),
 			limits = [
-				y, // up
-				x, // right
-				y, // down
-				x, // left
+				pos[1], // up
+				pos[0], // right
+				pos[1], // down
+				pos[0], // left
 			];
 		
 		dirs.map(d => {
-			let sibling = this.getSibling(el, d);
-			while (sibling.length) {
-				limits[d] = +sibling.prop(p[d%2]);
-				sibling = this.getSibling(sibling, d);
-			}
+			let res = this.tread({ pos, el, d, limits });
+			limits[d] = res.limits[d];
 		});
 
-		// console.log( dirs, limits );
+		[...Array(4)].map((e,i) => this.els[`debug${i}`].attr({ x1: 0, y1: 0, x2: 0, y2: 0 }));
+		if (dirs.includes(0)) this.els[`debug0`].attr({ x1: pos[0], y1: pos[1], x2: pos[0], y2: limits[0] });
+		if (dirs.includes(1)) this.els[`debug1`].attr({ x1: pos[0], y1: pos[1], x2: limits[1], y2: pos[1] });
+		if (dirs.includes(2)) this.els[`debug2`].attr({ x1: pos[0], y1: pos[1], x2: pos[0], y2: limits[2] });
+		if (dirs.includes(3)) this.els[`debug3`].attr({ x1: pos[0], y1: pos[1], x2: limits[3], y2: pos[1] });
+
+		// console.log( limits );
 		return limits;
 	}
 };

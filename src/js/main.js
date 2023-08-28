@@ -42,7 +42,7 @@ const witney = {
 		// Snake.start(ev);
 
 		// this.content.find(".puzzle span.entry:nth(0)").trigger("click");
-		// Snake.getMaxMin([0,210]);
+		// Snake.getLimits([0,210]);
 	},
 	dispatch(event) {
 		let Self = witney,
