@@ -237,17 +237,27 @@ let Snake = {
 			case 1:
 				// elements to the right
 				if (rowEls.get(colIndex).hasClass("break-*")) {
-					// colIndex += 1;
-				}
-				rightEls = rowEls.slice(colIndex, rowEls.length);
-				for (let i=colIndex, il=rowEls.length; i<il; i++) {
-					if (rowEls.get(i).hasClass("break-*")) {
-						rightEls = rowEls.slice(colIndex, i+1);
-						break;
+					if (+rowEls.get(colIndex).prop("offsetLeft") < opt.pos[0]) {
+						console.log( +rowEls.get(colIndex).prop("offsetLeft") , opt.pos[0] );
+						for (let i=colIndex, il=rowEls.length; i<il; i++) {
+							if (rowEls.get(i).hasClass("break-*")) {
+								rightEls = rowEls.slice(i, i+1);
+								break;
+							}
+						}
+					} else {
+						rightEls = rowEls.slice(colIndex-1, colIndex+1);
+					}
+				} else {
+					rightEls = rowEls.slice(colIndex, rowEls.length);
+					for (let i=colIndex, il=rowEls.length; i<il; i++) {
+						if (rowEls.get(i).hasClass("break-*")) {
+							rightEls = rowEls.slice(colIndex, i+1);
+							break;
+						}
 					}
 				}
 				opt.limits[opt.d] = rightEls[rightEls.length-1].offsetLeft + 7;
-				opt.limits[opt.d] = 230;
 				break;
 			case 2:
 				// elements below
