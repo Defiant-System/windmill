@@ -235,35 +235,33 @@ let Snake = {
 			limits = [
 				+el.prop("offsetTop"), // up
 				pos[0], // right
-				pos[1], // down
+				+el.prop("offsetTop") + +el.prop("offsetHeight") - 14, // down
 				pos[0], // left
 			];
 		
 		dirs.map(d => {
-			let aboveEl, belowEl,
-				leftEl, rightEl;
-			
+			let sibling;
 			switch (d) {
 				case 0:
 					// elements above
-					aboveEl = colEls.get(0);
-					limits[d] = +aboveEl.prop("offsetTop");
+					sibling = colEls.get(0);
+					limits[d] = +sibling.prop("offsetTop");
 					for (let i=rowIndex; i>0; i--) {
-						aboveEl = colEls.get(i);
-						if (aboveEl.hasClass("break-*") && this.getSideV(aboveEl, pos) === "s") {
-							limits[d] = +aboveEl.prop("offsetTop") + +aboveEl.prop("offsetHeight") - 21;
+						sibling = colEls.get(i);
+						if (sibling.hasClass("break-*") && this.getSideV(sibling, pos) === "s") {
+							limits[d] = +sibling.prop("offsetTop") + +sibling.prop("offsetHeight") - 21;
 							break;
 						}
 					}
 					break;
 				case 2:
 					// elements below
-					belowEl = colEls.get(colEls.length-1);
-					limits[d] = +belowEl.prop("offsetTop") + belowEl.prop("offsetHeight") - 7;
+					sibling = colEls.get(colEls.length-1);
+					limits[d] = +sibling.prop("offsetTop") + sibling.prop("offsetHeight") - 14;
 					for (let i=rowIndex, il=colEls.length; i<il; i++) {
-						belowEl = colEls.get(i);
-						if (belowEl.hasClass("break-*") && this.getSideV(belowEl, pos) === "n") {
-							limits[d] = +belowEl.prop("offsetTop") + 7;
+						sibling = colEls.get(i);
+						if (sibling.hasClass("break-*") && this.getSideV(sibling, pos) === "n") {
+							limits[d] = +sibling.prop("offsetTop") + 7;
 							break;
 						}
 					}
@@ -271,20 +269,24 @@ let Snake = {
 
 				case 1:
 					// elements to the right
+					sibling = rowEls.get(rowEls.length-1);
+					limits[d] = +sibling.prop("offsetLeft") + sibling.prop("offsetWidth") - 14;
 					for (let i=colIndex, il=rowEls.length; i<il; i++) {
-						rightEl = rowEls.get(i);
-						if (rightEl.hasClass("break-*") && this.getSideH(rightEl, pos) === "e") {
-							limits[d] = +rightEl.prop("offsetLeft") + 7;
+						sibling = rowEls.get(i);
+						if (sibling.hasClass("break-*") && this.getSideH(sibling, pos) === "e") {
+							limits[d] = +sibling.prop("offsetLeft") + 7;
 							break;
 						}
 					}
 					break;
 				case 3:
 					// elements to the left
+					sibling = rowEls.get(0);
+					limits[d] = +sibling.prop("offsetLeft");
 					for (let i=colIndex; i>0; i--) {
-						leftEl = rowEls.get(i);
-						if (leftEl.hasClass("break-*") && this.getSideH(leftEl, pos) === "w") {
-							limits[d] = +leftEl.prop("offsetLeft") + +leftEl.prop("offsetWidth") - 21;
+						sibling = rowEls.get(i);
+						if (sibling.hasClass("break-*") && this.getSideH(sibling, pos) === "w") {
+							limits[d] = +sibling.prop("offsetLeft") + +sibling.prop("offsetWidth") - 21;
 						}
 					}
 					break;
