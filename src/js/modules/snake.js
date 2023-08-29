@@ -220,70 +220,51 @@ let Snake = {
 			rowIndex = Math.floor(onIndex / grid.cols),
 			rowEls = spans.filter((e, i) => i >= rowIndex * grid.cols && i < (rowIndex + 1) * grid.cols),
 			colEls = spans.filter((e, i) => i % grid.cols == colIndex),
-			aboveEls, belowEls,
-			leftEls, rightEls;
+			aboveEl, belowEl,
+			leftEl, rightEl;
 		
 		switch (opt.d) {
 			case 0:
 				// elements above
-				aboveEls = colEls.slice(0, rowIndex);
-				for (let i=rowIndex; i>0; i--) {
-					if (colEls.get(i-1).hasClass("break-*")) {
-						aboveEls = colEls.slice(i-1, rowIndex);
-						break;
-					}
-				}
-				break;
-			case 1:
-				// elements to the right
-				if (rowEls.get(colIndex).hasClass("break-*")) {
-					rightEls = rowEls.slice(colIndex-1, colIndex+1);
-					for (let i=colIndex+1, il=rowEls.length; i<il; i++) {
-						if (rowEls.get(i).hasClass("break-*")) {
-							rightEls = rowEls.slice(colIndex, i+1);
-							break;
-						}
-					}
-				} else {
-					rightEls = rowEls.slice(colIndex, rowEls.length);
-					for (let i=colIndex, il=rowEls.length; i<il; i++) {
-						if (rowEls.get(i).hasClass("break-*")) {
-							rightEls = rowEls.slice(colIndex, i+1);
-							break;
-						}
-					}
-				}
-				opt.limits[opt.d] = rightEls[rightEls.length-1].offsetLeft + 7;
+				// for (let i=rowIndex; i>0; i--) {
+				// 	aboveEl = colEls.get(i);
+				// 	if (aboveEl.hasClass("break-*")) {
+				// 		break;
+				// 	}
+				// }
+				opt.limits[opt.d] = 0;
 				break;
 			case 2:
 				// elements below
-				belowEls = colEls.slice(rowIndex, colEls.length);
 				for (let i=rowIndex, il=colEls.length; i<il; i++) {
-					if (colEls.get(i).hasClass("break-*")) {
-						belowEls = colEls.slice(rowIndex, i+1);
+					belowEl = colEls.get(i);
+					if (belowEl.hasClass("break-*") && this.getSideV(belowEl, opt.pos) === "s") {
+						// opt.limits[opt.d] = +belowEl.prop("offsetTop") + 7;
+						console.log( belowEl );
+						break;
+					}
+				}
+				opt.limits[opt.d] = 161;
+				break;
+
+			case 1:
+				// elements to the right
+				for (let i=colIndex, il=rowEls.length; i<il; i++) {
+					rightEl = rowEls.get(i);
+					if (rightEl.hasClass("break-*") && this.getSideH(rightEl, opt.pos) === "e") {
+						opt.limits[opt.d] = +rightEl.prop("offsetLeft") + 7;
 						break;
 					}
 				}
 				break;
 			case 3:
 				// elements to the left
-				if (rowEls.get(colIndex).hasClass("break-*")) {
-					for (let i=0, il=rowEls.length; i<il; i++) {
-						if (rowEls.get(i).hasClass("break-*")) {
-							leftEls = rowEls.slice(i, i+1);
-							break;
-						}
-					}
-				} else {
-					leftEls = rowEls.slice(0, colIndex);
-					for (let i=colIndex; i>0; i--) {
-						if (rowEls.get(i-1).hasClass("break-*")) {
-							leftEls = rowEls.slice(i-1, colIndex);
-							break;
-						}
+				for (let i=colIndex; i>0; i--) {
+					leftEl = rowEls.get(i);
+					if (leftEl.hasClass("break-*") && this.getSideH(leftEl, opt.pos) === "w") {
+						opt.limits[opt.d] = +leftEl.prop("offsetLeft") + +leftEl.prop("offsetWidth") - 21;
 					}
 				}
-				opt.limits[opt.d] = leftEls[0].offsetLeft + leftEls[0].offsetWidth - 21;
 				break;
 		}
 		
@@ -291,6 +272,16 @@ let Snake = {
 
 		// let test = [0, 350, 220, 0];
 		// return test[opt.d];
+	},
+	getSideH(el, pos) {
+		let midH = +el.prop("offsetLeft") + (+el.prop("offsetWidth") >> 1);
+		if (pos[0] < midH) return "e";
+		if (pos[0] > midH) return "w";
+	},
+	getSideV(el, pos) {
+		let midV = +el.prop("offsetTop") + (+el.prop("offsetHEight") >> 1);
+		if (pos[1] < midV) return "n";
+		if (pos[1] > midV) return "s";
 	},
 	getLimits(pos) {
 		let el = this.getElFromPos(pos),
