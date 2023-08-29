@@ -1,4 +1,15 @@
 
+lvl["dask-isles"] = "[4x4]"+
+	"jws,bwe,jwse,pwe,jwse,pwe,jwse,bwe,jse;X,"+
+	"pns,b,pns,b,pns,b;Dw,pns,b;Db,pns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,bwe,jnse,"+
+	"pns,b;Db,pns,b,pns,b;Db,pns,b,pns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b;Dw,pns,b,pns,b;Dw,pns,b;Dw,bns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b,pns,b;Db,pns,b,bns,b;Dw,pns,"+
+	"jnw;E,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jne";
+
 lvl["enigmeto"] = "[4x4]"+
 	"jws;X,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jse;X,"+
 	"pns,b,pns,b;Db,pns,b;Db,pns,b,pns,"+

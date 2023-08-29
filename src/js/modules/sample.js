@@ -20,17 +20,19 @@ lvl["all"] = "[3x3]"+
 	"jnw;X,bwe,jnwe;X,bwe,jnwe,pwe,jne;X";
 
 
-lvl["large"] = "[5x3x14x4]"+
-	"jws,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jse,"+
+lvl["large"] = "[5x4x14x4]"+
+	"jws,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jwe,pwe,jse,"+
+	"pns,b,pns;e,b,pns;e,b,pns,b,pns;e,b,pns,"+
+	"jnws,bwe,jwse,pwe,jwe;E,pwe,jnwse,bwe,jwse,pwe,jnse,"+
+	"pns,b,pns,b,pns;e,b,pns,b,pns,b,pns,"+
+	"jnws,bwe,jwse,pwe,jse,pwe;e,jns;E,pwe;e,jnws,pwe,jnse,"+
+	"pns,b,pns,b,pns,b,pns,b,pns,b,pns,"+
+	"jnws,pwe,jnwe,bwe,jnwse,pwe,jnwse,pwe,jnwse;E,pwe,jnse,"+
 	"pns,b,pns;e,b,pns,b,pns,b,pns,b,pns,"+
-	"jnws,bwe,jwse,pwe,jns;E,pwe,jnwse,bwe,jnwse,pwe,jnse,"+
-	"pns,b,pns,b,pns,b,pns,b,pns;e,b,pns,"+
-	"jnws,pwe,jnwe,bwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
-	"pns,b,pns;e,b,bns,b,pns,b,pns,b,pns,"+
 	"jn;E,pwe;e,jne;e,pwe;e,jnw,pwe,jne,pwe;e,jnw,pwe,jne";
 
 
-lvl["blank"] = "[3x3]"+
+lvl["blank3"] = "[3x3]"+
 	"jws,pwe,jwse,pwe,jwse,pwe,jse,"+
 	"pns,b,pns,b,pns,b,pns,"+
 	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
@@ -38,6 +40,17 @@ lvl["blank"] = "[3x3]"+
 	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
 	"pns,b,pns,b,pns,b,pns,"+
 	"jnw;E,pwe,jnwe,pwe,jnwe,pwe,jne";
+
+lvl["blank4"] = "[4x4]"+
+	"jws,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jse,"+
+	"pns,b,pns,b,pns,b,pns,b,pns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b,pns,b,pns,b,pns,b,pns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b,pns,b,pns,b,pns,b,pns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b,pns,b,pns,b,pns,b,pns,"+
+	"jnw;E,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jne";
 
 lvl["stars"] = "[3x3]"+
 	"jws,pwe,jwse,pwe,jwse,pwe,jse,"+
