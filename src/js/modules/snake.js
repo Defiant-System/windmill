@@ -49,6 +49,7 @@ let Snake = {
 			oX = +opt.el.prop("offsetLeft"),
 			oY = +opt.el.prop("offsetTop"),
 			unit = parseInt(puzzle.cssProp("--unit"), 10),
+			fat = parseInt(puzzle.cssProp("--fat"), 10),
 			els = [];
 		// snake body in points
 		this.bodyPoints = [[oX, oY], [oX, oY]];
@@ -79,6 +80,7 @@ let Snake = {
 		this.onEl = opt.el;
 		// grid details
 		this.grid = {
+			fat,
 			unit,
 			u2: unit / 2,
 			width: +puzzle.cssProp("--width"),
@@ -225,8 +227,12 @@ let Snake = {
 	getLimits(pos) {
 		let el = this.getElFromPos(pos),
 			dirs = this.getCardinals(el),
-			grid = this.grid,
 			spans = this.els.spans,
+			grid = this.grid,
+			unit = grid.unit,
+			fat = grid.fat,
+			u2 = unit * .5,
+			p2 = ((unit * fat) - unit) / 2,
 			onIndex = el.index(),
 			colIndex = onIndex % grid.cols,
 			rowIndex = Math.floor(onIndex / grid.cols),
@@ -235,8 +241,8 @@ let Snake = {
 			limits = [
 				+el.prop("offsetTop"), // up
 				+el.prop("offsetLeft"), // right
-				+el.prop("offsetTop") + +el.prop("offsetHeight") - 14, // down
-				+el.prop("offsetLeft") + +el.prop("offsetWidth") - 14, // left
+				+el.prop("offsetTop") + +el.prop("offsetHeight") - unit, // down
+				+el.prop("offsetLeft") + +el.prop("offsetWidth") - unit, // left
 			];
 		
 		dirs.map(d => {
@@ -253,7 +259,7 @@ let Snake = {
 							break;
 						}
 						if (sibling.hasClass("break-*") && this.getSideV(sibling, pos) === "s") {
-							limits[d] = +sibling.prop("offsetTop") + +sibling.prop("offsetHeight") - 21;
+							limits[d] = +sibling.prop("offsetTop") + +sibling.prop("offsetHeight") - p2;
 							break;
 						}
 					}
@@ -261,16 +267,16 @@ let Snake = {
 				case 2:
 					// elements below
 					sibling = colEls.get(colEls.length-1);
-					limits[d] = +sibling.prop("offsetTop") + sibling.prop("offsetHeight") - 14;
+					limits[d] = +sibling.prop("offsetTop") + sibling.prop("offsetHeight") - unit;
 					for (let i=rowIndex, il=colEls.length; i<il; i++) {
 						sibling = colEls.get(i);
 						if (sibling.hasClass("empty")) {
 							sibling = colEls.get(i-1);
-							limits[d] = +sibling.prop("offsetTop") + +sibling.prop("offsetHeight") - 14;
+							limits[d] = +sibling.prop("offsetTop") + +sibling.prop("offsetHeight") - unit;
 							break;
 						}
 						if (sibling.hasClass("break-*") && this.getSideV(sibling, pos) === "n") {
-							limits[d] = +sibling.prop("offsetTop") + 7;
+							limits[d] = +sibling.prop("offsetTop") + u2;
 							break;
 						}
 					}
@@ -279,7 +285,7 @@ let Snake = {
 				case 1:
 					// elements to the right
 					sibling = rowEls.get(rowEls.length-1);
-					limits[d] = +sibling.prop("offsetLeft") + sibling.prop("offsetWidth") - 14;
+					limits[d] = +sibling.prop("offsetLeft") + sibling.prop("offsetWidth") - unit;
 					for (let i=colIndex, il=rowEls.length; i<il; i++) {
 						sibling = rowEls.get(i);
 						if (sibling.hasClass("empty")) {
@@ -288,7 +294,7 @@ let Snake = {
 							break;
 						}
 						if (sibling.hasClass("break-*") && this.getSideH(sibling, pos) === "e") {
-							limits[d] = +sibling.prop("offsetLeft") + 7;
+							limits[d] = +sibling.prop("offsetLeft") + u2;
 							break;
 						}
 					}
@@ -304,7 +310,7 @@ let Snake = {
 							break;
 						}
 						if (sibling.hasClass("break-*") && this.getSideH(sibling, pos) === "w") {
-							limits[d] = +sibling.prop("offsetLeft") + +sibling.prop("offsetWidth") - 21;
+							limits[d] = +sibling.prop("offsetLeft") + +sibling.prop("offsetWidth") - p2;
 							break;
 						}
 					}
