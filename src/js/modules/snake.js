@@ -93,11 +93,9 @@ let Snake = {
 			width: el.offsetWidth,
 			height: el.offsetHeight,
 		}));
-		// calculate max/min for all junctions
-		// this.junctions = this.getJuntions();
 
 		this.pos = {
-			origo: [opt.clientX, opt.clientY],
+			origo: [opt.layerX, opt.layerY],
 			joint: [oX, oY],
 		};
 
@@ -110,15 +108,11 @@ let Snake = {
 			el;
 		switch (event.type) {
 			case "start-snake":
-
-				// return Self.getMaxMin(event.offset(".puzzle"));
-
 				if (!event.el.hasClass("started")) {
 					el = $(event.target);
 					if (!el.hasClass("entry")) return;
-					return Self.start({ el, clientX: event.clientX, clientY: event.clientY });
+					return Self.start({ el, layerX: +el.prop("offsetLeft"), layerY: +el.prop("offsetTop") });
 				}
-
 				// dispose snake & reset puzzle
 				Self.els.puzzle.find("svg.snake").remove();
 				Self.els.puzzle.removeClass("started");
@@ -130,46 +124,31 @@ let Snake = {
 			case "mousemove":
 				let x1 = Self.pos.origo[0],
 					y1 = Self.pos.origo[1],
-					x2 = event.clientX,
-					y2 = event.clientY,
+					x2 = event.layerX,
+					y2 = event.layerY,
 					dir = Self.getDirection({ x: x1, y: y1 }, { x: x2, y: y2 }),
 					step = dir % 2 === 0 ? y2 - y1 : x2 - x1;
 
-				Self.move({ dir, step, clientX: event.clientX, clientY: event.clientY });
+				Self.move({ dir, step, layerX: x2, layerY: y2 });
 				break;
 		}
 	},
 	move(opt) {
-		let head = {
-				x: +this.els.head.attr("cx"),
-				y: +this.els.head.attr("cy"),
-			},
-			d = (opt.dir + 1) % 2,
+		let d = (opt.dir + 1) % 2,
 			step = opt.step || 10,
 			neck = this.bodyPoints[this.bodyPoints.length - 1],
-			limit = this.getLimits(neck);
+			limit = this.getLimits(neck),
+			onEl = this.getElFromPos(neck),
+			avail = this.getCardinals(onEl);
 
-		let onEl = this.getElFromPos(neck);
-		if (onEl.hasClass("junc-*")) {
-			let elPos = [+onEl.prop("offsetLeft"), +onEl.prop("offsetTop")],
-				dist = this.getDistance(elPos, neck);
-			if (dist === 0) {
-				// this.pos.origo = [opt.clientX, opt.clientY];
-				// this.bodyPoints.splice(this.bodyPoints.length - 1, 0, elPos);
-				
-				// this.bodyPoints.push(elPos);
-				// return;
-			}
-		}
+		// console.log(avail);
+		// if (!avail.includes(opt.dir)) return;
 
 		neck[d] = this.pos.joint[d] + step;
 		neck[0] = Math.min(Math.max(limit[3], neck[0]), limit[1]);
 		neck[1] = Math.min(Math.max(limit[0], neck[1]), limit[2]);
-		// neck[0] = Math.min(Math.max(limit.min.x, neck[0]), limit.max.x);
-		// neck[1] = Math.min(Math.max(limit.min.y, neck[1]), limit.max.y);
 
-		// this.APP.coords.val( JSON.stringify(limit) );
-		this.direction = opt.dir;
+		// this.APP.coords.val(neck.join());
 
 		let points = this.bodyPoints.join(" ");
 		this.els.body.attr({ points });
@@ -178,12 +157,7 @@ let Snake = {
 	getDistance(p1, p2) {
 		let dx = p2[0] - p1[0],
 			dy = p2[1] - p1[1];
-		return Math.sqrt(dx * dx + dy * dy);
-	},
-	getJuntions() {
-		let els = this.els.spans.filter(el => el.classList[0].startsWith("junc-") && !el.classList.contains("empty")),
-			maxMins = els.map(el => this.getLimits($(el)));
-		return { els, maxMins };
+		return Math.sqrt(dx * dx + dy * dy) | 0;
 	},
 	getCardinals(el) {
 		let [type, dir] = el.prop("classList")[0].split("-"),

@@ -1,4 +1,15 @@
 
+lvl["kinda-tricky"] = "[4x4]"+
+	"jws;E,pwe,jwse,pwe,jwse,pwe,jwse,pwe;h,jse;E,"+
+	"pns,b,pns,b,pns,b,pns;h,b,pns,"+
+	"jnws;h,pwe,jnwse,pwe;h,jnwse,pwe,jnwse,pwe,jnse;X,"+
+	"pns,b,pns,b,pns,b,pns,b,pns,"+
+	"jnws,pwe,jnwse;h,pwe,jnwse,pwe;h,jnwse,pwe,jnse;h,"+
+	"pns;h,b,pns,b,pns,b,pns,b,pns,"+
+	"jnws,pwe,jnwse,pwe;h,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b,pns;h,b,pns,b,pns;h,b,pns;h,"+
+	"jnw;E,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jne;E";
+
 lvl["dask-isles"] = "[4x4]"+
 	"jws,bwe,jwse,pwe,jwse,pwe,jwse,bwe,jse;X,"+
 	"pns,b,pns,b,pns,b;Dw,pns,b;Db,pns,"+

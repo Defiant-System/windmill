@@ -236,19 +236,30 @@ content {
 			&.junc-w { border-top-left-radius: var( --unit ); border-bottom-left-radius: var( --unit ); }
 			&.junc-e { border-top-right-radius: var( --unit ); border-bottom-right-radius: var( --unit ); }
 
+			&.hex:before {
+				content: "";
+				position: absolute;
+				background: var( --fg );
+				filter: brightness(1.5) sepia(.5);
+				clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+			}
+
+			&[class^="junc-"].hex:before {
+				top: 1px;
+				left: 1px;
+				right: 1px;
+				bottom: 1px;
+			}
+
 			&.path-ns {
 				height: var( --path );
 
 				&.hex:before {
-					content: "";
-					position: absolute;
-					left: 2px;
-					right: 2px;
+					left: 1px;
+					right: 1px;
 					top: 50%;
-					height: 12px;
+					height: calc( var( --unit ) - 2px );
 					transform: translateY(-50%);
-					background: var( --bg );
-					clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
 				}
 			}
 
@@ -256,15 +267,11 @@ content {
 				width: var( --path );
 
 				&.hex:before {
-					content: "";
-					position: absolute;
-					top: 2px;
-					bottom: 2px;
+					top: 1px;
+					bottom: 1px;
 					left: 50%;
-					width: 12px;
+					width: calc( var( --unit ) - 2px );
 					transform: translateX(-50%);
-					background: var( --bg );
-					clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
 				}
 			}
 
