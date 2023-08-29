@@ -212,65 +212,6 @@ let Snake = {
 			case 3: return rowEls.get(colIndex-1);
 		}
 	},
-	tread(opt) {
-		let grid = this.grid,
-			spans = this.els.spans,
-			onIndex = opt.el.index(),
-			colIndex = onIndex % grid.cols,
-			rowIndex = Math.floor(onIndex / grid.cols),
-			rowEls = spans.filter((e, i) => i >= rowIndex * grid.cols && i < (rowIndex + 1) * grid.cols),
-			colEls = spans.filter((e, i) => i % grid.cols == colIndex),
-			aboveEl, belowEl,
-			leftEl, rightEl;
-		
-		switch (opt.d) {
-			case 0:
-				// elements above
-				for (let i=rowIndex; i>0; i--) {
-					aboveEl = colEls.get(i);
-					if (aboveEl.hasClass("break-*") && this.getSideV(aboveEl, opt.pos) === "s") {
-						opt.limits[opt.d] = +aboveEl.prop("offsetTop") + +aboveEl.prop("offsetHeight") - 21;
-						break;
-					}
-				}
-				break;
-			case 2:
-				// elements below
-				for (let i=rowIndex, il=colEls.length; i<il; i++) {
-					belowEl = colEls.get(i);
-					if (belowEl.hasClass("break-*") && this.getSideV(belowEl, opt.pos) === "n") {
-						opt.limits[opt.d] = +belowEl.prop("offsetTop") + 7;
-						break;
-					}
-				}
-				break;
-
-			case 1:
-				// elements to the right
-				for (let i=colIndex, il=rowEls.length; i<il; i++) {
-					rightEl = rowEls.get(i);
-					if (rightEl.hasClass("break-*") && this.getSideH(rightEl, opt.pos) === "e") {
-						opt.limits[opt.d] = +rightEl.prop("offsetLeft") + 7;
-						break;
-					}
-				}
-				break;
-			case 3:
-				// elements to the left
-				for (let i=colIndex; i>0; i--) {
-					leftEl = rowEls.get(i);
-					if (leftEl.hasClass("break-*") && this.getSideH(leftEl, opt.pos) === "w") {
-						opt.limits[opt.d] = +leftEl.prop("offsetLeft") + +leftEl.prop("offsetWidth") - 21;
-					}
-				}
-				break;
-		}
-		
-		return opt;
-
-		// let test = [0, 350, 220, 0];
-		// return test[opt.d];
-	},
 	getSideH(el, pos) {
 		let midH = +el.prop("offsetLeft") + (+el.prop("offsetWidth") >> 1);
 		if (pos[0] < midH) return "e";
@@ -284,6 +225,14 @@ let Snake = {
 	getLimits(pos) {
 		let el = this.getElFromPos(pos),
 			dirs = this.getCardinals(el),
+			// res = this.tread({ pos, el, d, limits }),
+			grid = this.grid,
+			spans = this.els.spans,
+			onIndex = el.index(),
+			colIndex = onIndex % grid.cols,
+			rowIndex = Math.floor(onIndex / grid.cols),
+			rowEls = spans.filter((e, i) => i >= rowIndex * grid.cols && i < (rowIndex + 1) * grid.cols),
+			colEls = spans.filter((e, i) => i % grid.cols == colIndex),
 			limits = [
 				pos[1], // up
 				pos[0], // right
@@ -292,8 +241,54 @@ let Snake = {
 			];
 		
 		dirs.map(d => {
-			let res = this.tread({ pos, el, d, limits });
-			limits[d] = res.limits[d];
+			let aboveEl, belowEl,
+				leftEl, rightEl;
+		
+			switch (d) {
+				case 0:
+					// elements above
+					limits[d] = +colEls.get(0).prop("offsetTop");
+					for (let i=rowIndex; i>0; i--) {
+						aboveEl = colEls.get(i);
+						if (aboveEl.hasClass("break-*") && this.getSideV(aboveEl, pos) === "s") {
+							limits[d] = +aboveEl.prop("offsetTop") + +aboveEl.prop("offsetHeight") - 21;
+							break;
+						}
+					}
+					break;
+				case 2:
+					// elements below
+					belowEl = colEls.get(colEls.length-1);
+					limits[d] = +belowEl.prop("offsetTop") + belowEl.prop("offsetHeight") - 7;
+					for (let i=rowIndex, il=colEls.length; i<il; i++) {
+						belowEl = colEls.get(i);
+						if (belowEl.hasClass("break-*") && this.getSideV(belowEl, pos) === "n") {
+							limits[d] = +belowEl.prop("offsetTop") + 7;
+							break;
+						}
+					}
+					break;
+
+				case 1:
+					// elements to the right
+					for (let i=colIndex, il=rowEls.length; i<il; i++) {
+						rightEl = rowEls.get(i);
+						if (rightEl.hasClass("break-*") && this.getSideH(rightEl, pos) === "e") {
+							limits[d] = +rightEl.prop("offsetLeft") + 7;
+							break;
+						}
+					}
+					break;
+				case 3:
+					// elements to the left
+					for (let i=colIndex; i>0; i--) {
+						leftEl = rowEls.get(i);
+						if (leftEl.hasClass("break-*") && this.getSideH(leftEl, pos) === "w") {
+							limits[d] = +leftEl.prop("offsetLeft") + +leftEl.prop("offsetWidth") - 21;
+						}
+					}
+					break;
+			}
 		});
 
 		[...Array(4)].map((e,i) => this.els[`debug${i}`].attr({ x1: 0, y1: 0, x2: 0, y2: 0 }));
