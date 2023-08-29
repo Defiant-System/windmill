@@ -22,8 +22,8 @@ lvl["all"] = "[3x3]"+
 
 lvl["large"] = "[5x3x14x4]"+
 	"jws,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jse,"+
-	"pns,b,pns;e,b,pns,b,pns,b,pns,b,pns,"+
-	"jnws,bwe,jwse,pwe;e,jns;E,pwe;e,jnwse,bwe,jnwse,pwe,jnse,"+
+	"pns,b,pns;e,b,bns,b,pns,b,pns,b,pns,"+
+	"jnws,bwe,jwse,pwe,jns;E,pwe,jnwse,bwe,jnwse,pwe,jnse,"+
 	"pns,b,pns,b,pns,b,pns,b,pns;e,b,pns,"+
 	"jnws,pwe,jnwe,bwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
 	"pns,b,pns;e,b,bns,b,pns,b,pns,b,pns,"+

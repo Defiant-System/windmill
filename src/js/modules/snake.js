@@ -226,25 +226,23 @@ let Snake = {
 		switch (opt.d) {
 			case 0:
 				// elements above
-				// for (let i=rowIndex; i>0; i--) {
-				// 	aboveEl = colEls.get(i);
-				// 	if (aboveEl.hasClass("break-*")) {
-				// 		break;
-				// 	}
-				// }
-				opt.limits[opt.d] = 0;
+				for (let i=rowIndex; i>0; i--) {
+					aboveEl = colEls.get(i);
+					if (aboveEl.hasClass("break-*") && this.getSideV(aboveEl, opt.pos) === "s") {
+						opt.limits[opt.d] = +aboveEl.prop("offsetTop") + +aboveEl.prop("offsetHeight") - 21;
+						break;
+					}
+				}
 				break;
 			case 2:
 				// elements below
 				for (let i=rowIndex, il=colEls.length; i<il; i++) {
 					belowEl = colEls.get(i);
-					if (belowEl.hasClass("break-*") && this.getSideV(belowEl, opt.pos) === "s") {
-						// opt.limits[opt.d] = +belowEl.prop("offsetTop") + 7;
-						console.log( belowEl );
+					if (belowEl.hasClass("break-*") && this.getSideV(belowEl, opt.pos) === "n") {
+						opt.limits[opt.d] = +belowEl.prop("offsetTop") + 7;
 						break;
 					}
 				}
-				opt.limits[opt.d] = 161;
 				break;
 
 			case 1:
@@ -279,7 +277,7 @@ let Snake = {
 		if (pos[0] > midH) return "w";
 	},
 	getSideV(el, pos) {
-		let midV = +el.prop("offsetTop") + (+el.prop("offsetHEight") >> 1);
+		let midV = +el.prop("offsetTop") + (+el.prop("offsetHeight") >> 1);
 		if (pos[1] < midV) return "n";
 		if (pos[1] > midV) return "s";
 	},
