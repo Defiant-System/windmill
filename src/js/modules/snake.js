@@ -234,9 +234,9 @@ let Snake = {
 			colEls = spans.filter((e, i) => i % grid.cols == colIndex),
 			limits = [
 				+el.prop("offsetTop"), // up
-				pos[0], // right
+				+el.prop("offsetLeft"), // right
 				+el.prop("offsetTop") + +el.prop("offsetHeight") - 14, // down
-				pos[0], // left
+				+el.prop("offsetLeft") + +el.prop("offsetWidth") - 14, // left
 			];
 		
 		dirs.map(d => {
@@ -282,6 +282,11 @@ let Snake = {
 					limits[d] = +sibling.prop("offsetLeft") + sibling.prop("offsetWidth") - 14;
 					for (let i=colIndex, il=rowEls.length; i<il; i++) {
 						sibling = rowEls.get(i);
+						if (sibling.hasClass("empty")) {
+							sibling = rowEls.get(i-1);
+							limits[d] = +sibling.prop("offsetLeft");
+							break;
+						}
 						if (sibling.hasClass("break-*") && this.getSideH(sibling, pos) === "e") {
 							limits[d] = +sibling.prop("offsetLeft") + 7;
 							break;
