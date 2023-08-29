@@ -1,5 +1,6 @@
 
 @import "modules/sample.js";
+@import "modules/levels.js";
 @import "modules/maps.js";
 @import "modules/particles.js";
 @import "modules/snake.js";
@@ -25,7 +26,7 @@ const witney = {
 		// Maps.draw({ name: "level1a-V", el: window.find(".puzzle.p3").addClass("show") });
 		// Maps.draw({ name: "level1b-V", el: window.find(".puzzle.p4").addClass("show") });
 
-		Maps.draw({ name: "large", el: window.find(".puzzle.p1") });
+		Maps.draw({ name: "large", el: window.find(".puzzle.p1").addClass("debug") });
 
 		// let path = "0,3,N;0,2;1,2;1,1;3,1;3,0;4,0;4,1;5,1;5,2;3,2;3,3";
 		// Snake.draw({ path, el: window.find(".puzzle.p1") });

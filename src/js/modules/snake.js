@@ -225,7 +225,6 @@ let Snake = {
 	getLimits(pos) {
 		let el = this.getElFromPos(pos),
 			dirs = this.getCardinals(el),
-			// res = this.tread({ pos, el, d, limits }),
 			grid = this.grid,
 			spans = this.els.spans,
 			onIndex = el.index(),
@@ -234,7 +233,7 @@ let Snake = {
 			rowEls = spans.filter((e, i) => i >= rowIndex * grid.cols && i < (rowIndex + 1) * grid.cols),
 			colEls = spans.filter((e, i) => i % grid.cols == colIndex),
 			limits = [
-				pos[1], // up
+				+el.prop("offsetTop"), // up
 				pos[0], // right
 				pos[1], // down
 				pos[0], // left
@@ -243,11 +242,12 @@ let Snake = {
 		dirs.map(d => {
 			let aboveEl, belowEl,
 				leftEl, rightEl;
-		
+			
 			switch (d) {
 				case 0:
 					// elements above
-					limits[d] = +colEls.get(0).prop("offsetTop");
+					aboveEl = colEls.get(0);
+					limits[d] = +aboveEl.prop("offsetTop");
 					for (let i=rowIndex; i>0; i--) {
 						aboveEl = colEls.get(i);
 						if (aboveEl.hasClass("break-*") && this.getSideV(aboveEl, pos) === "s") {

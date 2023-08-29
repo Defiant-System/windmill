@@ -22,7 +22,7 @@ lvl["all"] = "[3x3]"+
 
 lvl["large"] = "[5x3x14x4]"+
 	"jws,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jse,"+
-	"pns,b,pns;e,b,bns,b,pns,b,pns,b,pns,"+
+	"pns,b,pns;e,b,pns,b,pns,b,pns,b,pns,"+
 	"jnws,bwe,jwse,pwe,jns;E,pwe,jnwse,bwe,jnwse,pwe,jnse,"+
 	"pns,b,pns,b,pns,b,pns,b,pns;e,b,pns,"+
 	"jnws,pwe,jnwe,bwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
@@ -74,15 +74,4 @@ lvl["plus-x"] = "[3x3]"+
 	"jws;e,pwe;e,jnws,pwe,jnwse,bwe,je;Xs,"+
 	"pns;e,b,pns,b,pns,b,pns;e,"+
 	"jw;X,pwe,jne,pwe;e,jn;Xw,pwe;e,jne;e";
-
-lvl["enigmeto"] = "[4x4]"+
-	"jws;X,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jse;X,"+
-	"pns,b,pns,b;Db,pns,b;Db,pns,b,pns,"+
-	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
-	"pns,b;Db,pns,b;Do,pns,b;Db,pns,b;Do,pns,"+
-	"jnws;E,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse;E,"+
-	"pns,b;Do,pns,b;Do,pns,b;Db,pns,b,pns,"+
-	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
-	"pns,b;Db,pns,b;Do,pns,b;Db,pns,b;Do,pns,"+
-	"jnw;X,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jne;X";
 
