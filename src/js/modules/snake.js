@@ -76,8 +76,6 @@ let Snake = {
 			debug3: svg.find(".debug3"),
 			spans: puzzle.find("> span"),
 		};
-		// reference to element snake currently is on
-		this.onEl = opt.el;
 		// grid details
 		this.grid = {
 			fat,
@@ -137,7 +135,7 @@ let Snake = {
 					dir = Self.getDirection({ x: x1, y: y1 }, { x: x2, y: y2 }),
 					step = dir % 2 === 0 ? y2 - y1 : x2 - x1;
 
-				Self.move({ dir, step });
+				Self.move({ dir, step, clientX: event.clientX, clientY: event.clientY });
 				break;
 		}
 	},
@@ -151,6 +149,19 @@ let Snake = {
 			neck = this.bodyPoints[this.bodyPoints.length - 1],
 			limit = this.getLimits(neck);
 
+		let onEl = this.getElFromPos(neck);
+		if (onEl.hasClass("junc-*")) {
+			let elPos = [+onEl.prop("offsetLeft"), +onEl.prop("offsetTop")],
+				dist = this.getDistance(elPos, neck);
+			if (dist === 0) {
+				// this.pos.origo = [opt.clientX, opt.clientY];
+				// this.bodyPoints.splice(this.bodyPoints.length - 1, 0, elPos);
+				
+				// this.bodyPoints.push(elPos);
+				// return;
+			}
+		}
+
 		neck[d] = this.pos.joint[d] + step;
 		neck[0] = Math.min(Math.max(limit[3], neck[0]), limit[1]);
 		neck[1] = Math.min(Math.max(limit[0], neck[1]), limit[2]);
@@ -158,10 +169,16 @@ let Snake = {
 		// neck[1] = Math.min(Math.max(limit.min.y, neck[1]), limit.max.y);
 
 		// this.APP.coords.val( JSON.stringify(limit) );
+		this.direction = opt.dir;
 
 		let points = this.bodyPoints.join(" ");
 		this.els.body.attr({ points });
 		this.els.head.attr({ cx: neck[0], cy: neck[1] });
+	},
+	getDistance(p1, p2) {
+		let dx = p2[0] - p1[0],
+			dy = p2[1] - p1[1];
+		return Math.sqrt(dx * dx + dy * dy);
 	},
 	getJuntions() {
 		let els = this.els.spans.filter(el => el.classList[0].startsWith("junc-") && !el.classList.contains("empty")),
@@ -178,7 +195,8 @@ let Snake = {
 			x = p1.x - p2.x,
 			theta = Math.atan2(y, x) * (180/Math.PI);
 		if (theta < 0) theta = 360 + theta;
-		return y == 0 && x == 0 ? null : Math.max((Math.round(theta / 90) + 3) % 4, 0);
+		return Math.max((Math.round(theta / 90) + 3) % 4, 0);
+		// return y == 0 && x == 0 ? this.direction : Math.max((Math.round(theta / 90) + 3) % 4, 0);
 	},
 	getElFromPos(pos) {
 		let box = {
