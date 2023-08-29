@@ -248,6 +248,10 @@ let Snake = {
 					limits[d] = +sibling.prop("offsetTop");
 					for (let i=rowIndex; i>0; i--) {
 						sibling = colEls.get(i);
+						if (sibling.hasClass("empty")) {
+							limits[d] = +colEls.get(i+1).prop("offsetTop");
+							break;
+						}
 						if (sibling.hasClass("break-*") && this.getSideV(sibling, pos) === "s") {
 							limits[d] = +sibling.prop("offsetTop") + +sibling.prop("offsetHeight") - 21;
 							break;
@@ -260,6 +264,11 @@ let Snake = {
 					limits[d] = +sibling.prop("offsetTop") + sibling.prop("offsetHeight") - 14;
 					for (let i=rowIndex, il=colEls.length; i<il; i++) {
 						sibling = colEls.get(i);
+						if (sibling.hasClass("empty")) {
+							sibling = colEls.get(i-1);
+							limits[d] = +sibling.prop("offsetTop") + +sibling.prop("offsetHeight") - 14;
+							break;
+						}
 						if (sibling.hasClass("break-*") && this.getSideV(sibling, pos) === "n") {
 							limits[d] = +sibling.prop("offsetTop") + 7;
 							break;
@@ -285,8 +294,13 @@ let Snake = {
 					limits[d] = +sibling.prop("offsetLeft");
 					for (let i=colIndex; i>0; i--) {
 						sibling = rowEls.get(i);
+						if (sibling.hasClass("empty")) {
+							limits[d] = +rowEls.get(i+1).prop("offsetLeft");
+							break;
+						}
 						if (sibling.hasClass("break-*") && this.getSideH(sibling, pos) === "w") {
 							limits[d] = +sibling.prop("offsetLeft") + +sibling.prop("offsetWidth") - 21;
+							break;
 						}
 					}
 					break;
