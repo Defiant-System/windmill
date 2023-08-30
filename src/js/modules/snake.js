@@ -128,17 +128,13 @@ let Snake = {
 					x2 = event.layerX,
 					y2 = event.layerY,
 					dir = Self.getDirection({ x: neck[0], y: neck[1] }, { x: x2, y: y2 }),
-					step = dir % 2 === 0 ? y2 - y1 : x2 - x1,
-					onEl = Self.getElFromPos(neck),
-					avail = Self.getCardinals(onEl);
+					step = dir % 2 === 0 ? y2 - y1 : x2 - x1;
 
-				// console.log(avail);
-				console.log( dir );
-				// if (!avail.includes(dir)) {
-				// 	console.log("turn", dir);
+				// if (avail.includes(dir)) {
+				// 	console.log(onEl);
 				// }
 
-				Self.move({ dir, step, layerX: x2, layerY: y2 });
+				Self.move({ dir, step });
 				break;
 		}
 	},

@@ -141,6 +141,8 @@ content {
 
 		&.started {
 			span {
+				pointer-events: none;
+				
 				&.entry:after { display: none; }
 				&.exit:after { display: block; }
 			}
@@ -152,7 +154,6 @@ content {
 			width: var( --unit );
 			height: var( --unit );
 			display: inline-block;
-			// pointer-events: none;
 
 			&.box {
 				background: transparent;
