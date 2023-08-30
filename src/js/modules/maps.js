@@ -17,40 +17,33 @@ let lexer = {
 	"jwe": "junc-we",
 	"jns": "junc-ns",
 
-	"h": "hex",
 	"pwe": "path-we",
 	"pns": "path-ns",
 	"bwe": "break-we",
 	"bns": "break-ns",
+
+	"B": "black",
+	"W": "white",
+	"C": "cyan",
+	"M": "magenta",
+	"Y": "yellow",
+	"R": "red",
+	"G": "green",
+	"N": "navy",
+	"O": "orange",
+
+	"D": "dot",
+	"S": "star",
+	"h": "hex",
 	"b": "box",
-
-	"Db": "dot black",
-	"Dw": "dot white",
-	"Dc": "dot cyan",
-	"Dm": "dot magenta",
-	"Dy": "dot yellow",
-	"Dr": "dot red",
-	"Dg": "dot green",
-	"Dn": "dot navy",
-	"Do": "dot orange",
-
-	"Sb": "star black",
-	"Sw": "star white",
-	"Sc": "star cyan",
-	"Sm": "star magenta",
-	"Sy": "star yellow",
-	"Sr": "star red",
-	"Sg": "star green",
-	"Sn": "star navy",
-	"So": "star orange",
 
 	"e": "empty",
 	"E": "entry",
 	"X": "exit",
-	"Xn": "exit n",
-	"Xw": "exit w",
-	"Xs": "exit s",
-	"Xe": "exit e",
+	"xn": "xn",
+	"xw": "xw",
+	"xs": "xs",
+	"xe": "xe",
 };
 
 let Maps = {
@@ -99,5 +92,21 @@ let Maps = {
 		out.push(row.join(","));
 
 		return `[${w}x${h}x${u || 14}]`+ out.join(",");
+	},
+	pgn(puzzle) {
+		let w = puzzle.cssProp("--width"),
+			h = puzzle.cssProp("--height"),
+			out = [];
+		puzzle.find("> span").map(el => {
+			let block = [];
+			el.classList.forEach(name => {
+				// let short = Object.keys(lexer).map(k => {});
+				// block.push();
+			});
+			out.push(block.join(";"));
+		});
+		out = `[${w}x${h}]+${out.join(",")}`;
+		console.log( out );
+		// console.log( lvl["large"] );
 	}
 };

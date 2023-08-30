@@ -26,7 +26,11 @@ const witney = {
 		// Maps.draw({ name: "level1a-V", el: window.find(".puzzle.p3").addClass("show") });
 		// Maps.draw({ name: "level1b-V", el: window.find(".puzzle.p4").addClass("show") });
 
-		Maps.draw({ name: "large", el: window.find(".puzzle.p1").addClass("debug") });
+		let el = window.find(".puzzle.p1");
+		// Maps.draw({ gen: "4x4", el });
+		Maps.draw({ name: "simple-symmetry", el });
+		// PGN
+		// Maps.pgn(el);
 
 		// let path = "0,3,N;0,2;1,2;1,1;3,1;3,0;4,0;4,1;5,1;5,2;3,2;3,3";
 		// Snake.draw({ path, el: window.find(".puzzle.p1") });
@@ -69,6 +73,14 @@ const witney = {
 				break;
 			case "move-range":
 				// Particles.update(event.value / 100);;
+				break;
+			case "output-pgn":
+				value = Maps.pgn(event.origin.el);
+				console.log(value);
+				break;
+			case "output-blank-pgn":
+				value = Maps.generate(event.arg);
+				console.log(value);
 				break;
 			case "open-help":
 				karaqu.shell("fs -u '~/help/index.md'");

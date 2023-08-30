@@ -9,4 +9,14 @@
 		<Menu type="divider"/>
 		<Menu name="License"/>
 	</Menu>
+
+	<Menu for="puzzle-options">
+		<Menu name="Output PGN" click="output-pgn"/>
+		<Menu type="divider"/>
+		<Menu name="Blank&#8230;">
+			<Menu name="3x3" click="output-blank-pgn" arg="3x3"/>
+			<Menu name="4x4" click="output-blank-pgn" arg="4x4"/>
+			<Menu name="5x5" click="output-blank-pgn" arg="5x5"/>
+		</Menu>
+	</Menu>
 </MenuBar>

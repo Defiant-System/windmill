@@ -43,7 +43,7 @@ let Snake = {
 			.append(`<svg class="snake" viewBox="0 0 ${oW} ${oH}">${snake.join("")}</svg>`);
 	},
 	start(opt) {
-		let puzzle = opt.el.parents(".puzzle").addClass("started debug"),
+		let puzzle = opt.el.parents(".puzzle").addClass("started debug1"),
 			oW = +puzzle.prop("offsetWidth"),
 			oH = +puzzle.prop("offsetHeight"),
 			oX = +opt.el.prop("offsetLeft"),

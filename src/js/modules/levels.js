@@ -10,54 +10,6 @@ lvl["kinda-tricky"] = "[4x4]"+
 	"pns,b,pns;h,b,pns,b,pns;h,b,pns;h,"+
 	"jnw;E,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jne;E";
 
-lvl["dask-isles"] = "[4x4]"+
-	"jws,bwe,jwse,pwe,jwse,pwe,jwse,bwe,jse;X,"+
-	"pns,b,pns,b,pns,b;Dw,pns,b;Db,pns,"+
-	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,bwe,jnse,"+
-	"pns,b;Db,pns,b,pns,b;Db,pns,b,pns,"+
-	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
-	"pns,b;Dw,pns,b,pns,b;Dw,pns,b;Dw,bns,"+
-	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
-	"pns,b,pns,b;Db,pns,b,bns,b;Dw,pns,"+
-	"jnw;E,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jne";
-
-lvl["enigmeto"] = "[4x4]"+
-	"jws;X,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jse;X,"+
-	"pns,b,pns,b;Db,pns,b;Db,pns,b,pns,"+
-	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
-	"pns,b;Db,pns,b;Do,pns,b;Db,pns,b;Do,pns,"+
-	"jnws;E,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse;E,"+
-	"pns,b;Do,pns,b;Do,pns,b;Db,pns,b,pns,"+
-	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
-	"pns,b;Db,pns,b;Do,pns,b;Db,pns,b;Do,pns,"+
-	"jnw;X,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jne;X";
-
-lvl["treetops"] = "[3x5]"+
-	"jws;E,pwe,jwse,pwe,jwse,pwe,jse,"+
-	"pns,b;Sc,pns,b;Sc,pns,b;Sc,pns,"+
-	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
-	"pns,b;Sm,pns,b;Sc,pns,b,pns,"+
-	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
-	"pns,b;Sm,pns,b;Sm,pns,b,pns,"+
-	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
-	"pns,b;Sm,pns,b;Sr,pns,b;Sr,pns,"+
-	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
-	"pns,b,pns,b;Sr,pns,b;Sr,pns,"+
-	"jnw,pwe,jnwe,pwe,jnwe,pwe,jne;X";
-
-lvl["inm2"] = "[5x5]"+
-	"jws,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jse,"+
-	"pns,b;Dw,pns,b;Dw,pns,b,pns,b;Db,pns,b;Dw,pns,"+
-	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
-	"pns,b,pns,b,pns,b;Dw,pns,b,pns,b,pns,"+
-	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,bwe,jnwse,pwe,jnse,"+
-	"pns,b,pns,b;Db,pns,b,pns,b;Db,pns,b,pns,"+
-	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
-	"pns,b,pns,b,pns,b;Dw,pns,b,pns,b,pns,"+
-	"jnws,bwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnwse,bwe,jnse,"+
-	"pns,b;Db,pns,b;Dw,pns,b,pns,b;Db,pns,b;Db,pns,"+
-	"jnw;X,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jne;E";
-
 lvl["antecedent"] = "[3x3]"+
 	"jws;X,pwe,jwse,pwe,jwse,pwe,jse;E,"+
 	"pns,b;Dy,pns,b;Dm,pns,b;Dc,pns,"+
@@ -66,4 +18,75 @@ lvl["antecedent"] = "[3x3]"+
 	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
 	"pns,b;Dc,pns,b;Dm,pns,b;Dy,pns,"+
 	"jnw;E,pwe,jnwe,pwe,jnwe,pwe,jne;X";
+
+
+// https://windmill.thefifthmatt.com/8b4wydg
+lvl["treetops"] = "[3x5]"+
+	"jws;E,pwe,jwse,pwe,jwse,pwe,jse,"+
+	"pns,b;S;C,pns,b;S;C,pns,b;S;C,pns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b;S;M,pns,b;S;C,pns,b,pns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b;S;M,pns,b;S;M,pns,b,pns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b;S;M,pns,b;S;R,pns,b;S;R,pns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b,pns,b;S;R,pns,b;S;R,pns,"+
+	"jnw,pwe,jnwe,pwe,jnwe,pwe,jne;X";
+
+// https://windmill.thefifthmatt.com/86s7b20
+lvl["inm2"] = "[5x5]"+
+	"jws,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jse,"+
+	"pns,b;D;W,pns,b;D;W,pns,b,pns,b;D;B,pns,b;D;W,pns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b,pns,b,pns,b;D;W,pns,b,pns,b,pns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,bwe,jnwse,pwe,jnse,"+
+	"pns,b,pns,b;D;B,pns,b,pns,b;D;B,pns,b,pns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b,pns,b,pns,b;D;W,pns,b,pns,b,pns,"+
+	"jnws,bwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnwse,bwe,jnse,"+
+	"pns,b;D;B,pns,b;D;W,pns,b,pns,b;D;B,pns,b;D;B,pns,"+
+	"jnw;X,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jne;E";
+
+// https://windmill.thefifthmatt.com/35wqev8
+lvl["dask-isles"] = "[4x4]"+
+	"jws,bwe,jwse,pwe,jwse,pwe,jwse,bwe,jse;X,"+
+	"pns,b,pns,b,pns,b;D;W,pns,b;D;B,pns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,bwe,jnse,"+
+	"pns,b;D;B,pns,b,pns,b;D;B,pns,b,pns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b;D;W,pns,b,pns,b;D;W,pns,b;D;W,bns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b,pns,b;D;B,pns,b,bns,b;D;W,pns,"+
+	"jnw;E,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jne";
+
+// https://windmill.thefifthmatt.com/e3919xr
+lvl["enigmeto"] = "[4x4]"+
+	"jws;X,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jse;X,"+
+	"pns,b,pns,b;D;B,pns,b;D;B,pns,b,pns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b;D;B,pns,b;D;W,pns,b;D;B,pns,b;D;W,pns,"+
+	"jnws;E,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse;E,"+
+	"pns,b;D;W,pns,b;D;W,pns,b;D;B,pns,b,pns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b;D;B,pns,b;D;W,pns,b;D;B,pns,b;D;W,pns,"+
+	"jnw;X,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jne;X";
+
+// https://windmill.thefifthmatt.com/c76pvy0
+lvl["simple-symmetry"] = "[5x5x14]jws,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jse,pns,b,pns,b,pns,b,pns,b,pns,b,pns,jnws,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jnse,pns,b,pns,b,pns,b,pns,b,pns,b,pns,jnws,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jnse,pns,b,pns,b,pns,b,pns,b,pns,b,pns,jnws,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jnse,pns,b,pns,b,pns,b,pns,b,pns,b,pns,jnws,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jnse,pns,b,pns,b,pns,b,pns,b,pns,b,pns,jnw;E,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jne";
+
+// https://windmill.thefifthmatt.com/4fyywrr
+// Rational Symmetry
+lvl["breaking-up"] = "[5x5]"+
+	"jws,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jse;X,"+
+	"bns,b,pns,b,pns,b,pns,b,pns,b,pns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnwse;E,pwe,jnse,"+
+	"bns,b,pns,b,pns,b,pns,b;D;W,pns,b,bns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b,pns,b,pns,b,pns,b,pns,b,bns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b,pns,b;D;B,pns,b,pns,b,pns,b,pns,"+
+	"jnws,pwe,jnwse;E,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b,pns,b,pns,b,pns,b,pns,b,bns,"+
+	"jnw;X,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jne";
 
