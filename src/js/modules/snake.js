@@ -88,14 +88,14 @@ let Snake = {
 		};
 		// span rectangles
 		this.rects = this.els.spans.map(el => ({
-			y: el.offsetTop,
 			x: el.offsetLeft,
+			y: el.offsetTop,
 			width: el.offsetWidth,
 			height: el.offsetHeight,
 		}));
 
 		this.pos = {
-			origo: [opt.layerX, opt.layerY],
+			origo: [opt.el.prop("offsetLeft"), opt.el.prop("offsetTop")],
 			joint: [oX, oY],
 		};
 
@@ -122,12 +122,21 @@ let Snake = {
 				Self.content.unbind("mousemove", Self.dispatch);
 				break;
 			case "mousemove":
-				let x1 = Self.pos.origo[0],
+				let neck = Self.bodyPoints[Self.bodyPoints.length - 1],
+					x1 = Self.pos.origo[0],
 					y1 = Self.pos.origo[1],
 					x2 = event.layerX,
 					y2 = event.layerY,
-					dir = Self.getDirection({ x: x1, y: y1 }, { x: x2, y: y2 }),
-					step = dir % 2 === 0 ? y2 - y1 : x2 - x1;
+					dir = Self.getDirection({ x: neck[0], y: neck[1] }, { x: x2, y: y2 }),
+					step = dir % 2 === 0 ? y2 - y1 : x2 - x1,
+					onEl = Self.getElFromPos(neck),
+					avail = Self.getCardinals(onEl);
+
+				// console.log(avail);
+				console.log( dir );
+				// if (!avail.includes(dir)) {
+				// 	console.log("turn", dir);
+				// }
 
 				Self.move({ dir, step, layerX: x2, layerY: y2 });
 				break;
@@ -137,12 +146,7 @@ let Snake = {
 		let d = (opt.dir + 1) % 2,
 			step = opt.step || 10,
 			neck = this.bodyPoints[this.bodyPoints.length - 1],
-			limit = this.getLimits(neck),
-			onEl = this.getElFromPos(neck),
-			avail = this.getCardinals(onEl);
-
-		// console.log(avail);
-		// if (!avail.includes(opt.dir)) return;
+			limit = this.getLimits(neck);
 
 		neck[d] = this.pos.joint[d] + step;
 		neck[0] = Math.min(Math.max(limit[3], neck[0]), limit[1]);
@@ -162,7 +166,7 @@ let Snake = {
 	getCardinals(el) {
 		let [type, dir] = el.prop("classList")[0].split("-"),
 			cardinals = "nwse".split("");
-		return dir.split("").map(c => cardinals.indexOf(c));
+		return dir ? dir.split("").map(c => cardinals.indexOf(c)) : false;
 	},
 	getDirection(p1, p2) {
 		let y = p1.y - p2.y,
