@@ -245,7 +245,7 @@ content {
 				content: "";
 				position: absolute;
 				background: var( --fg );
-				filter: brightness(1.5) sepia(.5);
+				filter: brightness(1.85) sepia(.5);
 				clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
 			}
 
@@ -364,17 +364,17 @@ content {
 					position: absolute;
 				}
 
-				&.junc-n.e:before { border-bottom-right-radius: var( --unit ); }
-				&.junc-s.e:before { border-top-right-radius: var( --unit ); }
-				&.junc-w.n:before { border-bottom-left-radius: var( --unit ); }
-				&.junc-e.s:before { border-top-right-radius: var( --unit ); }
+				&.junc-n.xe:before { border-bottom-right-radius: var( --unit ); }
+				&.junc-s.xe:before { border-top-right-radius: var( --unit ); }
+				&.junc-w.xn:before { border-bottom-left-radius: var( --unit ); }
+				&.junc-e.xs:before { border-top-right-radius: var( --unit ); }
 
-				&.junc-e.n:before { border-bottom-right-radius: var( --unit ); }
-				&.junc-w.s:before { border-top-left-radius: var( --unit ); }
-				&.junc-s.w:before { border-top-left-radius: var( --unit ); }
-				&.junc-n.w:before { border-bottom-left-radius: var( --unit ); }
+				&.junc-e.xn:before { border-bottom-right-radius: var( --unit ); }
+				&.junc-w.xs:before { border-top-left-radius: var( --unit ); }
+				&.junc-s.xw:before { border-top-left-radius: var( --unit ); }
+				&.junc-n.xw:before { border-bottom-left-radius: var( --unit ); }
 
-				&.s:before,
+				&.xs:before,
 				&.junc-nwe:before {
 					top: 0;
 					left: 0;
@@ -382,10 +382,10 @@ content {
 					bottom: calc( var( --unit ) * -1 );
 					border-radius: 0 0 var( --unit ) var( --unit );
 				}
-				&.s:after,
+				&.xs:after,
 				&.junc-nwe:after { top: calc( var( --unit ) / 2 ); left: calc( calc( var( --unit ) / 2 ) * -1 ); }
 
-				&.n:before,
+				&.xn:before,
 				&.junc-wse:before {
 					bottom: 0;
 					left: 0;
@@ -393,10 +393,10 @@ content {
 					top: calc( var( --unit ) * -1 );
 					border-radius: var( --unit ) var( --unit ) 0 0;
 				}
-				&.n:after,
+				&.xn:after,
 				&.junc-wse:after { top: calc( calc( var( --unit ) * 1.5 ) * -1 ); left: calc( calc( var( --unit ) / 2 ) * -1 ); }
 
-				&.e:before,
+				&.xe:before,
 				&.junc-nws:before {
 					right: 0;
 					top: 0;
@@ -404,10 +404,10 @@ content {
 					left: calc( var( --unit ) * -1 );
 					border-radius: var( --unit ) 0 0 var( --unit );
 				}
-				&.e:after,
+				&.xe:after,
 				&.junc-nws:after { top: calc( calc( var( --unit ) / 2 ) * -1 ); left: calc( calc( var( --unit ) * 1.5 ) * -1 ); }
 
-				&.w:before,
+				&.xw:before,
 				&.junc-nse:before {
 					left: 0;
 					top: 0;
@@ -415,7 +415,7 @@ content {
 					right: calc( var( --unit ) * -1 );
 					border-radius: 0 var( --unit ) var( --unit ) 0;
 				}
-				&.w:after,
+				&.xw:after,
 				&.junc-nse:after { top: calc( calc( var( --unit ) / 2 ) * -1 ); left: calc( var( --unit ) / 2 ); }
 
 				&.junc-ws:not(.e):not(.n):before {

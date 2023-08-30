@@ -29,8 +29,12 @@ const witney = {
 		let el = window.find(".puzzle.p1");
 		// Maps.draw({ gen: "4x4", el });
 		Maps.draw({ name: "simple-symmetry", el });
+		
 		// PGN
-		// Maps.pgn(el);
+		// let value = Maps.pgn(el);
+		// console.log( value );
+		// console.log( lvl["simple-symmetry"] );
+
 
 		// let path = "0,3,N;0,2;1,2;1,1;3,1;3,0;4,0;4,1;5,1;5,2;3,2;3,3";
 		// Snake.draw({ path, el: window.find(".puzzle.p1") });

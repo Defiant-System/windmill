@@ -40,10 +40,10 @@ let lexer = {
 	"e": "empty",
 	"E": "entry",
 	"X": "exit",
-	"xn": "xn",
-	"xw": "xw",
-	"xs": "xs",
-	"xe": "xe",
+	"xn": "exit xn",
+	"xw": "exit xw",
+	"xs": "exit xs",
+	"xe": "exit xe",
 };
 
 let Maps = {
@@ -100,13 +100,21 @@ let Maps = {
 		puzzle.find("> span").map(el => {
 			let block = [];
 			el.classList.forEach(name => {
-				// let short = Object.keys(lexer).map(k => {});
-				// block.push();
+				let short = Object.keys(lexer).map(k => {
+					if (lexer[k] === name) {
+						let exitRx = el.className.match(/\sxn|\sxw|\sxs|\sxe/ig);
+						if (name === "exit" && exitRx) {
+							block.push(exitRx[0].trim());
+						} else {
+							block.push(k);
+						}
+					}
+				});
 			});
 			out.push(block.join(";"));
 		});
-		out = `[${w}x${h}]+${out.join(",")}`;
-		console.log( out );
-		// console.log( lvl["large"] );
+		out = `[${w}x${h}]${out.join(",")}`;
+		
+		return out;
 	}
 };

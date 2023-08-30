@@ -73,7 +73,18 @@ lvl["enigmeto"] = "[4x4]"+
 	"jnw;X,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jne;X";
 
 // https://windmill.thefifthmatt.com/c76pvy0
-lvl["simple-symmetry"] = "[5x5x14]jws,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jse,pns,b,pns,b,pns,b,pns,b,pns,b,pns,jnws,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jnse,pns,b,pns,b,pns,b,pns,b,pns,b,pns,jnws,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jnse,pns,b,pns,b,pns,b,pns,b,pns,b,pns,jnws,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jnse,pns,b,pns,b,pns,b,pns,b,pns,b,pns,jnws,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jnse,pns,b,pns,b,pns,b,pns,b,pns,b,pns,jnw;E,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jne";
+lvl["simple-symmetry"] = "[5x5]"+
+	"jws,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jse;E,"+
+	"pns,b,pns,b,pns,b,pns,b,pns,b;D;B,pns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse;xw,"+
+	"pns,b,pns;h,b,pns,b;D;W,pns,b,pns;h,b,pns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b,pns,b,pns,b,pns,b,pns,b,pns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b,pns;h,b,pns,b;D;B,pns,b,pns;h,b,pns,"+
+	"jnws;xe,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b;D;W,pns,b,pns,b,pns,b,pns,b,pns,"+
+	"jnw;E,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jne";
 
 // https://windmill.thefifthmatt.com/4fyywrr
 // Rational Symmetry
