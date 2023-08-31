@@ -28,7 +28,7 @@ const witney = {
 
 		let el = window.find(".puzzle.p1");
 		// Maps.draw({ gen: "4x4", el });
-		Maps.draw({ name: "simple-symmetry", el });
+		Maps.draw({ name: "large", el });
 		
 		// PGN
 		// let value = Maps.pgn(el);
@@ -85,6 +85,9 @@ const witney = {
 			case "output-blank-pgn":
 				value = Maps.generate(event.arg);
 				console.log(value);
+				break;
+			case "draw-level":
+				Maps.draw({ name: event.arg, el: window.find(".puzzle") });
 				break;
 			case "open-help":
 				karaqu.shell("fs -u '~/help/index.md'");

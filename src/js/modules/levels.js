@@ -1,4 +1,5 @@
 
+// https://windmill.thefifthmatt.com/213b780
 lvl["kinda-tricky"] = "[4x4]"+
 	"jws;E,pwe,jwse,pwe,jwse,pwe,jwse,pwe;h,jse;E,"+
 	"pns,b,pns,b,pns,b,pns;h,b,pns,"+
@@ -10,14 +11,26 @@ lvl["kinda-tricky"] = "[4x4]"+
 	"pns,b,pns;h,b,pns,b,pns;h,b,pns;h,"+
 	"jnw;E,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jne;E";
 
+// https://windmill.thefifthmatt.com/9hta68g
 lvl["antecedent"] = "[3x3]"+
 	"jws;X,pwe,jwse,pwe,jwse,pwe,jse;E,"+
-	"pns,b;Dy,pns,b;Dm,pns,b;Dc,pns,"+
+	"pns,b;D;Y,pns,b;D;M,pns,b;D;C,pns,"+
 	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
 	"pns,b,pns,b,pns,b,pns,"+
 	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
-	"pns,b;Dc,pns,b;Dm,pns,b;Dy,pns,"+
+	"pns,b;D;C,pns,b;D;M,pns,b;D;Y,pns,"+
 	"jnw;E,pwe,jnwe,pwe,jnwe,pwe,jne;X";
+
+
+// https://windmill.thefifthmatt.com/e9escy0
+lvl["think-outside-the-box"] = "[3x3]"+
+	"jws,bwe,jwse;h,pwe,jwse;h,pwe,jse;X,"+
+	"bns,b,pns,b,pns,b,pns,"+
+	"jnws,pwe,jnwse,bwe,jnwse,bwe,jnse,"+
+	"pns,b,pns,b,pns,b,pns,"+
+	"jnws;h,pwe,jnwse;h,pwe,jnwse,pwe,jnse,"+
+	"pns;h,b,pns,b,bns,b,pns;h,"+
+	"jnw;E,pwe,jnwe,pwe,jnwe,pwe;h,jne";
 
 
 // https://windmill.thefifthmatt.com/8b4wydg

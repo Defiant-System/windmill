@@ -95,9 +95,11 @@ let Snake = {
 		}));
 
 		this.pos = {
-			origo: [opt.el.prop("offsetLeft"), opt.el.prop("offsetTop")],
+			origo: [oX, oY],
 			joint: [oX, oY],
 		};
+
+		this.avail = this.getCardinals(opt.el);
 
 		// bind event handler
 		this.content.bind("mousemove", this.dispatch);
@@ -125,15 +127,14 @@ let Snake = {
 				let neck = Self.bodyPoints[Self.bodyPoints.length - 1],
 					x1 = Self.pos.origo[0],
 					y1 = Self.pos.origo[1],
-					x2 = event.layerX,
-					y2 = event.layerY,
+					x2 = event.layerX - Self.grid.u2,
+					y2 = event.layerY - Self.grid.u2,
+					// dir = Self.getDirection({ x: x1, y: y1 }, { x: x2, y: y2 }),
 					dir = Self.getDirection({ x: neck[0], y: neck[1] }, { x: x2, y: y2 }),
 					step = dir % 2 === 0 ? y2 - y1 : x2 - x1;
 
-				// if (avail.includes(dir)) {
-				// 	console.log(onEl);
+				// if (Self.avail.includes(dir)) {
 				// }
-
 				Self.move({ dir, step });
 				break;
 		}
@@ -143,6 +144,8 @@ let Snake = {
 			step = opt.step || 10,
 			neck = this.bodyPoints[this.bodyPoints.length - 1],
 			limit = this.getLimits(neck);
+
+		// if (!this.avail.includes(opt.dir)) return;
 
 		neck[d] = this.pos.joint[d] + step;
 		neck[0] = Math.min(Math.max(limit[3], neck[0]), limit[1]);
@@ -237,6 +240,8 @@ let Snake = {
 				+el.prop("offsetLeft") + +el.prop("offsetWidth") - unit, // left
 			];
 		
+		this.avail = dirs;
+
 		dirs.map(d => {
 			let sibling;
 			switch (d) {
