@@ -129,13 +129,13 @@ let Snake = {
 					y1 = Self.pos.origo[1],
 					x2 = event.layerX - Self.grid.u2,
 					y2 = event.layerY - Self.grid.u2,
-					// dir = Self.getDirection({ x: x1, y: y1 }, { x: x2, y: y2 }),
-					dir = Self.getDirection({ x: neck[0], y: neck[1] }, { x: x2, y: y2 }),
+					dir = Self.getDirection({ x: x1, y: y1 }, { x: x2, y: y2 }),
+					// dir = Self.getDirection({ x: neck[0], y: neck[1] }, { x: x2, y: y2 }),
 					step = dir % 2 === 0 ? y2 - y1 : x2 - x1;
 
-				// if (Self.avail.includes(dir)) {
-				// }
-				Self.move({ dir, step });
+				if (Self.avail.includes(dir)) {
+					Self.move({ dir, step });
+				}
 				break;
 		}
 	},
@@ -240,6 +240,13 @@ let Snake = {
 				+el.prop("offsetLeft") + +el.prop("offsetWidth") - unit, // left
 			];
 		
+		if (el.hasClass("junc-*")) {
+			// console.log(el[0]);
+			// this.pos.origo = [
+			// 	+el.prop("offsetLeft"),
+			// 	+el.prop("offsetTop"),
+			// ];
+		}
 		this.avail = dirs;
 
 		dirs.map(d => {
