@@ -11,6 +11,16 @@ lvl["kinda-tricky"] = "[4x4]"+
 	"pns,b,pns;h,b,pns,b,pns;h,b,pns;h,"+
 	"jnw;E,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jne;E";
 
+// https://windmill.thefifthmatt.com/mr0f210
+lvl["fashion-statement"] = "[7x3]"+
+	"jws,pwe,jwse,pwe,jwse,pwe,jwse,bwe,jwse,pwe,jwse,pwe,jwse,pwe,jse;X,"+
+	"pns,b;S;M,pns,b,pns,b;S;M,pns,b,pns,b;S;M,pns,b,pns,b;S;M,pns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b,pns,b,pns,b,pns,b,pns,b,bns,b,pns,b,bns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"pns,b;S;M,pns,b,pns,b;S;M,pns,b,pns,b;S;M,pns,b,pns,b;S;M,pns,"+
+	"jnw;E,pwe,jnwe,bwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jne";
+
 // https://windmill.thefifthmatt.com/9hta68g
 lvl["antecedent"] = "[3x3]"+
 	"jws;X,pwe,jwse,pwe,jwse,pwe,jse;E,"+

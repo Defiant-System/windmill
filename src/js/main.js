@@ -28,7 +28,7 @@ const witney = {
 
 		let el = window.find(".puzzle.p1");
 		// Maps.draw({ gen: "4x4", el });
-		Maps.draw({ name: "large", el });
+		Maps.draw({ name: "fashion-statement", el });
 		
 		// PGN
 		// let value = Maps.pgn(el);
