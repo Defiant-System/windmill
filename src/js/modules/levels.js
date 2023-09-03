@@ -21,6 +21,19 @@ lvl["fashion-statement"] = "[7x3]"+
 	"pns,b;S;M,pns,b,pns,b;S;M,pns,b,pns,b;S;M,pns,b,pns,b;S;M,pns,"+
 	"jnw;E,pwe,jnwe,bwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jne";
 
+// https://windmill.thefifthmatt.com/3047rj0
+lvl["challenge2"] = "[4x4]"+
+	"jws,pwe,jwse,pwe,jwse,pwe,jwse,pwe,jse;X,"+
+	"bns,b,bns,b,pns,b;D;W,pns,b,pns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,pwe,jnwse,pwe,jnse,"+
+	"bns,b,pns,b,pns,b;D;B,pns,b;D;B,pns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,bwe,jnwse,pwe,jnse,"+
+	"pns,b,pns,b;D;W,pns,b,pns,b;D;W,pns,"+
+	"jnws,pwe,jnwse,pwe,jnwse,bwe,jnwse,pwe,jnse,"+
+	"pns,b;D;W,pns,b;D;B,pns,b;D;B,pns,b,pns,"+
+	"jnw;E,pwe,jnwe,pwe,jnwe,pwe,jnwe,pwe,jne";
+
+
 // https://windmill.thefifthmatt.com/9hta68g
 lvl["antecedent"] = "[3x3]"+
 	"jws;X,pwe,jwse,pwe,jwse,pwe,jse;E,"+
