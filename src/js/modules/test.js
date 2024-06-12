@@ -1,0 +1,7 @@
+
+let Test = {
+	init(APP) {
+		
+	}
+};
+
