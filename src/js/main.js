@@ -12,7 +12,7 @@ let Input = {
 };
 
 
-const witney = {
+const witness = {
 	init() {
 		// fast references
 		this.content = window.find("content");
@@ -54,7 +54,7 @@ const witney = {
 		// Snake.getLimits([0,210]);
 	},
 	dispatch(event) {
-		let Self = witney,
+		let Self = witness,
 			value;
 		switch (event.type) {
 			// system events
@@ -96,4 +96,4 @@ const witney = {
 	}
 };
 
-window.exports = witney;
+window.exports = witness;

@@ -1,7 +1,7 @@
 
 let Particles = {
 	init() {
-		this.cvs = witney.content.find(".particles");
+		this.cvs = witness.content.find(".particles");
 		this.ctx = this.cvs[0].getContext("2d", { willReadFrequently: true });
 		// this options
 		this.opt = {

@@ -1,8 +1,8 @@
 <MenuBar>
-	<Menu name="Witney">
-		<Menu name="About Witney" shell="win -a"/>
+	<Menu name="Witness">
+		<Menu name="About Witness" shell="win -a"/>
 		<Menu type="divider"/>
-		<Menu name="Quit Witney" shell="win -c"/>
+		<Menu name="Quit Witness" shell="win -c"/>
 	</Menu>
 	<Menu name="Help">
 		<Menu name="Help" click="open-help"/>

@@ -1,8 +1,8 @@
 
 let Snake = {
 	init() {
-		this.APP = witney;
-		this.content = witney.content;
+		this.APP = witness;
+		this.content = witness.content;
 
 		// temp
 		// this.content.find(".puzzle").addClass("solved");
