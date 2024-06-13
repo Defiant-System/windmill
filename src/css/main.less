@@ -21,8 +21,11 @@ content {
 		--width: 4;
 		--height: 4;
 		--unit: 19px;
+		--gap: 19px;
 		--fat: 5;
 		--cell: 83px;
+		--cW: var( --cell );
+		--cH: var( --cell );
 		--base: #7f0079;
 		--bg: #b900ac;
 		--gr: #ff00f9;
@@ -49,8 +52,8 @@ content {
 	position: absolute;
 	top: 60px;
 	left: 60px;
-	width: calc( var( --cell ) * var( --width ) );
-	height: calc( var( --cell ) * var( --height ) );
+	width: calc( var( --cW ) * var( --width ) );
+	height: calc( var( --cH ) * var( --height ) );
 
 	&:before {
 		content: "";
@@ -71,7 +74,7 @@ content {
 		top: calc( var( --unit ) * -1.6 );
 		left: calc( var( --unit ) * -1.6 );
 		right: calc( var( --unit ) * -1.6 );
-		height: calc( var( --cell ) * .6 );
+		height: calc( var( --cH ) * .75 );
 		background: linear-gradient(0deg, rgba(#fff,.2), rgba(#fff,.05));
 		border-radius: calc( var( --unit ) * 1.35 );
 		mix-blend-mode: soft-light;
@@ -88,19 +91,19 @@ content {
 
 	span {
 		position: absolute;
-		top: calc( var( --cell ) * var( --y ) );
-		left: calc( var( --cell ) * var( --x ) );
+		top: calc( var( --cH ) * var( --y ) );
+		left: calc( var( --cW ) * var( --x ) );
 		width: var( --unit );
 		height: var( --unit );
 		border-radius: var( --unit );
 
 		&.ns {
 			background: var( --fg );
-			height: calc( var( --cell ) + var( --unit ) );
+			height: calc( var( --cH ) + var( --unit ) );
 		}
 
 		&.nsd {
-			height: calc( var( --cell ) + var( --unit ) );
+			height: calc( var( --cH ) + var( --unit ) );
 
 			&:before,
 			&:after {
@@ -109,7 +112,7 @@ content {
 				position: absolute;
 				left: 0;
 				right: 0;
-				height: calc( var( --cell ) * .425 );
+				height: calc( calc( var( --cH ) - var( --gap ) ) * .5 );
 			}
 
 			&:before { top: calc( var( --unit ) * .5 ); }
@@ -118,11 +121,11 @@ content {
 
 		&.we {
 			background: var( --fg );
-			width: calc( var( --cell ) + var( --unit ) );
+			width: calc( var( --cW ) + var( --unit ) );
 		}
 
 		&.wed {
-			width: calc( var( --cell ) + var( --unit ) );
+			width: calc( var( --cW ) + var( --unit ) );
 
 			&:before,
 			&:after {
@@ -131,7 +134,7 @@ content {
 				position: absolute;
 				top: 0;
 				bottom: 0;
-				width: calc( var( --cell ) * .425 );
+				width: calc( calc( var( --cW ) - var( --gap ) ) * .5 );
 			}
 
 			&:before { left: calc( var( --unit ) * .5 ); }
