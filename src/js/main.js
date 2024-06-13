@@ -13,6 +13,7 @@ const witness = {
 		// init objects
 		Game.init();
 
+		Game.grid.render("1.0");
 
 		// DEV-ONLY-START
 		Test.init(this);
@@ -26,6 +27,9 @@ const witness = {
 			case "window.init":
 				break;
 			// custom events
+			case "render-level":
+				Game.grid.render(event.arg);
+				break;
 			case "open-help":
 				karaqu.shell("fs -u '~/help/index.md'");
 				break;

@@ -11,24 +11,12 @@
 	</Menu>
 
 	<Menu for="puzzle-options">
-		<Menu name="Output PGN" click="output-pgn"/>
+		<Menu name="1.0" click="render-level" arg="1.0"/>
+		<Menu name="1.1" click="render-level" arg="1.1"/>
+		<Menu name="1.2" click="render-level" arg="1.2"/>
 		<Menu type="divider"/>
-		<Menu name="Blank&#8230;">
-			<Menu name="3x3" click="output-blank-pgn" arg="3x3"/>
-			<Menu name="4x4" click="output-blank-pgn" arg="4x4"/>
-			<Menu name="5x5" click="output-blank-pgn" arg="5x5"/>
-		</Menu>
-		<Menu type="divider"/>
-		<Menu name="Draw&#8230;">
-			<Menu name="Kinda Tricky" click="draw-level" arg="kinda-tricky"/>
-			<Menu name="Antecedent" click="draw-level" arg="antecedent"/>
-			<Menu name="Think outside the box" click="draw-level" arg="think-outside-the-box"/>
-			<Menu name="Tree Tops" click="draw-level" arg="treetops"/>
-			<Menu name="INM 2" click="draw-level" arg="inm2"/>
-			<Menu name="Dask Isles" click="draw-level" arg="dask-isles"/>
-			<Menu name="Enigmeto" click="draw-level" arg="enigmeto"/>
-			<Menu name="Simple Symmetry" click="draw-level" arg="simple-symmetry"/>
-			<Menu name="Breaking Up" click="draw-level" arg="breaking-up"/>
+		<Menu name="Palette&#8230;">
+			<Menu name="Red"/>
 		</Menu>
 	</Menu>
 </MenuBar>
