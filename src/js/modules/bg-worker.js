@@ -75,7 +75,7 @@ let Anim = {
 		cvs.width = cvs.width;
 
 		// ctx.globalCompositeOperation = "lighter";
-		ctx.fillStyle = `#ffffff66`;
+		ctx.fillStyle = `#ffffff44`;
 		Self.boxes.map(b => {
 			ctx.save();
 			ctx.translate(b.x, b.y);
