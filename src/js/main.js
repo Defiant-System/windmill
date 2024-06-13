@@ -3,6 +3,7 @@
 @import "classes/Grid.js";
 
 @import "levels/index.js";
+@import "modules/bg.js";
 @import "modules/game.js";
 @import "modules/misc.js";
 @import "modules/test.js";
@@ -11,9 +12,10 @@
 const witness = {
 	init() {
 		// init objects
+		Bg.init();
 		Game.init();
 
-		Game.grid.render("3.1");
+		Game.grid.render("2.0");
 
 		// DEV-ONLY-START
 		Test.init(this);

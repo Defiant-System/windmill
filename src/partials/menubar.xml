@@ -6,20 +6,24 @@
 	</Menu>
 	<Menu name="Levels" for="puzzle-options">
 		<Menu name="Level 1&#8230;">
-			<Menu name="1.0" click="render-level" arg="1.0"/>
-			<Menu name="1.1" click="render-level" arg="1.1"/>
-			<Menu name="1.2" click="render-level" arg="1.2"/>
-			<Menu name="1.3" click="render-level" arg="1.3"/>
-			<Menu name="1.4" click="render-level" arg="1.4"/>
-			<Menu name="1.5" click="render-level" arg="1.5"/>
-			<Menu name="1.6" click="render-level" arg="1.6"/>
-			<Menu name="1.7" click="render-level" arg="1.7"/>
-			<Menu name="1.8" click="render-level" arg="1.8"/>
+			<Menu name="1.0" check-group="active-level" click="render-level" arg="1.0"/>
+			<Menu name="1.1" check-group="active-level" click="render-level" arg="1.1"/>
+			<Menu name="1.2" check-group="active-level" click="render-level" arg="1.2"/>
+			<Menu name="1.3" check-group="active-level" click="render-level" arg="1.3"/>
+			<Menu name="1.4" check-group="active-level" click="render-level" arg="1.4"/>
+			<Menu name="1.5" check-group="active-level" click="render-level" arg="1.5"/>
+			<Menu name="1.6" check-group="active-level" click="render-level" arg="1.6"/>
+			<Menu name="1.7" check-group="active-level" click="render-level" arg="1.7"/>
+			<Menu name="1.8" check-group="active-level" click="render-level" arg="1.8"/>
 		</Menu>
 		<Menu name="Level 2&#8230;">
-			<Menu name="2.0" click="render-level" arg="2.0"/>
-			<Menu name="2.1" click="render-level" arg="2.1"/>
-			<Menu name="2.2" click="render-level" arg="2.2"/>
+			<Menu name="2.0" check-group="active-level" click="render-level" arg="2.0"/>
+			<Menu name="2.1" check-group="active-level" click="render-level" arg="2.1"/>
+			<Menu name="2.2" check-group="active-level" click="render-level" arg="2.2"/>
+		</Menu>
+		<Menu name="Level 3&#8230;">
+			<Menu name="3.0" check-group="active-level" click="render-level" arg="3.0"/>
+			<Menu name="3.1" check-group="active-level" click="render-level" arg="3.1"/>
 		</Menu>
 	</Menu>
 	<Menu name="Help">

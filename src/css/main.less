@@ -9,6 +9,28 @@ content {
 	left: 0;
 	right: 0;
 	bottom: 0;
+	--base: #7f0079;
+
+	&:before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: var( --base );
+	}
+
+	.witness-bg {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		border-radius: inherit;
+		pointer-events: none;
+		mix-blend-mode: overlay;
+	}
 
 	.game-view {
 		position: absolute;
@@ -45,7 +67,7 @@ content {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background: var( --base );
+	// background: var( --base );
 }
 
 .puzzle {
@@ -74,17 +96,19 @@ content {
 		top: calc( var( --unit ) * -1.6 );
 		left: calc( var( --unit ) * -1.6 );
 		right: calc( var( --unit ) * -1.6 );
-		height: calc( var( --cH ) * .75 );
+		height: calc( var( --cH ) * .65 );
 		background: linear-gradient(0deg, rgba(#fff,.2), rgba(#fff,.05));
 		border-radius: calc( var( --unit ) * 1.35 );
 		mix-blend-mode: soft-light;
 		pointer-events: none;
+		z-index: 3;
 	}
 
 	.grid-base {
 		position: absolute;
 		top: calc( var( --unit ) * -.5 );
 		left: calc( var( --unit ) * -.5 );
+		z-index: 2;
 		filter: drop-shadow(0 1px 0 rgba(#fff,.125))
 				 drop-shadow(0 -1px 0 rgba(#000,.3));
 	}

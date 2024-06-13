@@ -1,4 +1,7 @@
 <Application>
+	<Build>
+		<task action1="skip" source="src/js/modules/bg-worker.js" destination="public/js/bg-worker.js"/>
+	</Build>
 	<Head>
 		<meta name="id" value="witness"/>
 		<meta name="title" value="Witness" version="1.0"/>
