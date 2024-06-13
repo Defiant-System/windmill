@@ -67,12 +67,14 @@ content {
 	&:after {
 		content: "";
 		position: absolute;
-		top: calc( var( --unit ) * -1.35 );
-		left: calc( var( --unit ) * -1.35 );
-		right: calc( var( --unit ) * -1.35 );
-		height: calc( var( --cell ) * -75 );
-		background: linear-gradient(0deg, red, white);
+		top: calc( var( --unit ) * -1.6 );
+		left: calc( var( --unit ) * -1.6 );
+		right: calc( var( --unit ) * -1.6 );
+		height: calc( var( --cell ) * .6 );
+		background: linear-gradient(0deg, rgba(#fff,.2), rgba(#fff,.05));
 		border-radius: calc( var( --unit ) * 1.35 );
+		mix-blend-mode: soft-light;
+		pointer-events: none;
 	}
 
 	.grid-base {
@@ -111,6 +113,21 @@ content {
 				bottom: calc( calc( var( --unit ) * -1 ) + 3px );
 				border-radius: 50%;
 				background: var( --fg );
+				cursor: pointer;
+			}
+
+			&:after {
+				content: "";
+				position: absolute;
+				top: calc( calc( var( --unit ) * -1 ) + 3px );
+				left: calc( calc( var( --unit ) * -1 ) + 3px );
+				right: calc( calc( var( --unit ) * -1 ) + 3px );
+				bottom: calc( calc( var( --unit ) * -1 ) + 3px );
+				border-radius: 50%;
+				background: radial-gradient(circle, transparent, var( --hl ));
+				animation: pulsate 1500ms ease-out infinite;
+				mix-blend-mode: soft-light;
+				pointer-events: none;
 			}
 		}
 
@@ -167,4 +184,11 @@ content {
 			}
 		}
 	}
+}
+
+
+@keyframes pulsate {
+	0% { opacity: 1; transform: scale(.1); }
+	80%,
+	100% { opacity: 0; transform: scale(1); }
 }

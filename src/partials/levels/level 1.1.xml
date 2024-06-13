@@ -1,23 +1,5 @@
 <Level id="1.1">
-	<Palette>
-		<c key="base" val="#7f0079"/>
-		<c key="bg" val="#b900ac"/>
-		<c key="gr" val="#ff00f9"/>
-		<c key="fg" val="#8b08a2"/>
-		<c key="hl" val="#fff"/>
-		<c key="snake1" val="#fff"/>
-		<c key="snake2" val="#ff0"/>
-
-		<c id="1" val="#407"/>
-		<c id="2" val="#fff"/>
-		<c id="3" val="CYAN"/>
-		<c id="4" val="MAGENTA"/>
-		<c id="5" val="YELLOW"/>
-		<c id="6" val="RED"/>
-		<c id="7" val="GREEN"/>
-		<c id="8" val="BLUE"/>
-		<c id="9" val="ORANGE"/>
-	</Palette>
+	@import "../palettes/purple.xml"
 
 	<grid type="base" width="1" height="2" symmetry="0">
 		<!-- lines -->

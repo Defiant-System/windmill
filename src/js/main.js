@@ -13,7 +13,7 @@ const witness = {
 		// init objects
 		Game.init();
 
-		Game.grid.render("1.0");
+		Game.grid.render("1.3");
 
 		// DEV-ONLY-START
 		Test.init(this);
