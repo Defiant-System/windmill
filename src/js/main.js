@@ -35,6 +35,9 @@ const witness = {
 			case "open-help":
 				karaqu.shell("fs -u '~/help/index.md'");
 				break;
+			default:
+				// proxy to game
+				Game.dispatch(event);
 		}
 	}
 };

@@ -29,6 +29,9 @@
 							<xsl:if test="@c">--c: <xsl:value-of select="ancestor::Level/Palette/c[@id = current()/@c]/@val"/>;</xsl:if>
 							<xsl:if test="@d">--d: <xsl:value-of select="@d"/>;</xsl:if>
 						</xsl:attribute>
+						<xsl:if test="@type = 'start'">
+							<xsl:attribute name="data-click">init-snake</xsl:attribute>
+						</xsl:if>
 					</span>
 				</xsl:for-each>
 			</div>
