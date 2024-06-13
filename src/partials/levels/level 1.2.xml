@@ -1,0 +1,94 @@
+<Level id="1.2">
+	<Palette>
+		<c key="base" val="#242"/>
+		<c key="bg" val="#696"/>
+		<c key="gr" val="#8b8"/>
+		<c key="fg" val="#363"/>
+		<c key="hl" val="#ff0"/>
+		<c key="snake1" val="#ff0"/>
+		<c key="snake2" val="#ff0"/>
+
+		<c id="1" val="#407"/>
+		<c id="2" val="#fff"/>
+		<c id="3" val="CYAN"/>
+		<c id="4" val="MAGENTA"/>
+		<c id="5" val="YELLOW"/>
+		<c id="6" val="RED"/>
+		<c id="7" val="GREEN"/>
+		<c id="8" val="BLUE"/>
+		<c id="9" val="ORANGE"/>
+	</Palette>
+
+	<grid type="base" width="4" height="4" symmetry="0">
+		<!-- lines -->
+		<i type="ns" x="0" y="0"></i>
+		<i type="ns" x="0" y="1"></i>
+		<i type="ns" x="0" y="2"></i>
+		<i type="ns" x="0" y="3"></i>
+
+		<i type="we" x="0" y="0"></i>
+		<i type="we" x="0" y="1"></i>
+		<i type="we" x="0" y="2"></i>
+		<i type="we" x="0" y="3"></i>
+		<i type="we" x="0" y="4"></i>
+
+		<i type="ns" x="1" y="0"></i>
+		<i type="ns" x="1" y="1"></i>
+		<i type="ns" x="1" y="2"></i>
+		<i type="ns" x="1" y="3"></i>
+
+		<i type="we" x="1" y="0"></i>
+		<i type="we" x="1" y="1"></i>
+		<i type="we" x="1" y="2"></i>
+		<i type="we" x="1" y="3"></i>
+		<i type="we" x="1" y="4"></i>
+
+		<i type="ns" x="2" y="0"></i>
+		<i type="ns" x="2" y="1"></i>
+		<i type="ns" x="2" y="2"></i>
+		<i type="ns" x="2" y="3"></i>
+
+		<i type="we" x="2" y="0"></i>
+		<i type="we" x="2" y="1"></i>
+		<i type="we" x="2" y="2"></i>
+		<i type="we" x="2" y="3"></i>
+		<i type="we" x="2" y="4"></i>
+
+		<i type="ns" x="3" y="0"></i>
+		<i type="ns" x="3" y="1"></i>
+		<i type="ns" x="3" y="2"></i>
+		<i type="ns" x="3" y="3"></i>
+
+		<i type="we" x="3" y="0"></i>
+		<i type="we" x="3" y="1"></i>
+		<i type="we" x="3" y="2"></i>
+		<i type="we" x="3" y="3"></i>
+		<i type="we" x="3" y="4"></i>
+
+		<i type="ns" x="4" y="0"></i>
+		<i type="ns" x="4" y="1"></i>
+		<i type="ns" x="4" y="2"></i>
+		<i type="ns" x="4" y="3"></i>
+
+		<!-- start & exit -->
+		<i type="start" x="0" y="4"></i>
+		<i type="exit" x="3" y="4" d="2"></i>
+
+		<!-- cell contents -->
+		<i type="dot" x="0" y="1" c="1"></i>
+		<i type="dot" x="0" y="2" c="1"></i>
+		<i type="dot" x="0" y="3" c="2"></i>
+
+		<i type="dot" x="1" y="0" c="1"></i>
+		<i type="dot" x="1" y="2" c="2"></i>
+		<i type="dot" x="1" y="3" c="2"></i>
+
+		<i type="dot" x="2" y="0" c="2"></i>
+		<i type="dot" x="2" y="2" c="1"></i>
+		<i type="dot" x="2" y="3" c="2"></i>
+
+		<i type="dot" x="3" y="0" c="1"></i>
+		<i type="dot" x="3" y="1" c="1"></i>
+		<i type="dot" x="3" y="3" c="1"></i>
+	</grid>
+</Level>

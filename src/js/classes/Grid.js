@@ -8,7 +8,7 @@ class Grid {
 	render() {
 		window.render({
 			template: "level-puzzle",
-			match: `//Data/Level[@id="1.0"]`,
+			match: `//Data/Level[@id="1.1"]`,
 			target: window.find(".game-view"),
 		});
 	}
