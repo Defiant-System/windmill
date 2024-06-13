@@ -10,4 +10,6 @@
 	@import "levels/level 1.8.xml"
 
 	@import "levels/level 2.0.xml"
+	@import "levels/level 2.1.xml"
+	@import "levels/level 2.2.xml"
 </Data>

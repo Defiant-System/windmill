@@ -5,6 +5,8 @@
 		<xsl:attribute name="style">
 			--width: <xsl:value-of select="grid/@width"/>;
 			--height: <xsl:value-of select="grid/@height"/>;
+			<xsl:if test="grid/@cell">--cell: <xsl:value-of select="grid/@cell"/>px;</xsl:if>
+			<xsl:if test="grid/@unit">--unit: <xsl:value-of select="grid/@unit"/>px;</xsl:if>
 			<xsl:for-each select="Palette/*[@key]">
 				--<xsl:value-of select="@key"/>: <xsl:value-of select="@val"/>;
 			</xsl:for-each>

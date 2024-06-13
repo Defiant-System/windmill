@@ -1,14 +1,14 @@
 <Palette>
-	<c key="base" val="#242"/>
-	<c key="bg" val="#696"/>
-	<c key="gr" val="#8b8"/>
-	<c key="fg" val="#363"/>
-	<c key="hl" val="#ff0"/>
-	<c key="snake1" val="#ff0"/>
-	<c key="snake2" val="#ff0"/>
+	<c key="base" val="#0d4c32"/>
+	<c key="bg" val="#00a971"/>
+	<c key="gr" val="#00fbb8"/>
+	<c key="fg" val="#00433e"/>
+	<c key="hl" val="#acc2c8"/>
+	<c key="snake1" val="#fff"/>
+	<c key="snake2" val="#fff"/>
 
-	<c id="1" val="#241"/>
-	<c id="2" val="#fff"/>
+	<c id="1" val="#005650"/>
+	<c id="2" val="#fffaec"/>
 	<c id="3" val="CYAN"/>
 	<c id="4" val="MAGENTA"/>
 	<c id="5" val="YELLOW"/>
