@@ -1,8 +1,14 @@
 
 class Grid {
 	constructor(index) {
+		this._symmetry = false;
+
 		this.levelIndex = index;
 		this.level = Level[index];
+	}
+
+	get symmetry() {
+		return this._symmetry;
 	}
 
 	render(id) {
@@ -28,5 +34,11 @@ class Grid {
 
 		let base = window.bluePrint.selectSingleNode(`${match}/Palette/c[@key="base"]`);
 		window.find("content").css({ "--base": base.getAttribute("val") });
+	}
+
+	initializeSnake(data) {
+		data.gridPath = this.el.find(".grid-path svg g");
+		data.symmetry = this.symmetry;
+		this.snake = new Snake(data);
 	}
 }

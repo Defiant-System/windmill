@@ -1,6 +1,7 @@
 
 
 @import "classes/Grid.js";
+@import "classes/Snake.js";
 
 @import "levels/index.js";
 @import "modules/bg.js";
