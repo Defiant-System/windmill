@@ -1,10 +1,19 @@
 
+
+@import "classes/Grid.js";
+
+@import "levels/index.js";
+@import "modules/game.js";
+@import "modules/misc.js";
 @import "modules/test.js";
 
 
 const witness = {
 	init() {
-		
+		// init objects
+		Game.init();
+
+
 		// DEV-ONLY-START
 		Test.init(this);
 		// DEV-ONLY-END

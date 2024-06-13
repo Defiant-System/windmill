@@ -1,0 +1,54 @@
+<Data>
+	<Level id="1.0">
+		<grid type="base">
+			<i o="ns" x="0" y="0"></i>
+			<i o="ns" x="0" y="1"></i>
+			<i o="ns" x="0" y="2"></i>
+			<i o="ns" x="0" y="3"></i>
+
+			<i o="we" x="0" y="0"></i>
+			<i o="we" x="0" y="1"></i>
+			<i o="we" x="0" y="2"></i>
+			<i o="we" x="0" y="3"></i>
+			<i o="we" x="0" y="4"></i>
+
+			<i o="ns" x="1" y="0"></i>
+			<i o="ns" x="1" y="1"></i>
+			<i o="ns" x="1" y="2"></i>
+			<i o="ns" x="1" y="3"></i>
+
+			<i o="we" x="1" y="0"></i>
+			<i o="we" x="1" y="1"></i>
+			<i o="we" x="1" y="2"></i>
+			<i o="we" x="1" y="3"></i>
+			<i o="we" x="1" y="4"></i>
+
+			<i o="ns" x="2" y="0"></i>
+			<i o="ns" x="2" y="1"></i>
+			<i o="ns" x="2" y="2"></i>
+			<i o="ns" x="2" y="3"></i>
+
+			<i o="we" x="2" y="0"></i>
+			<i o="we" x="2" y="1"></i>
+			<i o="we" x="2" y="2"></i>
+			<i o="we" x="2" y="3"></i>
+			<i o="we" x="2" y="4"></i>
+
+			<i o="ns" x="3" y="0"></i>
+			<i o="ns" x="3" y="1"></i>
+			<i o="ns" x="3" y="2"></i>
+			<i o="ns" x="3" y="3"></i>
+
+			<i o="we" x="3" y="0"></i>
+			<i o="we" x="3" y="1"></i>
+			<i o="we" x="3" y="2"></i>
+			<i o="we" x="3" y="3"></i>
+			<i o="we" x="3" y="4"></i>
+
+			<i o="ns" x="4" y="0"></i>
+			<i o="ns" x="4" y="1"></i>
+			<i o="ns" x="4" y="2"></i>
+			<i o="ns" x="4" y="3"></i>
+		</grid>
+	</Level>
+</Data>
