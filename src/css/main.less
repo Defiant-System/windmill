@@ -1,11 +1,4 @@
 
-@base: #7f0079;
-@bg: #b900ac;
-@gr: #ff00f9;
-@fg: #8b08a2;
-@hl: #fff;
-@snake: #fff;
-
 
 background: transparent;
 
@@ -27,12 +20,19 @@ content {
 		// default puzzle variables
 		--width: 4;
 		--height: 4;
-		--unit: 17px;
+		--unit: 19px;
 		--fat: 5;
-		--path: calc( var( --unit ) * var( --fat ) );
-		--bg: @bg;
-		--fg: @fg;
-		--hl: @hl;
+		--cell: 83px;
+		--base: #7f0079;
+		--bg: #b900ac;
+		--gr: #ff00f9;
+		--fg: #8b08a2;
+		--hl: #fff;
+		--snake1: #fff;
+		--snake2: #ff0;
+		// defaults
+		--c: #000;
+		--d: 0;
 	}
 }
 
@@ -49,8 +49,8 @@ content {
 	position: absolute;
 	top: 60px;
 	left: 60px;
-	width: calc( var( --path ) * var( --width ) );
-	height: calc( var( --path ) * var( --height ) );
+	width: calc( var( --cell ) * var( --width ) );
+	height: calc( var( --cell ) * var( --height ) );
 
 	&:before {
 		content: "";
@@ -64,28 +64,41 @@ content {
 		box-shadow: inset 0 0 23px rgba(#000,.35);
 	}
 
+	&:after {
+		content: "";
+		position: absolute;
+		top: calc( var( --unit ) * -1.35 );
+		left: calc( var( --unit ) * -1.35 );
+		right: calc( var( --unit ) * -1.35 );
+		height: calc( var( --cell ) * -75 );
+		background: linear-gradient(0deg, red, white);
+		border-radius: calc( var( --unit ) * 1.35 );
+	}
+
 	.grid-base {
 		position: absolute;
 		top: calc( var( --unit ) * -.5 );
 		left: calc( var( --unit ) * -.5 );
+		filter: drop-shadow(1px 1px 0 rgba(#fff,.1))
+				 drop-shadow(-1px -1px 0 rgba(#000,.3));
 	}
 
 	span {
 		position: absolute;
-		top: calc( var( --path ) * var( --y ) );
-		left: calc( var( --path ) * var( --x ) );
+		top: calc( var( --cell ) * var( --y ) );
+		left: calc( var( --cell ) * var( --x ) );
 		width: var( --unit );
 		height: var( --unit );
 		border-radius: var( --unit );
 
 		&.ns {
 			background: var( --fg );
-			height: calc( var( --path ) + var( --unit ) );
+			height: calc( var( --cell ) + var( --unit ) );
 		}
 
 		&.we {
 			background: var( --fg );
-			width: calc( var( --path ) + var( --unit ) );
+			width: calc( var( --cell ) + var( --unit ) );
 		}
 
 		&.start {
@@ -102,6 +115,8 @@ content {
 		}
 
 		&.exit {
+			transform: rotate( calc( calc( var( --d ) * 45deg ) - 180deg ) );
+
 			&:before {
 				content: "";
 				position: absolute;
@@ -113,10 +128,10 @@ content {
 		}
 
 		&.dot {
-			top: calc( calc( ( var( --path ) ) * var( --y ) ) + var( --unit ) );
-			left: calc( calc( ( var( --path ) ) * var( --x ) ) + var( --unit ) );
-			width: calc( var( --path ) - var( --unit ) );
-			height: calc( var( --path ) - var( --unit ) );
+			top: calc( calc( var( --cell ) * var( --y ) ) + calc( var( --cell ) * .2 ) );
+			left: calc( calc( var( --cell ) * var( --x ) ) + calc( var( --cell ) * .2 ) );
+			width: calc( var( --cell ) * .85 );
+			height: calc( var( --cell ) * .85 );
 
 			&:before {
 				content: "";
@@ -127,6 +142,28 @@ content {
 				bottom: var( --unit );
 				border-radius: calc( var( --unit ) * .6 );
 				background: var(--c);
+			}
+		}
+
+		&.star {
+			top: calc( calc( var( --cell ) * var( --y ) ) + calc( var( --cell ) * .2 ) );
+			left: calc( calc( var( --cell ) * var( --x ) ) + calc( var( --cell ) * .2 ) );
+			width: calc( var( --cell ) * .85 );
+			height: calc( var( --cell ) * .85 );
+
+			&:before,
+			&:after {
+				content: "";
+				position: absolute;
+				top: calc( var( --unit ) * 1.2 );
+				left: calc( var( --unit ) * 1.2 );
+				right: calc( var( --unit ) * 1.2 );
+				bottom: calc( var( --unit ) * 1.2 );
+				background: var(--c);
+			}
+
+			&:after {
+				transform: rotate(45deg);
 			}
 		}
 	}

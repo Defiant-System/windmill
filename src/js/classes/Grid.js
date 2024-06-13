@@ -14,5 +14,7 @@ class Grid {
 			match: `//Data/Level[@id="${this.levelIndex}"]`,
 			target: window.find(".game-view"),
 		});
+		// update window title
+		window.title = `Witness - Level ${this.levelIndex}`;
 	}
 }
