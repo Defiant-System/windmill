@@ -1,14 +1,14 @@
-<Level id="1.4">
-	@import "../palettes/purple.xml"
-	
+<Level id="2.0">
+	@import "../palettes/green.xml"
+
 	<grid type="base" width="3" height="3" symmetry="0">
 		<!-- lines -->
 		<i type="ns" x="0" y="0"></i>
-		<i type="ns" x="0" y="1"></i>
-		<i type="ns" x="0" y="2"></i>
+		<i type="nsd" x="0" y="1"></i>
+		<i type="nsd" x="0" y="2"></i>
 
 		<i type="we" x="0" y="0"></i>
-		<i type="we" x="0" y="1"></i>
+		<i type="wed" x="0" y="1"></i>
 		<i type="we" x="0" y="2"></i>
 		<i type="we" x="0" y="3"></i>
 
@@ -16,39 +16,26 @@
 		<i type="ns" x="1" y="1"></i>
 		<i type="ns" x="1" y="2"></i>
 
-		<i type="we" x="1" y="0"></i>
+		<i type="wed" x="1" y="0"></i>
 		<i type="we" x="1" y="1"></i>
 		<i type="we" x="1" y="2"></i>
-		<i type="we" x="1" y="3"></i>
+		<i type="wed" x="1" y="3"></i>
 
 		<i type="ns" x="2" y="0"></i>
 		<i type="ns" x="2" y="1"></i>
 		<i type="ns" x="2" y="2"></i>
 
 		<i type="we" x="2" y="0"></i>
-		<i type="we" x="2" y="1"></i>
+		<i type="wed" x="2" y="1"></i>
 		<i type="we" x="2" y="2"></i>
 		<i type="we" x="2" y="3"></i>
 
 		<i type="ns" x="3" y="0"></i>
-		<i type="ns" x="3" y="1"></i>
-		<i type="ns" x="3" y="2"></i>
+		<i type="nsd" x="3" y="1"></i>
+		<i type="nsd" x="3" y="2"></i>
 
 		<!-- start & exit -->
 		<i type="start" x="0" y="3"></i>
 		<i type="exit" x="3" y="0" d="0"></i>
-
-		<!-- cell contents -->
-		<i type="dot" x="0" y="0" c="1"></i>
-		<i type="dot" x="0" y="1" c="1"></i>
-		<i type="dot" x="0" y="2" c="2"></i>
-
-		<i type="dot" x="1" y="0" c="1"></i>
-		<i type="dot" x="1" y="1" c="2"></i>
-		<i type="dot" x="1" y="2" c="2"></i>
-
-		<i type="dot" x="2" y="0" c="1"></i>
-		<i type="dot" x="2" y="1" c="1"></i>
-		<i type="dot" x="2" y="2" c="2"></i>
 	</grid>
 </Level>
