@@ -37,5 +37,7 @@
 		<!-- start & exit -->
 		<i type="start" x="0" y="3"></i>
 		<i type="exit" x="3" y="0" d="0"></i>
+
+		<i type="lambda" x="2" y="2"></i>
 	</grid>
 </Level>

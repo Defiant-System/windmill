@@ -245,6 +245,25 @@ content {
 				transform: rotate(45deg);
 			}
 		}
+
+		&.lambda {
+			top: calc( calc( var( --cell ) * var( --y ) ) + calc( var( --cell ) * .2 ) );
+			left: calc( calc( var( --cell ) * var( --x ) ) + calc( var( --cell ) * .2 ) );
+			width: calc( var( --cell ) * .85 );
+			height: calc( var( --cell ) * .85 );
+
+			&:after {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: url(~/icons/icon-lambda.png) 50% 50% no-repeat;
+				background-size: 35px 35px;
+				filter: invert(1) brightness(1.5);
+			}
+		}
 	}
 }
 
