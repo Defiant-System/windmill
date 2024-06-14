@@ -112,7 +112,8 @@ class Snake {
 	moveTowardsTarget(maxMovement, selector) {
 		let dx = null,
 			dy = null,
-			params;
+			params,
+			actualMovement;
 		
 		if (this.targetingMouse) {
 			let mouseOnGrid = this.calcMouseOnGrid();
@@ -191,7 +192,7 @@ class Snake {
 			// First, cap by axis. Do this for the absolute value of movement, because
 			// the values already agree on direction (we always move in the direction of
 			// decreasing delta).
-			let actualMovement = maxMovement;
+			actualMovement = maxMovement;
 			if (dx != null && dy != null) {
 				let maxAxisMovement = Math.abs(Math.floor(
 							(isVertical ? dy : dx) * Snake.MAX_PROGRESS_ / UI.GRID_UNIT));
@@ -368,7 +369,7 @@ class Snake {
 	anythingChanged() {
 		// hash code avoid constantly rendering.
 		let current = this.movement[this.movement.length - 1],
-			change = (current.i * 16 * 16 + current.j * 16 + this.movement.length) * MAX_PROGRESS + this.progress;
+			change = (current.i * 16 * 16 + current.j * 16 + this.movement.length) * Snake.MAX_PROGRESS + this.progress;
 		if (this.lastChange == null || this.lastChange != change) {
 			this.lastChange = change;
 			return true;

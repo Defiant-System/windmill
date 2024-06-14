@@ -35,6 +35,13 @@ let DrawType = {
 		VLINE: 4,
 	};
 
+let SegmentType = {
+		UNKNOWN: 0,
+		START: 1,
+		MIDDLE: 2,
+		END: 3,
+	};
+
 
 // Keep everything in simple format.
 let UI = {

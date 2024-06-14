@@ -57,9 +57,8 @@ class Grid {
 	}
 
 	updateSnake() {
-		this.snake.moveTowardsMouse(75 /* msPerGridUnit */, this.navigationSelector);
-
-		return;
+		let msPerGridUnit = 75;
+		this.snake.moveTowardsMouse(msPerGridUnit , this.navigationSelector);
 
 		this.snake.render();
 		// TODO: Infer touch interface a different way.
@@ -97,6 +96,20 @@ class Grid {
 			if (!inRange) return null;
 			return this.entities[index];
 		}
+	}
+
+	lineBetweenEntity(i1, j1, i2, j2, opt_val) {
+		if (Math.abs(i1 - i2) + Math.abs(j1 - j2) != 1) {
+			throw Error(arguments);
+		}
+		return this.lineEntity(Math.min(i1, i2), Math.min(j1, j2), i1 == i2, opt_val);
+	}
+
+	lineEntity(i, j, isDown, opt_val) {
+		var goDown = isDown ? 1 : 0;
+		return this.entity(
+				i*2 + (1 - goDown), j*2 + goDown, opt_val,
+				this.info(i, j, goDown ? "|" : "―"));
 	}
 
 	pointEntity(i, j, opt_val) {
