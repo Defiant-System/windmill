@@ -14,21 +14,21 @@ class NavigationSelector {
 			if (line != null) {
 				if (line.type == Type.NONE) {
 				// if (line.type == Type.NONE || current.i == 0 && current.j == 1 && current.i + di == 1 && current.j + dj == 1) {
-					return 'no';
+					return "no";
 				} else if (line.type == Type.DISJOINT) {
-					return 'disjoint';
+					return "disjoint";
 				}
 			}
-			return 'yes';
+			return "yes";
 		}
 		// If point is not there, we can go to the end.
 		if (thisEntity.type == Type.END) {
 			var o = grid.getEndPlacement(current.i, current.j);
 			if (o.horizontal == di && o.vertical == dj) {
-				return 'end';
+				return "end";
 			}
 		}
-		return 'no';
+		return "no";
 	}
 
 	selectTarget(di, dj, preferHorizontal, movement, secondaryMovement) {
@@ -88,26 +88,26 @@ class NavigationSelector {
 		}
 		var calcProgress = function(di, dj) {
 			if (di == 0 && dj == 0) {
-				return 'no';
+				return "no";
 			}
 			// TODO: Clean this up, so length is calculated at the very
 			// end and semantic meaning is preserved (e.g. for isEnd).
 			var reach = this.pointIsReachable(current, di, dj);
-			if (reach == 'no') {
+			if (reach == "no") {
 				return 0;
-			} else if (reach == 'end') {
+			} else if (reach == "end") {
 				return UI.END_LENGTH;
-			} else if (reach == 'disjoint') {
+			} else if (reach == "disjoint") {
 				return UI.DISJOINT_LENGTH;
 			}
 			if (secondary) {
 				var sd = symmetry.reflectDelta({di: di, dj: dj});
 				reach = this.pointIsReachable(secondary.current, sd.di, sd.dj);
-				if (reach == 'no') {
+				if (reach == "no") {
 					return 0;
-				} else if (reach == 'end') {
+				} else if (reach == "end") {
 					return UI.END_LENGTH;
-				} else if (reach == 'disjoint') {
+				} else if (reach == "disjoint") {
 					return UI.DISJOINT_LENGTH;
 				}
 			}
@@ -117,9 +117,10 @@ class NavigationSelector {
 				if (blocker) {
 					var point = grid.pointEntity(blocker.i, blocker.j);
 					if (!point) {
-						throw Error('bad element in path');
+						throw Error("bad element in path");
 					}
-					return point.type == Type.START ? 65 : 80;
+					let GU = preferHorizontal ? UI.CELL_WIDTH : CELL_HEIGHT;
+					return point.type == Type.START ? GU - UI.START_R - (UI.GRID_LINE * .5) : GU - UI.GRID_LINE;
 				} else if (cross.midway) {
 					return cross.vertex ? 90 : 40;
 				}

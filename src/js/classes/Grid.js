@@ -158,18 +158,25 @@ class Grid {
 		let xGrid = xLevel.selectSingleNode(`./grid`),
 			xpath = ["ns", "nsd", "nse", "we", "wed", "wee"].map(t => `@type="${t}"`),
 			xPoints = xGrid.selectNodes(`./i[${xpath.join(" or ")}]`);
-		console.log( xGrid );
+		// console.log( xGrid );
 
-		let gen = {
-			entity: [],
-			symmetry: null,
-			width: (+xGrid.getAttribute("width") * 2) + 1,
-		};
-		// gen.width = ((+xGrid.getAttribute("width") * 2) + 1) * ((+xGrid.getAttribute("height") * 2) + 1);
-		console.log( gen );
+		let storage = {
+				entity: [],
+				symmetry: null,
+				width: (+xGrid.getAttribute("width") * 2) + 1,
+				height: (+xGrid.getAttribute("height") * 2) + 1,
+			};
+
+		[...Array(storage.height)].map(row => {
+			[...Array(storage.width)].map(col => {
+				let entry = { type: null };
+				storage.entity.push(entry);
+			});
+		});
+		// console.log( storage );
 
 		// tmp object
-		let storage = tmp_entities;
+		storage = tmp_entities;
 		// internals
 		this.entities = storage.entity;
 		this.symmetry = storage.symmetry || SymmetryType.NONE;

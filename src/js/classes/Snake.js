@@ -119,9 +119,9 @@ class Snake {
 			let mouseOnGrid = this.calcMouseOnGrid();
 			let pointOnGrid = this.getHead();
 			if (!this.snapToGrid) {
-				let distanceX = mouseOnGrid.x - Math.round(mouseOnGrid.x / UI.GRID_UNIT)*UI.GRID_UNIT;
-				let distanceY = mouseOnGrid.y - Math.round(mouseOnGrid.y / UI.GRID_UNIT)*UI.GRID_UNIT;
-				let threshhold = UI.GRID_LINE*2;
+				let distanceX = mouseOnGrid.x - Math.round(mouseOnGrid.x / UI.GRID_UNIT) * UI.GRID_UNIT;
+				let distanceY = mouseOnGrid.y - Math.round(mouseOnGrid.y / UI.GRID_UNIT) * UI.GRID_UNIT;
+				let threshhold = UI.GRID_LINE * 2;
 				if (Math.abs(distanceX) <= threshhold && dy >= UI.GRID_UNIT) {
 					mouseOnGrid.x -= distanceX;
 				}
@@ -194,8 +194,7 @@ class Snake {
 			// decreasing delta).
 			actualMovement = maxMovement;
 			if (dx != null && dy != null) {
-				let maxAxisMovement = Math.abs(Math.floor(
-							(isVertical ? dy : dx) * Snake.MAX_PROGRESS_ / UI.GRID_UNIT));
+				let maxAxisMovement = Math.abs(Math.floor((isVertical ? dy : dx) * Snake.MAX_PROGRESS_ / UI.GRID_UNIT));
 				if (maxAxisMovement == 0 && !this.targetIsEnd) {
 					// Otherwise, can move orthogonal.
 					if (isVertical) {

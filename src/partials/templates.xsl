@@ -1,7 +1,6 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:template name="level-puzzle">
-
 	<xsl:variable name="puzzleWidth" select="(grid/@width * grid/@gW) + grid/@line" />
 	<xsl:variable name="puzzleHeight" select="(grid/@height * grid/@gH) + grid/@line" />
 
