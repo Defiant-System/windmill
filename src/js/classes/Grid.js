@@ -21,7 +21,6 @@ class Grid {
 		this.navigationSelector = new NavigationSelector(this);
 	}
 
-
 	render(id) {
 		// save value
 		this.levelIndex = id;
@@ -32,6 +31,7 @@ class Grid {
 				{ x: "line", ui: "GRID_LINE", val: 19 },
 				{ x: "gW", ui: "CELL_WIDTH", val: 83 },
 				{ x: "gH", ui: "CELL_HEIGHT", val: 83 },
+				{ x: "gap", ui: "DISJOINT_LENGTH", val: 22 },
 			];
 
 		// prepare xml, template & units

@@ -49,7 +49,9 @@
 				<svg>
 					<xsl:attribute name="width"><xsl:value-of select="$puzzleWidth"/></xsl:attribute>
 					<xsl:attribute name="height"><xsl:value-of select="$puzzleHeight"/></xsl:attribute>
-					<g transform="translate(9,9)"></g>
+					<g>
+						<xsl:attribute name="transform">translate(<xsl:value-of select="floor( grid/@line * .5 )"/>,<xsl:value-of select="floor( grid/@line * .5 )"/>)</xsl:attribute>
+					</g>
 				</svg>
 			</div>
 			<div class="grid-error"></div>
