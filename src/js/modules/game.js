@@ -40,12 +40,12 @@ let Game = {
 				}
 				break;
 			case "mousemove":
-				// if (!APP.GS.grid_.snake.targetingMouse && event.movementX != undefined) {
-				// 	APP.GS.grid_.snake.setMouseDiff(event.movementX, event.movementY);
-				// } else {
-				// 	APP.GS.grid_.snake.setMouse(event.pageX, event.pageY);
-				// 	APP.GS.grid_.snake.targetingMouse = false;
-				// }
+				if (!Game.grid.snake.targetingMouse && event.movementX != undefined) {
+					Game.grid.snake.setMouseDiff(event.movementX, event.movementY);
+					Game.grid.updateSnake();
+				} else {
+					Game.grid.snake.targetingMouse = false;
+				}
 				break;
 		}
 	}

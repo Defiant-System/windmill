@@ -1,10 +1,14 @@
 
 class Grid {
 	constructor(index) {
+		// internals
 		this._symmetry = false;
-
+		// level info
 		this.levelIndex = index;
 		this.level = Level[index];
+
+		// sub objects
+		this.navigationSelector = new GridUi.NavigationSelector(grid);
 	}
 
 	get symmetry() {
@@ -38,8 +42,27 @@ class Grid {
 
 	initializeSnake(data) {
 		data.grid = this.el;
-		data.draw = this.el.find(".grid-path svg g");
+		data.draw = this.el.find(".grid-path svg");
 		data.symmetry = this.symmetry;
 		this.snake = new Snake(data);
+
+		this.snake.setTargetingMouse(true);
+	}
+
+	updateSnake() {
+		this.snake.moveTowardsMouse(75 /* msPerGridUnit */, this.navigationSelector);
+
+		return;
+
+		this.snake.render();
+		// TODO: Infer touch interface a different way.
+		if (this.snake.snapToGrid) {
+			var start = document.getElementById("pathExtras");
+			if (this.snake.atEnd()) {
+				start.style.setProperty("display", "none");
+			} else {
+				start.style.setProperty("display", "block");
+			}
+		}
 	}
 }

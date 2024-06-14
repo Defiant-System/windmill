@@ -7,6 +7,7 @@
 @import "modules/test.js";
 
 @import "classes/ElapsedTime.js";
+@import "classes/NavigationSelector.js";
 @import "classes/Grid.js";
 @import "classes/Snake.js";
 
@@ -17,7 +18,7 @@ const witness = {
 		Bg.init();
 		Game.init();
 
-		Game.grid.render("2.0");
+		Game.grid.render("2.2");
 
 		// DEV-ONLY-START
 		Test.init(this);

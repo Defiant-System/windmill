@@ -38,7 +38,7 @@
 
 			<div class="grid-extra"></div>
 			<div class="grid-path">
-				<svg><g></g></svg>
+				<svg></svg>
 			</div>
 			<div class="grid-error"></div>
 		</div>
