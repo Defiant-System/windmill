@@ -18,6 +18,14 @@ let Type = {
 		TRIANGLE: 11,
 	};
 
+let SymmetryType = {
+		UNKNOWN: 0,
+		NONE: 1,
+		HORIZONTAL: 2,
+		VERTICAL: 3,
+		ROTATIONAL: 4,
+	};
+
 // Non-wire enums.
 let DrawType = {
 		UNKNOWN: 0,

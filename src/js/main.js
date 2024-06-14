@@ -8,6 +8,7 @@
 
 @import "classes/ElapsedTime.js";
 @import "classes/NavigationSelector.js";
+@import "classes/Symmetry.js";
 @import "classes/Grid.js";
 @import "classes/Snake.js";
 
@@ -18,7 +19,7 @@ const witness = {
 		Bg.init();
 		Game.init();
 
-		Game.grid.render("2.2");
+		Game.grid.render("2.3");
 
 		// DEV-ONLY-START
 		Test.init(this);
@@ -30,6 +31,14 @@ const witness = {
 		switch (event.type) {
 			// system events
 			case "window.init":
+				break;
+			case "window.focus":
+				// resume background worker
+				Bg.dispatch({ type: "resume" });
+				break;
+			case "window.blur":
+				// resume background worker
+				Bg.dispatch({ type: "pause" });
 				break;
 			// custom events
 			case "render-level":

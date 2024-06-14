@@ -7,7 +7,7 @@ class Snake {
 	constructor(opt) {
 		// The current path.
 		this._id = ++Snake.id_;
-		this.start = { x: opt.x, y: opt.y };
+		this.start = { i: opt.x, j: opt.y };
 		this.mouse = { x: opt.mX, y: opt.mY };
 		this.movement = [this.start];
 
@@ -232,7 +232,7 @@ class Snake {
 			// Backtracked, so forget where we came from.
 			this.clearTarget();
 			this.progress = Snake.MAX_PROGRESS_;
-			// console.log('Backtrack, target null!');
+			// console.log("Backtrack, target null!");
 			if (remainingProgress == 0 || !this.discoverTarget(selector, params)) {
 				return;
 			}
@@ -247,7 +247,7 @@ class Snake {
 			}
 			this.clearTarget();
 			this.progress = 0;
-			// console.log('Forwards, target null!');
+			// console.log("Forwards, target null!");
 			if (remainingProgress == 0 || !this.discoverTarget(selector, params)) return;
 		}
 		return remainingProgress;
@@ -271,12 +271,12 @@ class Snake {
 		
 		// Otherwise, can only move in one direction at a time.
 		if (Math.abs(select.i - current.i) + Math.abs(select.j - current.j) != 1) {
-			throw Error('bad prev');
+			throw Error("bad prev");
 		}
 		// And only in the direction of the mouse.
 		if ((params.di != 0 && Math.sign(select.i - current.i) == -Math.sign(params.di)) ||
 			(params.dj != 0 && Math.sign(select.j - current.j) == -Math.sign(params.dj))) {
-			throw Error('too complicated');
+			throw Error("too complicated");
 		}
 		if (previous && (select.i == previous.i && select.j == previous.j)) {
 			this.movement.pop();

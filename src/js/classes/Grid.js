@@ -1,19 +1,26 @@
 
 class Grid {
 	constructor(index) {
-		// internals
-		this._symmetry = false;
 		// level info
 		this.levelIndex = index;
 		this.level = Level[index];
 
+		// tmp object
+		let storage = tmp_entities;
+		// internals
+		this.entities = storage.entity;
+		this.symmetry = storage.symmetry || SymmetryType.NONE;
+
+		var storeHeight = Math.floor(storage.entity.length / storage.width);
+		this.width = Math.floor(storage.width / 2);
+		this.height = Math.floor(storeHeight / 2);
+		this.storeWidth = this.width * 2 + 1;
+		this.storeHeight = this.height * 2 + 1;
+
 		// sub objects
-		this.navigationSelector = new GridUi.NavigationSelector(grid);
+		this.navigationSelector = new NavigationSelector(this);
 	}
 
-	get symmetry() {
-		return this._symmetry;
-	}
 
 	render(id) {
 		// save value
@@ -43,7 +50,7 @@ class Grid {
 	initializeSnake(data) {
 		data.grid = this.el;
 		data.draw = this.el.find(".grid-path svg");
-		data.symmetry = this.symmetry;
+		data.symmetry = this.getSymmetry();
 		this.snake = new Snake(data);
 
 		this.snake.setTargetingMouse(true);
@@ -64,5 +71,35 @@ class Grid {
 				start.style.setProperty("display", "block");
 			}
 		}
+	}
+
+	getSymmetry() {
+		if (this.symmetry == SymmetryType.NONE) return null;
+		else return new Symmetry(this.symmetry, this.width, this.height);
+	}
+
+	info(i, j, type) {
+		return `${type}[${i},${j}]`;
+	}
+
+	// jQuery-style entity getter/setter.
+	entity(a, b, opt_val, opt_info) {
+		var index = a + this.storeWidth * b;
+		var inRange = a >= 0 && b >= 0 && a < this.storeWidth && b < this.storeHeight;
+		if (opt_val && false) {
+			// console.log([opt_info, a + "―", b + "|", index].join(","));
+			console.log(`${opt_info},${a}-${b}|,${index}`);
+		}
+		if (opt_val) {
+			if (!inRange) throw Error();
+			this.entities[index] = opt_val;
+		} else {
+			if (!inRange) return null;
+			return this.entities[index];
+		}
+	}
+
+	pointEntity(i, j, opt_val) {
+		return this.entity(i * 2, j * 2, opt_val, this.info(i, j, "•"));
 	}
 }
