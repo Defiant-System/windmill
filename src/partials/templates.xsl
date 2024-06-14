@@ -1,17 +1,21 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:template name="level-puzzle">
+
+	<xsl:variable name="puzzleWidth" select="(grid/@width * grid/@gW) + grid/@line" />
+	<xsl:variable name="puzzleHeight" select="(grid/@height * grid/@gH) + grid/@line" />
+
 	<div class="level">
 		<xsl:attribute name="style">
 			--width: <xsl:value-of select="grid/@width"/>;
 			--height: <xsl:value-of select="grid/@height"/>;
-			<xsl:if test="grid/@unit">--unit: <xsl:value-of select="grid/@unit"/>px;</xsl:if>
+			<xsl:if test="grid/@line">--line: <xsl:value-of select="grid/@line"/>px;</xsl:if>
 			<xsl:if test="grid/@gap">--gap: <xsl:value-of select="grid/@gap"/>px;</xsl:if>
-			<xsl:if test="grid/@cW">--cW: <xsl:value-of select="grid/@cW"/>px;</xsl:if>
-			<xsl:if test="grid/@cH">--cH: <xsl:value-of select="grid/@cH"/>px;</xsl:if>
-			<xsl:if test="grid/@cell">
-				--cW: <xsl:value-of select="grid/@cell"/>px;
-				--cH: <xsl:value-of select="grid/@cell"/>px;
+			<xsl:if test="grid/@gW">--gW: <xsl:value-of select="grid/@gW"/>px;</xsl:if>
+			<xsl:if test="grid/@gH">--gH: <xsl:value-of select="grid/@gH"/>px;</xsl:if>
+			<xsl:if test="grid/@grid">
+				--gW: <xsl:value-of select="grid/@grid"/>px;
+				--gH: <xsl:value-of select="grid/@grid"/>px;
 			</xsl:if>
 			<xsl:for-each select="Palette/*[@key]">
 				--<xsl:value-of select="@key"/>: <xsl:value-of select="@val"/>;
@@ -19,6 +23,10 @@
 		</xsl:attribute>
 
 		<div class="puzzle">
+			<xsl:attribute name="style">
+				width: <xsl:value-of select="$puzzleWidth"/>px;
+				height: <xsl:value-of select="$puzzleHeight"/>px;
+			</xsl:attribute>
 			<div class="grid-base">
 				<xsl:for-each select="grid/*">
 					<span>
@@ -38,8 +46,10 @@
 
 			<div class="grid-extra"></div>
 			<div class="grid-path">
-				<svg width="408" height="408">
-					<g transform1="translate(50,50)"></g>
+				<svg>
+					<xsl:attribute name="width"><xsl:value-of select="$puzzleWidth"/></xsl:attribute>
+					<xsl:attribute name="height"><xsl:value-of select="$puzzleHeight"/></xsl:attribute>
+					<g transform="translate(9,9)"></g>
 				</svg>
 			</div>
 			<div class="grid-error"></div>

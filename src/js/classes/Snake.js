@@ -405,10 +405,10 @@ class Snake {
 					str = `<circle cx="${x1}" cy="${y1}" r="${UI.START_R}" />`;
 					break;
 				case SegmentType.MIDDLE:
-					str = `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke-width="${UI.GRID_LINE}" stroke-linecap="round"></line>`;
+					str = `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke-width="${UI.GRID_LINE+1}" stroke-linecap="round"></line>`;
 					break;
 				case SegmentType.END:
-					str = `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke-width="${UI.GRID_LINE}" stroke-linecap="round"></line>`;
+					str = `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke-width="${UI.GRID_LINE+1}" stroke-linecap="round"></line>`;
 					break;
 			}
 			return str;

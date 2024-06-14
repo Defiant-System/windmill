@@ -1,7 +1,7 @@
 <Level id="2.1">
 	@import "../palettes/green.xml"
 
-	<grid type="base" width="7" height="7" cell="53" gap="4" symmetry="0">
+	<grid type="base" width="7" height="7" grid="53" gap="4" symmetry="0">
 		<!-- lines -->
 		<i type="ns" x="0" y="0"></i>
 		<i type="ns" x="0" y="1"></i>

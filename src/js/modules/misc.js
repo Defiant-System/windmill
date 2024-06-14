@@ -46,10 +46,12 @@ let SegmentType = {
 // Keep everything in simple format.
 let UI = {
 		MARGIN: 50,
-		GRID_UNIT: 100,
-		GRID_LINE: 20,
+		GRID_UNIT: 83,
+		GRID_LINE: 19,
+		CELL_WIDTH: 83,
+		CELL_HEIGHT: 83,
 		END_LENGTH: 20,
-		START_R: 25,
+		START_R: 26,
 		TETRIS: 18,
 		TETRIS_SPACE: 3,
 		DISJOINT_LENGTH: 30,

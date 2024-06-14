@@ -26,8 +26,36 @@ class Grid {
 		// save value
 		this.levelIndex = id;
 		
-		// html output
+		// default units
+		let Defaults = [
+				{ x: "grid", ui: "GRID_UNIT", val: 83 },
+				{ x: "line", ui: "GRID_LINE", val: 19 },
+				{ x: "gW", ui: "CELL_WIDTH", val: 83 },
+				{ x: "gH", ui: "CELL_HEIGHT", val: 83 },
+			];
+
+		// prepare xml, template & units
 		let match = `//Data/Level[@id="${this.levelIndex}"]`;
+		let xLevel = window.bluePrint.selectSingleNode(match);
+		let xGrid = xLevel.selectSingleNode("./grid");
+
+		// "gW" & "gH" is omitted but "grid" is set
+		if (xGrid.getAttribute("grid") && !xGrid.getAttribute("gW")) xGrid.setAttribute("gW", xGrid.getAttribute("grid"));
+		if (xGrid.getAttribute("grid") && !xGrid.getAttribute("gH")) xGrid.setAttribute("gH", xGrid.getAttribute("grid"));
+
+		// sync level values with defaults / UI units
+		Defaults.map(item => {
+			if (xGrid.getAttribute(item.x)) {
+				UI[item.ui] = +xGrid.getAttribute(item.x);
+			} else {
+				UI[item.ui] = item.val;
+				xGrid.setAttribute(item.x, item.val);
+			}
+		});
+		// use only "gW" & "gH"
+		xGrid.removeAttribute("grid");
+
+		// html output
 		window.render({
 			match,
 			template: "level-puzzle",
