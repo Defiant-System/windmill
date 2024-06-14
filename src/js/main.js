@@ -7,6 +7,7 @@
 @import "modules/test.js";
 
 @import "classes/ElapsedTime.js";
+@import "classes/Orientation.js";
 @import "classes/NavigationSelector.js";
 @import "classes/Symmetry.js";
 @import "classes/Grid.js";
