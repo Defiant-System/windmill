@@ -179,21 +179,11 @@ class Grid {
 				y = +xNode.getAttribute("y"),
 				index = (storage.width * (y * 2)) + (x * 2);
 			switch (type) {
-				case "start":
-					storage.entity[index].type = Type.START;
-					break;
-				case "exit":
-					storage.entity[index].type = Type.END;
-					break;
-				case "nsd":
-					storage.entity[index + storage.width].type = Type.DISJOINT;
-					break;
-				case "wed":
-					storage.entity[index + 1].type = Type.DISJOINT;
-					break;
-				case "dot":
-					storage.entity[index + storage.width + 1].type = Type.SQUARE;
-					break;
+				case "start": storage.entity[index].type = Type.START; break;
+				case "exit": storage.entity[index].type = Type.END; break;
+				case "nsd": storage.entity[index + storage.width].type = Type.DISJOINT; break;
+				case "wed": storage.entity[index + 1].type = Type.DISJOINT; break;
+				case "dot": storage.entity[index + storage.width + 1].type = Type.SQUARE; break;
 			}
 		});
 

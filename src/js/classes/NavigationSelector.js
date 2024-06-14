@@ -119,7 +119,7 @@ class NavigationSelector {
 					if (!point) {
 						throw Error("bad element in path");
 					}
-					let GU = preferHorizontal ? UI.CELL_WIDTH : CELL_HEIGHT;
+					let GU = preferHorizontal ? UI.CELL_WIDTH : UI.CELL_HEIGHT;
 					return point.type == Type.START ? GU - UI.START_R - (UI.GRID_LINE * .5) : GU - UI.GRID_LINE;
 				} else if (cross.midway) {
 					return cross.vertex ? 90 : 40;

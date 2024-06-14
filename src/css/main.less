@@ -284,6 +284,32 @@ content {
 				filter: invert(1) brightness(1.5);
 			}
 		}
+
+		&[data-hexCorner] {
+			&:before {
+				content: "";
+				position: absolute;
+				top: 2px;
+				left: 2px;
+				width: calc( var( --line ) - 3px );
+				height: calc( var( --line ) - 4px );
+				background: var( --bg );
+				clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+			}
+		}
+
+		&[data-hexMiddle] {
+			&:before {
+				content: "";
+				position: absolute;
+				top: calc( 50% - calc( var( --line ) * .5 ) );
+				left: 2px;
+				width: calc( var( --line ) - 3px );
+				height: calc( var( --line ) - 4px );
+				background: var( --bg );
+				clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+			}
+		}
 	}
 }
 

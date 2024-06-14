@@ -39,6 +39,12 @@
 						<xsl:if test="@type = 'start'">
 							<xsl:attribute name="data-click">init-snake</xsl:attribute>
 						</xsl:if>
+						<xsl:if test="@hc = 1">
+							<xsl:attribute name="data-hexCorner">1</xsl:attribute>
+						</xsl:if>
+						<xsl:if test="@hm = 1">
+							<xsl:attribute name="data-hexMiddle">1</xsl:attribute>
+						</xsl:if>
 					</span>
 				</xsl:for-each>
 			</div>
