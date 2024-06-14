@@ -22,6 +22,9 @@ class Snake {
 			this.secondaryMovement = null;
 		}
 
+		// fast references
+		this.gridEl = opt.grid;
+
 		// SVG elements
 		this.snakeEl = null;
 		this.secondarySnakeEl = null;
@@ -50,7 +53,104 @@ class Snake {
 		this.snapToGrid = false;
 	}
 
-	render() {
-		
+	setTargetingMouse(targetingMouse, snapToGrid) {
+		this.targetingMouse = targetingMouse;
+		this.snapToGrid = snapToGrid;
 	}
+
+	atEnd() {
+		return this.targetIsEnd && this.progress === this.targetMaxProgress;
+	}
+
+	markSuccessful() {
+		if (this.snakeEl) this.snakeEl.addClass("glow");
+		if (this.secondarySnakeEl) this.secondarySnakeEl.addClass("glow");
+	}
+
+	setMouseDiff(mouseX, mouseY) {
+		this.mouseX += mouseX;
+		this.mouseY += mouseY;
+	}
+
+	calcMouseOnGrid() {
+		let gridOnPage = this.grid.offset(),
+			mouseOnGrid = {
+				x: this.mouseX - gridOnPage.left - UI.MARGIN,
+				y: this.mouseY - gridOnPage.top - UI.MARGIN
+			};
+		return mouseOnGrid;
+	}
+
+	moveTowardsMouse(msPerGridUnit, selector) {
+		let maxMovement;
+		if (this.targetingMouse) {
+			let elapsedMs = this.frameTime.step();
+			if (elapsedMs == null) return;
+			
+			maxMovement = Math.floor(elapsedMs / msPerGridUnit * MAX_PROGRESS / 1.5);
+			// Simplifying assumption: Max one unit per animation frame, so
+			// moveTowardsTarget only needs to be called twice below.
+			maxMovement = Math.min(maxMovement, MAX_PROGRESS);
+		} else {
+			this.mouseHistoryX.push(this.mouseX);
+			this.mouseHistoryY.push(this.mouseY);
+			if (this.mouseHistoryX.length > 3) {
+				this.mouseHistoryX.shift();
+				this.mouseHistoryY.shift();
+			}
+
+			// should ideally separate max distance into vertical and horizontal.
+			let mdx = (this.mouseHistoryX[this.mouseHistoryX.length - 1] - this.mouseHistoryX[0]) / this.mouseHistoryX.length * 2.5;
+			let mdy = (this.mouseHistoryY[this.mouseHistoryY.length - 1] - this.mouseHistoryY[0]) / this.mouseHistoryY.length * 2.5;
+			let move = Math.max(Math.abs(mdx), Math.abs(mdy));
+			maxMovement = move;  // Keep it easy...
+		}
+		let remaining = this.moveTowardsTarget(maxMovement, selector);
+		if (remaining != undefined) this.moveTowardsTarget(remaining, selector);
+	}
+
+	moveTowardsTarget(maxMovement, selector) {
+
+	}
+
+	clearTarget() {
+
+	}
+
+	discoverTarget(selector, params) {
+
+	}
+
+	getHead() {
+
+	}
+
+	getRenderContents(movement, target) {
+
+	}
+
+	renderSingle(contents, snakeId, snakeEl) {
+
+	}
+
+	render() {
+
+	}
+
+	anythingChanged() {
+
+	}
+
+	stringRepr() {
+
+	}
+
+	fadeSingle(snakeEl, opt_timeout, opt_callback) {
+
+	}
+
+	fade(opt_timeout, opt_callback) {
+
+	}
+
 }

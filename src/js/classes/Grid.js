@@ -37,6 +37,7 @@ class Grid {
 	}
 
 	initializeSnake(data) {
+		data.grid = this.el;
 		data.draw = this.el.find(".grid-path svg g");
 		data.symmetry = this.symmetry;
 		this.snake = new Snake(data);
