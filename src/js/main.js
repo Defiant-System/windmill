@@ -1,13 +1,14 @@
 
 
-@import "classes/Grid.js";
-@import "classes/Snake.js";
-
 @import "levels/index.js";
 @import "modules/bg.js";
 @import "modules/game.js";
 @import "modules/misc.js";
 @import "modules/test.js";
+
+@import "classes/ElapsedTime.js";
+@import "classes/Grid.js";
+@import "classes/Snake.js";
 
 
 const witness = {

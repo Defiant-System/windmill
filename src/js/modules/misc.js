@@ -27,3 +27,16 @@ let DrawType = {
 		VLINE: 4,
 	};
 
+
+// Keep everything in simple format.
+let UI = {
+		MARGIN: 50,
+		GRID_UNIT: 100,
+		GRID_LINE: 20,
+		END_LENGTH: 20,
+		START_R: 25,
+		TETRIS: 18,
+		TETRIS_SPACE: 3,
+		DISJOINT_LENGTH: 30,
+		EDIT_R: 20,
+	};
