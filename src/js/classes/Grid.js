@@ -5,18 +5,6 @@ class Grid {
 		this.levelIndex = index;
 		this.level = Level[index];
 
-		// tmp object
-		let storage = tmp_entities;
-		// internals
-		this.entities = storage.entity;
-		this.symmetry = storage.symmetry || SymmetryType.NONE;
-
-		var storeHeight = Math.floor(storage.entity.length / storage.width);
-		this.width = Math.floor(storage.width / 2);
-		this.height = Math.floor(storeHeight / 2);
-		this.storeWidth = this.width * 2 + 1;
-		this.storeHeight = this.height * 2 + 1;
-
 		// sub objects
 		this.navigationSelector = new NavigationSelector(this);
 	}
@@ -54,6 +42,9 @@ class Grid {
 		});
 		// use only "gW" & "gH"
 		xGrid.removeAttribute("grid");
+
+		// generate storage entities, etc
+		this.generateStorage(xLevel);
 
 		// html output
 		window.render({
@@ -160,5 +151,33 @@ class Grid {
 
 	pointEntity(i, j, opt_val) {
 		return this.entity(i * 2, j * 2, opt_val, this.info(i, j, "•"));
+	}
+
+	generateStorage(xLevel) {
+		// get grid base
+		let xGrid = xLevel.selectSingleNode(`./grid`),
+			xpath = ["ns", "nsd", "nse", "we", "wed", "wee"].map(t => `@type="${t}"`),
+			xPoints = xGrid.selectNodes(`./i[${xpath.join(" or ")}]`);
+		console.log( xGrid );
+
+		let gen = {
+			entity: [],
+			symmetry: null,
+			width: (+xGrid.getAttribute("width") * 2) + 1,
+		};
+		// gen.width = ((+xGrid.getAttribute("width") * 2) + 1) * ((+xGrid.getAttribute("height") * 2) + 1);
+		console.log( gen );
+
+		// tmp object
+		let storage = tmp_entities;
+		// internals
+		this.entities = storage.entity;
+		this.symmetry = storage.symmetry || SymmetryType.NONE;
+
+		var storeHeight = Math.floor(storage.entity.length / storage.width);
+		this.width = Math.floor(storage.width / 2);
+		this.height = Math.floor(storeHeight / 2);
+		this.storeWidth = this.width * 2 + 1;
+		this.storeHeight = this.height * 2 + 1;
 	}
 }
