@@ -169,14 +169,39 @@ class Grid {
 
 		[...Array(storage.height)].map(row => {
 			[...Array(storage.width)].map(col => {
-				let entry = { type: null };
-				storage.entity.push(entry);
+				storage.entity.push({ type: null });
 			});
 		});
-		// console.log( storage );
+
+		xGrid.selectNodes(`./i`).map(xNode => {
+			let type = xNode.getAttribute("type"),
+				x = +xNode.getAttribute("x"),
+				y = +xNode.getAttribute("y"),
+				index = (storage.width * (y * 2)) + (x * 2);
+			switch (type) {
+				case "start":
+					storage.entity[index].type = Type.START;
+					break;
+				case "exit":
+					storage.entity[index].type = Type.END;
+					break;
+				case "nsd":
+					storage.entity[index + storage.width].type = Type.DISJOINT;
+					break;
+				case "wed":
+					storage.entity[index + 1].type = Type.DISJOINT;
+					break;
+				case "dot":
+					storage.entity[index + storage.width + 1].type = Type.SQUARE;
+					break;
+			}
+		});
+
+		// console.log( storage.entity );
+		// storage.entity.map((e, i) => console.log( i, JSON.stringify(e) + (i % 9 == 8 ? "---" : "") ));
 
 		// tmp object
-		storage = tmp_entities;
+		// storage = tmp_entities;
 		// internals
 		this.entities = storage.entity;
 		this.symmetry = storage.symmetry || SymmetryType.NONE;
