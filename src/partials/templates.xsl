@@ -38,7 +38,9 @@
 
 			<div class="grid-extra"></div>
 			<div class="grid-path">
-				<svg></svg>
+				<svg width="408" height="408">
+					<g transform1="translate(50,50)"></g>
+				</svg>
 			</div>
 			<div class="grid-error"></div>
 		</div>

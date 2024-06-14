@@ -113,6 +113,19 @@ content {
 				 drop-shadow(0 -1px 0 rgba(#000,.3));
 	}
 
+	.grid-path {
+		background: rgba(#f00,.2);
+		position: absolute;
+		top: calc( var( --unit ) * -2 );
+		left: calc( var( --unit ) * -2 );
+		pointer-events: none;
+		z-index: 3;
+
+		svg g {
+			pointer-events: all;
+		}
+	}
+
 	span {
 		position: absolute;
 		top: calc( var( --cH ) * var( --y ) );

@@ -6,7 +6,7 @@ class Snake {
 
 	constructor(opt) {
 		// The current path.
-		this._id = ++Snake.id_;
+		this.snakeId = ++Snake.id_;
 		this.start = { i: opt.x, j: opt.y };
 		this.mouse = { x: opt.mX, y: opt.mY };
 		this.movement = [this.start];
@@ -340,17 +340,16 @@ class Snake {
 		return contents;
 	}
 
-	renderSingle(contents, snakeId, snakeEl) {
-		// Ugly DOM manipulation to insert SVG dynamically.
-		if (!snakeEl) {
-			snakeEl = document.createElementNS("http://www.w3.org/2000/svg", "g")
-			snakeEl.setAttribute("id", `path${snakeId}`);
-			this.draw.appendChild(snakeEl);
+	anythingChanged() {
+		// hash code avoid constantly rendering.
+		let current = this.movement[this.movement.length - 1],
+			change = (current.i * 16 * 16 + current.j * 16 + this.movement.length) * Snake.MAX_PROGRESS + this.progress;
+		if (this.lastChange == null || this.lastChange != change) {
+			this.lastChange = change;
+			return true;
+		} else {
+			return false;
 		}
-		// console.log(contents);
-		renderSnakeSvg(snakeEl, contents);
-
-		return snakeEl;
 	}
 
 	render() {
@@ -366,16 +365,56 @@ class Snake {
 		}
 	}
 
-	anythingChanged() {
-		// hash code avoid constantly rendering.
-		let current = this.movement[this.movement.length - 1],
-			change = (current.i * 16 * 16 + current.j * 16 + this.movement.length) * Snake.MAX_PROGRESS + this.progress;
-		if (this.lastChange == null || this.lastChange != change) {
-			this.lastChange = change;
-			return true;
-		} else {
-			return false;
+	renderSingle(contents, snakeId, snakeEl) {
+		// Ugly DOM manipulation to insert SVG dynamically.
+		if (!snakeEl) {
+			snakeEl = document.createElementNS("http://www.w3.org/2000/svg", "g")
+			snakeEl.setAttribute("id", `path${snakeId}`);
+			this.draw.append(snakeEl);
 		}
+		// console.log(contents);
+		this.renderSvg(snakeEl, contents);
+
+		return snakeEl;
+	}
+
+	renderSvg(el, contents) {
+		let out = contents.map(segment => {
+			let isLastSegment,
+				x = segment.i * UI.GRID_UNIT,
+				y = segment.j * UI.GRID_UNIT,
+				direction = segment.direction,
+				start = segment.start || 0,
+				end = segment.end || 0,
+				horizontal = direction == DrawType.HLINE ? 1 : 0,
+				vertical = 1 - horizontal,
+				soff = start ? start : 0,
+				eoff = end ? end : 0,
+				partial = start || end ? 1 : 0,
+				x1 = x + horizontal * partial * soff,
+				y1 = y + vertical * partial * soff,
+				x2 = x + horizontal * (UI.GRID_UNIT - partial * eoff),
+				y2 = y + vertical * (UI.GRID_UNIT - partial * eoff),
+				str = "";
+
+			// console.log( segment );
+			switch (segment.segmentType) {
+				case SegmentType.UNKNOWN:
+					break;
+				case SegmentType.START:
+					str = `<circle cx="${x1}" cy="${y1}" r="${UI.START_R}" />`;
+					break;
+				case SegmentType.MIDDLE:
+					str = `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke-width="${UI.GRID_LINE}" stroke-linecap="round"></line>`;
+					break;
+				case SegmentType.END:
+					str = `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke-width="${UI.GRID_LINE}" stroke-linecap="round"></line>`;
+					break;
+			}
+			return str;
+		});
+		let str = `<g stroke="white" fill="white">${out.join("")}</g>`;
+		$(el).html(str);
 	}
 
 	// stringRepr() {}
