@@ -55,20 +55,44 @@ content {
 		svg {
 			width: inherit;
 			height: inherit;
-			filter: drop-shadow(0 1px 0 hsl(174,5%,80%))
-					drop-shadow(0 2px 0 hsl(174,5%,75%))
-					drop-shadow(0 3px 0 hsl(174,5%,70%))
-					drop-shadow(0 4px 0 hsl(174,5%,66%))
-					drop-shadow(0 5px 0 hsl(174,5%,64%))
-					drop-shadow(0 6px 0 hsl(174,5%,62%))
-					// drop-shadow(0 7px 0 hsl(174,5%,61%))
-					// drop-shadow(0 8px 0 hsl(174,5%,60%))
-					// drop-shadow(0 0 5px rgba(0,0,0,.05))
-					// drop-shadow(0 1px 3px rgba(0,0,0,.2))
-					// drop-shadow(0 3px 5px rgba(0,0,0,.2))
-					drop-shadow(0 5px 10px rgba(0,0,0,.2))
-					drop-shadow(0 10px 10px rgba(0,0,0,.2))
-					drop-shadow(0 20px 20px rgba(0,0,0,.3));
+			filter: drop-shadow(0 1px 0 hsl(174, 5%, 80%))
+					drop-shadow(0 2px 0 hsl(174, 5%, 75%))
+					drop-shadow(0 3px 0 hsl(174, 5%, 70%))
+					drop-shadow(0 4px 0 hsl(174, 5%, 66%))
+					drop-shadow(0 5px 0 hsl(174, 5%, 64%))
+					drop-shadow(0 6px 0 hsl(174, 5%, 62%))
+					// drop-shadow(0 7px 0 hsl(174, 5%, 61%))
+					// drop-shadow(0 8px 0 hsl(174, 5%, 60%))
+					// drop-shadow(0 0 5px rgba(0, 0, 0, .05))
+					// drop-shadow(0 1px 3px rgba(0, 0, 0, .2))
+					// drop-shadow(0 3px 5px rgba(0, 0, 0, .2))
+					drop-shadow(0 5px 10px rgba(0, 0, 0, .2))
+					drop-shadow(0 10px 10px rgba(0, 0, 0, .2))
+					drop-shadow(0 20px 20px rgba(0, 0, 0, .3));
+		}
+
+		.star {
+			position: absolute;
+			top: 26px;
+			left: 119px;
+			width: 21px;
+			height: 21px;
+			
+			&:before,
+			&:after {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: inherit;
+				height: inherit;
+				background: #fff;
+				animation: shine-star 1000ms ease-out alternate infinite;
+			}
+
+			&:after {
+				transform: rotate(45deg);
+			}
 		}
 	}
 }
@@ -349,6 +373,11 @@ content {
 	}
 }
 
+
+@keyframes shine-star {
+	0% { filter: drop-shadow(0 0 7px rgba(#fff,.75)) drop-shadow(0 0 17px rgba(#fff,.75)); }
+	100% { filter: drop-shadow(0 0 3px rgba(#fff,.5)) drop-shadow(0 0 7px rgba(#fff,.5)); }
+}
 
 @keyframes pulsate {
 	0% { opacity: 1; transform: scale(.1); }
