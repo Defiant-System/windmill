@@ -22,6 +22,18 @@ content {
 		background: var( --base ) radial-gradient(circle at 50%, #ffffff33, transparent);
 	}
 
+	&[data-show="start-view"] {
+		.start-view {
+			display: block;
+		}
+	}
+
+	&[data-show="game-view"] {
+		.game-view {
+			display: block;
+		}
+	}
+
 	.witness-bg {
 		position: absolute;
 		top: 0;
@@ -35,6 +47,7 @@ content {
 
 	.start-view,
 	.game-view {
+		display: none;
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -73,10 +86,11 @@ content {
 
 		.star {
 			position: absolute;
-			top: 26px;
+			top: 27px;
 			left: 119px;
-			width: 21px;
-			height: 21px;
+			width: 19px;
+			height: 19px;
+			mix-blend-mode: plus-lighter;
 			
 			&:before,
 			&:after {
@@ -99,7 +113,6 @@ content {
 
 
 .game-view {
-	display: none;
 	// default puzzle variables
 	--width: 4;
 	--height: 4;

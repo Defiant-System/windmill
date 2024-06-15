@@ -20,7 +20,7 @@ const witness = {
 		Bg.init();
 		Game.init();
 
-		// Game.grid.render("2.3");
+		Game.grid.render("2.3");
 		// Game.grid.render("3.1");
 
 		// DEV-ONLY-START
@@ -43,6 +43,9 @@ const witness = {
 				Bg.dispatch({ type: "pause" });
 				break;
 			// custom events
+			case "show-view":
+				window.find("content").data({ show: event.arg });
+				break;
 			case "render-level":
 				Game.grid.render(event.arg);
 				break;
