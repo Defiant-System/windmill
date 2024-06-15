@@ -2,6 +2,7 @@
 
 @import "modules/bg.js";
 @import "modules/game.js";
+@import "modules/particles.js";
 @import "modules/validation.js";
 @import "modules/keys.js";
 @import "modules/misc.js";
@@ -23,6 +24,7 @@ const witness = {
 		// init objects
 		Bg.init();
 		Game.init();
+		Particles.init();
 
 		// Game.grid.render("lobby");
 		// Game.grid.render("2.3");

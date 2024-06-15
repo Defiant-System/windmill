@@ -1,6 +1,7 @@
 
 
 background: transparent;
+overflow: visible;
 
 
 content {
@@ -30,14 +31,28 @@ content {
 
 	&[data-show="game-view"] {
 		.start-view {
+			z-index: 2;
+
 			.logo {
 				transform: translate(-298px,-117px) scale(.35);
+				pointer-events: none;
 			}
 		}
 
 		.game-view {
 			display: block;
 		}
+	}
+
+	canvas.particles {
+		position: absolute;
+		top: -100px;
+		left: -100px;
+		width: calc( 100% + 200px );
+		height: calc( 100% + 200px );
+		z-index: 99;
+		pointer-events: none;
+		// background: rgba(#00f,.25);
 	}
 
 	.witness-bg {
@@ -184,11 +199,11 @@ content {
 		&:after {
 			content: "";
 			position: absolute;
-			top: calc( var( --line ) * -1.6 );
-			left: calc( var( --line ) * -1.6 );
-			right: calc( var( --line ) * -1.6 );
-			height: calc( var( --gH ) * .65 );
-			background: linear-gradient(0deg, rgba(#fff,.2), rgba(#fff,.05));
+			top: calc( var( --line ) * -1.5 );
+			left: calc( var( --line ) * -1.5 );
+			right: calc( var( --line ) * -1.5 );
+			height: calc( var( --gH ) * .7 );
+			background: linear-gradient(0deg, rgba(#fff,.175), rgba(#fff,.05));
 			border-radius: calc( var( --line ) * 1.35 );
 			transform: translate(.5px, .5px);
 			mix-blend-mode: soft-light;

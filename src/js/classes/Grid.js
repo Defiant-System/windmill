@@ -107,15 +107,21 @@ class Grid {
 		// reset started flag
 		delete this._started;
 
+		// audio fx
+		window.audio.play("solved");
+
 		if (!this.snake.atEnd()) {
 			return fadeOutSnake();
 		}
 
 		// Success or failure at end
-		let errors = Validation.getErrors(this);
+		let err = Validation.getErrors(this);
 
 		// show errors
-		console.log(errors);
+		if (err.errors.length) {
+			let errors = err.errors.concat(err.allowedErrors);
+			console.log(errors);
+		}
 
 		// reset level
 		fadeOutSnake();
