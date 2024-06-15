@@ -9,6 +9,7 @@ content {
 	left: 0;
 	right: 0;
 	bottom: 0;
+	color: #fff;
 	--base: #7f0079;
 
 	&:before {
@@ -32,6 +33,7 @@ content {
 		mix-blend-mode: overlay;
 	}
 
+	.start-view,
 	.game-view {
 		position: absolute;
 		top: 0;
@@ -39,275 +41,285 @@ content {
 		right: 0;
 		bottom: 0;
 		overflow: hidden;
-		// default puzzle variables
-		--width: 4;
-		--height: 4;
-		--line: 20px;
-		--gap: 19px;
-		--fat: 5;
-		--grid: 83px;
-		--gW: var( --grid );
-		--gH: var( --grid );
-		--base: #7f0079;
-		--bg: #b900ac;
-		--gr: #ff00f9;
-		--fg: #8b08a2;
-		--hl: #fff;
-		--snake1: #fff;
-		--snake2: #ff0;
-		// defaults
-		--c: #000;
-		--d: 0;
 	}
 }
 
-.level {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	// background: var( --base );
+
+.start-view {
+
 }
 
-.puzzle {
-	position: absolute;
-	top: 60px;
-	left: 60px;
-	width: calc( var( --gW ) * var( --width ) );
-	height: calc( var( --gH ) * var( --height ) );
 
-	&:before {
-		content: "";
-		position: absolute;
-		top: calc( var( --line ) * -2 );
-		left: calc( var( --line ) * -2 );
-		right: calc( var( --line ) * -2 );
-		bottom: calc( var( --line ) * -2 );
-		border-radius: calc( var( --line ) * 1.75 );
-		background: var( --bg ) radial-gradient(circle at 50%, var( --gr ), transparent);
-		box-shadow: inset 0 0 23px rgba(#000,.35),
-					0 2px 7px rgba(#000,.35);
-	}
+.game-view {
+	display: none;
+	// default puzzle variables
+	--width: 4;
+	--height: 4;
+	--line: 20px;
+	--gap: 19px;
+	--fat: 5;
+	--grid: 83px;
+	--gW: var( --grid );
+	--gH: var( --grid );
+	--base: #7f0079;
+	--bg: #b900ac;
+	--gr: #ff00f9;
+	--fg: #8b08a2;
+	--hl: #fff;
+	--snake1: #fff;
+	--snake2: #ff0;
+	// defaults
+	--c: #000;
+	--d: 0;
 
-	&:after {
-		content: "";
-		position: absolute;
-		top: calc( var( --line ) * -1.6 );
-		left: calc( var( --line ) * -1.6 );
-		right: calc( var( --line ) * -1.6 );
-		height: calc( var( --gH ) * .65 );
-		background: linear-gradient(0deg, rgba(#fff,.2), rgba(#fff,.05));
-		border-radius: calc( var( --line ) * 1.35 );
-		mix-blend-mode: soft-light;
-		pointer-events: none;
-		z-index: 3;
-	}
-
-	.grid-base {
-		// background: #f00;
+	.level {
 		position: absolute;
 		top: 0;
 		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: 2;
-		filter: drop-shadow(0 1px 0 rgba(#fff,.125))
-				 drop-shadow(0 -1px 0 rgba(#000,.3));
+		right: 0;
+		bottom: 0;
+		// background: var( --base );
 	}
 
-	.grid-path {
+	.puzzle {
 		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		pointer-events: none;
-		z-index: 3;
+		top: 60px;
+		left: 60px;
+		width: calc( var( --gW ) * var( --width ) );
+		height: calc( var( --gH ) * var( --height ) );
 
-		svg {
-			// background: rgba(#f00,.2);
-			overflow: visible;
-			
-			g { pointer-events: all; }
-		}
-	}
-
-	span {
-		position: absolute;
-		top: calc( var( --gH ) * var( --y ) );
-		left: calc( var( --gW ) * var( --x ) );
-		width: var( --line );
-		height: var( --line );
-		border-radius: var( --line );
-
-		&.ns {
-			background: var( --fg );
-			height: calc( var( --gH ) + var( --line ) );
+		&:before {
+			content: "";
+			position: absolute;
+			top: calc( var( --line ) * -2 );
+			left: calc( var( --line ) * -2 );
+			right: calc( var( --line ) * -2 );
+			bottom: calc( var( --line ) * -2 );
+			border-radius: calc( var( --line ) * 1.75 );
+			background: var( --bg ) radial-gradient(circle at 50%, var( --gr ), transparent);
+			box-shadow: inset 0 0 23px rgba(#000,.35),
+						0 2px 7px rgba(#000,.35);
 		}
 
-		&.nsd {
-			height: calc( var( --gH ) + var( --line ) );
+		&:after {
+			content: "";
+			position: absolute;
+			top: calc( var( --line ) * -1.6 );
+			left: calc( var( --line ) * -1.6 );
+			right: calc( var( --line ) * -1.6 );
+			height: calc( var( --gH ) * .65 );
+			background: linear-gradient(0deg, rgba(#fff,.2), rgba(#fff,.05));
+			border-radius: calc( var( --line ) * 1.35 );
+			mix-blend-mode: soft-light;
+			pointer-events: none;
+			z-index: 3;
+		}
 
-			&:before,
-			&:after {
-				content: "";
+		.grid-base {
+			// background: #f00;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 2;
+			filter: drop-shadow(0 1px 0 rgba(#fff,.125))
+					 drop-shadow(0 -1px 0 rgba(#000,.3));
+		}
+
+		.grid-path {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			pointer-events: none;
+			z-index: 3;
+
+			svg {
+				// background: rgba(#f00,.2);
+				overflow: visible;
+				
+				g { pointer-events: all; }
+			}
+		}
+
+		span {
+			position: absolute;
+			top: calc( var( --gH ) * var( --y ) );
+			left: calc( var( --gW ) * var( --x ) );
+			width: var( --line );
+			height: var( --line );
+			border-radius: var( --line );
+
+			&.ns {
 				background: var( --fg );
-				position: absolute;
-				left: 0;
-				right: 0;
-				height: calc( calc( var( --gH ) - var( --gap ) ) * .5 );
+				height: calc( var( --gH ) + var( --line ) );
 			}
 
-			&:before { top: calc( var( --line ) * .5 ); }
-			&:after { bottom: calc( var( --line ) * .5 ); }
-		}
+			&.nsd {
+				height: calc( var( --gH ) + var( --line ) );
 
-		&.we {
-			background: var( --fg );
-			width: calc( var( --gW ) + var( --line ) );
-		}
+				&:before,
+				&:after {
+					content: "";
+					background: var( --fg );
+					position: absolute;
+					left: 0;
+					right: 0;
+					height: calc( calc( var( --gH ) - var( --gap ) ) * .5 );
+				}
 
-		&.wed {
-			width: calc( var( --gW ) + var( --line ) );
+				&:before { top: calc( var( --line ) * .5 ); }
+				&:after { bottom: calc( var( --line ) * .5 ); }
+			}
 
-			&:before,
-			&:after {
-				content: "";
+			&.we {
 				background: var( --fg );
-				position: absolute;
-				top: 0;
-				bottom: 0;
-				width: calc( calc( var( --gW ) - var( --gap ) ) * .5 );
+				width: calc( var( --gW ) + var( --line ) );
 			}
 
-			&:before { left: calc( var( --line ) * .5 ); }
-			&:after { right: calc( var( --line ) * .5 ); }
-		}
+			&.wed {
+				width: calc( var( --gW ) + var( --line ) );
 
-		&.start {
-			&:before {
-				content: "";
-				position: absolute;
-				top: calc( calc( var( --line ) * -1 ) + 3px );
-				left: calc( calc( var( --line ) * -1 ) + 3px );
-				right: calc( calc( var( --line ) * -1 ) + 3px );
-				bottom: calc( calc( var( --line ) * -1 ) + 3px );
-				border-radius: 50%;
-				background: var( --fg );
-				cursor: pointer;
+				&:before,
+				&:after {
+					content: "";
+					background: var( --fg );
+					position: absolute;
+					top: 0;
+					bottom: 0;
+					width: calc( calc( var( --gW ) - var( --gap ) ) * .5 );
+				}
+
+				&:before { left: calc( var( --line ) * .5 ); }
+				&:after { right: calc( var( --line ) * .5 ); }
 			}
 
-			&:after {
-				content: "";
-				position: absolute;
-				top: calc( calc( var( --line ) * -1 ) + 3px );
-				left: calc( calc( var( --line ) * -1 ) + 3px );
-				right: calc( calc( var( --line ) * -1 ) + 3px );
-				bottom: calc( calc( var( --line ) * -1 ) + 3px );
-				border-radius: 50%;
-				background: radial-gradient(circle, transparent, var( --hl ));
-				animation: pulsate 1500ms ease-out infinite;
-				mix-blend-mode: soft-light;
-				pointer-events: none;
-			}
-		}
+			&.start {
+				&:before {
+					content: "";
+					position: absolute;
+					top: calc( calc( var( --line ) * -1 ) + 3px );
+					left: calc( calc( var( --line ) * -1 ) + 3px );
+					right: calc( calc( var( --line ) * -1 ) + 3px );
+					bottom: calc( calc( var( --line ) * -1 ) + 3px );
+					border-radius: 50%;
+					background: var( --fg );
+					cursor: pointer;
+				}
 
-		&.exit {
-			transform: rotate( calc( calc( var( --d ) * 45deg ) - 180deg ) );
-
-			&:before {
-				content: "";
-				position: absolute;
-				width: calc( var( --line ) * 1 );
-				height: calc( var( --line ) * 2 );
-				border-radius: var( --line );
-				background: var( --fg );
-			}
-		}
-
-		&.dot {
-			top: calc( calc( var( --grid ) * var( --y ) ) + calc( var( --grid ) * .2 ) );
-			left: calc( calc( var( --grid ) * var( --x ) ) + calc( var( --grid ) * .2 ) );
-			width: calc( var( --grid ) * .85 );
-			height: calc( var( --grid ) * .85 );
-
-			&:before {
-				content: "";
-				position: absolute;
-				top: var( --line );
-				left: var( --line );
-				right: var( --line );
-				bottom: var( --line );
-				border-radius: calc( var( --line ) * .6 );
-				background: var(--c);
-			}
-		}
-
-		&.star {
-			top: calc( calc( var( --grid ) * var( --y ) ) + calc( var( --grid ) * .2 ) );
-			left: calc( calc( var( --grid ) * var( --x ) ) + calc( var( --grid ) * .2 ) );
-			width: calc( var( --grid ) * .85 );
-			height: calc( var( --grid ) * .85 );
-
-			&:before,
-			&:after {
-				content: "";
-				position: absolute;
-				top: calc( var( --line ) * 1.2 );
-				left: calc( var( --line ) * 1.2 );
-				right: calc( var( --line ) * 1.2 );
-				bottom: calc( var( --line ) * 1.2 );
-				background: var(--c);
+				&:after {
+					content: "";
+					position: absolute;
+					top: calc( calc( var( --line ) * -1 ) + 3px );
+					left: calc( calc( var( --line ) * -1 ) + 3px );
+					right: calc( calc( var( --line ) * -1 ) + 3px );
+					bottom: calc( calc( var( --line ) * -1 ) + 3px );
+					border-radius: 50%;
+					background: radial-gradient(circle, transparent, var( --hl ));
+					animation: pulsate 1500ms ease-out infinite;
+					mix-blend-mode: soft-light;
+					pointer-events: none;
+				}
 			}
 
-			&:after {
-				transform: rotate(45deg);
+			&.exit {
+				transform: rotate( calc( calc( var( --d ) * 45deg ) - 180deg ) );
+
+				&:before {
+					content: "";
+					position: absolute;
+					width: calc( var( --line ) * 1 );
+					height: calc( var( --line ) * 2 );
+					border-radius: var( --line );
+					background: var( --fg );
+				}
 			}
-		}
 
-		&.lambda {
-			top: calc( calc( var( --grid ) * var( --y ) ) + calc( var( --grid ) * .2 ) );
-			left: calc( calc( var( --grid ) * var( --x ) ) + calc( var( --grid ) * .2 ) );
-			width: calc( var( --grid ) * .85 );
-			height: calc( var( --grid ) * .85 );
+			&.dot {
+				top: calc( calc( var( --grid ) * var( --y ) ) + calc( var( --grid ) * .2 ) );
+				left: calc( calc( var( --grid ) * var( --x ) ) + calc( var( --grid ) * .2 ) );
+				width: calc( var( --grid ) * .85 );
+				height: calc( var( --grid ) * .85 );
 
-			&:after {
-				content: "";
-				position: absolute;
-				top: 0;
-				left: 0;
-				right: 0;
-				bottom: 0;
-				background: url(~/icons/icon-lambda.png) 50% 50% no-repeat;
-				background-size: 35px 35px;
-				filter: invert(1) brightness(1.5);
+				&:before {
+					content: "";
+					position: absolute;
+					top: var( --line );
+					left: var( --line );
+					right: var( --line );
+					bottom: var( --line );
+					border-radius: calc( var( --line ) * .6 );
+					background: var(--c);
+				}
 			}
-		}
 
-		&[data-hexCorner] {
-			&:before {
-				content: "";
-				position: absolute;
-				top: 2px;
-				left: 2px;
-				width: calc( var( --line ) - 3px );
-				height: calc( var( --line ) - 4px );
-				background: var( --bg );
-				clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+			&.star {
+				top: calc( calc( var( --grid ) * var( --y ) ) + calc( var( --grid ) * .2 ) );
+				left: calc( calc( var( --grid ) * var( --x ) ) + calc( var( --grid ) * .2 ) );
+				width: calc( var( --grid ) * .85 );
+				height: calc( var( --grid ) * .85 );
+
+				&:before,
+				&:after {
+					content: "";
+					position: absolute;
+					top: calc( var( --line ) * 1.2 );
+					left: calc( var( --line ) * 1.2 );
+					right: calc( var( --line ) * 1.2 );
+					bottom: calc( var( --line ) * 1.2 );
+					background: var(--c);
+				}
+
+				&:after {
+					transform: rotate(45deg);
+				}
 			}
-		}
 
-		&[data-hexMiddle] {
-			&:before {
-				content: "";
-				position: absolute;
-				top: calc( 50% - calc( var( --line ) * .5 ) );
-				left: 2px;
-				width: calc( var( --line ) - 3px );
-				height: calc( var( --line ) - 4px );
-				background: var( --bg );
-				clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+			&.lambda {
+				top: calc( calc( var( --grid ) * var( --y ) ) + calc( var( --grid ) * .2 ) );
+				left: calc( calc( var( --grid ) * var( --x ) ) + calc( var( --grid ) * .2 ) );
+				width: calc( var( --grid ) * .85 );
+				height: calc( var( --grid ) * .85 );
+
+				&:after {
+					content: "";
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					background: url(~/icons/icon-lambda.png) 50% 50% no-repeat;
+					background-size: 35px 35px;
+					filter: invert(1) brightness(1.5);
+				}
+			}
+
+			&[data-hexCorner] {
+				&:before {
+					content: "";
+					position: absolute;
+					top: 2px;
+					left: 2px;
+					width: calc( var( --line ) - 3px );
+					height: calc( var( --line ) - 4px );
+					background: var( --bg );
+					clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+				}
+			}
+
+			&[data-hexMiddle] {
+				&:before {
+					content: "";
+					position: absolute;
+					top: calc( 50% - calc( var( --line ) * .5 ) );
+					left: 2px;
+					width: calc( var( --line ) - 3px );
+					height: calc( var( --line ) - 4px );
+					background: var( --bg );
+					clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+				}
 			}
 		}
 	}

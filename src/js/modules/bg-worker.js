@@ -64,9 +64,9 @@ let Anim = {
 			ctx = Self.ctx,
 			drawPoint = (x, y, noiseFactor) => {
 				let startX = x + noiseFactor * 90;
-				let startY = y + noiseFactor * 50;
+				let startY = y + noiseFactor * 60;
 				ctx.save();
-				ctx.translate(startX + noiseFactor * 120, startY + noiseFactor * 120);
+				ctx.translate(startX + noiseFactor * 140, startY + noiseFactor * 100);
 				ctx.fillRect(0, 0, 2, 2);
 				ctx.fill();
 				ctx.restore();
