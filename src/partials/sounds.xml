@@ -1,0 +1,4 @@
+<Sounds>
+	<i id="solved" url="~/audio/solved.mp3"/>
+	<i id="chuck" url="~/audio/chuck.mp3"/>
+</Sounds>
