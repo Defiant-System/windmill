@@ -4,11 +4,11 @@
 	<grid type="base" width="4" height="4" symmetry="0">
 		<!-- lines -->
 		<i type="ns" x="0" y="0" />
-		<i type="ns" x="0" y="1" hm="1" />
+		<i type="ns" x="0" y="1" />
 		<i type="ns" x="0" y="2" />
 		<i type="ns" x="0" y="3" />
 
-		<i type="we" x="0" y="0" hc="1" />
+		<i type="we" x="0" y="0" />
 		<i type="we" x="0" y="1" />
 		<i type="wed" x="0" y="2" />
 		<i type="we" x="0" y="3" />
@@ -68,7 +68,5 @@
 		<i type="dot" x="2" y="3" c="2" />
 
 		<i type="dot" x="3" y="0" c="2" />
-
-		<!-- <i type="lambda" x="0" y="1" c="1" /> -->
 	</grid>
 </Level>

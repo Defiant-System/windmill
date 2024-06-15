@@ -42,6 +42,8 @@ class Grid {
 		});
 		// use only "gW" & "gH"
 		xGrid.removeAttribute("grid");
+		// adapt start radius to line width
+		UI.START_R = (UI.GRID_LINE * 2.5) / 2;
 
 		// generate storage entities, etc
 		this.generateStorage(xLevel);
@@ -78,16 +80,17 @@ class Grid {
 	updateSnake() {
 		let msPerGridUnit = 75;
 		this.snake.moveTowardsMouse(msPerGridUnit , this.navigationSelector);
-
 		this.snake.render();
-		// TODO: Infer touch interface a different way.
-		if (this.snake.snapToGrid) {
-			var start = document.getElementById("pathExtras");
-			if (this.snake.atEnd()) {
-				start.style.setProperty("display", "none");
-			} else {
-				start.style.setProperty("display", "block");
-			}
+	}
+
+	finishSnake() {
+		if (!this.snake.atEnd()) {
+			// fade out snake and empty its contents
+			this.el.find(".grid-path").cssSequence("fade-out-snake", "transitionend", el => {
+				el.find("svg > g").html("");
+				el.removeClass("fade-out-snake");
+			});
+			return;
 		}
 	}
 

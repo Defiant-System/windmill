@@ -18,6 +18,9 @@ let Game = {
 					document.exitPointerLock();
 					delete Self._locked;
 
+					// end state of snake
+					Game.grid.finishSnake();
+
 					// unbind event handlers
 					Self.doc.off("click", Self.dispatch);
 					Self.doc.off("mousemove", Self.dispatch);

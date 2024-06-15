@@ -20,8 +20,8 @@ const witness = {
 		Bg.init();
 		Game.init();
 
-		Game.grid.render("2.3");
-		// Game.grid.render("3.1");
+		// Game.grid.render("2.3");
+		Game.grid.render("1.2");
 
 		// DEV-ONLY-START
 		Test.init(this);
