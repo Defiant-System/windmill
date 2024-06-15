@@ -3,6 +3,7 @@
 @import "levels/index.js";
 @import "modules/bg.js";
 @import "modules/game.js";
+@import "modules/validation.js";
 @import "modules/misc.js";
 @import "modules/test.js";
 
@@ -10,6 +11,7 @@
 @import "classes/Orientation.js";
 @import "classes/NavigationSelector.js";
 @import "classes/Symmetry.js";
+@import "classes/Path.js";
 @import "classes/Grid.js";
 @import "classes/Snake.js";
 

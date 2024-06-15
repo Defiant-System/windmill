@@ -84,14 +84,28 @@ class Grid {
 	}
 
 	finishSnake() {
+		let errors,
+			fadeOutSnake = () => {
+				// fade out snake and empty its contents
+				this.el.find(".grid-path").cssSequence("fade-out-snake", "transitionend", el => {
+					el.find("svg > g").html("");
+					el.removeClass("fade-out-snake");
+				});
+			};
 		if (!this.snake.atEnd()) {
-			// fade out snake and empty its contents
-			this.el.find(".grid-path").cssSequence("fade-out-snake", "transitionend", el => {
-				el.find("svg > g").html("");
-				el.removeClass("fade-out-snake");
-			});
-			return;
+			return fadeOutSnake();
 		}
+
+		// Success or failure at end
+		try {
+			errors = Validation.getErrors(this.grid, this.snake.movement, this.snake.secondaryMovement);
+		} catch (e) {
+			console.log(e);
+			return fadeOutSnake();
+		}
+
+		// show errors
+		console.log(errors);
 	}
 
 	getSymmetry() {
