@@ -1,5 +1,5 @@
 <Level id="lobby">
-	@import "../palettes/purple.xml"
+	@import "../palettes/lobby.xml"
 
 	<grid type="base" width="2" height="0" symmetry="0">
 		<!-- lines -->

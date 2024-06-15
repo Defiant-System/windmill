@@ -74,9 +74,17 @@ class Grid {
 		this.snake = new Snake(data);
 
 		this.snake.setTargetingMouse(true);
+		this.snake.render();
+
+		this._started = false;
+		data.draw.find("circle").cssSequence("started", "animationend", el => {
+			this._started = true;
+		});
 	}
 
 	updateSnake() {
+		if (!this._started) return;
+
 		let msPerGridUnit = 75;
 		this.snake.moveTowardsMouse(msPerGridUnit , this.navigationSelector);
 		this.snake.render();
@@ -91,6 +99,10 @@ class Grid {
 					el.removeClass("fade-out-snake");
 				});
 			};
+
+		// reset started flag
+		delete this._started;
+
 		if (!this.snake.atEnd()) {
 			return fadeOutSnake();
 		}
