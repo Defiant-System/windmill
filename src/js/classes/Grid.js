@@ -3,7 +3,6 @@ class Grid {
 	constructor(index) {
 		// level info
 		this.levelIndex = index;
-		this.level = Level[index];
 
 		// sub objects
 		this.navigationSelector = new NavigationSelector(this);

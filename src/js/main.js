@@ -1,6 +1,5 @@
 
 
-@import "levels/index.js";
 @import "modules/bg.js";
 @import "modules/game.js";
 @import "modules/validation.js";
