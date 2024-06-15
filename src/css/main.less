@@ -47,7 +47,7 @@ content {
 
 	.start-view,
 	.game-view {
-		display: none;
+		// display: none;
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -61,7 +61,7 @@ content {
 .start-view {
 	.logo {
 		position: relative;
-		margin: 73px auto;
+		margin: 83px auto;
 		width: 535px;
 		height: 133px;
 
@@ -81,7 +81,8 @@ content {
 					// drop-shadow(0 3px 5px rgba(0, 0, 0, .2))
 					drop-shadow(0 5px 10px rgba(0, 0, 0, .2))
 					drop-shadow(0 10px 10px rgba(0, 0, 0, .2))
-					drop-shadow(0 20px 20px rgba(0, 0, 0, .3));
+					drop-shadow(0 20px 20px rgba(0, 0, 0, .3))
+					sepia(1) saturate(5) hue-rotate(325deg);
 		}
 
 		.star {
@@ -140,6 +141,18 @@ content {
 		right: 0;
 		bottom: 0;
 		// background: var( --base );
+
+		&[data-id="lobby"] {
+			top: 59px;
+			filter: brightness(1.5) hue-rotate(115deg) saturate(2) brightness(2);
+
+			.puzzle {
+				&:before,
+				&:after { display: none; }
+
+				.grid-base { filter: drop-shadow(0 0 13px rgba(#000,.35)); }
+			}
+		}
 	}
 
 	.puzzle {
@@ -284,6 +297,7 @@ content {
 					width: calc( var( --line ) * 2.5 );
 					height: calc( var( --line ) * 2.5 );
 					border-radius: 50%;
+					transform-origin: 50% 50%;
 					background: radial-gradient(circle, transparent, var( --hl ));
 					animation: pulsate 1500ms ease-out infinite;
 					mix-blend-mode: soft-light;

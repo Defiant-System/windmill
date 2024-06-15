@@ -5,6 +5,7 @@
 	<xsl:variable name="puzzleHeight" select="(grid/@height * grid/@gH) + grid/@line" />
 
 	<div class="level">
+		<xsl:attribute name="data-id"><xsl:value-of select="@id"/></xsl:attribute>
 		<xsl:attribute name="style">
 			--width: <xsl:value-of select="grid/@width"/>;
 			--height: <xsl:value-of select="grid/@height"/>;

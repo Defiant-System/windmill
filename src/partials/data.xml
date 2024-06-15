@@ -1,4 +1,6 @@
 <Data>
+	@import "levels/lobby.xml"
+
 	@import "levels/level 1.0.xml"
 	@import "levels/level 1.1.xml"
 	@import "levels/level 1.2.xml"

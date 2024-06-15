@@ -1,0 +1,13 @@
+<Level id="lobby">
+	@import "../palettes/purple.xml"
+
+	<grid type="base" width="2" height="0" symmetry="0">
+		<!-- lines -->
+		<i type="we" x="0" y="0" />
+		<i type="we" x="1" y="0" />
+
+		<!-- start & exit -->
+		<i type="start" x="0" y="0" />
+		<i type="exit" x="2" y="0" d="2" />
+	</grid>
+</Level>
