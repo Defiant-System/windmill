@@ -77,10 +77,12 @@ class Grid {
 		this.snake.setTargetingMouse(true);
 		this.snake.render();
 
+		// UI update
+		this.el.addClass("snake-active");
+
+		// enables a nice "grow" effect at start
 		this._started = false;
-		data.draw.find("circle").cssSequence("started", "animationend", el => {
-			this._started = true;
-		});
+		data.draw.find("circle").cssSequence("started", "animationend", el => this._started = true);
 	}
 
 	updateSnake() {
@@ -92,8 +94,9 @@ class Grid {
 	}
 
 	finishSnake() {
-		let errors,
-			fadeOutSnake = () => {
+		let fadeOutSnake = () => {
+				// UI update
+				this.el.removeClass("snake-active");
 				// fade out snake and empty its contents
 				this.el.find(".grid-path").cssSequence("fade-out-snake", "transitionend", el => {
 					el.find("svg > g").html("");
@@ -109,14 +112,13 @@ class Grid {
 		}
 
 		// Success or failure at end
-		// try {
-			errors = Validation.getErrors(this);
-		// } catch (e) {
-			// return fadeOutSnake();
-		// }
+		let errors = Validation.getErrors(this);
 
 		// show errors
 		console.log(errors);
+
+		// reset level
+		fadeOutSnake();
 	}
 
 	forEachEntity(fn, scope) {
@@ -243,11 +245,22 @@ class Grid {
 				y = +xNode.getAttribute("y"),
 				index = (storage.width * (y * 2)) + (x * 2);
 			switch (type) {
-				case "start": storage.entity[index].type = Type.START; break;
-				case "exit": storage.entity[index].type = Type.END; break;
-				case "nsd": storage.entity[index + storage.width].type = Type.DISJOINT; break;
-				case "wed": storage.entity[index + 1].type = Type.DISJOINT; break;
-				case "dot": storage.entity[index + storage.width + 1].type = Type.SQUARE; break;
+				case "start":
+					storage.entity[index].type = Type.START;
+					break;
+				case "exit":
+					storage.entity[index].type = Type.END;
+					break;
+				case "nsd":
+					storage.entity[index + storage.width].type = Type.DISJOINT;
+					break;
+				case "wed":
+					storage.entity[index + 1].type = Type.DISJOINT;
+					break;
+				case "dot":
+					storage.entity[index + storage.width + 1].type = Type.SQUARE;
+					storage.entity[index + storage.width + 1].color = +xNode.getAttribute("c");
+					break;
 			}
 		});
 

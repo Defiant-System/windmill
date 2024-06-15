@@ -74,7 +74,7 @@ let Validation = {
 
 		var filterColorsMap = function(colorsMap, opt_filter, opt_map) {
 			let cm = Object.keys(colorsMap).map(k => {
-				vals = colorsMap[k];
+				let vals = colorsMap[k];
 				if (opt_filter) {
 					vals = vals.filter(opt_filter);
 				}
@@ -122,6 +122,7 @@ let Validation = {
 			}
 
 			var colorsMap = {};
+			
 			allVals.forEach(function(val) {
 				var cell = grid.cellKeyEntity(val.coord);
 				if (val.cell.type == Type.BASIC) {

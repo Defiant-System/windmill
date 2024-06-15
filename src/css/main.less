@@ -196,6 +196,14 @@ content {
 			z-index: 3;
 		}
 
+		&.snake-active {
+			span {
+				&.exit:after {
+					display: block;
+				}
+			}
+		}
+
 		.grid-base {
 			// background: #f00;
 			position: absolute;
@@ -231,8 +239,9 @@ content {
 				g { pointer-events: all; }
 
 				circle.started {
-					transform: scale(0.5);
-					animation: startGrow 60ms ease-in-out forwards;
+					r: 0;
+					opacity: 0;
+					animation: startGrow 60ms linear forwards;
 				}
 			}
 		}
@@ -312,7 +321,7 @@ content {
 					border-radius: 50%;
 					transform-origin: 50% 50%;
 					background: radial-gradient(circle, transparent, var( --hl ));
-					animation: pulsate 1500ms ease-out infinite;
+					animation: start-pulse 1500ms ease-out infinite;
 					mix-blend-mode: soft-light;
 					pointer-events: none;
 				}
@@ -321,6 +330,12 @@ content {
 			&.exit {
 				transform: rotate( calc( calc( var( --d ) * 45deg ) - 180deg ) );
 
+				&[style*="--d: 0"]:after,
+				&[style*="--d: 2"]:after { top: calc( var( --line ) ); }
+
+				&[style*="--d: 4"]:after,
+				&[style*="--d: 6"]:after { top: calc( var( --line ) ); }
+
 				&:before {
 					content: "";
 					position: absolute;
@@ -328,6 +343,18 @@ content {
 					height: calc( var( --line ) * 2 );
 					border-radius: var( --line );
 					background: var( --fg );
+				}
+
+				&:after {
+					display: none;
+					content: "";
+					position: absolute;
+					width: var( --line );
+					height: var( --line );
+					border-radius: 50%;
+					background: radial-gradient(circle, transparent, var( --hl ));
+					animation: exit-pulse 1500ms ease-out infinite;
+					// background: rgba(#fff,.75);
 				}
 			}
 
@@ -438,13 +465,19 @@ content {
 	100% { filter: drop-shadow(0 0 3px rgba(#fff,.5)) drop-shadow(0 0 7px rgba(#fff,.5)); }
 }
 
-@keyframes pulsate {
-	0% { opacity: 1; transform: scale(.1); }
+@keyframes start-pulse {
+	0% { opacity: 1; transform: translate(-.5px, -.5px) scale(.1); }
 	80%,
-	100% { opacity: 0; transform: scale(1); }
+	100% { opacity: 0; transform: translate(-.5px, -.5px) scale(1); }
+}
+
+@keyframes exit-pulse {
+	0% { opacity: 1; transform: translate(.5px, .5px) scale(.1); }
+	80%,
+	100% { opacity: 0; transform: translate(.5px, .5px) scale(1); }
 }
 
 @keyframes startGrow {
-	0% { transform: scale(0.5); }
-	100% { transform: scale(1); }
+	0% { opacity: 0; r: 0px; }
+	100% { opacity: 1; r: 23px; }
 }
