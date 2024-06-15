@@ -11,7 +11,7 @@ class Grid {
 	render(id) {
 		// save value
 		this.levelIndex = id;
-		
+
 		// default units
 		let Defaults = [
 				{ x: "grid", ui: "GRID_UNIT", val: 83 },
@@ -63,8 +63,9 @@ class Grid {
 			left = (window.innerWidth - +this.el.prop("offsetWidth")) >> 1;
 		this.el.css({ top, left });
 
-		let base = window.bluePrint.selectSingleNode(`${match}/Palette/c[@key="base"]`);
-		window.find("content").css({ "--base": base.getAttribute("val") });
+		let base = window.bluePrint.selectSingleNode(`${match}/Palette/c[@key="base"]`),
+			show = id === "lobby" ? "start-view" : "game-view";
+		window.find("content").data({ show }).css({ "--base": base.getAttribute("val") });
 	}
 
 	initializeSnake(data) {
@@ -108,15 +109,29 @@ class Grid {
 		}
 
 		// Success or failure at end
-		try {
-			errors = Validation.getErrors(this.grid, this.snake.movement, this.snake.secondaryMovement);
-		} catch (e) {
-			console.log(e);
-			return fadeOutSnake();
-		}
+		// try {
+			errors = Validation.getErrors(this);
+		// } catch (e) {
+			// return fadeOutSnake();
+		// }
 
 		// show errors
 		console.log(errors);
+	}
+
+	forEachEntity(fn, scope) {
+		for (var a=0; a<this.storeWidth; a++) {
+			for (var b=0; b<this.storeHeight; b++) {
+				var value = this.entities[a + this.storeWidth * b];
+				var drawType = this.getDrawType(a, b);
+				fn.call(scope, value, Math.floor(a / 2), Math.floor(b / 2), drawType);
+			}
+		}
+	}
+
+	setSymmetry(symmetry) {
+		this.symmetry = symmetry;
+		this.sanitize();
 	}
 
 	getSymmetry() {
@@ -142,43 +157,64 @@ class Grid {
 		return null;
 	}
 
+	getDrawType(a, b) {
+		if (a % 2 == 0 && b % 2 == 0) return DrawType.POINT;
+		else if (a % 2 == 1 && b % 2 == 1) return DrawType.CELL;
+		else if (a % 2 == 0) return DrawType.VLINE;
+		else if (b % 2 == 0) return DrawType.HLINE;
+		else throw Error();
+	}
+
 	info(i, j, type) {
 		return `${type}[${i},${j}]`;
 	}
 
 	// jQuery-style entity getter/setter.
-	entity(a, b, opt_val, opt_info) {
+	entity(a, b, val, info) {
 		var index = a + this.storeWidth * b;
 		var inRange = a >= 0 && b >= 0 && a < this.storeWidth && b < this.storeHeight;
-		if (opt_val && false) {
-			// console.log([opt_info, a + "―", b + "|", index].join(","));
-			console.log(`${opt_info},${a}-${b}|,${index}`);
+		if (val && false) {
+			// console.log([info, a + "―", b + "|", index].join(","));
+			console.log(`${info},${a}-${b}|,${index}`);
 		}
-		if (opt_val) {
+		if (val) {
 			if (!inRange) throw Error();
-			this.entities[index] = opt_val;
+			this.entities[index] = val;
 		} else {
 			if (!inRange) return null;
 			return this.entities[index];
 		}
 	}
 
-	lineBetweenEntity(i1, j1, i2, j2, opt_val) {
+	// Should add one for entity by drawtype.
+	cellKeyEntity(key, opt_val) {
+		return this.cellEntity(key.i, key.j, opt_val);
+	}
+
+	pointKeyEntity(key, opt_val) {
+		return this.pointEntity(key.i, key.j, opt_val);
+	}
+
+	cellEntity(i, j, opt_val) {
+		return this.entity(i * 2 + 1, j * 2 + 1, opt_val, this.info(i, j, "□"));
+	}
+
+	lineBetweenEntity(i1, j1, i2, j2, val) {
 		if (Math.abs(i1 - i2) + Math.abs(j1 - j2) != 1) {
 			throw Error(arguments);
 		}
-		return this.lineEntity(Math.min(i1, i2), Math.min(j1, j2), i1 == i2, opt_val);
+		return this.lineEntity(Math.min(i1, i2), Math.min(j1, j2), i1 == i2, val);
 	}
 
-	lineEntity(i, j, isDown, opt_val) {
+	lineEntity(i, j, isDown, val) {
 		var goDown = isDown ? 1 : 0;
 		return this.entity(
-				i*2 + (1 - goDown), j*2 + goDown, opt_val,
+				i*2 + (1 - goDown), j*2 + goDown, val,
 				this.info(i, j, goDown ? "|" : "―"));
 	}
 
-	pointEntity(i, j, opt_val) {
-		return this.entity(i * 2, j * 2, opt_val, this.info(i, j, "•"));
+	pointEntity(i, j, val) {
+		return this.entity(i * 2, j * 2, val, this.info(i, j, "•"));
 	}
 
 	generateStorage(xLevel) {

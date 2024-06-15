@@ -5,8 +5,7 @@
 		<Menu name="Quit Witness" shell="win -c"/>
 	</Menu>
 	<Menu name="Levels" for="puzzle-options">
-		<Menu name="Start View" click="show-view" arg="start-view" check-group="active-view"/>
-		<Menu name="Game View" click="show-view" arg="game-view" check-group="active-view" is-checked="1"/>
+		<Menu name="Start View" check-group="active-level" click="render-level" arg="lobby"/>
 		<Menu type="divider"/>
 		<Menu name="Level 1&#8230;">
 			<Menu name="1.0" check-group="active-level" click="render-level" arg="1.0"/>

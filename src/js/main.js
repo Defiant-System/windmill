@@ -3,12 +3,15 @@
 @import "modules/bg.js";
 @import "modules/game.js";
 @import "modules/validation.js";
+@import "modules/keys.js";
 @import "modules/misc.js";
 @import "modules/test.js";
 
 @import "classes/ElapsedTime.js";
 @import "classes/Orientation.js";
 @import "classes/NavigationSelector.js";
+@import "classes/GroupingDisjointSet.js";
+@import "classes/Grouping.js";
 @import "classes/Symmetry.js";
 @import "classes/Path.js";
 @import "classes/Grid.js";
@@ -21,9 +24,9 @@ const witness = {
 		Bg.init();
 		Game.init();
 
-		Game.grid.render("lobby");
+		// Game.grid.render("lobby");
 		// Game.grid.render("2.3");
-		// Game.grid.render("1.2");
+		Game.grid.render("1.0");
 
 		// DEV-ONLY-START
 		Test.init(this);

@@ -5,7 +5,7 @@ class Path {
 		this.coords = coords;
 		this.coordsMap = {};
 		// goog.array.toObject(coords, coordKey);
-		coords.map(e => this.coordsMap[keys.coordKey(e)] = e);
+		coords.map(e => this.coordsMap[Keys.coordKey(e)] = e);
 
 		var lines = [];
 		for (var i = 1; i < coords.length; i++) {
@@ -22,7 +22,7 @@ class Path {
 		this.lines = lines;
 		this.linesMap = {};
 		// this.linesMap = goog.array.toObject(lines, lineKey);
-		lines.map(e => this.linesMap[keys.lineKey(e)] = e);
+		lines.map(e => this.linesMap[Keys.lineKey(e)] = e);
 
 		this.width = width;
 		this.height = height;
@@ -33,14 +33,14 @@ class Path {
 		for (var i = 0; i < this.width; i++) {
 			for (var j = 0; j < this.height; j++) {
 				var coord = {i: i, j: j};
-				allCoords[keys.coordKey(coord)] = new GroupingDisjointSet(coord, allCoords);
+				allCoords[Keys.coordKey(coord)] = new GroupingDisjointSet(coord, allCoords);
 			}
 		}
 		var startCoords = null;
 		if (opt_startCoords) {
 			startCoords = {};
 			// goog.array.toObject(opt_startCoords, coordKey);
-			opt_startCoords.map(e => startCoords[keys.coordKey(e)] = e);
+			opt_startCoords.map(e => startCoords[Keys.coordKey(e)] = e);
 		}
 		var searchCoords = startCoords == null
 						? allCoords
@@ -57,7 +57,7 @@ class Path {
 			var queue = [start.data.seed];
 			while (queue.length) {
 				var coord = queue.pop();
-				var group = allCoords[keys.coordKey(coord)];
+				var group = allCoords[Keys.coordKey(coord)];
 				if (group.visited) {
 					continue;
 				}
@@ -65,7 +65,7 @@ class Path {
 				var texts = [];
 				this.getNeighbors(coord).forEach(function(neighbor) {
 					queue.push(neighbor);
-					var neighborGroup = allCoords[keys.coordKey(neighbor)];
+					var neighborGroup = allCoords[Keys.coordKey(neighbor)];
 					group.union(neighborGroup);
 				})
 			}
@@ -75,7 +75,7 @@ class Path {
 		// allCoords.forEach(function(group) {
 		Object.keys(allCoords).map(k => {
 			let group = allCoords[k];
-			var key = keys.coordKey(group.data.seed);
+			var key = Keys.coordKey(group.data.seed);
 			if (group.data.count && !(key in groupMap) && (key in searchCoords)) {
 				if (!opt_skipFinalize) {
 					group.data.finalize();
@@ -88,7 +88,7 @@ class Path {
 			var s = [];
 			for (var i = 0; i < this.width; i++) {
 				coord = {i: i, j: j};
-				s.push(allCoords[keys.coordKey(coord)].getSeed());
+				s.push(allCoords[Keys.coordKey(coord)].getSeed());
 			}
 			//console.log(j + ' >' + s.join('') + '<');
 		}
@@ -101,7 +101,7 @@ class Path {
 		// Assumption: At least one call to cell is a coord that exists.
 		// All groupings trivially include out-of-bounds points, otherwise.
 		var cell = function(di, dj) {
-			return (keys.coordKey({i: coord.i+di, j:coord.j+dj}) in group.coords) ||
+			return (Keys.coordKey({i: coord.i+di, j:coord.j+dj}) in group.coords) ||
 					coord.i + di < 0 || coord.j + dj < 0 ||
 					coord.i + di >= width || coord.j + dj >= height;
 		}
@@ -142,7 +142,7 @@ class Path {
 	}
 
 	hasLine(i, j, isDown) {
-		return keys.lineKey({i: i, j: j, isDown: isDown}) in this.linesMap;
+		return Keys.lineKey({i: i, j: j, isDown: isDown}) in this.linesMap;
 	}
 
 }

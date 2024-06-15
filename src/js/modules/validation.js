@@ -1,11 +1,12 @@
 
 let Validation = {
-	getErrors(grid, movement, secondaryMovement) {
-		var p;
-		if (secondaryMovement) {
-			p = new Path(movement.concat(secondaryMovement), grid.width, grid.height, [movement.length]);
+	getErrors(grid) {
+		let snake = grid.snake,
+			p;
+		if (snake.secondaryMovement) {
+			p = new Path(movement.concat(snake.secondaryMovement), grid.width, grid.height, [snake.movement.length]);
 		} else {
-			p = new Path(movement, grid.width, grid.height);
+			p = new Path(snake.movement, grid.width, grid.height);
 		}
 		var originalErrors = [];
 		// Per-entity checks
@@ -15,11 +16,11 @@ let Validation = {
 			var hasError = false;
 			if (type == Type.HEXAGON) {
 				if (drawType == DrawType.POINT) {
-					if (!(keys.coordKey(coord) in p.coordsMap)) {
+					if (!(Keys.coordKey(coord) in p.coordsMap)) {
 						hasError = true;
 					}
 				} else if (drawType == DrawType.HLINE || drawType == DrawType.VLINE) {
-					if (!(keys.lineKey({
+					if (!(Keys.lineKey({
 								i: coord.i,
 								j: coord.j,
 								isDown: drawType == DrawType.VLINE
@@ -30,7 +31,7 @@ let Validation = {
 			} else if (type == Type.TRIANGLE) {
 				var lineCount = 0;
 				var addLine = function(di, dj, isDown) {
-					if (keys.lineKey({
+					if (Keys.lineKey({
 								i: coord.i + di,
 								j: coord.j + dj,
 								isDown: isDown
