@@ -8,6 +8,9 @@
 @import "modules/misc.js";
 @import "modules/test.js";
 
+@import "classes/Point.js";
+@import "classes/Vector.js";
+@import "classes/Firefly.js";
 @import "classes/ElapsedTime.js";
 @import "classes/Orientation.js";
 @import "classes/NavigationSelector.js";

@@ -101,8 +101,10 @@ class Grid {
 				this.el.removeClass("snake-active");
 				// fade out snake and empty its contents
 				this.el.find(".grid-path").cssSequence(`${sequence}-snake`, "transitionend", el => {
-					el.find("svg > g").html("");
+					// reset grid path
 					el.removeClass("fade-out-snake glow-snake");
+					// empty snake body
+					el.find("svg > g").html("");
 				});
 			};
 		// reset started flag
@@ -128,7 +130,8 @@ class Grid {
 			fadeOutSnake();
 			return;
 		}
-
+		// start fire flies
+		Particles.start(this);
 		// reset level
 		fadeOutSnake("glow");
 		// sound fx
