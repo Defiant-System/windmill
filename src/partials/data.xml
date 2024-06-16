@@ -20,4 +20,11 @@
 	@import "levels/level 3.1.xml"
 	@import "levels/level 3.2.xml"
 	@import "levels/level 3.3.xml"
+
+	@import "levels/level 4.0.xml"
+	@import "levels/level 4.1.xml"
+	@import "levels/level 4.2.xml"
+	@import "levels/level 4.3.xml"
+	@import "levels/level 4.4.xml"
+	@import "levels/level 4.5.xml"
 </Data>

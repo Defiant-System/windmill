@@ -7,13 +7,13 @@
 	<c key="snake1" val="#ede58c"/>
 	<c key="snake2" val="#fff"/>
 
-	<c id="1" val="#005650"/>
-	<c id="2" val="#fffaec"/>
-	<c id="3" val="CYAN"/>
-	<c id="4" val="MAGENTA"/>
-	<c id="5" val="YELLOW"/>
-	<c id="6" val="RED"/>
-	<c id="7" val="GREEN"/>
-	<c id="8" val="BLUE"/>
-	<c id="9" val="ORANGE"/>
+	<c id="1" val="#005650" name="black"/>
+	<c id="2" val="#fffaec" name="white"/>
+	<c id="3" val="#0ff" name="cyan"/>
+	<c id="4" val="#f0f" name="magenta"/>
+	<c id="5" val="#ff0" name="yellow"/>
+	<c id="6" val="#f00" name="red"/>
+	<c id="7" val="#0f0" name="green"/>
+	<c id="8" val="#00f" name="blue"/>
+	<c id="9" val="#f90" name="orange"/>
 </Palette>

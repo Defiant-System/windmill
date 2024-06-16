@@ -1,8 +1,8 @@
 <Palette>
-	<c key="base" val="#7f0079"/>
-	<c key="bg" val="#b900ac"/>
-	<c key="gr" val="#ff00f9"/>
-	<c key="fg" val="#8b08a2"/>
+	<c key="base" val="#100e49"/>
+	<c key="bg" val="#0d4c87"/>
+	<c key="gr" val="#3eaaff"/>
+	<c key="fg" val="#2e2d6c"/>
 	<c key="hl" val="#fff"/>
 	<c key="snake1" val="#fff"/>
 	<c key="snake2" val="#fff"/>

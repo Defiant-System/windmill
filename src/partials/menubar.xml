@@ -30,6 +30,14 @@
 			<Menu name="3.2" check-group="active-level" click="render-level" arg="3.2"/>
 			<Menu name="3.3" check-group="active-level" click="render-level" arg="3.3"/>
 		</Menu>
+		<Menu name="Level 4&#8230;">
+			<Menu name="4.0" check-group="active-level" click="render-level" arg="4.0"/>
+			<Menu name="4.1" check-group="active-level" click="render-level" arg="4.1"/>
+			<Menu name="4.2" check-group="active-level" click="render-level" arg="4.2"/>
+			<Menu name="4.3" check-group="active-level" click="render-level" arg="4.3"/>
+			<Menu name="4.4" check-group="active-level" click="render-level" arg="4.4"/>
+			<Menu name="4.5" check-group="active-level" click="render-level" arg="4.5"/>
+		</Menu>
 	</Menu>
 	<Menu name="Help">
 		<Menu name="Help" click="open-help"/>

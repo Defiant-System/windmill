@@ -412,7 +412,7 @@ class Snake {
 			}
 			return str;
 		});
-		let str = `<g stroke="white" fill="white">${out.join("")}</g>`;
+		let str = `<g>${out.join("")}</g>`;
 		$(el).html(str);
 	}
 

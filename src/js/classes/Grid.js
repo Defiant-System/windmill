@@ -109,13 +109,14 @@ class Grid {
 
 		// reset started flag
 		delete this._started;
-
-		// sound fx
-		window.audio.play("solved");
+		return;
 
 		if (!this.snake.atEnd()) {
 			return fadeOutSnake();
 		}
+
+		// reset level
+		fadeOutSnake();
 
 		// Success or failure at end
 		let err = Validation.getErrors(this);
@@ -124,10 +125,15 @@ class Grid {
 		if (err.errors.length) {
 			let errors = err.errors.concat(err.allowedErrors);
 			console.log(errors);
+
+			// sound fx
+			window.audio.play("fail");
+
+			return;
 		}
 
-		// reset level
-		fadeOutSnake();
+		// sound fx
+		window.audio.play("solved");
 	}
 
 	forEachEntity(fn, scope) {

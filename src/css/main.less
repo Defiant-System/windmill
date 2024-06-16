@@ -31,7 +31,7 @@ content {
 
 	&[data-show="game-view"] {
 		.start-view {
-			z-index: 2;
+			z-index: 3;
 
 			.logo {
 				transform: translate(-298px,-117px) scale(.35);
@@ -150,7 +150,7 @@ content {
 	--fg: #8b08a2;
 	--hl: #fff;
 	--snake1: #fff;
-	--snake2: #ff0;
+	--snake2: #fff;
 	// defaults
 	--c: #000;
 	--d: 0;
@@ -231,7 +231,11 @@ content {
 			height: 100%;
 			z-index: 2;
 			filter: drop-shadow(0 1px 0 rgba(#fff,.125))
-					 drop-shadow(0 -1px 0 rgba(#000,.3));
+					drop-shadow(0 -1px 0 rgba(#000,.3));
+			// filter: drop-shadow(0 -1px 0 rgba(#fff,.2))
+			// 		drop-shadow(0 1px 0 rgba(#fff,.2))
+			// 		drop-shadow(-1px 0 0 rgba(#fff,.2))
+			// 		drop-shadow(1px 0 0 rgba(#fff,.2));
 		}
 
 		.grid-path {
@@ -254,7 +258,16 @@ content {
 				// transform: translate(.5px, .5px);
 				overflow: visible;
 				
-				g { pointer-events: all; }
+				> g {
+					pointer-events: all;
+					fill: var( --snake1 );
+					stroke: var( --snake1 );
+
+					&.path2 {
+						fill: var( --snake2 );
+						stroke: var( --snake2 );
+					}
+				}
 
 				circle.started {
 					r: 0;

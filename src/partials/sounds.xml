@@ -1,5 +1,5 @@
 <Sounds>
 	<i id="solved" url="~/audio/solved.mp3"/>
 	<i id="start" url="~/audio/start.mp3"/>
-	<i id="chuck" url="~/audio/chuck.mp3"/>
+	<i id="fail" url="~/audio/fail.mp3"/>
 </Sounds>
