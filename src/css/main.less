@@ -32,10 +32,10 @@ content {
 	&[data-show="game-view"] {
 		.start-view {
 			z-index: 3;
+			pointer-events: none;
 
 			.logo {
 				transform: translate(-298px,-117px) scale(.35);
-				pointer-events: none;
 			}
 		}
 
@@ -172,8 +172,8 @@ content {
 				&:after { display: none; }
 
 				.grid-base {
-					filter: drop-shadow(0 1px 13px rgba(#000,.35)) hue-rotate(235deg);
-					mix-blend-mode: hard-light;
+					filter: drop-shadow(0 1px 13px rgba(#000,.35));
+					// mix-blend-mode: hard-light;
 				}
 			}
 		}
@@ -253,6 +253,21 @@ content {
 				opacity: 0;
 			}
 
+			&.glow-snake {
+				transition-delay: 1000ms;
+				opacity: 0;
+
+				svg {
+					g.path1 {
+						filter: drop-shadow(0 0 7px var( --snake1 ));
+					}
+
+					g.path2 {
+						filter: drop-shadow(0 0 7px var( --snake2 ));
+					}
+				}
+			}
+
 			svg {
 				// background: rgba(#f00,.2);
 				// transform: translate(.5px, .5px);
@@ -260,12 +275,20 @@ content {
 				
 				> g {
 					pointer-events: all;
-					fill: var( --snake1 );
-					stroke: var( --snake1 );
 
-					&.path2 {
-						fill: var( --snake2 );
-						stroke: var( --snake2 );
+					g {
+						transition: filter 100ms ease-in-out;
+						filter: drop-shadow(0 0 0);
+
+						&.path1 {
+							fill: var( --snake1 );
+							stroke: var( --snake1 );
+						}
+
+						&.path2 {
+							fill: var( --snake2 );
+							stroke: var( --snake2 );
+						}
 					}
 				}
 

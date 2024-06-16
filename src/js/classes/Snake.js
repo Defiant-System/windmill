@@ -368,7 +368,7 @@ class Snake {
 		// Ugly DOM manipulation to insert SVG dynamically.
 		if (!snakeEl) {
 			snakeEl = document.createElementNS("http://www.w3.org/2000/svg", "g")
-			snakeEl.setAttribute("id", `path${snakeId}`);
+			snakeEl.setAttribute("class", `path${snakeId}`);
 			this.draw.append(snakeEl);
 		}
 		// console.log(contents);

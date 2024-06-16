@@ -97,26 +97,25 @@ class Grid {
 	}
 
 	finishSnake() {
-		let fadeOutSnake = () => {
+		let fadeOutSnake = (sequence="fade-out") => {
 				// UI update
 				this.el.removeClass("snake-active");
 				// fade out snake and empty its contents
-				this.el.find(".grid-path").cssSequence("fade-out-snake", "transitionend", el => {
+				this.el.find(".grid-path").cssSequence(`${sequence}-snake`, "transitionend", el => {
 					el.find("svg > g").html("");
-					el.removeClass("fade-out-snake");
+					el.removeClass("fade-out-snake glow-snake");
 				});
 			};
 
 		// reset started flag
 		delete this._started;
-		return;
+
+		// to UI debug snake
+		// return;
 
 		if (!this.snake.atEnd()) {
 			return fadeOutSnake();
 		}
-
-		// reset level
-		fadeOutSnake();
 
 		// Success or failure at end
 		let err = Validation.getErrors(this);
@@ -129,8 +128,14 @@ class Grid {
 			// sound fx
 			window.audio.play("fail");
 
+			// reset level
+			fadeOutSnake();
+
 			return;
 		}
+
+		// reset level
+		fadeOutSnake("glow");
 
 		// sound fx
 		window.audio.play("solved");
