@@ -90,7 +90,6 @@ class Grid {
 
 	updateSnake() {
 		if (!this._started) return;
-
 		let msPerGridUnit = 75;
 		this.snake.moveTowardsMouse(msPerGridUnit , this.navigationSelector);
 		this.snake.render();
@@ -106,37 +105,32 @@ class Grid {
 					el.removeClass("fade-out-snake glow-snake");
 				});
 			};
-
 		// reset started flag
 		delete this._started;
 
 		// to UI debug snake
 		// return;
 
+		// path not completed - reset
 		if (!this.snake.atEnd()) {
 			return fadeOutSnake();
 		}
 
 		// Success or failure at end
 		let err = Validation.getErrors(this);
-
 		// show errors
 		if (err.errors.length) {
 			let errors = err.errors.concat(err.allowedErrors);
 			console.log(errors);
-
 			// sound fx
 			window.audio.play("fail");
-
 			// reset level
 			fadeOutSnake();
-
 			return;
 		}
 
 		// reset level
 		fadeOutSnake("glow");
-
 		// sound fx
 		window.audio.play("solved");
 	}

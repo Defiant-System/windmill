@@ -412,8 +412,8 @@ class Snake {
 			}
 			return str;
 		});
-		let str = `<g>${out.join("")}</g>`;
-		$(el).html(str);
+		// insert svg "elements"
+		$(el).html(out.join(""));
 	}
 
 	// stringRepr() {}
