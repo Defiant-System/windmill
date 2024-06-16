@@ -77,6 +77,9 @@ class Grid {
 		this.snake.setTargetingMouse(true);
 		this.snake.render();
 
+		// sound fx
+		window.audio.play("start");
+
 		// UI update
 		this.el.addClass("snake-active");
 
@@ -107,7 +110,7 @@ class Grid {
 		// reset started flag
 		delete this._started;
 
-		// audio fx
+		// sound fx
 		window.audio.play("solved");
 
 		if (!this.snake.atEnd()) {
