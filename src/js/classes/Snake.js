@@ -1,12 +1,11 @@
 
 class Snake {
 
-	static id_ = 0;
 	static MAX_PROGRESS_ = UI.GRID_UNIT;
 
 	constructor(opt) {
 		// The current path.
-		this.snakeId = ++Snake.id_;
+		this.snakeId = 1;
 		this.start = { i: opt.x, j: opt.y };
 		this.mouse = { x: opt.mX, y: opt.mY };
 		this.movement = [this.start];
@@ -14,7 +13,7 @@ class Snake {
 		// Symmetry snakes (render-only)
 		if (opt.symmetry) {
 			this.symmetry = true;
-			this.secondarySnakeId = ++Snake.id_;
+			this.secondarySnakeId = 2;
 			this.secondaryMovement = [this.symmetry.reflectPoint(this.start)];
 		} else {
 			this.symmetry = null;
@@ -371,7 +370,6 @@ class Snake {
 			snakeEl.setAttribute("class", `path${snakeId}`);
 			this.draw.append(snakeEl);
 		}
-		// console.log(contents);
 		this.renderSvg(snakeEl, contents);
 
 		return snakeEl;
@@ -412,6 +410,7 @@ class Snake {
 			}
 			return str;
 		});
+
 		// insert svg "elements"
 		$(el).html(out.join(""));
 	}

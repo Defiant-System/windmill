@@ -38,26 +38,23 @@ let Particles = {
 			tX = +grid.el.prop("offsetLeft") + (gW / 2) + .5,
 			tY = +grid.el.prop("offsetTop") + (gH / 2) + .5,
 			total = 0;
-		
+
 		grid.snake.snakeEl.childNodes.map(el => {
-			let x1 = +el.getAttribute("x1"),
-				y1 = +el.getAttribute("y1"),
-				x2 = +el.getAttribute("x2"),
-				y2 = +el.getAttribute("y2");
-			if (el.nodeName === "circle") {
-				x1 = +el.getAttribute("x");
-				y1 = +el.getAttribute("y");
-				x2 = +el.getAttribute("x");
-				y2 = +el.getAttribute("y");
-			}
+			let isStart = el.nodeName === "circle",
+				x1 = +el.getAttribute(isStart ? "x" : "x1"),
+				y1 = +el.getAttribute(isStart ? "y" : "y1"),
+				x2 = +el.getAttribute(isStart ? "x" : "x2"),
+				y2 = +el.getAttribute(isStart ? "y" : "y2");
 			// total length of snake
 			total += this.dist(x1, y1, x2, y2);
 			// path of snake body
 			path.push([x2, y2]);
 		});
 
+		// console.log( JSON.stringify(path) );
+
 		// reset canvas
-		this.cvs.width = this.cvs.width;
+		this.cvs.attr({ width: this.opt.oW });
 		this.ctx.fillStyle = "#fff";
 		this.ctx.save();
 		this.ctx.translate(tX + 71, tY + 126);
@@ -85,7 +82,7 @@ let Particles = {
 			if (dir % 180 === 0) y += (Math.random() * 2 | 0 ? 1 : -1) * line * .5;
 			// vertical
 			else x += (Math.random() * 2 | 0 ? 1 : -1) * line * .5;
-
+			
 			this.ctx.beginPath();
 			this.ctx.arc(x, y, this.opt.radius, 0, this.opt.tau, true);
 			this.ctx.fill();
