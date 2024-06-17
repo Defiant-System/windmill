@@ -131,7 +131,7 @@ class Grid {
 			return;
 		}
 		// start fire flies
-		Particles.start(this);
+		// Particles.start(this);
 		// reset level
 		fadeOutSnake("glow");
 		// sound fx
@@ -196,6 +196,7 @@ class Grid {
 			// console.log([info, a + "―", b + "|", index].join(","));
 			console.log(`${info},${a}-${b}|,${index}`);
 		}
+		// console.log( this.entities[index] );
 		if (val) {
 			if (!inRange) throw Error();
 			this.entities[index] = val;
@@ -228,7 +229,8 @@ class Grid {
 	lineEntity(i, j, isDown, val) {
 		var goDown = isDown ? 1 : 0;
 		return this.entity(
-				i*2 + (1 - goDown), j*2 + goDown, val,
+				i * 2 + (1 - goDown),
+				j * 2 + goDown, val,
 				this.info(i, j, goDown ? "|" : "―"));
 	}
 

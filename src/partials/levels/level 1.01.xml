@@ -1,0 +1,17 @@
+<Level id="1.01">
+	@import "../palettes/purple.xml"
+
+	<grid type="base" width="1" height="1" symmetry="0">
+		<!-- lines -->
+		<i type="ns" x="0" y="0" />
+
+		<i type="we" x="0" y="0" />
+		<i type="we" x="0" y="1" />
+
+		<i type="ns" x="1" y="0" />
+
+		<!-- start & exit -->
+		<i type="start" x="0" y="1" />
+		<i type="exit" x="1" y="0" d="0" />
+	</grid>
+</Level>

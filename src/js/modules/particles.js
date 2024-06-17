@@ -12,7 +12,7 @@ let Particles = {
 			radius: 3,
 			hPI: 180 / Math.PI,
 			tau: Math.PI * 2,
-			dots: [...Array(45)].map(e => Math.random()).map(e => e < .05 ? e + .05 : e),
+			dots: [...Array(35)].map(e => Math.random()).map(e => e < .05 ? e + .05 : e),
 		};
 		// update dimensions
 		this.cvs.attr({
@@ -46,16 +46,17 @@ let Particles = {
 				x2 = +el.getAttribute(isStart ? "x" : "x2"),
 				y2 = +el.getAttribute(isStart ? "y" : "y2");
 			// total length of snake
+			// console.log(x1, y1, x2, y2);
 			total += this.dist(x1, y1, x2, y2);
 			// path of snake body
-			path.push([x2, y2]);
+			path.push([x2-x1, y2-y1]);
 		});
 
-		// console.log( JSON.stringify(path) );
+		console.log( JSON.stringify(path) );
 
 		// reset canvas
 		this.cvs.attr({ width: this.opt.oW });
-		this.ctx.fillStyle = "#fff";
+		this.ctx.fillStyle = "#f00";
 		this.ctx.save();
 		this.ctx.translate(tX + 71, tY + 126);
 
@@ -82,9 +83,9 @@ let Particles = {
 			if (dir % 180 === 0) y += (Math.random() * 2 | 0 ? 1 : -1) * line * .5;
 			// vertical
 			else x += (Math.random() * 2 | 0 ? 1 : -1) * line * .5;
-			
+
 			this.ctx.beginPath();
-			this.ctx.arc(x, y, this.opt.radius, 0, this.opt.tau, true);
+			this.ctx.arc(x, y, this.opt.radius, 0, this.opt.tau);
 			this.ctx.fill();
 		});
 	}
