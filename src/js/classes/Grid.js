@@ -196,7 +196,6 @@ class Grid {
 			// console.log([info, a + "―", b + "|", index].join(","));
 			console.log(`${info},${a}-${b}|,${index}`);
 		}
-		// console.log( this.entities[index] );
 		if (val) {
 			if (!inRange) throw Error();
 			this.entities[index] = val;
@@ -220,18 +219,16 @@ class Grid {
 	}
 
 	lineBetweenEntity(i1, j1, i2, j2, val) {
-		if (Math.abs(i1 - i2) + Math.abs(j1 - j2) != 1) {
-			throw Error(arguments);
-		}
+		if (Math.abs(i1 - i2) + Math.abs(j1 - j2) != 1) throw Error(arguments);
 		return this.lineEntity(Math.min(i1, i2), Math.min(j1, j2), i1 == i2, val);
 	}
 
 	lineEntity(i, j, isDown, val) {
-		var goDown = isDown ? 1 : 0;
-		return this.entity(
-				i * 2 + (1 - goDown),
-				j * 2 + goDown, val,
-				this.info(i, j, goDown ? "|" : "―"));
+		var goDown = isDown ? 1 : 0,
+			a = i * 2 + (1 - goDown),
+			b = j * 2 + goDown,
+			info = this.info(i, j, goDown ? "|" : "―");
+		return this.entity(a, b , val, info);
 	}
 
 	pointEntity(i, j, val) {
@@ -269,6 +266,7 @@ class Grid {
 					break;
 				case "exit":
 					storage.entity[index].type = Type.END;
+					storage.entity[index].rotation = +xNode.getAttribute("d");
 					break;
 				case "nsd":
 					storage.entity[index + storage.width].type = Type.DISJOINT;

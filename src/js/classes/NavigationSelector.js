@@ -23,9 +23,10 @@ class NavigationSelector {
 		}
 		// If point is not there, we can go to the end.
 		if (thisEntity.type == Type.END) {
-			var o = grid.getEndPlacement(current.i, current.j);
-			if (o.horizontal == di && o.vertical == dj) {
-				return "end";
+			// var o = grid.getEndPlacement(current.i, current.j);
+			// if (o.horizontal == di && o.vertical == dj) {
+			if (thisEntity.rotation !== undefined) {
+				return "end-"+ (thisEntity.rotation % 4 == 0 ? "vertical" : "horizontal");
 			}
 		}
 		return "no";
@@ -35,11 +36,12 @@ class NavigationSelector {
 		var grid = this.grid;
 		// Select something
 		var current = movement[movement.length - 1];
-		var select = {i: current.i, j: current.j};
+		var select = { i: current.i, j: current.j };
 		// First, at start, can stay still within circle.
 		var result = {}
 		// Determine where we can go and how far.
-		var diBack, djBack;
+		var diBack,
+			djBack;
 		if (movement.length > 1) {
 			var previous = movement[movement.length - 2];
 			diBack = previous.i - current.i;
@@ -95,13 +97,16 @@ class NavigationSelector {
 			var reach = this.pointIsReachable(current, di, dj);
 			if (reach == "no") {
 				return 0;
-			} else if (reach == "end") {
+			} else if (reach.startsWith("end-")) {
+			// } else if (reach == "end") {
+				if (di == 0 && reach.endsWith("-horizontal")) return 0;
+				if (dj == 0 && reach.endsWith("-vertical")) return 0;
 				return UI.END_LENGTH;
 			} else if (reach == "disjoint") {
 				return UI.DISJOINT_LENGTH;
 			}
 			if (secondary) {
-				var sd = symmetry.reflectDelta({di: di, dj: dj});
+				var sd = symmetry.reflectDelta({ di, dj});
 				reach = this.pointIsReachable(secondary.current, sd.di, sd.dj);
 				if (reach == "no") {
 					return 0;
