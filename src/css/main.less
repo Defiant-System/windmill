@@ -283,6 +283,18 @@ content {
 						&.path1 {
 							fill: var( --snake1 );
 							stroke: var( --snake1 );
+
+							line.st1 {
+								transform: rotate(45deg);
+							}
+
+							line.st3 {
+								transform: rotate(45deg);
+							}
+
+							line.st7 {
+								transform: rotate(45deg);
+							}
 						}
 
 						&.path2 {
@@ -385,10 +397,16 @@ content {
 				transform: rotate( calc( calc( var( --d ) * 45deg ) - 180deg ) );
 
 				&[style*="--d: 0"]:after,
-				&[style*="--d: 2"]:after { top: calc( var( --line ) ); }
+				&[style*="--d: 1"]:after,
+				&[style*="--d: 2"]:after,
+				&[style*="--d: 3"]:after { top: var( --line ); }
 
 				&[style*="--d: 4"]:after,
-				&[style*="--d: 6"]:after { top: calc( var( --line ) ); }
+				&[style*="--d: 5"]:after,
+				&[style*="--d: 6"]:after { top: var( --line ); }
+
+				&[style*="--d: 7"]:after { top: var( --line ); left: -1px; }
+
 
 				&:before {
 					content: "";

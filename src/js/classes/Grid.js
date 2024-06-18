@@ -69,7 +69,8 @@ class Grid {
 	}
 
 	initializeSnake(data) {
-		data.grid = this.el;
+		data.grid = this;
+		data.gridEl = this.el;
 		data.draw = this.el.find(".grid-path svg g");
 		data.symmetry = this.getSymmetry();
 		this.snake = new Snake(data);
@@ -111,7 +112,7 @@ class Grid {
 		delete this._started;
 
 		// to UI debug snake
-		// return;
+		return;
 
 		// path not completed - reset
 		if (!this.snake.atEnd()) {
@@ -186,6 +187,11 @@ class Grid {
 
 	info(i, j, type) {
 		return `${type}[${i},${j}]`;
+	}
+
+	getEntity(a, b) {
+		var index = (this.storeWidth * (b * 2)) + (a * 2);
+		return this.entities[index];
 	}
 
 	// jQuery-style entity getter/setter.

@@ -3,15 +3,15 @@ class Snake {
 
 	static MAX_PROGRESS_ = UI.GRID_UNIT;
 
-	constructor(opt) {
+	constructor(data) {
 		// The current path.
 		this.snakeId = 1;
-		this.start = { i: opt.x, j: opt.y };
-		this.mouse = { x: opt.mX, y: opt.mY };
+		this.start = { i: data.x, j: data.y };
+		this.mouse = { x: data.mX, y: data.mY };
 		this.movement = [this.start];
 
 		// Symmetry snakes (render-only)
-		if (opt.symmetry) {
+		if (data.symmetry) {
 			this.symmetry = true;
 			this.secondarySnakeId = 2;
 			this.secondaryMovement = [this.symmetry.reflectPoint(this.start)];
@@ -22,7 +22,7 @@ class Snake {
 		}
 
 		// fast references
-		this.gridEl = opt.grid;
+		this.data = data;
 
 		// SVG elements
 		this.snakeEl = null;
@@ -39,12 +39,12 @@ class Snake {
 		this.progress = 0;
 
 		// The board!
-		this.draw = opt.draw;
+		this.draw = data.draw;
 
 		// Misc state for execution/optimization.
 		this.lastUpdateTime = null;
-		this.mouseX = opt.mX ? opt.mX : 0;
-		this.mouseY = opt.mY ? opt.mY : 0;
+		this.mouseX = data.mX ? data.mX : 0;
+		this.mouseY = data.mY ? data.mY : 0;
 		this.frameTime = new ElapsedTime();
 		this.mouseHistoryX = [];
 		this.mouseHistoryY = [];
@@ -312,6 +312,9 @@ class Snake {
 		// In the future, add arcs.
 		let contents = [];
 		let previous = null;
+		let current = movement[movement.length-1];
+		let entity = this.data.grid.getEntity(current.i, current.j);
+
 		for (let i = 0; i <= movement.length; i++) {
 			let isEnd = i == movement.length;
 			if (isEnd && !target) continue;
@@ -321,6 +324,7 @@ class Snake {
 			if (!previous) {
 				segment.segmentType = SegmentType.START;
 			} else {
+				if (isEnd) segment.rotation = entity.rotation;
 				segment.segmentType = isEnd ? SegmentType.END : SegmentType.MIDDLE;
 				segment.direction = coords.i == previous.i ? DrawType.VLINE : DrawType.HLINE;
 				if (isEnd && this.progress > 0) {
@@ -405,7 +409,9 @@ class Snake {
 					str = `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke-width="${UI.GRID_LINE+1}" stroke-linecap="round"></line>`;
 					break;
 				case SegmentType.END:
-					str = `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke-width="${UI.GRID_LINE+1}" stroke-linecap="round"></line>`;
+					// console.log(segment);
+					let rot = segment.rotation ? `class="st${segment.rotation}"` : ""
+					str = `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" ${rot} stroke-width="${UI.GRID_LINE+1}" stroke-linecap="round"></line>`;
 					break;
 			}
 			return str;
