@@ -1,7 +1,7 @@
 <Level id="lobby">
 	@import "../palettes/lobby.xml"
 
-	<grid type="base" width="2" height="0" symmetry="0">
+	<grid type="base" width="2" height="0">
 		<!-- lines -->
 		<i type="we" x="0" y="0" />
 		<i type="we" x="1" y="0" />

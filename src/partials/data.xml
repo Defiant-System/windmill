@@ -1,4 +1,11 @@
 <Data>
+	@import "palettes/blue.xml"
+	@import "palettes/gray.xml"
+	@import "palettes/green.xml"
+	@import "palettes/lobby.xml"
+	@import "palettes/orange.xml"
+	@import "palettes/purple.xml"
+
 	@import "levels/lobby.xml"
 
 	@import "levels/level 1.0.xml"

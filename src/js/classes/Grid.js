@@ -63,7 +63,7 @@ class Grid {
 			left = (window.innerWidth - +this.el.prop("offsetWidth")) >> 1;
 		this.el.css({ top, left });
 
-		let base = window.bluePrint.selectSingleNode(`${match}/Palette/c[@key="base"]`),
+		let base = window.bluePrint.selectSingleNode(`//Palette[@id="${xLevel.getAttribute("palette")}"]/c[@key="base"]`),
 			show = id === "lobby" ? "start-view" : "game-view";
 		window.find("content").data({ show }).css({ "--base": base.getAttribute("val") });
 	}
@@ -250,7 +250,7 @@ class Grid {
 
 		let storage = {
 				entity: [],
-				symmetry: +xGrid.getAttribute("symmetry") || SymmetryType.UNKNOWN,
+				symmetry: +xGrid.getAttribute("symmetry") || SymmetryType.NONE,
 				width: (+xGrid.getAttribute("width") * 2) + 1,
 				height: (+xGrid.getAttribute("height") * 2) + 1,
 			};
@@ -300,7 +300,7 @@ class Grid {
 		// storage = tmp_entities;
 		// internals
 		this.entities = storage.entity;
-		this.symmetry = storage.symmetry || SymmetryType.UNKNOWN;
+		this.symmetry = storage.symmetry || SymmetryType.NONE;
 
 		var storeHeight = Math.floor(storage.entity.length / storage.width);
 		this.width = Math.floor(storage.width / 2);

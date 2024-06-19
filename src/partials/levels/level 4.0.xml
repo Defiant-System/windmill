@@ -1,6 +1,4 @@
-<Level id="4.0">
-	@import "../palettes/blue.xml"
-
+<Level id="4.0" palette="blue">
 	<grid type="base" width="3" height="3" symmetry="2">
 		<!-- lines -->
 		<i type="ns" x="0" y="0" />

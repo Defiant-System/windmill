@@ -1,4 +1,4 @@
-<Palette>
+<Palette id="blue">
 	<c key="base" val="#100e49"/>
 	<c key="bg" val="#0d4c87"/>
 	<c key="gr" val="#3eaaff"/>

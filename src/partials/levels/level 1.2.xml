@@ -1,7 +1,5 @@
-<Level id="1.2">
-	@import "../palettes/purple.xml"
-
-	<grid type="base" width="1" height="3" symmetry="0">
+<Level id="1.2" palette="purple">
+	<grid type="base" width="1" height="3">
 		<!-- lines -->
 		<i type="ns" x="0" y="0" />
 		<i type="ns" x="0" y="1" />

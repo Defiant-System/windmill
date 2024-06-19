@@ -1,7 +1,5 @@
-<Level id="3.2">
-	@import "../palettes/orange.xml"
-
-	<grid type="base" width="5" height="5" grid="73" line="23" symmetry="0">
+<Level id="3.2" palette="orange">
+	<grid type="base" width="5" height="5" grid="73" line="23">
 		<!-- lines -->
 		<i type="ns" x="0" y="0" />
 		<i type="ns" x="0" y="1" />

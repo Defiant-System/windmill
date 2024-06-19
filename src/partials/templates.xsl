@@ -1,6 +1,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:template name="level-puzzle">
+	<xsl:variable name="palette" select="ancestor::Data/Palette[@id = current()/@palette]" />
 	<xsl:variable name="puzzleWidth" select="(grid/@width * grid/@gW) + grid/@line" />
 	<xsl:variable name="puzzleHeight" select="(grid/@height * grid/@gH) + grid/@line" />
 
@@ -17,7 +18,7 @@
 				--gW: <xsl:value-of select="grid/@grid"/>px;
 				--gH: <xsl:value-of select="grid/@grid"/>px;
 			</xsl:if>
-			<xsl:for-each select="Palette/*[@key]">
+			<xsl:for-each select="$palette/*[@key]">
 				--<xsl:value-of select="@key"/>: <xsl:value-of select="@val"/>;
 			</xsl:for-each>
 		</xsl:attribute>
@@ -34,7 +35,7 @@
 						<xsl:attribute name="style">
 							--x: <xsl:value-of select="@x"/>;
 							--y: <xsl:value-of select="@y"/>;
-							<xsl:if test="@c">--c: <xsl:value-of select="ancestor::Level/Palette/c[@id = current()/@c]/@val"/>;</xsl:if>
+							<xsl:if test="@c">--c: <xsl:value-of select="$palette/c[@id = current()/@c]/@val"/>;</xsl:if>
 							<xsl:if test="@d">--d: <xsl:value-of select="@d"/>;</xsl:if>
 						</xsl:attribute>
 						<xsl:if test="@type = 'start'">
