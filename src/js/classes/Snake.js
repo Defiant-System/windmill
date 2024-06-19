@@ -327,6 +327,9 @@ class Snake {
 				if (isEnd) segment.rotation = entity.rotation;
 				segment.segmentType = isEnd ? SegmentType.END : SegmentType.MIDDLE;
 				segment.direction = coords.i == previous.i ? DrawType.VLINE : DrawType.HLINE;
+				// compass direction
+				if (segment.direction == DrawType.VLINE) segment.dir = coords.j < previous.j ? Compass.NORTH : Compass.SOUTH;
+				else  segment.dir = coords.i < previous.i ? Compass.EAST : Compass.WEST;
 				if (isEnd && this.progress > 0) {
 					let movingDownOrRight = coords.i > previous.i || coords.j > previous.j;
 					// The offset to start/end of line.
@@ -409,16 +412,19 @@ class Snake {
 					break;
 				case SegmentType.END:
 					let rot = "";
+					// console.log( ["NORTH", "WEST", "SOUTH", "EAST"][segment.dir] );
 					switch (true) {
-						case (segment.rotation == 1 && x1 - x2 < 0):
+						case (segment.rotation == 1 && segment.dir === Compass.WEST):
 							rot = `transform="translate(${x1-x2} ${y1-y2}) rotate(135 ${x2} ${y2})"`;
 							break;
-						// case (segment.rotation == 3 && x1 - x2 < 0):
-						// 	rot = `transform="translate(${x1-x2} ${y1-y2}) rotate(225 ${x2} ${y2})"`;
-						// 	break;
-						case (segment.rotation == 7 && segment.i < 0):
-							rot = `class="st${segment.rotation}"`;
-							// console.log( segment );
+						case (segment.rotation == 3 && segment.dir === Compass.WEST):
+							rot = `transform="translate(${x1-x2} ${y1-y2}) rotate(225 ${x2} ${y2})"`;
+							break;
+						case (segment.rotation == 5 && segment.dir === Compass.EAST):
+							rot = `transform="rotate(-45 ${x2} ${y2})"`;
+							break;
+						case (segment.rotation == 7 && segment.dir === Compass.EAST):
+							rot = `transform="rotate(45 ${x2} ${y2})"`;
 							break;
 					}
 					str = `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" ${rot} stroke-width="${UI.GRID_LINE+1}" stroke-linecap="round"></line>`;
