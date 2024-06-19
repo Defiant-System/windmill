@@ -4,7 +4,7 @@ let Validation = {
 		let snake = grid.snake,
 			p;
 		if (snake.secondaryMovement) {
-			p = new Path(movement.concat(snake.secondaryMovement), grid.width, grid.height, [snake.movement.length]);
+			p = new Path(snake.movement.concat(snake.secondaryMovement), grid.width, grid.height, [snake.movement.length]);
 		} else {
 			p = new Path(snake.movement, grid.width, grid.height);
 		}

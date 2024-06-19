@@ -1,7 +1,7 @@
 <Level id="4.5">
 	@import "../palettes/blue.xml"
 
-	<grid type="base" grid="49" width="11" height="8" gap="4" symmetry="1">
+	<grid type="base" grid="49" width="11" height="8" gap="4" symmetry="2">
 		<!-- lines -->
 		<i type="ns" x="0" y="0" />
 		<i type="nsd" x="0" y="1" />
