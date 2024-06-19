@@ -9,9 +9,6 @@ let Particles = {
 			oY: +this.cvs.prop("offsetTop"),
 			oW: +this.cvs.prop("offsetWidth"),
 			oH: +this.cvs.prop("offsetHeight"),
-			hPI: 180 / Math.PI,
-			tau: Math.PI * 2,
-			dots: [...Array(35)].map(e => Math.random()).map(e => e < .05 ? e + .05 : e),
 		};
 		// update dimensions
 		this.cvs.attr({
@@ -19,20 +16,10 @@ let Particles = {
 			height: this.opt.oH,
 		});
 	},
-	dist(x1, y1, x2, y2) {
-		return Math.sqrt(Math.pow((x1-x2), 2) + Math.pow((y1-y2), 2));
-	},
-	getPosOnLine(x1, y1, x2, y2, perc) {
-		return [ x1 * (1.0 - perc) + x2 * perc, y1 * (1.0 - perc) + y2 * perc ];
-	},
-	getDirection(x1, y1, x2, y2) {
-		let theta = Math.atan2(y1 - y2, x1 - x2) * this.opt.hPI;
-		return theta < 0 ? theta = 360 + theta : theta;
-	},
 	start(grid) {
-		let line = parseInt(grid.el.cssProp("--line"), 10),
-			tx = +grid.el.prop("offsetLeft") - this.opt.oX + (line >> 1),
-			ty = +grid.el.prop("offsetTop") - this.opt.oY + (line >> 1),
+		let line = parseInt(grid.el.cssProp("--line"), 10) >> 1,
+			tx = +grid.el.prop("offsetLeft") - this.opt.oX + line,
+			ty = +grid.el.prop("offsetTop") - this.opt.oY + line,
 			total = 0,
 			path = [],
 			snake = [...grid.snake.snakeEl.childNodes],
@@ -50,32 +37,23 @@ let Particles = {
 				dx = (sx > x1 ? -1 : 1),
 				dy = (sy > y1 ? -1 : 1);
 			// total length of snake
-			total += this.dist(x1, y1, x2, y2);
+			total += Utils.dist(x1, y1, x2, y2);
 			// path of snake body
 			sx += px * dx;
 			sy += py * dy;
 			path.push({ px, py, dx, dy, sx, sy });
 		});
 
-		// reset canvas
-		this.cvs.attr({ width: this.opt.oW });
+		this.tx = tx;
+		this.ty = ty;
 
-		this.ctx.save();
-		// this.ctx.lineWidth = 2;
-		// this.ctx.strokeStyle = "#369";
-		this.ctx.fillStyle = "#369";
-		this.ctx.translate(tx, ty);
+		// reset fireflies
+		this.opt.flies = [];
 
-		// this.ctx.beginPath();
-		// this.ctx.moveTo(path[0].sx, path[0].sy);
-		// path.slice(1).map(point => {
-		// 	this.ctx.lineTo(point.sx, point.sy);
-		// });
-		// this.ctx.stroke();
-
-		this.opt.dots.map(e => {
-			let measure = 0,
-				target = total * e,
+		// prepare flies
+		[...Array(total/10|0)].map(e => {
+			let measure = -20,
+				target = total * Math.random(),
 				x, y,
 				dir;
 
@@ -83,26 +61,39 @@ let Particles = {
 			for (let i=0, il=path.length-1; i<il; i++) {
 				let p1 = path[i],
 					p2 = path[i+1],
-					d = this.dist(p1.px, p1.py, p2.px, p2.py);
+					d = Utils.dist(p1.px, p1.py, p2.px, p2.py);
 				if (measure + d < target) {
 					measure += d;
 				} else {
 					let p = (target - measure) / d;
-					[x, y] = this.getPosOnLine(p1.px, p1.py, p2.px, p2.py, p);
-					dir = this.getDirection(p1.px, p1.py, p2.px, p2.py);
+					[x, y] = Utils.getPosOnLine(p1.sx, p1.sy, p2.sx, p2.sy, p);
+					dir = Utils.getDirection(p1.sx, p1.sy, p2.sx, p2.sy);
 					break;
 				}
 			}
 
-			// horizontal
-			if (dir % 180 === 0) y += (Math.random() * 2 | 0 ? 1 : -1) * line * .5;
-			// vertical
-			else x += (Math.random() * 2 | 0 ? 1 : -1) * line * .5;
+			let r = Utils.random(0, 2) ? 1 : -1;
+			if (dir % 180 === 0) y += r * line; // horizontal
+			else x += r * line; // vertical
 
-			this.ctx.beginPath();
-			this.ctx.arc(x, y, 3, 0, this.opt.tau);
-			this.ctx.fill();
+			// add new firefly to render queue
+			this.opt.flies.push(new Firefly(x, y, 50, 50));
 		});
+
+		this.render(this.ctx);
+	},
+	update() {
+		this.opt.flies.map(fly => fly.update());
+	},
+	render() {
+		// reset canvas
+		this.cvs.attr({ width: this.opt.oW });
+
+		this.ctx.save();
+		this.ctx.fillStyle = "#369";
+		this.ctx.translate(this.tx, this.ty);
+
+		this.opt.flies.map(fly => fly.render(this.ctx));
 
 		this.ctx.restore();
 	}

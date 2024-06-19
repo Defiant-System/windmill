@@ -1,104 +1,21 @@
 
 let Test = {
 	init(APP) {
-		
+		return;
+
+		setTimeout(() => {
+			window.find(".puzzle svg").replace(`<svg width="102" height="185"><g transform="translate(9,9)"><g class="path1">
+							<circle cx="0" cy="83" r="23.75"></circle>
+							<line x1="0" y1="83" x2="0" y2="166" stroke-width="20" stroke-linecap="round"></line>
+							<line x1="0" y1="166" x2="83" y2="166" stroke-width="20" stroke-linecap="round"></line>
+							<line x1="83" y1="83" x2="83" y2="166" stroke-width="20" stroke-linecap="round"></line>
+							<line x1="83" y1="83" x2="103" y2="83" stroke-width="20" stroke-linecap="round"></line>
+						</g></g></svg>`);
+
+			let el = window.find(".game-view .level .puzzle"),
+				snake = { snakeEl: window.find("svg g.path1")[0] };
+			Particles.start({ el, snake });
+		}, 100);
 	}
-};
-
-
-let tmp_entities = {
-	"width": 9,
-	"entity": [
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 7, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 7, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 7, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 7, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 7, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 7, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 7, "triangle_count": null },
-		{ "type": 5, "color": null, "orientation": null, "shape": null, "count": null, "triangle_count": null },
-		{ "type": 4, "color": null, "orientation": { 	"horizontal": 1, 	"vertical": 0 }, "shape": null, "count": null, "triangle_count": null },
-		
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 5, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 5, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 5, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 5, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 5, "triangle_count": null },
-		{ "type": 7, "color": 2, "orientation": null, "shape": null, "count": null, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": null, "triangle_count": null },
-		{ "type": 7, "color": 2, "orientation": null, "shape": null, "count": null, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 13, "triangle_count": null },
-		
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 13, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 13, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 13, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 13, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 13, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 13, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 13, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 13, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 13, "triangle_count": null },
-		
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 13, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 13, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 13, "triangle_count": null },
-		{ "type": 7, "color": 1, "orientation": null, "shape": null, "count": null, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": null, "triangle_count": null },
-		{ "type": 7, "color": 1, "orientation": null, "shape": null, "count": null, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 2, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 2, "triangle_count": null },
-		{ "type": 5, "color": null, "orientation": null, "shape": null, "count": null, "triangle_count": null },
-		
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": null, "triangle_count": null },
-		{ "type": 5, "color": null, "orientation": null, "shape": null, "count": null, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 10, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 10, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 10, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 10, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 10, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 10, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 10, "triangle_count": null },
-		
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 10, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 10, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 10, "triangle_count": null },
-		{ "type": 7, "color": 1, "orientation": null, "shape": null, "count": null, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 8, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 8, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 8, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 8, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 8, "triangle_count": null },
-		
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 8, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 8, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 8, "triangle_count": null },
-		{ "type": 5, "color": null, "orientation": null, "shape": null, "count": null, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 6, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 6, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 6, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 6, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 6, "triangle_count": null },
-		
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 6, "triangle_count": null },
-		{ "type": 7, "color": 2, "orientation": null, "shape": null, "count": null, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": null, "triangle_count": null },
-		{ "type": 7, "color": 1, "orientation": null, "shape": null, "count": null, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": null, "triangle_count": null },
-		{ "type": 7, "color": 2, "orientation": null, "shape": null, "count": null, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 3, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 3, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 3, "triangle_count": null },
-		
-		{ "type": 3, "color": null, "orientation": null, "shape": null, "count": null, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 4, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 4, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 4, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 4, "triangle_count": null },
-		{ "type": 5, "color": null, "orientation": null, "shape": null, "count": null, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 3, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 3, "triangle_count": null },
-		{ "type": null, "color": null, "orientation": null, "shape": null, "count": 3, "triangle_count": null }
-	],
-	"symmetry": null
 };
 

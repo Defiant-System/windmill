@@ -5,6 +5,14 @@ class Point {
 		this._y = y;
 	}
 
+	get x() {
+		return this._x;
+	}
+
+	get y() {
+		return this._y;
+	}
+
 	distance(point) {
 		var myX = this._x - point._x;
         var myY = this._y - point._y;

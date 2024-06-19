@@ -64,3 +64,26 @@ let UI = {
 		DISJOINT_LENGTH: 22,
 		EDIT_R: 20,
 	};
+
+
+// simple utils
+let Utils = {
+	// get a random number within a range
+	random(min, max) {
+		return Math.random() * ( max - min ) + min | 0;
+	},
+	// calculate the distance between two points
+	dist(x1, y1, x2, y2) {
+		let dx = x1 - x2,
+			dy = y1 - y2;
+		return Math.sqrt((dx ** 2) + (dy ** 2));
+	},
+	getPosOnLine(x1, y1, x2, y2, perc) {
+		return [ x1 * (1.0 - perc) + x2 * perc, y1 * (1.0 - perc) + y2 * perc ];
+	},
+	getDirection(x1, y1, x2, y2) {
+		let theta = Math.atan2(y1 - y2, x1 - x2) * 180 / Math.PI;
+		return theta < 0 ? theta = 360 + theta : theta;
+	}
+};
+
