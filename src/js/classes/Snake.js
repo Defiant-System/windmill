@@ -381,8 +381,7 @@ class Snake {
 
 	renderSvg(el, contents) {
 		let out = contents.map(segment => {
-			let isLastSegment,
-				x = segment.i * UI.GRID_UNIT,
+			let x = segment.i * UI.GRID_UNIT,
 				y = segment.j * UI.GRID_UNIT,
 				direction = segment.direction,
 				start = segment.start || 0,
@@ -409,8 +408,19 @@ class Snake {
 					str = `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke-width="${UI.GRID_LINE+1}" stroke-linecap="round"></line>`;
 					break;
 				case SegmentType.END:
-					// console.log(segment);
-					let rot = segment.rotation ? `class="st${segment.rotation}"` : ""
+					let rot = "";
+					switch (true) {
+						case (segment.rotation == 1 && x1 - x2 < 0):
+							rot = `transform="translate(${x1-x2} ${y1-y2}) rotate(135 ${x2} ${y2})"`;
+							break;
+						// case (segment.rotation == 3 && x1 - x2 < 0):
+						// 	rot = `transform="translate(${x1-x2} ${y1-y2}) rotate(225 ${x2} ${y2})"`;
+						// 	break;
+						case (segment.rotation == 7 && segment.i < 0):
+							rot = `class="st${segment.rotation}"`;
+							// console.log( segment );
+							break;
+					}
 					str = `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" ${rot} stroke-width="${UI.GRID_LINE+1}" stroke-linecap="round"></line>`;
 					break;
 			}

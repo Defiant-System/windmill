@@ -42,6 +42,13 @@ let SegmentType = {
 		END: 3,
 	};
 
+let Compass = {
+		NORTH: 0,
+		WEST: 1,
+		SOUTH: 2,
+		EAST: 3,
+	};
+
 
 // Keep everything in simple format.
 let UI = {
