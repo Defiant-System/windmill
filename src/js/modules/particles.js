@@ -35,46 +35,36 @@ let Particles = {
 			gW = parseInt(grid.el.cssProp("--gW"), 10),
 			gH = parseInt(grid.el.cssProp("--gH"), 10),
 			line = parseInt(grid.el.cssProp("--line"), 10),
-			tX = +grid.el.prop("offsetLeft") - this.opt.oX + 9,
-			tY = +grid.el.prop("offsetTop") - this.opt.oY + 9,
+			tx = +grid.el.prop("offsetLeft") - this.opt.oX + 9,
+			ty = +grid.el.prop("offsetTop") - this.opt.oY + 9,
 			total = 0,
-
 			snake = [...grid.snake.snakeEl.childNodes];
+		// console.log( grid );
 
-		console.log( grid );
 		// reset canvas
 		this.cvs.attr({ width: this.opt.oW });
+		this.ctx.lineWidth = 2;
 		this.ctx.strokeStyle = "#369";
 		this.ctx.fillStyle = "#369";
-		this.ctx.save();
 
-		
-		this.ctx.lineWidth = 2;
 		this.ctx.beginPath();
 
-		console.log( snake[0], +snake[0].getAttribute("cx"), +snake[0].getAttribute("cy") )
-		tX += +snake[0].getAttribute("cx");
-		tY += +snake[0].getAttribute("cy");
-		this.ctx.moveTo(tX, tY);
+		let ax = +snake[0].getAttribute("cx"),
+			ay = +snake[0].getAttribute("cy");
+		this.ctx.moveTo(tx + ax, ty + ay);
 
 		snake.slice(1).map(el => {
-			let x1 = +el.getAttribute("x1"),
+			let bbox = el.getBBox(),
+				x1 = +el.getAttribute("x1"),
 				y1 = +el.getAttribute("y1"),
 				x2 = +el.getAttribute("x2"),
-				y2 = +el.getAttribute("y2");
-			// total length of snake
-			// console.log(x1, y1, x2, y2);
-			// total += this.dist(x1, y1, x2, y2);
-			// // path of snake body
-			// path.push([x2-x1, y2-y1]);
+				y2 = +el.getAttribute("y2"),
+				dx = x2 - x1,
+				dy = y2 - y1;
 
-			// this.ctx.lineTo(point.x + x1, point.y + x2);
-			// point.x += x2;
-			// point.y += y2;
-
-			tX += x2 - x1;
-			tY += y2 - y1;
-			this.ctx.lineTo(tX, tY);
+			ax += dx * (ax > x1 ? -1 : 1);
+			ay += dy * (ay > y1 ? -1 : 1);
+			this.ctx.lineTo(tx + ax, ty + ay);
 		});
 
 		// this.ctx.lineTo(200, 200);
