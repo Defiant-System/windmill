@@ -127,7 +127,7 @@ class Grid {
 		// show errors
 		if (err.errors.length) {
 			let errors = err.errors.concat(err.allowedErrors);
-			console.log(errors);
+			// console.log(errors);
 			// sound fx
 			window.audio.play("fail");
 			// reset level
