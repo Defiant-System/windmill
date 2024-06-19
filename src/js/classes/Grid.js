@@ -112,7 +112,7 @@ class Grid {
 		delete this._started;
 
 		// to UI debug snake
-		return;
+		// return;
 
 		// path not completed - reset
 		if (!this.snake.atEnd()) {
@@ -250,7 +250,7 @@ class Grid {
 
 		let storage = {
 				entity: [],
-				symmetry: null,
+				symmetry: +xGrid.getAttribute("symmetry") || SymmetryType.UNKNOWN,
 				width: (+xGrid.getAttribute("width") * 2) + 1,
 				height: (+xGrid.getAttribute("height") * 2) + 1,
 			};
@@ -294,13 +294,13 @@ class Grid {
 		});
 
 		// console.log( storage.entity );
-		storage.entity.map((e, i) => console.log( i, JSON.stringify(e) + (i % 9 == 8 ? "---" : "") ));
+		// storage.entity.map((e, i) => console.log( i, JSON.stringify(e) + (i % 9 == 8 ? "---" : "") ));
 
 		// tmp object
 		// storage = tmp_entities;
 		// internals
 		this.entities = storage.entity;
-		this.symmetry = storage.symmetry || SymmetryType.NONE;
+		this.symmetry = storage.symmetry || SymmetryType.UNKNOWN;
 
 		var storeHeight = Math.floor(storage.entity.length / storage.width);
 		this.width = Math.floor(storage.width / 2);

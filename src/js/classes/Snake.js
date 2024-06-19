@@ -12,7 +12,7 @@ class Snake {
 
 		// Symmetry snakes (render-only)
 		if (data.symmetry) {
-			this.symmetry = true;
+			this.symmetry = data.symmetry;
 			this.secondarySnakeId = 2;
 			this.secondaryMovement = [this.symmetry.reflectPoint(this.start)];
 		} else {
