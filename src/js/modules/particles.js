@@ -54,16 +54,13 @@ let Particles = {
 		this.ctx.moveTo(tx + ax, ty + ay);
 
 		snake.slice(1).map(el => {
-			let bbox = el.getBBox(),
-				x1 = +el.getAttribute("x1"),
+			let x1 = +el.getAttribute("x1"),
 				y1 = +el.getAttribute("y1"),
 				x2 = +el.getAttribute("x2"),
-				y2 = +el.getAttribute("y2"),
-				dx = x2 - x1,
-				dy = y2 - y1;
+				y2 = +el.getAttribute("y2");
 
-			ax += dx * (ax > x1 ? -1 : 1);
-			ay += dy * (ay > y1 ? -1 : 1);
+			ax += (x2 - x1) * (ax > x1 ? -1 : 1);
+			ay += (y2 - y1) * (ay > y1 ? -1 : 1);
 			this.ctx.lineTo(tx + ax, ty + ay);
 		});
 
