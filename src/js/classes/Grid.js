@@ -280,6 +280,12 @@ class Grid {
 				case "wed":
 					storage.entity[index + 1].type = Type.DISJOINT;
 					break;
+				case "nse":
+					storage.entity[index + storage.width].type = Type.NONE;
+					break;
+				case "wee":
+					storage.entity[index + 1].type = Type.NONE;
+					break;
 				case "dot":
 					storage.entity[index + storage.width + 1].type = Type.SQUARE;
 					storage.entity[index + storage.width + 1].color = +xNode.getAttribute("c");
@@ -288,7 +294,7 @@ class Grid {
 		});
 
 		// console.log( storage.entity );
-		// storage.entity.map((e, i) => console.log( i, JSON.stringify(e) + (i % 9 == 8 ? "---" : "") ));
+		storage.entity.map((e, i) => console.log( i, JSON.stringify(e) + (i % 9 == 8 ? "---" : "") ));
 
 		// tmp object
 		// storage = tmp_entities;
