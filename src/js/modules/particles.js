@@ -35,58 +35,49 @@ let Particles = {
 			gW = parseInt(grid.el.cssProp("--gW"), 10),
 			gH = parseInt(grid.el.cssProp("--gH"), 10),
 			line = parseInt(grid.el.cssProp("--line"), 10),
-			tX = +grid.el.prop("offsetLeft") + (gW / 2) + .5,
-			tY = +grid.el.prop("offsetTop") + (gH / 2) + .5,
-			total = 0;
+			tX = +grid.el.prop("offsetLeft") - this.opt.oX + 9,
+			tY = +grid.el.prop("offsetTop") - this.opt.oY + 9,
+			total = 0,
 
-		grid.snake.snakeEl.childNodes.map(el => {
-			let isStart = el.nodeName === "circle",
-				x1 = +el.getAttribute(isStart ? "x" : "x1"),
-				y1 = +el.getAttribute(isStart ? "y" : "y1"),
-				x2 = +el.getAttribute(isStart ? "x" : "x2"),
-				y2 = +el.getAttribute(isStart ? "y" : "y2");
-			// total length of snake
-			// console.log(x1, y1, x2, y2);
-			total += this.dist(x1, y1, x2, y2);
-			// path of snake body
-			path.push([x2-x1, y2-y1]);
-		});
+			snake = [...grid.snake.snakeEl.childNodes];
 
-		console.log( JSON.stringify(path) );
-
+		console.log( grid );
 		// reset canvas
 		this.cvs.attr({ width: this.opt.oW });
-		this.ctx.fillStyle = "#f00";
+		this.ctx.strokeStyle = "#369";
+		this.ctx.fillStyle = "#369";
 		this.ctx.save();
-		this.ctx.translate(tX + 71, tY + 126);
 
-		this.opt.dots.map(e => {
-			let measure = 0,
-				target = total * e,
-				x, y,
-				dir;
+		
+		this.ctx.lineWidth = 2;
+		this.ctx.beginPath();
 
-			// calculate percentage position on line segment
-			for (let i=0, il=path.length-1; i<il; i++) {
-				let d = this.dist(...path[i], ...path[i+1]);
-				if (measure + d < target) {
-					measure += d;
-				} else {
-					let p = (target - measure) / d;
-					[x, y] = this.getPosOnLine(...path[i], ...path[i+1], p);
-					dir = this.getDirection(...path[i], ...path[i+1]);
-					break;
-				}
-			}
+		console.log( snake[0], +snake[0].getAttribute("cx"), +snake[0].getAttribute("cy") )
+		tX += +snake[0].getAttribute("cx");
+		tY += +snake[0].getAttribute("cy");
+		this.ctx.moveTo(tX, tY);
 
-			// horizontal
-			if (dir % 180 === 0) y += (Math.random() * 2 | 0 ? 1 : -1) * line * .5;
-			// vertical
-			else x += (Math.random() * 2 | 0 ? 1 : -1) * line * .5;
+		snake.slice(1).map(el => {
+			let x1 = +el.getAttribute("x1"),
+				y1 = +el.getAttribute("y1"),
+				x2 = +el.getAttribute("x2"),
+				y2 = +el.getAttribute("y2");
+			// total length of snake
+			// console.log(x1, y1, x2, y2);
+			// total += this.dist(x1, y1, x2, y2);
+			// // path of snake body
+			// path.push([x2-x1, y2-y1]);
 
-			this.ctx.beginPath();
-			this.ctx.arc(x, y, this.opt.radius, 0, this.opt.tau);
-			this.ctx.fill();
+			// this.ctx.lineTo(point.x + x1, point.y + x2);
+			// point.x += x2;
+			// point.y += y2;
+
+			tX += x2 - x1;
+			tY += y2 - y1;
+			this.ctx.lineTo(tX, tY);
 		});
+
+		// this.ctx.lineTo(200, 200);
+		this.ctx.stroke()
 	}
 };
