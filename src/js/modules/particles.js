@@ -18,8 +18,8 @@ let Particles = {
 	},
 	start(grid) {
 		let line = parseInt(grid.el.cssProp("--line"), 10) >> 1,
-			tx = +grid.el.prop("offsetLeft") - this.opt.oX + line,
-			ty = +grid.el.prop("offsetTop") - this.opt.oY + line,
+			tx = +grid.el.prop("offsetLeft") + +grid.el.parent().prop("offsetLeft") - this.opt.oX + line,
+			ty = +grid.el.prop("offsetTop") + +grid.el.parent().prop("offsetTop") - this.opt.oY + line,
 			total = 0,
 			path = [],
 			snake = [...grid.snake.snakeEl.childNodes],
