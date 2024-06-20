@@ -34,15 +34,17 @@ let Particles = {
 			path = [],
 			dots = [],
 			snake = [...grid.snake.snakeEl.childNodes],
-			sx = +snake[0].getAttribute("cx"),
-			sy = +snake[0].getAttribute("cy"),
-			sr = +snake[0].getAttribute("r");
+			hr = +snake[0].getAttribute("r"),
+			hx = +snake[0].getAttribute("cx"),
+			hy = +snake[0].getAttribute("cy"),
+			sx = hx,
+			sy = hy;
 		// console.log( grid );
 
 		// snake head
 		[...Array(5)].map(e => {
 			let rad = (Math.random() * Math.PI * 1.5) + (Math.PI * .25),
-				{ x, y } = Utils.getXYFromRadAngle(sr, rad);
+				{ x, y } = Utils.getXYFromRadAngle(hr, rad);
 			dots.push({
 				x: sx + x,
 				y: sy + y,
@@ -50,7 +52,7 @@ let Particles = {
 			});
 		});
 
-
+		// calculate "total" & accumulate snake path
 		snake.map(el => {
 			let x1 = +el.getAttribute("x1"),
 				y1 = +el.getAttribute("y1"),
@@ -74,10 +76,10 @@ let Particles = {
 		// reset fireflies
 		this.opt.flies = [];
 
-
 		// prepare flies
 		let il = total / 10 | 0,
 			tl = total / il,
+			hPI = Math.PI * .5,
 			dist,
 			ox = 0,
 			oy = 0;
@@ -94,24 +96,36 @@ let Particles = {
 			
 			if (dist > tl) {
 				let rnd = Utils.random(0, 2) ? 1 : -1,
-					normal = Utils.getDirection(p1.sx, p1.sy, p2.sx, p2.sy),
+					normal = Utils.getRadians(p1.sx, p1.sy, p2.sx, p2.sy),
+					rr = (Math.random() - .5) * Math.PI * .25,
 					x = nx,
 					y = ny;
 
-				if (normal % 180 === 0) y += rnd * line; // horizontal
-				else x += rnd * line; // vertical
+				if (normal % Math.PI == 0) {
+					// vertical
+					y += rnd * line;
+				} else {
+					// horizontal
+					x += rnd * line;
+				}
 
-				dots.push({ x, y, normal });
+				dots.push({ x, y, normal: normal - (hPI * rnd) + rr });
 				// remember new pos
 				ox = nx;
 				oy = ny;
 			}
 		});
 
-		dots.map(item => {
-			// add new firefly to render queue
-			this.opt.flies.push(new Firefly(this, item));
+		// push out flies in "head area"
+		dots.map(dot => {
+			let dist = Utils.dist(hx, hy, dot.x, dot.y);
+			if (dist < hr) {
+				console.log("move dot", dot);
+			}
 		});
+
+		// add new firefly to render queue
+		dots.map(item => this.opt.flies.push(new Firefly(this, item)));
 
 		// start fpsControl
 		// this.fpsControl.start();
@@ -133,12 +147,10 @@ let Particles = {
 		// reset canvas
 		this.cvs.attr({ width: this.opt.oW });
 
-		this.ctx.save();
+		// this.ctx.save();
 		this.ctx.fillStyle = "#369";
 		this.ctx.translate(this.tx, this.ty);
-
 		this.opt.flies.map(fly => fly.render(this.ctx));
-
-		this.ctx.restore();
+		// this.ctx.restore();
 	}
 };

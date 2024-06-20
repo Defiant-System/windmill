@@ -105,7 +105,7 @@ class Grid {
 					// reset grid path
 					el.removeClass("fade-out-snake glow-snake");
 					// empty snake body
-					// el.find("svg > g").html("");
+					el.find("svg > g").html("");
 				});
 			};
 		// reset started flag
@@ -113,9 +113,6 @@ class Grid {
 
 		// to UI debug snake
 		// return;
-		
-		// start fire flies
-		Particles.start(this);
 
 		// path not completed - reset
 		if (!this.snake.atEnd()) {
@@ -134,6 +131,8 @@ class Grid {
 			fadeOutSnake();
 			return;
 		}
+		// start fire flies
+		Particles.start(this);
 		// reset level
 		fadeOutSnake("glow");
 		// sound fx
