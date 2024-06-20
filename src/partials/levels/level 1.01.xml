@@ -11,7 +11,7 @@
 		<i type="exit" x="0" y="0" d="7" />
 	</grid> -->
 
-	<grid type="base" width="2" height="1">
+	<!-- <grid type="base" width="2" height="1">
 		<i type="ns" x="0" y="0" />
 		<i type="we" x="0" y="0" />
 		<i type="we" x="0" y="1" />
@@ -25,5 +25,60 @@
 		<i type="exit" x="2" y="0" d="1" />
 		<i type="exit" x="0" y="0" d="7" />
 		<i type="exit" x="0" y="1" d="5" />
+	</grid> -->
+
+	<grid type="base" width="4" height="4">
+		<!-- lines -->
+		<i type="ns" x="0" y="0"></i>
+		<i type="ns" x="0" y="1"></i>
+		<i type="ns" x="0" y="2"></i>
+		<i type="ns" x="0" y="3"></i>
+
+		<i type="we" x="0" y="0"></i>
+		<i type="we" x="0" y="1"></i>
+		<i type="we" x="0" y="2"></i>
+		<i type="we" x="0" y="3"></i>
+		<i type="we" x="0" y="4"></i>
+
+		<i type="ns" x="1" y="0"></i>
+		<i type="ns" x="1" y="1"></i>
+		<i type="ns" x="1" y="2"></i>
+		<i type="ns" x="1" y="3"></i>
+
+		<i type="we" x="1" y="0"></i>
+		<i type="we" x="1" y="1"></i>
+		<i type="we" x="1" y="2"></i>
+		<i type="we" x="1" y="3"></i>
+		<i type="we" x="1" y="4"></i>
+
+		<i type="ns" x="2" y="0"></i>
+		<i type="ns" x="2" y="1"></i>
+		<i type="ns" x="2" y="2"></i>
+		<i type="ns" x="2" y="3"></i>
+
+		<i type="we" x="2" y="0"></i>
+		<i type="we" x="2" y="1"></i>
+		<i type="we" x="2" y="2"></i>
+		<i type="we" x="2" y="3"></i>
+		<i type="we" x="2" y="4"></i>
+
+		<i type="ns" x="3" y="0"></i>
+		<i type="ns" x="3" y="1"></i>
+		<i type="ns" x="3" y="2"></i>
+		<i type="ns" x="3" y="3"></i>
+
+		<i type="we" x="3" y="0"></i>
+		<i type="we" x="3" y="1"></i>
+		<i type="we" x="3" y="2"></i>
+		<i type="we" x="3" y="3"></i>
+		<i type="we" x="3" y="4"></i>
+
+		<i type="ns" x="4" y="0"></i>
+		<i type="ns" x="4" y="1"></i>
+		<i type="ns" x="4" y="2"></i>
+		<i type="ns" x="4" y="3"></i>
+
+		<i type="start" x="0" y="4" />
+		<i type="exit" x="4" y="0" d="0" />
 	</grid>
 </Level>

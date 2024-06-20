@@ -96,9 +96,11 @@ let Particles = {
 				if (normal % Math.PI == 0) {
 					// vertical
 					y += rnd * line;
+					if (nx < ox) normal += Math.PI;
 				} else {
 					// horizontal
 					x += rnd * line;
+					if (ny > oy) normal += Math.PI;
 				}
 
 				dots.push({ x, y, normal: normal - (hPI * rnd) + rr });
