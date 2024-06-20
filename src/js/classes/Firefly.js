@@ -1,6 +1,6 @@
 
 class Firefly {
-	constructor(parent, x, y, rad) {
+	constructor(parent, data) {
 		this._parent = parent;
 
 		this.orbit = 5;
@@ -8,9 +8,9 @@ class Firefly {
 		this.TAU = Math.PI * 2;
 
 		this.ttl = 40;
-		this.dir = new Vector(Math.sin(rad), Math.cos(rad));
+		this.dir = new Vector(Math.sin(data.rad), Math.cos(data.rad));
 		this.acc = new Vector(.3, .3);
-		this.pos = new Vector(x, y);
+		this.pos = new Vector(data.x, data.y);
 	}
 
 	update() {

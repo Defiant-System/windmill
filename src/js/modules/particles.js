@@ -32,10 +32,24 @@ let Particles = {
 			ty = +grid.el.prop("offsetTop") + +grid.el.parent().prop("offsetTop") - this.opt.oY + line,
 			total = 0,
 			path = [],
+			dots = [],
 			snake = [...grid.snake.snakeEl.childNodes],
 			sx = +snake[0].getAttribute("cx"),
-			sy = +snake[0].getAttribute("cy");
+			sy = +snake[0].getAttribute("cy"),
+			sr = +snake[0].getAttribute("r");
 		// console.log( grid );
+
+		// snake head
+		[...Array(5)].map(e => {
+			let rad = (Math.random() * Math.PI * 1.5) + (Math.PI * .25),
+				{ x, y } = Utils.getXYFromRadAngle(sr, rad);
+			dots.push({
+				x: sx + x,
+				y: sy + y,
+				normal: rad,
+			});
+		});
+
 
 		snake.map(el => {
 			let x1 = +el.getAttribute("x1"),
@@ -64,10 +78,10 @@ let Particles = {
 		// prepare flies
 		let il = total / 10 | 0,
 			tl = total / il,
-			rad = Math.PI,
 			dist,
 			ox = 0,
 			oy = 0;
+		// line segments
 		[...Array(il)].map((e, i) => {
 			let iC = i / il,
 				index = iC * (path.length - 1),
@@ -79,12 +93,24 @@ let Particles = {
 				dist = Utils.dist(ox, oy, nx, ny);
 			
 			if (dist > tl) {
-				// add new firefly to render queue
-				this.opt.flies.push(new Firefly(this, nx, ny, rad));
+				let rnd = Utils.random(0, 2) ? 1 : -1,
+					normal = Utils.getDirection(p1.sx, p1.sy, p2.sx, p2.sy),
+					x = nx,
+					y = ny;
+
+				if (normal % 180 === 0) y += rnd * line; // horizontal
+				else x += rnd * line; // vertical
+
+				dots.push({ x, y, normal });
 				// remember new pos
 				ox = nx;
 				oy = ny;
 			}
+		});
+
+		dots.map(item => {
+			// add new firefly to render queue
+			this.opt.flies.push(new Firefly(this, item));
 		});
 
 		// start fpsControl
