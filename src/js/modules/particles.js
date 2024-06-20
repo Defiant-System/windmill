@@ -42,15 +42,7 @@ let Particles = {
 		// console.log( grid );
 
 		// snake head
-		[...Array(5)].map(e => {
-			let rad = (Math.random() * Math.PI * 1.5) + (Math.PI * .25),
-				{ x, y } = Utils.getXYFromRadAngle(hr, rad);
-			dots.push({
-				x: sx + x,
-				y: sy + y,
-				normal: rad,
-			});
-		});
+		[...Array(5)].map(e => dots.push({ x: sx, y: sy }));
 
 		// calculate "total" & accumulate snake path
 		snake.map(el => {
@@ -120,7 +112,11 @@ let Particles = {
 		dots.map(dot => {
 			let dist = Utils.dist(hx, hy, dot.x, dot.y);
 			if (dist < hr) {
-				console.log("move dot", dot);
+				let rad = (Math.random() * Math.PI * 1.5) + (Math.PI * .25),
+					{ x, y } = Utils.getXYFromRadAngle(hr, rad);
+				dot.x = hx + x;
+				dot.y = hy + y;
+				dot.normal = rad;
 			}
 		});
 
