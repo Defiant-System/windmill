@@ -15,6 +15,16 @@ let Particles = {
 			width: this.opt.oW,
 			height: this.opt.oH,
 		});
+
+		let Self = this;
+		this.fpsControl = karaqu.FpsControl({
+			fps: 35,
+			callback() {
+				// console.log("tick");
+				Self.update();
+				Self.render();
+			}
+		});
 	},
 	start(grid) {
 		let line = parseInt(grid.el.cssProp("--line"), 10) >> 1,
@@ -44,43 +54,51 @@ let Particles = {
 			path.push({ px, py, dx, dy, sx, sy });
 		});
 
+		// set translate position, affecting origo
 		this.tx = tx;
 		this.ty = ty;
-
 		// reset fireflies
 		this.opt.flies = [];
 
+
 		// prepare flies
-		[...Array(total/10|0)].map(e => {
-			let measure = -20,
-				target = total * Math.random(),
-				x, y,
-				dir;
-
-			// calculate percentage position on line segment
-			for (let i=0, il=path.length-1; i<il; i++) {
-				let p1 = path[i],
-					p2 = path[i+1],
-					d = Utils.dist(p1.px, p1.py, p2.px, p2.py);
-				if (measure + d < target) {
-					measure += d;
-				} else {
-					let p = (target - measure) / d;
-					[x, y] = Utils.getPosOnLine(p1.sx, p1.sy, p2.sx, p2.sy, p);
-					dir = Utils.getDirection(p1.sx, p1.sy, p2.sx, p2.sy);
-					break;
-				}
+		let il = total / 10 | 0,
+			tl = total / il,
+			rad = Math.PI,
+			dist,
+			ox = 0,
+			oy = 0;
+		[...Array(il)].map((e, i) => {
+			let iC = i / il,
+				index = iC * (path.length - 1),
+				fractal = iC === 1 ? 1 : +index.toString().slice(1),
+				pI = index | 0,
+				p1 = path[pI],
+				p2 = path[pI + 1],
+				[nx, ny] = Utils.getPosOnLine(p1.sx, p1.sy, p2.sx, p2.sy, fractal),
+				dist = Utils.dist(ox, oy, nx, ny);
+			
+			if (dist > tl) {
+				// add new firefly to render queue
+				this.opt.flies.push(new Firefly(this, nx, ny, rad));
+				// remember new pos
+				ox = nx;
+				oy = ny;
 			}
-
-			let r = Utils.random(0, 2) ? 1 : -1;
-			if (dir % 180 === 0) y += r * line; // horizontal
-			else x += r * line; // vertical
-
-			// add new firefly to render queue
-			this.opt.flies.push(new Firefly(x, y, 50, 50));
 		});
 
-		this.render(this.ctx);
+		// start fpsControl
+		// this.fpsControl.start();
+		this.render();
+	},
+	remove(fly) {
+		let index = this.opt.flies.indexOf(fly);
+		this.opt.flies.splice(index, 1);
+		
+		if (!this.opt.flies.length) {
+			this.fpsControl.stop();
+			// console.log("stopped");
+		}
 	},
 	update() {
 		this.opt.flies.map(fly => fly.update());
