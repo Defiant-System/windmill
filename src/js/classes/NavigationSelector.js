@@ -16,7 +16,7 @@ class NavigationSelector {
 				if (line.type == Type.NONE) {
 					return "no";
 				} else if (line.type == Type.DISJOINT) {
-					return "disjoint";
+					return (di == 1 || di == -1) ? "disjoint-w" : "disjoint-h";
 				}
 			}
 			return "yes";
@@ -94,8 +94,8 @@ class NavigationSelector {
 				if (di == 0 && reach.endsWith("-horizontal")) return 0;
 				if (dj == 0 && reach.endsWith("-vertical")) return 0;
 				return UI.END_LENGTH;
-			} else if (reach == "disjoint") {
-				return UI.DISJOINT_LENGTH;
+			} else if (reach.startsWith("disjoint")) {
+				return reach.endsWith("-w") ? UI.DISJOINT_W : UI.DISJOINT_H;
 			}
 			if (secondary) {
 				let sd = symmetry.reflectDelta({ di, dj});
@@ -104,8 +104,8 @@ class NavigationSelector {
 					return 0;
 				} else if (reach == "end") {
 					return UI.END_LENGTH;
-				} else if (reach == "disjoint") {
-					return UI.DISJOINT_LENGTH;
+				} else if (reach.startsWith("disjoint")) {
+					return reach.endsWith("-w") ? UI.DISJOINT_W : UI.DISJOINT_H;
 				}
 			}
 			let cross = crossesPath(di, dj);

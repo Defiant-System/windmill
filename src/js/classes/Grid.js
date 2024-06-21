@@ -43,6 +43,9 @@ class Grid {
 		xGrid.removeAttribute("grid");
 		// adapt start radius to line width
 		UI.START_R = (UI.GRID_LINE * 2.5) / 2;
+		// double disjoint gap
+		UI.DISJOINT_H = (UI.CELL_HEIGHT - UI.GRID_LINE - UI.DISJOINT_LENGTH) / 2;
+		UI.DISJOINT_W = (UI.CELL_WIDTH - UI.GRID_LINE - UI.DISJOINT_LENGTH) / 2;
 
 		// make sure particles are reset
 		Particles.reset();
@@ -115,7 +118,7 @@ class Grid {
 		delete this._started;
 
 		// to UI debug snake
-		return;
+		// return;
 
 		// path not completed - reset
 		if (!this.snake.atEnd()) {
