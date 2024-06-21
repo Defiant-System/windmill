@@ -16,7 +16,6 @@ class Firefly {
 
 		let move = this.target.clone(),
 			dir = Vector.subtract(move, this.pos);
-
 		dir.normalize();
 		dir.multiply(.85);
 
@@ -27,6 +26,7 @@ class Firefly {
 	}
 
 	render(ctx) {
-		ctx.drawImage(this._parent.fly, this.pos.x - 6, this.pos.y - 6)
+		let fly = this._parent.fly;
+		ctx.drawImage(fly.img, this.pos.x - fly.w, this.pos.y - fly.w)
 	}
 }

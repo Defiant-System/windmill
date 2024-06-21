@@ -58,17 +58,18 @@ let Particles = {
 			x: oStar.left - oPuzzle.left - 3,
 		};
 
-
 		// swap canvas
-		let swap = Utils.createCanvas(12, 12),
-			gradient = swap.ctx.createRadialGradient(6, 6, 0, 6, 6, 6);
+		let w = 8,
+			swap = Utils.createCanvas(w*2, w*2),
+			gradient = swap.ctx.createRadialGradient(w, w, 0, w, w, w);
 		gradient.addColorStop(0, "#ffffff");
-		gradient.addColorStop(1, "#ffffff00");
+		gradient.addColorStop(.975, "#ffffff33");
+		gradient.addColorStop(.9, "#ffffff01");
+		gradient.addColorStop(1, "transparent");
 		swap.ctx.fillStyle = gradient; // "#f00";
 		swap.ctx.beginPath();
-		swap.ctx.fillRect(0, 0, 12, 12);
-		this.fly = swap.cvs[0];
-
+		swap.ctx.fillRect(0, 0, w*2, w*2);
+		this.fly = { img: swap.cvs[0], w };
 
 
 		// snake head
