@@ -96,6 +96,7 @@ let Particles = {
 				[x, y] = Utils.getPosOnLine(p1.sx, p1.sy, p2.sx, p2.sy, +fractal),
 				dir = Utils.getDirection(p1.sx, p1.sy, p2.sx, p2.sy),
 				rnd = Utils.random(0, 2) ? 1 : -1,
+				rr = (Math.random() - .5) * Math.PI * .25,
 				normal = compass[dir] + (dir > 1 ? Math.PI : -Math.PI);
 			
 			if ([0,2].includes(dir)) {
@@ -106,7 +107,7 @@ let Particles = {
 				y += rnd * line;
 			}
 			// final arithmetics for nomral
-			normal += (hPI * rnd) * (dir < 2 ? 1 : -1);
+			normal += (hPI * rnd) * (dir < 2 ? 1 : -1) + rr;
 			// accumulate dot details
 			dots.push({ x, y, normal });
 		});
@@ -134,8 +135,8 @@ let Particles = {
 		dots.map(item => this.opt.flies.push(new Firefly(this, item)));
 
 		// start fpsControl
-		// this.fpsControl.start();
-		this.render();
+		this.fpsControl.start();
+		// this.render();
 	},
 	remove(fly) {
 		let index = this.opt.flies.indexOf(fly);

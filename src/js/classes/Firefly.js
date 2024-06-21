@@ -9,7 +9,7 @@ class Firefly {
 		this.TAU = Math.PI * 2;
 
 		this.normal = data.normal;
-		this.dir = new Vector(Math.sin(this.normal), Math.cos(this.normal));
+		this.dir = new Vector(Math.cos(this.normal), Math.sin(this.normal));
 		this.acc = new Vector(.3, .3);
 		this.pos = new Vector(data.x, data.y);
 	}
@@ -28,12 +28,12 @@ class Firefly {
 		ctx.fill();
 
 
-		let { x, y } = Utils.getXYFromRadAngle(10, this.normal);
+		// let { x, y } = Utils.getXYFromRadAngle(10, this.normal);
 
-		ctx.strokeStyle = "#00f";
-		ctx.beginPath();
-		ctx.moveTo(this.pos.x, this.pos.y);
-		ctx.lineTo(this.pos.x + x, this.pos.y + y);
-		ctx.stroke();
+		// ctx.strokeStyle = "#00f";
+		// ctx.beginPath();
+		// ctx.moveTo(this.pos.x, this.pos.y);
+		// ctx.lineTo(this.pos.x + x, this.pos.y + y);
+		// ctx.stroke();
 	}
 }

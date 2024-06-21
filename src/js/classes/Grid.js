@@ -101,7 +101,6 @@ class Grid {
 
 	finishSnake() {
 		let fadeOutSnake = (sequence="fade-out") => {
-				return;
 				// UI update
 				this.el.removeClass("snake-active");
 				// fade out snake and empty its contents
