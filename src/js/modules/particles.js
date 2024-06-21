@@ -96,7 +96,7 @@ let Particles = {
 				[x, y] = Utils.getPosOnLine(p1.sx, p1.sy, p2.sx, p2.sy, +fractal),
 				dir = Utils.getDirection(p1.sx, p1.sy, p2.sx, p2.sy),
 				rnd = Utils.random(0, 2) ? 1 : -1,
-				rr = (Math.random() - .5) * Math.PI * .25,
+				rr = (Math.random() - .5) * Math.PI * .35,
 				normal = compass[dir] + (dir > 1 ? Math.PI : -Math.PI);
 			
 			if ([0,2].includes(dir)) {
