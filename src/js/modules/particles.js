@@ -60,13 +60,13 @@ let Particles = {
 
 
 		// swap canvas
-		let swap = Utils.createCanvas(16, 16),
-			gradient = swap.ctx.createRadialGradient(8, 8, 0, 8, 8, 8);
+		let swap = Utils.createCanvas(12, 12),
+			gradient = swap.ctx.createRadialGradient(6, 6, 0, 6, 6, 6);
 		gradient.addColorStop(0, "#ffffff");
 		gradient.addColorStop(1, "#ffffff00");
 		swap.ctx.fillStyle = gradient; // "#f00";
 		swap.ctx.beginPath();
-		swap.ctx.fillRect(0, 0, 16, 16);
+		swap.ctx.fillRect(0, 0, 12, 12);
 		this.fly = swap.cvs[0];
 
 
