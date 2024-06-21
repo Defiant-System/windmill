@@ -35,16 +35,17 @@ let Particles = {
 	reset() {
 		// reset canvas
 		this.cvs.attr({ width: this.opt.oW });
+		// reset fireflies
+		this.opt.flies = [];
 	},
-	start(grid) {
-		let color1 = grid.el.cssProp("--snake1"),
-			line = parseInt(grid.el.cssProp("--line"), 10) >> 1,
+	start(grid, snakeEl, color) {
+		let line = parseInt(grid.el.cssProp("--line"), 10) >> 1,
 			tx = +grid.el.prop("offsetLeft") + +grid.el.parent().prop("offsetLeft") - this.opt.oX + line,
 			ty = +grid.el.prop("offsetTop") + +grid.el.parent().prop("offsetTop") - this.opt.oY + line,
 			total = 0,
 			path = [],
 			dots = [],
-			snake = [...grid.snake.snakeEl.childNodes],
+			snake = [...snakeEl.childNodes],
 			hr = +snake[0].getAttribute("r"),
 			hx = +snake[0].getAttribute("cx"),
 			hy = +snake[0].getAttribute("cy"),
@@ -58,20 +59,6 @@ let Particles = {
 			y: oStar.top - oPuzzle.top - 3,
 			x: oStar.left - oPuzzle.left - 3,
 		};
-
-		// swap canvas
-		let w = 8,
-			swap = Utils.createCanvas(w*2, w*2),
-			gradient = swap.ctx.createRadialGradient(w, w, 0, w, w, w);
-		gradient.addColorStop(0, `${color1}`);
-		gradient.addColorStop(.975, `${color1}33`);
-		gradient.addColorStop(.9, `${color1}01`);
-		gradient.addColorStop(1, "transparent");
-		swap.ctx.fillStyle = gradient; // "#f00";
-		swap.ctx.beginPath();
-		swap.ctx.fillRect(0, 0, w*2, w*2);
-		this.fly = { img: swap.cvs[0], w };
-
 
 		// snake head
 		[...Array(5)].map(e => dots.push({ x: sx, y: sy }));
@@ -99,8 +86,6 @@ let Particles = {
 		// set translate position, affecting origo
 		this.tx = tx;
 		this.ty = ty;
-		// reset fireflies
-		this.opt.flies = [];
 
 		// prepare flies
 		let hPI = Math.PI * .5,
@@ -155,7 +140,7 @@ let Particles = {
 		});
 
 		// add new firefly to render queue
-		dots.map(item => this.opt.flies.push(new Firefly(this, item)));
+		dots.map(item => this.opt.flies.push(new Firefly(this, item, color)));
 
 		// start fpsControl
 		this.fpsControl.start();

@@ -1,9 +1,10 @@
 
 class Firefly {
-	constructor(parent, data) {
+	constructor(parent, data, color) {
 		this._parent = parent;
 
 		this.orbit = 15;
+		this.color = color;
 		this.target = new Vector(parent.target.x, parent.target.y);
 		this.velocity = new Vector(Math.cos(data.normal), Math.sin(data.normal)).scale(5);
 		this.pos = new Vector(data.x, data.y);
@@ -26,7 +27,6 @@ class Firefly {
 	}
 
 	render(ctx) {
-		let fly = this._parent.fly;
-		ctx.drawImage(fly.img, this.pos.x - fly.w, this.pos.y - fly.w)
+		ctx.drawImage(this.color.img, this.pos.x - this.color.w, this.pos.y - this.color.w)
 	}
 }

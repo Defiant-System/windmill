@@ -137,8 +137,34 @@ class Grid {
 			fadeOutSnake();
 			return;
 		}
+
+		// swap canvas
+		let colors = [
+				this.el.cssProp("--snake1"),
+				this.el.cssProp("--snake2")
+			].map(color => {
+				let w = 8,
+					swap = Utils.createCanvas(w*2, w*2),
+					gradient = swap.ctx.createRadialGradient(w, w, 0, w, w, w);
+				gradient.addColorStop(0, `${color}`);
+				gradient.addColorStop(.975, `${color}33`);
+				gradient.addColorStop(.9, `${color}01`);
+				gradient.addColorStop(1, `${color}00`);
+				swap.ctx.fillStyle = gradient; // "#f00";
+				swap.ctx.beginPath();
+				swap.ctx.fillRect(0, 0, w*2, w*2);
+				return { img: swap.cvs[0], w };
+			});
+			
+		// make sure particles are reset
+		Particles.reset();
 		// start fire flies
-		Particles.start(this);
+		Particles.start(this, this.snake.snakeEl, colors[0]);
+		// for secondary snake
+		if (this.getSymmetry()) {
+			Particles.start(this, this.snake.secondarySnakeEl, colors[1]);
+		}
+
 		// reset level
 		fadeOutSnake("glow");
 		// sound fx
