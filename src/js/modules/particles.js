@@ -50,8 +50,26 @@ let Particles = {
 			sx = hx,
 			sy = hy;
 
-		// star offset
-		this.oStar = this.star.offset(".start-view");
+		// target star position
+		let oStar = this.star.offset("content"),
+			oPuzzle = grid.el.offset("content");
+		this.target = {
+			y: oStar.top - oPuzzle.top - 3,
+			x: oStar.left - oPuzzle.left - 3,
+		};
+
+
+		// swap canvas
+		let swap = Utils.createCanvas(16, 16),
+			gradient = swap.ctx.createRadialGradient(8, 8, 0, 8, 8, 8);
+		gradient.addColorStop(0, "#ffffff");
+		gradient.addColorStop(1, "#ffffff00");
+		swap.ctx.fillStyle = gradient; // "#f00";
+		swap.ctx.beginPath();
+		swap.ctx.fillRect(0, 0, 16, 16);
+		this.fly = swap.cvs[0];
+
+
 
 		// snake head
 		[...Array(5)].map(e => dots.push({ x: sx, y: sy }));
@@ -147,7 +165,7 @@ let Particles = {
 		
 		if (!this.opt.flies.length) {
 			this.fpsControl.stop();
-			// console.log("stopped");
+			console.log("stopped");
 		}
 	},
 	update() {
@@ -156,9 +174,10 @@ let Particles = {
 	render() {
 		// reset canvas
 		this.cvs.attr({ width: this.opt.oW });
+		// this.cvs.globalCompositeOperation = "screen";
 
 		// this.ctx.save();
-		this.ctx.fillStyle = "#fff";
+		// this.ctx.fillStyle = "#fff";
 		this.ctx.translate(this.tx, this.ty);
 		this.opt.flies.map(fly => fly.render(this.ctx));
 		// this.ctx.restore();

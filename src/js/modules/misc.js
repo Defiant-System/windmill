@@ -98,6 +98,12 @@ let Utils = {
 		let x = radius * Math.cos(angle),
 			y = radius * Math.sin(angle);
 		return { x, y };
+	},
+	createCanvas(width, height) {
+		let cvs = $(document.createElement("canvas")),
+			ctx = cvs[0].getContext("2d", { willReadFrequently: true });
+		cvs.prop({ width, height });
+		return { cvs, ctx }
 	}
 };
 

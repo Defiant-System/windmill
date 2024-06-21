@@ -11,6 +11,7 @@ content {
 	right: 0;
 	bottom: 0;
 	color: #fff;
+	border-radius: inherit;
 	--base: #7f0079;
 
 	&:before {
@@ -20,6 +21,7 @@ content {
 		left: 0;
 		right: 0;
 		bottom: 0;
+		border-radius: inherit;
 		background: var( --base ) radial-gradient(circle at 50%, #ffffff33, transparent);
 	}
 
@@ -35,7 +37,16 @@ content {
 			pointer-events: none;
 
 			.logo {
-				transform: translate(-298px,-117px) scale(.35);
+				svg {
+					transform: translate(-298px,-117px) scale(.35);
+				}
+
+				.star {
+					top: -71px;
+					left: -84px;
+					width: 11px;
+					height: 11px;
+				}
 			}
 		}
 
@@ -52,6 +63,7 @@ content {
 		height: calc( 100% + 200px );
 		z-index: 9999;
 		pointer-events: none;
+		mix-blend-mode: plus-lighter;
 		// background: rgba(#fff,.25);
 	}
 

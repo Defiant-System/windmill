@@ -4,23 +4,16 @@ class Firefly {
 		this._parent = parent;
 
 		this.orbit = 15;
-		this.radius = 2;
-		this.TAU = Math.PI * 2;
-
-		this.normal = data.normal;
-		this.friction = .95;
 		this.speed = 1.25;
 		this.mode = "expand";
 
-		this.target = new Vector(-100, -200);
-		// this.velocity = new Vector(-5, 3);
-
-		this.dir = new Vector(Math.cos(this.normal), Math.sin(this.normal));
+		this.target = new Vector(parent.target.x, parent.target.y);
+		this.dir = new Vector(Math.cos(data.normal), Math.sin(data.normal));
 		this.pos = new Vector(data.x, data.y);
 	}
 
 	update() {
-		if (this.orbit < 3) {
+		if (this.pos.distanceTo(this.target) < 5) {
 			this.mode = "home";
 		}
 
@@ -32,20 +25,20 @@ class Firefly {
 					dir = Vector.subtract(move, this.pos);
 
 				dir.normalize();
-				dir.multiply(.75);
+				dir.multiply(.85);
 
-				this.orbit *= .99;
+				this.orbit *= .985;
 				this.velocity.add(dir);
 				this.velocity.limit(this.orbit);
 				this.pos.add(this.velocity);
 				break;
 			case "expand":
-				this.speed *= this.friction;
+				this.speed *= .9725;
 				this.dir.multiply(new Vector(this.speed, this.speed));
 				this.pos.add(this.dir);
 				// expand done - now seek "star"
-				if (this.speed < .75) {
-					this.velocity = this.dir.clone().scale(4);
+				if (this.speed < .8) {
+					this.velocity = this.dir.clone().scale(5);
 					this.mode = "seek";
 				}
 				break;
@@ -53,17 +46,9 @@ class Firefly {
 	}
 
 	render(ctx) {
-		ctx.beginPath();
-		ctx.arc(this.pos.x, this.pos.y, this.radius, 0, this.TAU);
-		ctx.fill();
-
-
-		// let { x, y } = Utils.getXYFromRadAngle(10, this.normal);
-
-		// ctx.strokeStyle = "#00f";
 		// ctx.beginPath();
-		// ctx.moveTo(this.pos.x, this.pos.y);
-		// ctx.lineTo(this.pos.x + x, this.pos.y + y);
-		// ctx.stroke();
+		// ctx.arc(this.pos.x, this.pos.y, 2, 0, Math.PI * 2);
+		// ctx.fill();
+		ctx.drawImage(this._parent.fly, this.pos.x - 8, this.pos.y - 8)
 	}
 }
