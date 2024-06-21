@@ -26,6 +26,10 @@ let Particles = {
 			}
 		});
 	},
+	reset() {
+		// reset canvas
+		this.cvs.attr({ width: this.opt.oW });
+	},
 	start(grid) {
 		let line = parseInt(grid.el.cssProp("--line"), 10) >> 1,
 			tx = +grid.el.prop("offsetLeft") + +grid.el.parent().prop("offsetLeft") - this.opt.oX + line,
@@ -70,11 +74,11 @@ let Particles = {
 
 		// prepare flies
 		let il = total / 10 | 0,
-			tl = total / il,
 			hPI = Math.PI * .5,
 			dist,
 			ox = 0,
 			oy = 0;
+		
 		// line segments
 		[...Array(il)].map((e, i) => {
 			let iC = i / il,
@@ -84,37 +88,43 @@ let Particles = {
 				p1 = path[pI],
 				p2 = path[pI + 1],
 				[nx, ny] = Utils.getPosOnLine(p1.sx, p1.sy, p2.sx, p2.sy, fractal),
-				dist = Utils.dist(ox, oy, nx, ny);
+				normal = Utils.getRadians(p1.sx, p1.sy, p2.sx, p2.sy),
+				rnd = Utils.random(0, 2) ? 1 : -1,
+				rr = (Math.random() - .5) * Math.PI * .25,
+				x = nx,
+				y = ny;
 			
-			if (dist > tl) {
-				let rnd = Utils.random(0, 2) ? 1 : -1,
-					normal = Utils.getRadians(p1.sx, p1.sy, p2.sx, p2.sy),
-					rr = (Math.random() - .5) * Math.PI * .25,
-					x = nx,
-					y = ny;
+			if (ny < -9) console.log( nx, ny );
 
-				if (normal % Math.PI == 0) {
-					// vertical
-					y += rnd * line;
-					if (nx < ox) normal += Math.PI;
-				} else {
-					// horizontal
-					x += rnd * line;
-					if (ny > oy) normal += Math.PI;
-				}
-
-				dots.push({ x, y, normal: normal - (hPI * rnd) + rr });
-				// remember new pos
-				ox = nx;
-				oy = ny;
+			if (normal % Math.PI == 0) {
+				// vertical
+				y += rnd * line;
+				if (nx < ox) normal += Math.PI;
+			} else {
+				// horizontal
+				x += rnd * line;
+				if (ny > oy) normal += Math.PI;
 			}
+
+			dots.push({ x, y, normal: normal - (hPI * rnd) + rr });
+			// remember new pos
+			ox = nx;
+			oy = ny;
 		});
 
 		// push out flies in "head area"
+		let hn = Utils.getRadians(path[0].sx, path[0].sy, path[1].sx, path[1].sy),
+			hd;
+		switch (hn) {
+			case hPI: hd = -hPI; break; // north
+			case Math.PI: hd = Math.PI * .25; break; // west
+			case -Math.PI: hd = Math.PI * .75; break; // east
+			case hPI: hd = hPI; break; // south
+		}
 		dots.map(dot => {
 			let dist = Utils.dist(hx, hy, dot.x, dot.y);
 			if (dist < hr) {
-				let rad = (Math.random() * Math.PI * 1.5) + (Math.PI * .25),
+				let rad = (Math.random() * Math.PI * 1.5) + hd,
 					{ x, y } = Utils.getXYFromRadAngle(hr, rad);
 				dot.x = hx + x;
 				dot.y = hy + y;
@@ -146,7 +156,7 @@ let Particles = {
 		this.cvs.attr({ width: this.opt.oW });
 
 		// this.ctx.save();
-		this.ctx.fillStyle = "#369";
+		this.ctx.fillStyle = "#fff";
 		this.ctx.translate(this.tx, this.ty);
 		this.opt.flies.map(fly => fly.render(this.ctx));
 		// this.ctx.restore();

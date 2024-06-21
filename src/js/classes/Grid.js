@@ -44,6 +44,9 @@ class Grid {
 		// adapt start radius to line width
 		UI.START_R = (UI.GRID_LINE * 2.5) / 2;
 
+		// make sure particles are reset
+		Particles.reset();
+
 		// generate storage entities, etc
 		this.generateStorage(xLevel);
 
@@ -98,6 +101,7 @@ class Grid {
 
 	finishSnake() {
 		let fadeOutSnake = (sequence="fade-out") => {
+				return;
 				// UI update
 				this.el.removeClass("snake-active");
 				// fade out snake and empty its contents

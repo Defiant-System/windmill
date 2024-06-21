@@ -30,7 +30,7 @@ class Firefly {
 
 		let { x, y } = Utils.getXYFromRadAngle(10, this.normal);
 
-		ctx.strokeStyle = "#faa";
+		ctx.strokeStyle = "#00f";
 		ctx.beginPath();
 		ctx.moveTo(this.pos.x, this.pos.y);
 		ctx.lineTo(this.pos.x + x, this.pos.y + y);
