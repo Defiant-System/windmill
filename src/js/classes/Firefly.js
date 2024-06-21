@@ -3,9 +3,8 @@ class Firefly {
 	constructor(parent, data) {
 		this._parent = parent;
 
-		this.ttl = 90;
 		this.orbit = 15;
-		this.radius = 3;
+		this.radius = 2;
 		this.TAU = Math.PI * 2;
 
 		this.normal = data.normal;
@@ -14,14 +13,14 @@ class Firefly {
 		this.mode = "expand";
 
 		this.target = new Vector(-100, -200);
-		this.velocity = new Vector(-5, 3);
+		// this.velocity = new Vector(-5, 3);
 
 		this.dir = new Vector(Math.cos(this.normal), Math.sin(this.normal));
 		this.pos = new Vector(data.x, data.y);
 	}
 
 	update() {
-		if (this.ttl-- < 0) {
+		if (this.orbit < 3) {
 			this.mode = "home";
 		}
 
@@ -35,6 +34,7 @@ class Firefly {
 				dir.normalize();
 				dir.multiply(.75);
 
+				this.orbit *= .99;
 				this.velocity.add(dir);
 				this.velocity.limit(this.orbit);
 				this.pos.add(this.velocity);
@@ -44,7 +44,10 @@ class Firefly {
 				this.dir.multiply(new Vector(this.speed, this.speed));
 				this.pos.add(this.dir);
 				// expand done - now seek "star"
-				if (this.speed < .75) this.mode = "seek";
+				if (this.speed < .75) {
+					this.velocity = this.dir.clone().scale(4);
+					this.mode = "seek";
+				}
 				break;
 		}
 	}

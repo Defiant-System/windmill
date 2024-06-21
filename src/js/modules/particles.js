@@ -1,6 +1,7 @@
 
 let Particles = {
 	init() {
+		this.star = window.find(".star");
 		this.cvs = window.find(".particles");
 		this.ctx = this.cvs[0].getContext("2d", { willReadFrequently: true });
 		// this options
@@ -23,7 +24,7 @@ let Particles = {
 
 		let Self = this;
 		this.fpsControl = karaqu.FpsControl({
-			fps: 35,
+			fps: 45,
 			callback() {
 				// console.log("tick");
 				Self.update();
@@ -48,7 +49,9 @@ let Particles = {
 			hy = +snake[0].getAttribute("cy"),
 			sx = hx,
 			sy = hy;
-		// console.log( grid );
+
+		// star offset
+		this.oStar = this.star.offset(".start-view");
 
 		// snake head
 		[...Array(5)].map(e => dots.push({ x: sx, y: sy }));
