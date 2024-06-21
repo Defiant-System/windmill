@@ -115,7 +115,7 @@ class Grid {
 		delete this._started;
 
 		// to UI debug snake
-		// return;
+		return;
 
 		// path not completed - reset
 		if (!this.snake.atEnd()) {

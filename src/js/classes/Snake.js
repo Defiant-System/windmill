@@ -1,14 +1,16 @@
 
 class Snake {
 
-	static MAX_PROGRESS_ = UI.GRID_UNIT;
-
 	constructor(data) {
 		// The current path.
 		this.snakeId = 1;
 		this.start = { i: data.x, j: data.y };
 		this.mouse = { x: data.mX, y: data.mY };
 		this.movement = [this.start];
+
+		this.MAX_PROGRESS_W = UI.CELL_WIDTH;
+		this.MAX_PROGRESS_H = UI.CELL_HEIGHT;
+		// this.MAX_PROGRESS_ = Math.min(UI.CELL_WIDTH, UI.CELL_HEIGHT);
 
 		// Symmetry snakes (render-only)
 		if (data.symmetry) {
@@ -86,10 +88,11 @@ class Snake {
 			let elapsedMs = this.frameTime.step();
 			if (elapsedMs == null) return;
 			
-			maxMovement = Math.floor(elapsedMs / msPerGridUnit * Snake.MAX_PROGRESS_ / 1.5);
+			let maxMovement_w = Math.floor(elapsedMs / msPerGridUnit * this.MAX_PROGRESS_W / 1.5);
+			let maxMovement_h = Math.floor(elapsedMs / msPerGridUnit * this.MAX_PROGRESS_H / 1.5);
 			// Simplifying assumption: Max one unit per animation frame, so
 			// moveTowardsTarget only needs to be called twice below.
-			maxMovement = Math.min(maxMovement, Snake.MAX_PROGRESS_);
+			maxMovement = Math.min(maxMovement_w, maxMovement_h, this.MAX_PROGRESS_W, this.MAX_PROGRESS_H);
 		} else {
 			this.mouseHistoryX.push(this.mouseX);
 			this.mouseHistoryY.push(this.mouseY);
@@ -118,13 +121,13 @@ class Snake {
 			let mouseOnGrid = this.calcMouseOnGrid();
 			let pointOnGrid = this.getHead();
 			if (!this.snapToGrid) {
-				let distanceX = mouseOnGrid.x - Math.round(mouseOnGrid.x / UI.GRID_UNIT) * UI.GRID_UNIT;
-				let distanceY = mouseOnGrid.y - Math.round(mouseOnGrid.y / UI.GRID_UNIT) * UI.GRID_UNIT;
+				let distanceX = mouseOnGrid.x - Math.round(mouseOnGrid.x / UI.CELL_WIDTH) * UI.CELL_WIDTH;
+				let distanceY = mouseOnGrid.y - Math.round(mouseOnGrid.y / UI.CELL_HEIGHT) * UI.CELL_HEIGHT;
 				let threshhold = UI.GRID_LINE * 2;
-				if (Math.abs(distanceX) <= threshhold && dy >= UI.GRID_UNIT) {
+				if (Math.abs(distanceX) <= threshhold && dy >= UI.CELL_WIDTH) {
 					mouseOnGrid.x -= distanceX;
 				}
-				if (Math.abs(distanceY) <= threshhold && dx >= UI.GRID_UNIT) {
+				if (Math.abs(distanceY) <= threshhold && dx >= UI.CELL_HEIGHT) {
 					mouseOnGrid.y -= distanceY;
 				}
 			}
@@ -157,6 +160,7 @@ class Snake {
 		// In case where we end up at target, remove target for next time.
 		let current = this.movement[this.movement.length - 1];
 		let isVertical = current.i == this.target.i;
+		let MAX_PROGRESS = isVertical ? this.MAX_PROGRESS_H : this.MAX_PROGRESS_W;
 		if (isVertical ? dj == 0 : di == 0) {
 			if ((isVertical ? di == 0 : dj == 0) || this.targetIsEnd) return;
 			
@@ -182,7 +186,7 @@ class Snake {
 					? ((dj > 0) == (this.target.j > current.j))
 					: ((di > 0) == (this.target.i > current.i));
 			let progressBeforeChangeRequired = Math.max(0, makingProgress
-					? (this.progress + maxMovement) - Snake.MAX_PROGRESS_
+					? (this.progress + maxMovement) - MAX_PROGRESS
 					: 0 - (this.progress - maxMovement));
 			if (progressBeforeChangeRequired > 0) {
 				maxMovement -= progressBeforeChangeRequired;
@@ -193,7 +197,8 @@ class Snake {
 			// decreasing delta).
 			actualMovement = maxMovement;
 			if (dx != null && dy != null) {
-				let maxAxisMovement = Math.abs(Math.floor((isVertical ? dy : dx) * Snake.MAX_PROGRESS_ / UI.GRID_UNIT));
+				let mpu = isVertical ? this.MAX_PROGRESS_H / UI.CELL_HEIGHT : this.MAX_PROGRESS_W / UI.CELL_WIDTH;
+				let maxAxisMovement = Math.abs(Math.floor((isVertical ? dy : dx) * mpu));
 				if (maxAxisMovement == 0 && !this.targetIsEnd) {
 					// Otherwise, can move orthogonal.
 					if (isVertical) {
@@ -230,12 +235,12 @@ class Snake {
 		if (this.progress <= 0) {
 			// Backtracked, so forget where we came from.
 			this.clearTarget();
-			this.progress = Snake.MAX_PROGRESS_;
+			this.progress = MAX_PROGRESS;
 			// console.log("Backtrack, target null!");
 			if (remainingProgress == 0 || !this.discoverTarget(selector, params)) {
 				return;
 			}
-		} else if (this.progress >= Snake.MAX_PROGRESS_) {
+		} else if (this.progress >= MAX_PROGRESS) {
 			// Move forward, so store it.
 			if (this.target.i == current.i && this.target.j == current.j) {
 				throw Error();
@@ -283,7 +288,7 @@ class Snake {
 			
 			this.target = current;
 			this.targetMaxProgress = null;
-			this.progress = Snake.MAX_PROGRESS_;
+			this.progress = params.preferHorizontal ? this.MAX_PROGRESS_W : this.MAX_PROGRESS_H;
 		} else {
 			if (select.i == current.i && select.j == current.j) throw Error();
 			
@@ -298,11 +303,11 @@ class Snake {
 
 	getHead() {
 		let lastTarget = this.movement[this.movement.length - 1];
-		let x = lastTarget.i * UI.GRID_UNIT;
-		let y = lastTarget.j * UI.GRID_UNIT;
+		let x = lastTarget.i * UI.CELL_WIDTH;
+		let y = lastTarget.j * UI.CELL_HEIGHT;
 		if (this.target) {
-			x += (this.progress * UI.GRID_UNIT / Snake.MAX_PROGRESS_) * (this.target.i - lastTarget.i);
-			y += (this.progress * UI.GRID_UNIT / Snake.MAX_PROGRESS_) * (this.target.j - lastTarget.j);
+			x += (this.progress * UI.CELL_WIDTH / this.MAX_PROGRESS_W) * (this.target.i - lastTarget.i);
+			y += (this.progress * UI.CELL_HEIGHT / this.MAX_PROGRESS_H) * (this.target.j - lastTarget.j);
 		}
 		return { x, y };
 	}
@@ -329,12 +334,13 @@ class Snake {
 				segment.direction = coords.i == previous.i ? DrawType.VLINE : DrawType.HLINE;
 				// compass direction
 				if (segment.direction == DrawType.VLINE) segment.dir = coords.j < previous.j ? Compass.NORTH : Compass.SOUTH;
-				else  segment.dir = coords.i < previous.i ? Compass.EAST : Compass.WEST;
+				else segment.dir = coords.i < previous.i ? Compass.EAST : Compass.WEST;
 				if (isEnd && this.progress > 0) {
 					let movingDownOrRight = coords.i > previous.i || coords.j > previous.j;
+					let max_progress = segment.direction == DrawType.VLINE ? this.MAX_PROGRESS_H : this.MAX_PROGRESS_W;
 					// The offset to start/end of line.
-					segment.start = movingDownOrRight ? 0 : Snake.MAX_PROGRESS_ - this.progress;
-					segment.end = movingDownOrRight ? Snake.MAX_PROGRESS_ - this.progress : 0;
+					segment.start = movingDownOrRight ? 0 : max_progress - this.progress;
+					segment.end = movingDownOrRight ? max_progress - this.progress : 0;
 				}
 				segment.i = Math.min(coords.i, previous.i);
 				segment.j = Math.min(coords.j, previous.j);
@@ -348,7 +354,7 @@ class Snake {
 	anythingChanged() {
 		// hash code avoid constantly rendering.
 		let current = this.movement[this.movement.length - 1],
-			change = (current.i * 16 * 16 + current.j * 16 + this.movement.length) * Snake.MAX_PROGRESS + this.progress;
+			change = (current.i * 16 * 16 + current.j * 16 + this.movement.length) * this.progress + this.progress;
 		if (this.lastChange == null || this.lastChange != change) {
 			this.lastChange = change;
 			return true;
@@ -384,8 +390,8 @@ class Snake {
 
 	renderSvg(el, contents) {
 		let out = contents.map(segment => {
-			let x = segment.i * UI.GRID_UNIT,
-				y = segment.j * UI.GRID_UNIT,
+			let x = segment.i * UI.CELL_WIDTH,
+				y = segment.j * UI.CELL_HEIGHT,
 				direction = segment.direction,
 				start = segment.start || 0,
 				end = segment.end || 0,
@@ -396,8 +402,8 @@ class Snake {
 				partial = start || end ? 1 : 0,
 				x1 = x + horizontal * partial * soff,
 				y1 = y + vertical * partial * soff,
-				x2 = x + horizontal * (UI.GRID_UNIT - partial * eoff),
-				y2 = y + vertical * (UI.GRID_UNIT - partial * eoff),
+				x2 = x + horizontal * (UI.CELL_WIDTH - partial * eoff),
+				y2 = y + vertical * (UI.CELL_HEIGHT - partial * eoff),
 				str = "";
 
 			// console.log( segment );
