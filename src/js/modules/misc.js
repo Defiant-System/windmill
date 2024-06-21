@@ -81,6 +81,12 @@ let Utils = {
 	getPosOnLine(x1, y1, x2, y2, perc) {
 		return [ x1 * (1.0 - perc) + x2 * perc, y1 * (1.0 - perc) + y2 * perc ];
 	},
+	getDirection(x1, y1, x2, y2) {
+		let pi = Math.PI,
+			d = Math.atan2(y1 - y2, x1 - x2),
+			compass = [pi * .5, pi, pi * -.5, 0];
+		return compass.indexOf(d);
+	},
 	getAngle(x1, y1, x2, y2) {
 		let theta = Math.atan2(y1 - y2, x1 - x2) * 180 / Math.PI;
 		return theta < 0 ? theta = 360 + theta : theta;

@@ -59,7 +59,7 @@
 		<i type="ns" x="3" y="1" />
 		<i type="ns" x="3" y="2" />
 
-		<i type="start" x="0" y="0" />
+		<i type="start" x="0" y="3" />
 		<i type="exit" x="3" y="0" d="0" />
 	</grid>
 </Level>

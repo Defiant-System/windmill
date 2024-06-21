@@ -16,6 +16,11 @@ let Particles = {
 			height: this.opt.oH,
 		});
 
+		// console.log( "n", Utils.getDirection(0, 0, 0, -1) );
+		// console.log( "w", Utils.getDirection(0, 0, 1, 0) );
+		// console.log( "s", Utils.getDirection(0, 0, 0, 1) );
+		// console.log( "e", Utils.getDirection(0, 0, -1, 0) );
+
 		let Self = this;
 		this.fpsControl = karaqu.FpsControl({
 			fps: 35,
@@ -58,12 +63,18 @@ let Particles = {
 				py = y2 - y1,
 				dx = (sx > x1 ? -1 : 1),
 				dy = (sy > y1 ? -1 : 1);
+
+			let dir = Utils.getDirection(sx, sy, px * dx, py * dy),
+				tmp = ["NORTH", "WEST", "SOUTH", "EAST"];
+			console.log( dir, tmp[dir] );
+
 			// total length of snake
 			total += Utils.dist(x1, y1, x2, y2);
 			// path of snake body
 			sx += px * dx;
 			sy += py * dy;
-			path.push({ px, py, dx, dy, sx, sy });
+			
+			path.push({ sx, sy });
 		});
 
 		// set translate position, affecting origo
@@ -94,8 +105,6 @@ let Particles = {
 				x = nx,
 				y = ny;
 			
-			if (ny < -9) console.log( nx, ny );
-
 			if (normal % Math.PI == 0) {
 				// vertical
 				y += rnd * line;
@@ -113,13 +122,12 @@ let Particles = {
 		});
 
 		// push out flies in "head area"
-		let hn = Utils.getRadians(path[0].sx, path[0].sy, path[1].sx, path[1].sy),
-			hd;
-		switch (hn) {
-			case hPI: hd = -hPI; break; // north
-			case Math.PI: hd = Math.PI * .25; break; // west
-			case -Math.PI: hd = Math.PI * .75; break; // east
-			case hPI: hd = hPI; break; // south
+		let hd;
+		switch (Utils.getDirection(path[0].sx, path[0].sy, path[1].sx, path[1].sy)) {
+			case Compass.NORTH: hd = -hPI; break; // north
+			case Compass.WEST: hd = Math.PI * .25; break; // west
+			case Compass.SOUTH: hd = hPI; break; // south
+			case Compass.EAST: hd = Math.PI * .75; break; // east
 		}
 		dots.map(dot => {
 			let dist = Utils.dist(hx, hy, dot.x, dot.y);
