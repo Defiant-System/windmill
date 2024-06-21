@@ -5,7 +5,7 @@
 	<c key="fg" val="#403211"/>
 	<c key="hl" val="#fff2c9"/>
 	<c key="snake1" val="#ede58c"/>
-	<c key="snake2" val="#fff"/>
+	<c key="snake2" val="#ffffff"/>
 
 	<c id="1" val="#005650" name="black"/>
 	<c id="2" val="#fffaec" name="white"/>

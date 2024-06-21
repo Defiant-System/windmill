@@ -37,7 +37,8 @@ let Particles = {
 		this.cvs.attr({ width: this.opt.oW });
 	},
 	start(grid) {
-		let line = parseInt(grid.el.cssProp("--line"), 10) >> 1,
+		let color1 = grid.el.cssProp("--snake1"),
+			line = parseInt(grid.el.cssProp("--line"), 10) >> 1,
 			tx = +grid.el.prop("offsetLeft") + +grid.el.parent().prop("offsetLeft") - this.opt.oX + line,
 			ty = +grid.el.prop("offsetTop") + +grid.el.parent().prop("offsetTop") - this.opt.oY + line,
 			total = 0,
@@ -62,9 +63,9 @@ let Particles = {
 		let w = 8,
 			swap = Utils.createCanvas(w*2, w*2),
 			gradient = swap.ctx.createRadialGradient(w, w, 0, w, w, w);
-		gradient.addColorStop(0, "#ffffff");
-		gradient.addColorStop(.975, "#ffffff33");
-		gradient.addColorStop(.9, "#ffffff01");
+		gradient.addColorStop(0, `${color1}`);
+		gradient.addColorStop(.975, `${color1}33`);
+		gradient.addColorStop(.9, `${color1}01`);
 		gradient.addColorStop(1, "transparent");
 		swap.ctx.fillStyle = gradient; // "#f00";
 		swap.ctx.beginPath();

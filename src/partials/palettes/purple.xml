@@ -3,9 +3,9 @@
 	<c key="bg" val="#b900ac"/>
 	<c key="gr" val="#ff00f9"/>
 	<c key="fg" val="#8b08a2"/>
-	<c key="hl" val="#fff"/>
-	<c key="snake1" val="#fff"/>
-	<c key="snake2" val="#fff"/>
+	<c key="hl" val="#ffffff"/>
+	<c key="snake1" val="#ffffff"/>
+	<c key="snake2" val="#ffffff"/>
 
 	<c id="1" val="#407" name="black"/>
 	<c id="2" val="#fff" name="white"/>
