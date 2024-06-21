@@ -4,7 +4,7 @@ class Firefly {
 		this._parent = parent;
 
 		this.ttl = 90;
-		this.orbit = 5;
+		this.orbit = 15;
 		this.radius = 3;
 		this.TAU = Math.PI * 2;
 
@@ -13,8 +13,8 @@ class Firefly {
 		this.speed = 1.25;
 		this.mode = "expand";
 
-		this.target = new Vector(100, 100);
-		this.velocity = new Vector(0, 0);
+		this.target = new Vector(-100, -200);
+		this.velocity = new Vector(-5, 3);
 
 		this.dir = new Vector(Math.cos(this.normal), Math.sin(this.normal));
 		this.pos = new Vector(data.x, data.y);
