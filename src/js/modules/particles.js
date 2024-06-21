@@ -64,16 +64,12 @@ let Particles = {
 				dx = (sx > x1 ? -1 : 1),
 				dy = (sy > y1 ? -1 : 1);
 
-			let dir = Utils.getDirection(sx, sy, px * dx, py * dy),
-				tmp = ["NORTH", "WEST", "SOUTH", "EAST"];
-			console.log( dir, tmp[dir] );
-
 			// total length of snake
 			total += Utils.dist(x1, y1, x2, y2);
 			// path of snake body
 			sx += px * dx;
 			sy += py * dy;
-			
+
 			path.push({ sx, sy });
 		});
 
@@ -84,9 +80,9 @@ let Particles = {
 		this.opt.flies = [];
 
 		// prepare flies
-		let il = total / 10 | 0,
-			hPI = Math.PI * .5,
-			dist,
+		let hPI = Math.PI * .5,
+			compass = [hPI, Math.PI, -hPI, 0],
+			il = total / 10 | 0,
 			ox = 0,
 			oy = 0;
 		
@@ -94,31 +90,25 @@ let Particles = {
 		[...Array(il)].map((e, i) => {
 			let iC = i / il,
 				index = iC * (path.length - 1),
-				fractal = iC === 1 ? 1 : +index.toString().slice(1),
-				pI = index | 0,
-				p1 = path[pI],
-				p2 = path[pI + 1],
-				[nx, ny] = Utils.getPosOnLine(p1.sx, p1.sy, p2.sx, p2.sy, fractal),
-				normal = Utils.getRadians(p1.sx, p1.sy, p2.sx, p2.sy),
+				fractal = "."+ (index.toString().split(".")[1] || 0),
+				p1 = path[(index | 0)],
+				p2 = path[(index | 0) + 1],
+				[x, y] = Utils.getPosOnLine(p1.sx, p1.sy, p2.sx, p2.sy, +fractal),
+				dir = Utils.getDirection(p1.sx, p1.sy, p2.sx, p2.sy),
 				rnd = Utils.random(0, 2) ? 1 : -1,
-				rr = (Math.random() - .5) * Math.PI * .25,
-				x = nx,
-				y = ny;
+				normal = compass[dir] + (dir > 1 ? Math.PI : -Math.PI);
 			
-			if (normal % Math.PI == 0) {
-				// vertical
-				y += rnd * line;
-				if (nx < ox) normal += Math.PI;
-			} else {
+			if ([0,2].includes(dir)) {
 				// horizontal
 				x += rnd * line;
-				if (ny > oy) normal += Math.PI;
+			} else {
+				// vertical
+				y += rnd * line;
 			}
-
-			dots.push({ x, y, normal: normal - (hPI * rnd) + rr });
-			// remember new pos
-			ox = nx;
-			oy = ny;
+			// final arithmetics for nomral
+			normal += (hPI * rnd) * (dir < 2 ? 1 : -1);
+			// accumulate dot details
+			dots.push({ x, y, normal });
 		});
 
 		// push out flies in "head area"
