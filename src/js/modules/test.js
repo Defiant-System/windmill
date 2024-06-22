@@ -7,6 +7,9 @@ let Test = {
 			let data = $.xmlFromString(`<data>
 								<i type="dot" x="0" y="0"/>
 								<i type="dot" x="0" y="1"/>
+								<i type="hex" x="0" y="0" line="ns" hc="1"/>
+								<i type="hex" x="0" y="1" line="we" hm="1"/>
+								<i type="hex" x="1" y="1" line="ns" hm="1"/>
 							</data>`);
 			// console.log( data );
 			window.render({

@@ -63,6 +63,7 @@ let UI = {
 		TETRIS_SPACE: 3,
 		DISJOINT_LENGTH: 22,
 		EDIT_R: 20,
+		ERROR_COLOR: "#ff0000",
 	};
 
 

@@ -4,6 +4,7 @@
 	<c key="gr" val="#ff00f9"/>
 	<c key="fg" val="#ff932e"/>
 	<c key="hl" val="#fff"/>
+	<c key="error" val="#ff0000"/>
 	<c key="snake1" val="#ffffff"/>
 	<c key="snake2" val="#ffffff"/>
 

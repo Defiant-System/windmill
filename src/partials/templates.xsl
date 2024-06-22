@@ -68,11 +68,26 @@
 
 <xsl:template name="puzzle-errors">
 	<xsl:for-each select="./*">
-		<span class="error-cell" data-type="dot">
+		<span class="error">
 			<xsl:attribute name="style">
 				--x: <xsl:value-of select="@x"/>;
 				--y: <xsl:value-of select="@y"/>;
 			</xsl:attribute>
+			<xsl:attribute name="data-type">
+				<xsl:value-of select="@type"/>
+			</xsl:attribute>
+
+			<xsl:if test="@line"><xsl:attribute name="class"><xsl:value-of select="@line"/> error</xsl:attribute></xsl:if>
+
+			<xsl:if test="@hc = 1">
+				<xsl:attribute name="data-hexCorner">1</xsl:attribute>
+			</xsl:if>
+			<xsl:if test="@hm = 1">
+				<xsl:attribute name="data-hexMiddle">1</xsl:attribute>
+			</xsl:if>
+			<xsl:if test="@hm = 1">
+				<xsl:attribute name="data-hexMiddle">1</xsl:attribute>
+			</xsl:if>
 		</span>
 	</xsl:for-each>
 </xsl:template>

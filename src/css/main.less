@@ -257,17 +257,17 @@ content {
 			width: 100%;
 			height: 100%;
 			// pointer-events: none;
-			z-index: 5;
+			z-index: 2;
 
-			.error-cell {
-				// background: #ff000077;
+			.error {
 				position: absolute;
-				top: calc( calc( var( --gH ) * var( --y ) ) + var( --line ) );
-				left: calc( calc( var( --gW ) * var( --x ) ) + var( --line ) );
-				width: calc( var( --gW ) - var( --line ) );
-				height: calc( var( --gH ) - var( --line ) );
-
+				
 				&[data-type="dot"] {
+					top: calc( calc( var( --gH ) * var( --y ) ) + var( --line ) );
+					left: calc( calc( var( --gW ) * var( --x ) ) + var( --line ) );
+					width: calc( var( --gW ) - var( --line ) );
+					height: calc( var( --gH ) - var( --line ) );
+
 					&:before {
 						content: "";
 						position: absolute;
@@ -276,8 +276,33 @@ content {
 						width: calc( var( --gW ) * .39 );
 						height: calc( var( --gH ) * .39 );
 						border-radius: calc( var( --line ) * .6 );
-						box-shadow: 0 0 9px 11px #f90;
-						animation: alarm 200ms ease-in-out alternate 6 forwards;
+						box-shadow: 0 0 9px 11px var( --error );
+						animation: alarm 250ms ease-in-out alternate 6 forwards;
+					}
+				}
+
+				&[data-type="hex"] {
+					top: calc( calc( var( --gH ) * var( --y ) ) + 4px );
+					left: calc( calc( var( --gW ) * var( --x ) ) + 4px );
+					width: calc( var( --line ) - 8px );
+					height: calc( var( --line ) - 8px );
+					box-shadow: 0 0 9px 11px var( --error );
+					// background: var( --error );
+
+					&:before {
+						clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+					}
+
+					&[data-hexCorner="1"] {
+
+					}
+
+					&[data-hexMiddle="1"] {
+						left: calc( calc( var( --gW ) * var( --x ) ) + calc( var( --gW ) * .5 ) );
+					}
+
+					&[data-hexMiddle="1"] {
+						top: calc( calc( var( --gW ) * var( --x ) ) + calc( var( --gW ) * .5 ) );
 					}
 				}
 			}
@@ -531,7 +556,7 @@ content {
 					left: 2px;
 					width: calc( var( --line ) - 3px );
 					height: calc( var( --line ) - 4px );
-					background: var( --bg );
+					background: var( --gr );
 					clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
 				}
 			}
@@ -544,7 +569,7 @@ content {
 					left: 2px;
 					width: calc( var( --line ) - 3px );
 					height: calc( var( --line ) - 4px );
-					background: var( --bg );
+					background: var( --gr );
 					clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
 				}
 			}
@@ -557,7 +582,7 @@ content {
 					left: calc( 50% - calc( var( --line ) * .5 ) );
 					width: calc( var( --line ) - 3px );
 					height: calc( var( --line ) - 4px );
-					background: var( --bg );
+					background: var( --gr );
 					clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
 				}
 			}

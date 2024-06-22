@@ -19,6 +19,7 @@ class Grid {
 				{ x: "gW", ui: "CELL_WIDTH", val: 83 },
 				{ x: "gH", ui: "CELL_HEIGHT", val: 83 },
 				{ x: "gap", ui: "DISJOINT_LENGTH", val: 22 },
+				{ x: "error", ui: "ERROR_COLOR", val: "#ff0000" },
 			];
 
 		// prepare xml, template & units
@@ -131,6 +132,17 @@ class Grid {
 		if (err.errors.length) {
 			let errors = err.errors.concat(err.allowedErrors);
 			console.log(errors);
+
+			let data = $.xmlFromString(`<data>
+											<i type="dot" x="0" y="0"/>
+											<i type="dot" x="0" y="1"/>
+										</data>`);
+			window.render({
+				data,
+				template: "puzzle-errors",
+				target: window.find(".grid-error"),
+			});
+
 			// sound fx
 			window.audio.play("fail");
 			// reset level
