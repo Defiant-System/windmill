@@ -51,7 +51,6 @@
 				</xsl:for-each>
 			</div>
 
-			<div class="grid-extra"></div>
 			<div class="grid-path">
 				<svg>
 					<xsl:attribute name="width"><xsl:value-of select="$puzzleWidth"/></xsl:attribute>
@@ -64,6 +63,18 @@
 			<div class="grid-error"></div>
 		</div>
 	</div>
+</xsl:template>
+
+
+<xsl:template name="puzzle-errors">
+	<xsl:for-each select="./*">
+		<span class="error-cell" data-type="dot">
+			<xsl:attribute name="style">
+				--x: <xsl:value-of select="@x"/>;
+				--y: <xsl:value-of select="@y"/>;
+			</xsl:attribute>
+		</span>
+	</xsl:for-each>
 </xsl:template>
 
 </xsl:stylesheet>
