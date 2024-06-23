@@ -9,7 +9,7 @@ let Game = {
 				index: 0,
 				list: window.bluePrint.selectNodes(`//Data/Level[not(@type)]`).map(x => +x.getAttribute("id")).sort((a,b) => a - b),
 			};
-		console.log( this.level.list )
+		// console.log( this.level.list )
 	},
 	dispatch(event) {
 		let Self = Game,
@@ -58,8 +58,11 @@ let Game = {
 				}
 				break;
 			// custom events
+			case "render-level":
+				Self.grid.render(event.arg);
+				break;
 			case "goto-next-level":
-
+				
 				break;
 		}
 	}

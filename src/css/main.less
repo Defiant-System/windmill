@@ -23,6 +23,7 @@ content {
 		bottom: 0;
 		border-radius: inherit;
 		background: var( --base ) radial-gradient(circle at 50%, #ffffff33, transparent);
+		transition: background 500ms ease-in-out;
 	}
 
 	&[data-show="start-view"] {
@@ -173,6 +174,7 @@ content {
 		left: 0;
 		right: 0;
 		bottom: 0;
+		opacity: 0;
 		// background: var( --base );
 
 		&[data-id="0.1"] {
@@ -188,6 +190,18 @@ content {
 					// mix-blend-mode: hard-light;
 				}
 			}
+		}
+
+		&.appear {
+			animation: appear 500ms forwards;
+		}
+
+		&.disappear {
+			animation: disappear 500ms forwards;
+		}
+
+		&.active {
+			opacity: 1;
 		}
 	}
 
@@ -624,6 +638,19 @@ content {
 	0% { opacity: 0; r: 0px; }
 	100% { opacity: 1; r: calc( var( --line ) * 1.25 ); }
 }
+
+
+
+@keyframes appear {
+	0% { opacity: 0; transform: translateX(100px) scale(.75); }
+	100% { opacity: 1; transform: translateX(0px) scale(1); }
+}
+
+@keyframes disappear {
+	0% { opacity: 1; transform: translateX(0px) scale(1); }
+	100% { opacity: 0; transform: translateX(-100px) scale(.75); }
+}
+
 
 
 

@@ -12,6 +12,9 @@ class Grid {
 		// save value
 		this.levelIndex = id;
 
+		// out with the old
+		window.find(".game-view .level").cssSequence("disappear", "animationend", el => el.remove());
+
 		// default units
 		let Defaults = [
 				{ x: "grid", ui: "GRID_UNIT", val: 83 },
@@ -55,17 +58,20 @@ class Grid {
 		this.generateStorage(xLevel);
 
 		// html output
-		window.render({
-			match,
-			template: "level-puzzle",
-			target: window.find(".game-view"),
-		});
+		let nextEl = window.render({
+				match,
+				template: "level-puzzle",
+				append: window.find(".game-view"),
+			});
+
+		// appear animation
+		nextEl.cssSequence("appear", "animationend", el => el.addClass("active").removeClass("appear"));
 		
 		// update window title
 		window.title = `Witness - Level ${this.levelIndex}`;
 
 		// center puzzle
-		this.el = window.find(".game-view .level .puzzle");
+		this.el = nextEl.find(".puzzle");
 		let top = (window.innerHeight - +this.el.prop("offsetHeight")) >> 1,
 			left = (window.innerWidth - +this.el.prop("offsetWidth")) >> 1;
 		this.el.css({ top, left });

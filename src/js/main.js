@@ -29,9 +29,9 @@ const witness = {
 		Game.init();
 		Particles.init();
 
-		// Game.grid.render("0.1");
-		// Game.grid.render("2.3");
-		Game.grid.render("0.1");
+		// Game.dispatch({ type: "render-level", arg: "0.1" });
+		// Game.dispatch({ type: "render-level", arg: "2.3" });
+		Game.dispatch({ type: "render-level", arg: "1.1" });
 
 		// DEV-ONLY-START
 		Test.init(this);
@@ -57,7 +57,7 @@ const witness = {
 				window.find("content").data({ show: event.arg });
 				break;
 			case "render-level":
-				Game.grid.render(event.arg);
+				Game.dispatch(event);
 				break;
 			case "open-help":
 				karaqu.shell("fs -u '~/help/index.md'");
