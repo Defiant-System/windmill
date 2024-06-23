@@ -282,27 +282,19 @@ content {
 				}
 
 				&[data-type="hex"] {
-					top: calc( calc( var( --gH ) * var( --y ) ) + 4px );
-					left: calc( calc( var( --gW ) * var( --x ) ) + 4px );
-					width: calc( var( --line ) - 8px );
-					height: calc( var( --line ) - 8px );
-					box-shadow: 0 0 9px 11px var( --error );
-					// background: var( --error );
+					animation: alarm 250ms ease-in-out alternate 6 forwards;
 
 					&:before {
-						clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+						z-index: 2;
 					}
 
-					&[data-hexCorner="1"] {
-
-					}
-
-					&[data-hexMiddle="1"] {
-						left: calc( calc( var( --gW ) * var( --x ) ) + calc( var( --gW ) * .5 ) );
-					}
-
-					&[data-hexMiddle="1"] {
-						top: calc( calc( var( --gW ) * var( --x ) ) + calc( var( --gW ) * .5 ) );
+					&:after {
+						display: block;
+						clip-path: none;
+						border-radius: 50%;
+						background: var( --error );
+						box-shadow: 0 0 3px 5px var( --error );
+						z-index: 1;
 					}
 				}
 			}
@@ -549,6 +541,7 @@ content {
 			}
 
 			&[data-hexCorner] {
+				&:after,
 				&:before {
 					content: "";
 					position: absolute;
@@ -559,9 +552,14 @@ content {
 					background: var( --gr );
 					clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
 				}
+
+				&:after {
+					display: none;
+				}
 			}
 
 			&.ns[data-hexMiddle] {
+				&:after,
 				&:before {
 					content: "";
 					position: absolute;
@@ -572,9 +570,14 @@ content {
 					background: var( --gr );
 					clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
 				}
+
+				&:after {
+					display: none;
+				}
 			}
 
 			&.we[data-hexMiddle] {
+				&:after,
 				&:before {
 					content: "";
 					position: absolute;
@@ -584,6 +587,10 @@ content {
 					height: calc( var( --line ) - 4px );
 					background: var( --gr );
 					clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+				}
+
+				&:after {
+					display: none;
 				}
 			}
 		}
