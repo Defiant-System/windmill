@@ -4,12 +4,19 @@ let Game = {
 		// fast references
 		this.doc = $(document);
 		this.grid = new Grid();
+
+		this.level = {
+				index: 0,
+				list: window.bluePrint.selectNodes(`//Data/Level[not(@type)]`).map(x => +x.getAttribute("id")).sort((a,b) => a - b),
+			};
+		console.log( this.level.list )
 	},
 	dispatch(event) {
 		let Self = Game,
 			data,
 			el;
 		switch (event.type) {
+			// native events
 			case "click":
 			case "init-snake":
 				// start cicle was clicked
@@ -49,6 +56,10 @@ let Game = {
 				} else {
 					Game.grid.snake.targetingMouse = false;
 				}
+				break;
+			// custom events
+			case "goto-next-level":
+
 				break;
 		}
 	}

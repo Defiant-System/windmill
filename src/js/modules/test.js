@@ -1,7 +1,11 @@
 
 let Test = {
 	init(APP) {
-		// return;
+
+		// Game.grid.render("1.1");
+		setTimeout(() => Game.dispatch({ type: "goto-next-level" }), 500);
+
+		return;
 
 		return setTimeout(() => {
 			let data = $.xmlFromString(`<data>

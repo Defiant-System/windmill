@@ -71,7 +71,7 @@ class Grid {
 		this.el.css({ top, left });
 
 		let base = window.bluePrint.selectSingleNode(`//Palette[@id="${xLevel.getAttribute("palette")}"]/c[@key="base"]`),
-			show = id === "lobby" ? "start-view" : "game-view";
+			show = id === "0.1" ? "start-view" : "game-view";
 		window.find("content").data({ show }).css({ "--base": base.getAttribute("val") });
 	}
 
@@ -133,15 +133,15 @@ class Grid {
 			let errors = err.errors.concat(err.allowedErrors);
 			console.log(errors);
 
-			let data = $.xmlFromString(`<data>
-											<i type="dot" x="0" y="0"/>
-											<i type="dot" x="0" y="1"/>
-										</data>`);
-			window.render({
-				data,
-				template: "puzzle-errors",
-				target: window.find(".grid-error"),
-			});
+			// let data = $.xmlFromString(`<data>
+			// 								<i type="dot" x="0" y="0"/>
+			// 								<i type="dot" x="0" y="1"/>
+			// 							</data>`);
+			// window.render({
+			// 	data,
+			// 	template: "puzzle-errors",
+			// 	target: window.find(".grid-error"),
+			// });
 
 			// sound fx
 			window.audio.play("fail");

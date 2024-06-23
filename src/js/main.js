@@ -29,9 +29,9 @@ const witness = {
 		Game.init();
 		Particles.init();
 
-		// Game.grid.render("lobby");
+		// Game.grid.render("0.1");
 		// Game.grid.render("2.3");
-		Game.grid.render("1.1");
+		Game.grid.render("0.1");
 
 		// DEV-ONLY-START
 		Test.init(this);

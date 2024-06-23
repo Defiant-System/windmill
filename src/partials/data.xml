@@ -6,7 +6,7 @@
 	@import "palettes/orange.xml"
 	@import "palettes/purple.xml"
 
-	@import "levels/lobby.xml"
+	@import "levels/level 0.1.xml"
 
 	@import "levels/level 1.0.xml"
 	@import "levels/level 1.01.xml"
@@ -18,11 +18,11 @@
 	@import "levels/level 1.6.xml"
 	@import "levels/level 1.7.xml"
 	@import "levels/level 1.8.xml"
+	@import "levels/level 1.9.xml"
+	@import "levels/level 1.91.xml"
 
 	@import "levels/level 2.0.xml"
 	@import "levels/level 2.1.xml"
-	@import "levels/level 2.2.xml"
-	@import "levels/level 2.3.xml"
 
 	@import "levels/level 3.0.xml"
 	@import "levels/level 3.1.xml"
