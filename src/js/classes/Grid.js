@@ -141,8 +141,16 @@ class Grid {
 			// create error nodes
 			errors.map(err => {
 				let x = err.coord.i,
-					y = err.coord.j;
-				let el = this.el.find(`.grid-base span[style="--x: ${x};--y: ${y};"] .hex.top`);
+					y = err.coord.j,
+					type = "";
+
+				switch (err.drawType) {
+					case DrawType.POINT: type = ".hex.top"; break;
+					case DrawType.VLINE: type = ".hex.middle"; break;
+					case DrawType.HLINE: type = ".hex.middle"; break;
+				}
+
+				let el = this.el.find(`.grid-base span[style="--x: ${x};--y: ${y};"] ${type}`);
 				el.cssSequence("error", "animationend", el => el.removeClass("error"));
 			});
 
@@ -321,9 +329,11 @@ class Grid {
 			switch (type) {
 				case "ns":
 					if (hexTop) storage.entity[index].type = Type.HEXAGON;
+					if (hexMid) storage.entity[index + storage.width].type = Type.HEXAGON;
 					break;
 				case "we":
 					if (hexTop) storage.entity[index].type = Type.HEXAGON;
+					if (hexMid) storage.entity[index + 1].type = Type.HEXAGON;
 					break;
 				case "start":
 					storage.entity[index].type = Type.START;
@@ -353,7 +363,7 @@ class Grid {
 
 		if (xLevel.getAttribute("id") === "1.01") {
 			// console.log( storage.entity );
-			// storage.entity.map((e, i) => console.log( i, JSON.stringify(e) + (i % 9 == 8 ? "---" : "") ));
+			storage.entity.map((e, i) => console.log( i, JSON.stringify(e) + (i % 9 == 8 ? "---" : "") ));
 		}
 
 		// tmp object
