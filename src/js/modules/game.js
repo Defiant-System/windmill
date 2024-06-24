@@ -63,6 +63,7 @@ let Game = {
 				break;
 			case "goto-next-level":
 				Self.level.index = Self.level.list.indexOf(Self.grid.levelIndex) + 1;
+				if (Self.level.index > Self.level.list.length - 1) Self.level.index = 0;
 				Self.grid.render(Self.level.list[Self.level.index]);
 				break;
 		}

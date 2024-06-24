@@ -74,6 +74,6 @@
 
 		<!-- start & exit -->
 		<i type="start" x="0" y="5" />
-		<i type="exit" x="5" y="0" d="0" />
+		<i type="exit" x="5" y="0" d="1" />
 	</grid>
 </Level>

@@ -130,6 +130,6 @@
 
 		<!-- start & exit -->
 		<i type="start" x="0" y="7" />
-		<i type="exit" x="7" y="0" d="0" />
+		<i type="exit" x="7" y="0" d="1" />
 	</grid>
 </Level>

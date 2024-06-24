@@ -55,7 +55,7 @@
 
 		<!-- start & exit -->
 		<i type="start" x="0" y="6" />
-		<i type="exit" x="3" y="0" d="0" />
+		<i type="exit" x="3" y="0" d="1" />
 
 		<!-- <i type="lambda" x="1" y="1" c="1" /> -->
 	</grid>
