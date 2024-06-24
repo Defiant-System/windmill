@@ -136,18 +136,29 @@ class Grid {
 		let err = Validation.getErrors(this);
 		// show errors
 		if (err.errors.length) {
-			let errors = err.errors.concat(err.allowedErrors);
-			console.log(errors);
+			let errors = err.errors.concat(err.allowedErrors),
+				str = [];
+			
+			// create error nodes
+			errors.map(e => {
+				let type = "";
+				switch (e.drawType) {
+					case DrawType.CELL:
+						type = "dot";
+						break;
+					case DrawType.POINT:
+						type = "hex";
+						break;
+				}
+				str.push(`<i type="${type}" x="${e.coord.i}" y="${e.coord.j}"/>`);
+			});
 
-			// let data = $.xmlFromString(`<data>
-			// 								<i type="dot" x="0" y="0"/>
-			// 								<i type="dot" x="0" y="1"/>
-			// 							</data>`);
-			// window.render({
-			// 	data,
-			// 	template: "puzzle-errors",
-			// 	target: window.find(".grid-error"),
-			// });
+			// render & add to DOM
+			window.render({
+				template: "puzzle-errors",
+				target: window.find(".grid-error"),
+				data: $.xmlFromString(`<data>${str.join("")}</data>`),
+			});
 
 			// sound fx
 			window.audio.play("fail");
