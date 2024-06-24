@@ -3,7 +3,7 @@ let Test = {
 	init(APP) {
 
 		// Game.grid.render("1.1");
-		setTimeout(() => Game.dispatch({ type: "goto-next-level" }), 500);
+		// setTimeout(() => Game.dispatch({ type: "goto-next-level" }), 500);
 
 		return;
 

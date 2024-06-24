@@ -248,6 +248,19 @@ content {
 			}
 		}
 
+		&.locked {
+			.grid-base {
+				opacity: .5;
+			}
+
+			span {
+				&.start:after,
+				&.exit:after {
+					display: none;
+				}
+			}
+		}
+
 		.grid-base {
 			// background: #f00;
 			position: absolute;
@@ -324,14 +337,14 @@ content {
 			pointer-events: none;
 			z-index: 3;
 			opacity: 1;
-			transition: opacity 200ms ease-in-out;
+			transition: opacity 300ms ease-in-out;
 
 			&.fade-out-snake {
 				opacity: 0;
 			}
 
 			&.glow-snake {
-				transition-delay: 1000ms;
+				transition-delay: 5000ms;
 				opacity: 0;
 
 				svg {
@@ -642,13 +655,13 @@ content {
 
 
 @keyframes appear {
-	0% { opacity: 0; transform: translateX(100px) scale(.75); }
+	0% { opacity: 0; transform: translateX(180px) scale(.75); }
 	100% { opacity: 1; transform: translateX(0px) scale(1); }
 }
 
 @keyframes disappear {
 	0% { opacity: 1; transform: translateX(0px) scale(1); }
-	100% { opacity: 0; transform: translateX(-100px) scale(.75); }
+	100% { opacity: 0; transform: translateX(-180px) scale(.75); }
 }
 
 

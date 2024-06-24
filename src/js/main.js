@@ -29,9 +29,9 @@ const witness = {
 		Game.init();
 		Particles.init();
 
-		// Game.dispatch({ type: "render-level", arg: "0.1" });
+		Game.dispatch({ type: "render-level", arg: "0.1" });
 		// Game.dispatch({ type: "render-level", arg: "2.3" });
-		Game.dispatch({ type: "render-level", arg: "1.1" });
+		// Game.dispatch({ type: "render-level", arg: "1.1" });
 
 		// DEV-ONLY-START
 		Test.init(this);

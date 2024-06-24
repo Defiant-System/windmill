@@ -172,17 +172,19 @@ class Grid {
 				swap.ctx.beginPath();
 				swap.ctx.fillRect(0, 0, w*2, w*2);
 				return { img: swap.cvs[0], w };
-			});
+			}),
+			fnNext = () => Game.dispatch({ type: "goto-next-level" });
 			
 		// make sure particles are reset
 		Particles.reset();
 		// start fire flies
-		Particles.start(this, this.snake.snakeEl, colors[0]);
+		Particles.start(this, this.snake.snakeEl, colors[0], fnNext);
 		// for secondary snake
 		if (this.getSymmetry()) {
 			Particles.start(this, this.snake.secondarySnakeEl, colors[1]);
 		}
-
+		// lock current level
+		this.el.addClass("locked");
 		// reset level
 		fadeOutSnake("glow");
 		// sound fx

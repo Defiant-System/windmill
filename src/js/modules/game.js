@@ -7,7 +7,7 @@ let Game = {
 
 		this.level = {
 				index: 0,
-				list: window.bluePrint.selectNodes(`//Data/Level[not(@type)]`).map(x => +x.getAttribute("id")).sort((a,b) => a - b),
+				list: window.bluePrint.selectNodes(`//Data/Level[not(@type)]`).map(x => x.getAttribute("id")).sort((a,b) => a - b),
 			};
 		// console.log( this.level.list )
 	},
@@ -62,7 +62,8 @@ let Game = {
 				Self.grid.render(event.arg);
 				break;
 			case "goto-next-level":
-				
+				Self.level.index = Self.level.list.indexOf(Self.grid.levelIndex) + 1;
+				Self.grid.render(Self.level.list[Self.level.index]);
 				break;
 		}
 	}

@@ -38,7 +38,7 @@ let Particles = {
 		// reset fireflies
 		this.opt.flies = [];
 	},
-	start(grid, snakeEl, color) {
+	start(grid, snakeEl, color, fnNext) {
 		let line = parseInt(grid.el.cssProp("--line"), 10) >> 1,
 			tx = +grid.el.prop("offsetLeft") + +grid.el.parent().prop("offsetLeft") - this.opt.oX + line,
 			ty = +grid.el.prop("offsetTop") + +grid.el.parent().prop("offsetTop") - this.opt.oY + line,
@@ -86,6 +86,9 @@ let Particles = {
 		// set translate position, affecting origo
 		this.tx = tx;
 		this.ty = ty;
+
+		// function to be called when all flies are gone
+		if (fnNext) this.fnNext = fnNext;
 
 		// prepare flies
 		let hPI = Math.PI * .5,
@@ -151,8 +154,10 @@ let Particles = {
 		this.opt.flies.splice(index, 1);
 		
 		if (!this.opt.flies.length) {
+			// stop fps control
 			this.fpsControl.stop();
-			console.log("stopped");
+			// switch to next level
+			this.fnNext();
 		}
 	},
 	update() {
