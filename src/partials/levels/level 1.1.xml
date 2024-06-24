@@ -13,7 +13,7 @@
 
 		<!-- start & exit -->
 		<i type="start" x="0" y="2" />
-		<i type="exit" x="1" y="0" d="0" />
+		<i type="exit" x="1" y="0" d="1" />
 
 		<!-- cell contents -->
 		<i type="dot" x="0" y="0" c="1" />

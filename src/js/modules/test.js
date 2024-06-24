@@ -1,10 +1,9 @@
 
 let Test = {
 	init(APP) {
+		// return;
 
-		// Game.grid.render("1.1");
-		// setTimeout(() => Game.dispatch({ type: "goto-next-level" }), 500);
-
+		Game.dispatch({ type: "render-level", arg: "1.01" });
 		return;
 
 		return setTimeout(() => {

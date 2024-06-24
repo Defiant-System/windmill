@@ -34,7 +34,7 @@
 
 		<!-- start & exit -->
 		<i type="start" x="0" y="3" />
-		<i type="exit" x="3" y="0" d="0" />
+		<i type="exit" x="3" y="0" d="1" />
 
 		<!-- cell contents -->
 		<i type="dot" x="0" y="0" c="1" />

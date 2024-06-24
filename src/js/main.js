@@ -29,6 +29,9 @@ const witness = {
 		Game.init();
 		Particles.init();
 
+		// temp
+		window.find(".start-view").addClass("no-anim");
+
 		Game.dispatch({ type: "render-level", arg: "0.1" });
 		// Game.dispatch({ type: "render-level", arg: "2.3" });
 		// Game.dispatch({ type: "render-level", arg: "1.1" });

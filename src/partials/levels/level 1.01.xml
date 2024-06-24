@@ -27,28 +27,26 @@
 		<i type="exit" x="0" y="1" d="5" />
 	</grid> -->
 
-	<Level id="1.01" palette="purple">
-		<grid type="base" width="1" height="2">
-			<!-- lines -->
-			<i type="ns" x="0" y="0" />
-			<i type="ns" x="0" y="1" />
+	<grid type="base" width="1" height="2">
+		<!-- lines -->
+		<i type="ns" x="0" y="0" />
+		<i type="ns" x="0" y="1" />
 
-			<i type="we" x="0" y="0" hc="1" />
-			<i type="we" x="0" y="1" hm="1" />
-			<i type="we" x="0" y="2" />
+		<i type="we" x="0" y="0" hc="1" />
+		<i type="we" x="0" y="1" hc="1" hm="1" />
+		<i type="we" x="0" y="2" />
 
-			<i type="ns" x="1" y="0" />
-			<i type="ns" x="1" y="1" hm="1" />
+		<i type="ns" x="1" y="0" />
+		<i type="ns" x="1" y="1" hc="1" hm="1" />
 
-			<!-- start & exit -->
-			<i type="start" x="0" y="2" />
-			<i type="exit" x="1" y="0" d="0" />
+		<!-- start & exit -->
+		<i type="start" x="0" y="2" />
+		<i type="exit" x="1" y="0" d="1" />
 
-			<!-- cell contents -->
-			<i type="dot" x="0" y="0" c="1" />
-			<i type="dot" x="0" y="1" c="2" />
-		</grid>
-	</Level>
+		<!-- cell contents -->
+		<i type="dot" x="0" y="0" c="1" />
+		<i type="dot" x="0" y="1" c="2" />
+	</grid>
 
 
 	<!-- <grid type="base" width="3" height="6" gW="101" gH="53" gap="6">
@@ -105,6 +103,6 @@
 		<i type="ns" x="3" y="5" />
 
 		<i type="start" x="0" y="6" />
-		<i type="exit" x="3" y="0" d="0" />
+		<i type="exit" x="3" y="0" d="1" />
 	</grid> -->
 </Level>
