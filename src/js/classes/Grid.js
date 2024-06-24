@@ -142,15 +142,23 @@ class Grid {
 			errors.map(err => {
 				let x = err.coord.i,
 					y = err.coord.j,
-					type = "";
+					el;
 
+				// console.log( err );
 				switch (err.drawType) {
-					case DrawType.POINT: type = ".hex.top"; break;
-					case DrawType.VLINE: type = ".hex.middle"; break;
-					case DrawType.HLINE: type = ".hex.middle"; break;
+					case DrawType.CELL:
+						el = this.el.find(`.grid-base .dot[style*="--x: ${x};--y: ${y};"]`);
+						break;
+					case DrawType.POINT:
+						el = this.el.find(`.grid-base span[style*="--x: ${x};--y: ${y};"] .hex.top`);
+						if (!el.length) el = this.el.find(`.grid-base span[style*="--x: ${x};--y: ${y-1};"] .hex.bottom`);
+						break;
+					case DrawType.VLINE:
+					case DrawType.HLINE:
+						el = this.el.find(`.grid-base span[style*="--x: ${x};--y: ${y};"] .hex.middle`);
+						break;
 				}
 
-				let el = this.el.find(`.grid-base span[style="--x: ${x};--y: ${y};"] ${type}`);
 				el.cssSequence("error", "animationend", el => el.removeClass("error"));
 			});
 
@@ -330,6 +338,9 @@ class Grid {
 				case "ns":
 					if (hexTop) storage.entity[index].type = Type.HEXAGON;
 					if (hexMid) storage.entity[index + storage.width].type = Type.HEXAGON;
+					if (hexBot) {
+						storage.entity[index + (storage.width * 2)].type = Type.HEXAGON;
+					}
 					break;
 				case "we":
 					if (hexTop) storage.entity[index].type = Type.HEXAGON;
@@ -363,7 +374,7 @@ class Grid {
 
 		if (xLevel.getAttribute("id") === "1.01") {
 			// console.log( storage.entity );
-			storage.entity.map((e, i) => console.log( i, JSON.stringify(e) + (i % 9 == 8 ? "---" : "") ));
+			// storage.entity.map((e, i) => console.log( i, JSON.stringify(e) + (i % 9 == 8 ? "---" : "") ));
 		}
 
 		// tmp object

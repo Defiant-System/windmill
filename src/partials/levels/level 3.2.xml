@@ -22,9 +22,9 @@
 
 		<i type="we" x="1" y="0" />
 		<i type="we" x="1" y="1" />
-		<i type="we" x="1" y="2" hc="1" />
+		<i type="we" x="1" y="2" hexTop="1" />
 		<i type="we" x="1" y="3" />
-		<i type="we" x="1" y="4" hm="1" />
+		<i type="we" x="1" y="4" hexMid="1" />
 		<i type="we" x="1" y="5" />
 
 		<i type="ns" x="2" y="0" />
@@ -43,7 +43,7 @@
 		<i type="ns" x="3" y="0" />
 		<i type="ns" x="3" y="1" />
 		<i type="ns" x="3" y="2" />
-		<i type="ns" x="3" y="3" hm="1" />
+		<i type="ns" x="3" y="3" hexMid="1" />
 		<i type="ns" x="3" y="4" />
 
 		<i type="we" x="3" y="0" />

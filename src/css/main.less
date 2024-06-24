@@ -283,53 +283,7 @@ content {
 			z-index: 2;
 			filter: drop-shadow(0 1px 0 rgba(#fff,.125))
 					drop-shadow(0 -1px 0 rgba(#000,.3));
-			// filter: drop-shadow(0 -1px 0 rgba(#fff,.2))
-			// 		drop-shadow(0 1px 0 rgba(#fff,.2))
-			// 		drop-shadow(-1px 0 0 rgba(#fff,.2))
-			// 		drop-shadow(1px 0 0 rgba(#fff,.2));
 		}
-
-		// .grid-error {
-		// 	position: absolute;
-		// 	top: 0;
-		// 	left: 0;
-		// 	width: 100%;
-		// 	height: 100%;
-		// 	pointer-events: none;
-		// 	z-index: 2;
-
-		// 	.error {
-		// 		position: absolute;
-				
-		// 		&[data-type="dot"] {
-		// 			top: calc( calc( var( --gH ) * var( --y ) ) + var( --line ) );
-		// 			left: calc( calc( var( --gW ) * var( --x ) ) + var( --line ) );
-		// 			width: calc( var( --gW ) - var( --line ) );
-		// 			height: calc( var( --gH ) - var( --line ) );
-
-		// 			&:before {
-		// 				content: "";
-		// 				position: absolute;
-		// 				top: calc( var( --line ) * .875 );
-		// 				left: calc( var( --line ) * .875 );
-		// 				width: calc( var( --gW ) * .39 );
-		// 				height: calc( var( --gH ) * .39 );
-		// 				border-radius: calc( var( --line ) * .6 );
-		// 				box-shadow: 0 0 9px 11px var( --error );
-		// 				animation: alarm 250ms ease-in-out alternate 6 forwards;
-		// 			}
-		// 		}
-
-		// 		&[data-type="hex"] {
-		// 			animation: alarm 250ms ease-in-out alternate 6 forwards;
-
-		// 			&:after,
-		// 			&:before {
-		// 				background: var( --error );
-		// 			}
-		// 		}
-		// 	}
-		// }
 
 		.grid-path {
 			// background: #ffffff55;
@@ -528,6 +482,21 @@ content {
 
 				&:before {
 					content: "";
+					opacity: 0;
+					position: absolute;
+					top: var( --line );
+					left: var( --line );
+					right: var( --line );
+					bottom: var( --line );
+					border-radius: 50%;
+					box-shadow: 0 0 13px var( --error ),
+								0 0 13px var( --error ),
+								0 0 13px var( --error ),
+								0 0 13px var( --error );
+				}
+
+				&:after {
+					content: "";
 					position: absolute;
 					top: var( --line );
 					left: var( --line );
@@ -535,6 +504,12 @@ content {
 					bottom: var( --line );
 					border-radius: calc( var( --line ) * .6 );
 					background: var(--c);
+				}
+
+				&.error {
+					&:before {
+						animation: alarm 200ms ease-in-out alternate 6 forwards;
+					}
 				}
 			}
 
@@ -622,36 +597,6 @@ content {
 					clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
 				}
 			}
-
-			// &[data-hexCorner] {
-				
-			// }
-
-			// &.ns[data-hexMiddle] {
-			// 	&:after {
-			// 		content: "";
-			// 		position: absolute;
-			// 		top: calc( 50% - calc( var( --line ) * .35 ) );
-			// 		left: 2px;
-			// 		width: calc( var( --line ) - 3px );
-			// 		height: calc( var( --line ) - 4px );
-			// 		background: var( --gr );
-			// 		clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
-			// 	}
-			// }
-
-			// &.we[data-hexMiddle] {
-			// 	&:after {
-			// 		content: "";
-			// 		position: absolute;
-			// 		top: 2px;
-			// 		left: calc( 50% - calc( var( --line ) * .35 ) );
-			// 		width: calc( var( --line ) - 3px );
-			// 		height: calc( var( --line ) - 4px );
-			// 		background: var( --gr );
-			// 		clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
-			// 	}
-			// }
 		}
 	}
 }

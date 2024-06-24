@@ -3,28 +3,9 @@ let Test = {
 	init(APP) {
 		// return;
 
-		Game.dispatch({ type: "render-level", arg: "1.01" });
+		Game.dispatch({ type: "render-level", arg: "3.2" });
+		// Game.dispatch({ type: "render-level", arg: "1.01" });
 		return;
-
-		return setTimeout(() => {
-			let data = $.xmlFromString(`<data>
-								<i type="dot" x="0" y="0"/>
-								<i type="dot" x="0" y="1"/>
-								
-								<i type="hex" x="0" y="0" line="ns" hc="1"/>
-								<i type="hex" x="0" y="1" line="we" hc="1" hm="1"/>
-								<i type="hex" x="1" y="1" line="ns" hm="1"/>
-
-								<i type="hex" x="1" y="1" line="ns" hc="1" hm="1"/>
-							</data>`);
-			// console.log( data );
-			window.render({
-				data,
-				template: "puzzle-errors",
-				target: window.find(".grid-error"),
-			});
-
-		}, 800);
 
 
 		return setTimeout(() => {
