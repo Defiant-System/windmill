@@ -571,44 +571,59 @@ content {
 				}
 			}
 
-			&[data-hexCorner] {
+			i.hex {
+				position: absolute;
+				top: 2px;
+				left: 2px;
+				width: calc( var( --line ) - 4px );
+				height: calc( var( --line ) - 4px );
+				filter: drop-shadow(0 1px 0 rgba(#000,.1));
+
+				&.top {  }
+				&.middle { top: calc( 50% - calc( var( --line ) * .35 ) ); }
+				&.bottom { left: calc( 50% - calc( var( --line ) * .35 ) ); }
+
 				&:before {
 					content: "";
 					position: absolute;
-					top: 2px;
-					left: 2px;
-					width: calc( var( --line ) - 3px );
-					height: calc( var( --line ) - 4px );
+					top: 1px;
+					left: 0;
+					right: 0;
+					bottom: 1px;
 					background: var( --gr );
 					clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
 				}
 			}
 
-			&.ns[data-hexMiddle] {
-				&:after {
-					content: "";
-					position: absolute;
-					top: calc( 50% - calc( var( --line ) * .35 ) );
-					left: 2px;
-					width: calc( var( --line ) - 3px );
-					height: calc( var( --line ) - 4px );
-					background: var( --gr );
-					clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
-				}
-			}
+			// &[data-hexCorner] {
+				
+			// }
 
-			&.we[data-hexMiddle] {
-				&:after {
-					content: "";
-					position: absolute;
-					top: 2px;
-					left: calc( 50% - calc( var( --line ) * .35 ) );
-					width: calc( var( --line ) - 3px );
-					height: calc( var( --line ) - 4px );
-					background: var( --gr );
-					clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
-				}
-			}
+			// &.ns[data-hexMiddle] {
+			// 	&:after {
+			// 		content: "";
+			// 		position: absolute;
+			// 		top: calc( 50% - calc( var( --line ) * .35 ) );
+			// 		left: 2px;
+			// 		width: calc( var( --line ) - 3px );
+			// 		height: calc( var( --line ) - 4px );
+			// 		background: var( --gr );
+			// 		clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+			// 	}
+			// }
+
+			// &.we[data-hexMiddle] {
+			// 	&:after {
+			// 		content: "";
+			// 		position: absolute;
+			// 		top: 2px;
+			// 		left: calc( 50% - calc( var( --line ) * .35 ) );
+			// 		width: calc( var( --line ) - 3px );
+			// 		height: calc( var( --line ) - 4px );
+			// 		background: var( --gr );
+			// 		clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+			// 	}
+			// }
 		}
 	}
 }

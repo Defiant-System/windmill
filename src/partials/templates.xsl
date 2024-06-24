@@ -41,11 +41,14 @@
 						<xsl:if test="@type = 'start'">
 							<xsl:attribute name="data-click">init-snake</xsl:attribute>
 						</xsl:if>
-						<xsl:if test="@hc = 1">
-							<xsl:attribute name="data-hexCorner">1</xsl:attribute>
+						<xsl:if test="@hexTop = 1">
+							<i class="hex top"></i>
 						</xsl:if>
-						<xsl:if test="@hm = 1">
-							<xsl:attribute name="data-hexMiddle">1</xsl:attribute>
+						<xsl:if test="@hexMid = 1">
+							<i class="hex middle"></i>
+						</xsl:if>
+						<xsl:if test="@hexBot = 1">
+							<i class="hex bottom"></i>
 						</xsl:if>
 					</span>
 				</xsl:for-each>

@@ -3,7 +3,7 @@ let Test = {
 	init(APP) {
 		// return;
 
-		Game.dispatch({ type: "render-level", arg: "1.1" });
+		Game.dispatch({ type: "render-level", arg: "1.01" });
 		return;
 
 		return setTimeout(() => {
