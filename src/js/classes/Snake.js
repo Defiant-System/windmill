@@ -338,6 +338,7 @@ class Snake {
 				if (isEnd && this.progress > 0) {
 					let movingDownOrRight = coords.i > previous.i || coords.j > previous.j;
 					let max_progress = segment.direction == DrawType.VLINE ? this.MAX_PROGRESS_H : this.MAX_PROGRESS_W;
+					max_progress -= UI.GRID_LINE - 19;
 					// The offset to start/end of line.
 					segment.start = movingDownOrRight ? 0 : max_progress - this.progress;
 					segment.end = movingDownOrRight ? max_progress - this.progress : 0;
