@@ -289,47 +289,47 @@ content {
 			// 		drop-shadow(1px 0 0 rgba(#fff,.2));
 		}
 
-		.grid-error {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			pointer-events: none;
-			z-index: 2;
+		// .grid-error {
+		// 	position: absolute;
+		// 	top: 0;
+		// 	left: 0;
+		// 	width: 100%;
+		// 	height: 100%;
+		// 	pointer-events: none;
+		// 	z-index: 2;
 
-			.error {
-				position: absolute;
+		// 	.error {
+		// 		position: absolute;
 				
-				&[data-type="dot"] {
-					top: calc( calc( var( --gH ) * var( --y ) ) + var( --line ) );
-					left: calc( calc( var( --gW ) * var( --x ) ) + var( --line ) );
-					width: calc( var( --gW ) - var( --line ) );
-					height: calc( var( --gH ) - var( --line ) );
+		// 		&[data-type="dot"] {
+		// 			top: calc( calc( var( --gH ) * var( --y ) ) + var( --line ) );
+		// 			left: calc( calc( var( --gW ) * var( --x ) ) + var( --line ) );
+		// 			width: calc( var( --gW ) - var( --line ) );
+		// 			height: calc( var( --gH ) - var( --line ) );
 
-					&:before {
-						content: "";
-						position: absolute;
-						top: calc( var( --line ) * .875 );
-						left: calc( var( --line ) * .875 );
-						width: calc( var( --gW ) * .39 );
-						height: calc( var( --gH ) * .39 );
-						border-radius: calc( var( --line ) * .6 );
-						box-shadow: 0 0 9px 11px var( --error );
-						animation: alarm 250ms ease-in-out alternate 6 forwards;
-					}
-				}
+		// 			&:before {
+		// 				content: "";
+		// 				position: absolute;
+		// 				top: calc( var( --line ) * .875 );
+		// 				left: calc( var( --line ) * .875 );
+		// 				width: calc( var( --gW ) * .39 );
+		// 				height: calc( var( --gH ) * .39 );
+		// 				border-radius: calc( var( --line ) * .6 );
+		// 				box-shadow: 0 0 9px 11px var( --error );
+		// 				animation: alarm 250ms ease-in-out alternate 6 forwards;
+		// 			}
+		// 		}
 
-				&[data-type="hex"] {
-					animation: alarm 250ms ease-in-out alternate 6 forwards;
+		// 		&[data-type="hex"] {
+		// 			animation: alarm 250ms ease-in-out alternate 6 forwards;
 
-					&:after,
-					&:before {
-						background: var( --error );
-					}
-				}
-			}
-		}
+		// 			&:after,
+		// 			&:before {
+		// 				background: var( --error );
+		// 			}
+		// 		}
+		// 	}
+		// }
 
 		.grid-path {
 			// background: #ffffff55;
@@ -405,6 +405,10 @@ content {
 			&.ns {
 				background: var( --fg );
 				height: calc( var( --gH ) + var( --line ) );
+
+				i.hex {
+					&.middle { top: calc( 50% - calc( var( --line ) * .35 ) ); }
+				}
 			}
 
 			&.nsd {
@@ -427,6 +431,10 @@ content {
 			&.we {
 				background: var( --fg );
 				width: calc( var( --gW ) + var( --line ) );
+
+				i.hex {
+					&.middle { left: calc( 50% - calc( var( --line ) * .35 ) ); }
+				}
 			}
 
 			&.wed {
@@ -580,10 +588,30 @@ content {
 				filter: drop-shadow(0 1px 0 rgba(#000,.1));
 
 				&.top {  }
-				&.middle { top: calc( 50% - calc( var( --line ) * .35 ) ); }
-				&.bottom { left: calc( 50% - calc( var( --line ) * .35 ) ); }
+				&.bottom { top: calc( 100% - calc( var( --line ) - 1px ) ); }
+
+				&.error {
+					&:before {
+						animation: alarm 200ms ease-in-out alternate 6 forwards;
+					}
+				}
 
 				&:before {
+					content: "";
+					opacity: 0;
+					position: absolute;
+					top: 2px;
+					left: 2px;
+					right: 2px;
+					bottom: 2px;
+					border-radius: 50%;
+					box-shadow: 0 0 11px var( --error ),
+								0 0 11px var( --error ),
+								0 0 11px var( --error ),
+								0 0 11px var( --error );
+				}
+
+				&:after {
 					content: "";
 					position: absolute;
 					top: 1px;

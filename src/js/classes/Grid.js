@@ -136,28 +136,14 @@ class Grid {
 		let err = Validation.getErrors(this);
 		// show errors
 		if (err.errors.length) {
-			let errors = err.errors.concat(err.allowedErrors),
-				str = [];
+			let errors = err.errors.concat(err.allowedErrors);
 			
 			// create error nodes
-			errors.map(e => {
-				let type = "";
-				switch (e.drawType) {
-					case DrawType.CELL:
-						type = "dot";
-						break;
-					case DrawType.POINT:
-						type = "hex";
-						break;
-				}
-				str.push(`<i type="${type}" x="${e.coord.i}" y="${e.coord.j}"/>`);
-			});
-
-			// render & add to DOM
-			window.render({
-				template: "puzzle-errors",
-				target: window.find(".grid-error"),
-				data: $.xmlFromString(`<data>${str.join("")}</data>`),
+			errors.map(err => {
+				let x = err.coord.i,
+					y = err.coord.j;
+				let el = this.el.find(`.grid-base span[style="--x: ${x};--y: ${y};"] .hex.top`);
+				el.cssSequence("error", "animationend", el => el.removeClass("error"));
 			});
 
 			// sound fx
@@ -328,8 +314,17 @@ class Grid {
 			let type = xNode.getAttribute("type"),
 				x = +xNode.getAttribute("x"),
 				y = +xNode.getAttribute("y"),
+				hexTop = xNode.getAttribute("hexTop"),
+				hexMid = xNode.getAttribute("hexMid"),
+				hexBot = xNode.getAttribute("hexBot"),
 				index = (storage.width * (y * 2)) + (x * 2);
 			switch (type) {
+				case "ns":
+					if (hexTop) storage.entity[index].type = Type.HEXAGON;
+					break;
+				case "we":
+					if (hexTop) storage.entity[index].type = Type.HEXAGON;
+					break;
 				case "start":
 					storage.entity[index].type = Type.START;
 					break;
@@ -356,8 +351,10 @@ class Grid {
 			}
 		});
 
-		// console.log( storage.entity );
-		// storage.entity.map((e, i) => console.log( i, JSON.stringify(e) + (i % 9 == 8 ? "---" : "") ));
+		if (xLevel.getAttribute("id") === "1.01") {
+			// console.log( storage.entity );
+			// storage.entity.map((e, i) => console.log( i, JSON.stringify(e) + (i % 9 == 8 ? "---" : "") ));
+		}
 
 		// tmp object
 		// storage = tmp_entities;

@@ -63,7 +63,7 @@
 					</g>
 				</svg>
 			</div>
-			<div class="grid-error"></div>
+			<!-- <div class="grid-error"></div> -->
 		</div>
 	</div>
 </xsl:template>
