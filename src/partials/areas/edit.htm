@@ -56,7 +56,7 @@
 					</div>
 				</div>
 				<div>
-					<button data-click="sync-cell-dim">Sync</button>
+					<button data-click="sync-cell-width">Sync</button>
 				</div>
 			</div>
 			<div class="row">
@@ -69,7 +69,7 @@
 					</div>
 				</div>
 				<div>
-					<button data-click="sync-cell-dim">Sync</button>
+					<button data-click="sync-cell-height">Sync</button>
 				</div>
 			</div>
 		</div>
@@ -98,19 +98,19 @@
 			<legend>Base</legend>
 			<div class="row options">
 				<div class="option-buttons_" data-click="select-base-tool">
-					<span class="active_">
+					<span data-arg="start" class="active_">
 						<span class="icon-start"></span>
 					</span>
-					<span>
+					<span data-arg="end">
 						<span class="icon-end"></span>
 					</span>
-					<span>
+					<span data-arg="hexagon">
 						<span class="icon-hexagon"></span>
 					</span>
-					<span>
+					<span data-arg="disjoint">
 						<span class="icon-disjoint"></span>
 					</span>
-					<span>
+					<span data-arg="erase">
 						<span class="icon-erase"></span>
 					</span>
 				</div>
@@ -119,16 +119,16 @@
 			<legend>Extras</legend>
 			<div class="row options">
 				<div class="option-buttons_" data-click="select-extras-tool">
-					<span>
+					<span data-arg="dot">
 						<span class="icon-dot"></span>
 					</span>
-					<span>
+					<span data-arg="star">
 						<span class="icon-star"></span>
 					</span>
-					<span>
+					<span data-arg="lambda">
 						<span class="icon-lambda"></span>
 					</span>
-					<span class="active_">
+					<span data-arg="erase" class="active_">
 						<span class="icon-erase"></span>
 					</span>
 				</div>

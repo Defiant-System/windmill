@@ -79,6 +79,9 @@ class Grid {
 		let base = window.bluePrint.selectSingleNode(`//Palette[@id="${xLevel.getAttribute("palette")}"]/c[@key="base"]`),
 			show = id === "0.1" ? "start-view" : "game-view";
 		window.find("content").data({ show }).css({ "--base": base.getAttribute("val") });
+
+		// broadcast event
+		window.emit("render-level");
 	}
 
 	initializeSnake(data) {

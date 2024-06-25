@@ -64,7 +64,7 @@
 	</Menu>
 
 	<Menu for="extras-color">
-		<Menu type="colors" caption="Extras Color:">
+		<Menu type="colors" caption="Extras Color:" click="set-extras-color">
 			<Color arg="#157efb" active="1"/>
 			<Color arg="#944194"/>
 			<Color arg="#de3a43"/>

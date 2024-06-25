@@ -47,7 +47,9 @@ const witness = {
 	},
 	dispatch(event) {
 		let Self = witness,
-			value;
+			value,
+			el;
+		// console.log(event);
 		switch (event.type) {
 			// system events
 			case "window.init":
@@ -73,8 +75,10 @@ const witness = {
 				karaqu.shell("fs -u '~/help/index.md'");
 				break;
 			default:
-				if (event.el) {
-					let pEl = event.el.parents(`div[data-area]`);
+				el = event.el;
+				if (!el && event.origin) el = event.origin.el;
+				if (el) {
+					let pEl = el.parents(`div[data-area]`);
 					if (pEl.length) {
 						let name = pEl.data("area");
 						return Self[name].dispatch(event);
