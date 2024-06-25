@@ -11,10 +11,68 @@ class Grid {
 	render(id) {
 		// save value
 		this.levelIndex = id;
-
 		// out with the old
 		window.find(".game-view .level").cssSequence("disappear", "animationend", el => el.remove());
 
+		// prepare xml, template & units
+		let match = `//Data/Level[@id="${this.levelIndex}"]`;
+		let xLevel = window.bluePrint.selectSingleNode(match);
+		let xGrid = xLevel.selectSingleNode("./grid");
+		// values from xLevel to UI contants
+		this.syncConstants(xGrid);
+		// make sure particles are reset
+		Particles.reset();
+		// generate storage entities, etc
+		this.generateStorage(xLevel);
+
+		// html output
+		let nextEl = window.render({
+				match,
+				template: "level-puzzle",
+				append: window.find(".game-view"),
+			});
+
+		// appear animation
+		nextEl.cssSequence("appear", "animationend", el => el.addClass("active").removeClass("appear"));
+		// update window title
+		window.title = `Witness - Level ${this.levelIndex}`;
+
+		// center puzzle
+		this.el = nextEl.find(".puzzle");
+		let top = (window.innerHeight - +this.el.prop("offsetHeight")) >> 1,
+			left = (window.innerWidth - +this.el.prop("offsetWidth")) >> 1;
+		this.el.css({ top, left });
+
+		let base = window.bluePrint.selectSingleNode(`//Palette[@id="${xLevel.getAttribute("palette")}"]/c[@key="base"]`),
+			show = id === "0.1" ? "start-view" : "game-view";
+		window.find("content").data({ show }).css({ "--base": base.getAttribute("val") });
+		// broadcast event
+		window.emit("render-level");
+	}
+
+	renderClone(xClone) {
+		let xGrid = xClone.selectSingleNode("./grid");
+		// values from xLevel to UI contants
+		this.syncConstants(xGrid);
+		// make sure particles are reset
+		Particles.reset();
+		// generate storage entities, etc
+		this.generateStorage(xClone);
+
+		// html output
+		let match = `//Data/Level[@clone="${xClone.getAttribute("clone")}"]`;
+		let cloneEl = window.render({ match, template: "level-puzzle", vdom: true }).find(".level");
+		cloneEl.removeClass("appear").addClass("active");
+		this.el.parent().replace(cloneEl[0]);
+
+		// center puzzle
+		this.el = cloneEl.find(".puzzle");
+		let top = (window.innerHeight - +this.el.prop("offsetHeight")) >> 1,
+			left = (window.innerWidth - +this.el.prop("offsetWidth")) >> 1;
+		this.el.css({ top, left });
+	}
+
+	syncConstants(xGrid) {
 		// default units
 		let Defaults = [
 				{ x: "grid", ui: "GRID_UNIT", val: 83 },
@@ -24,12 +82,7 @@ class Grid {
 				{ x: "gap", ui: "DISJOINT_LENGTH", val: 22 },
 				{ x: "error", ui: "ERROR_COLOR", val: "#ff0000" },
 			];
-
-		// prepare xml, template & units
-		let match = `//Data/Level[@id="${this.levelIndex}"]`;
-		let xLevel = window.bluePrint.selectSingleNode(match);
-		let xGrid = xLevel.selectSingleNode("./grid");
-
+		
 		// "gW" & "gH" is omitted but "grid" is set
 		if (xGrid.getAttribute("grid") && !xGrid.getAttribute("gW")) xGrid.setAttribute("gW", xGrid.getAttribute("grid"));
 		if (xGrid.getAttribute("grid") && !xGrid.getAttribute("gH")) xGrid.setAttribute("gH", xGrid.getAttribute("grid"));
@@ -50,38 +103,6 @@ class Grid {
 		// double disjoint gap
 		UI.DISJOINT_H = (UI.CELL_HEIGHT - UI.GRID_LINE - UI.DISJOINT_LENGTH) / 2;
 		UI.DISJOINT_W = (UI.CELL_WIDTH - UI.GRID_LINE - UI.DISJOINT_LENGTH) / 2;
-
-		// make sure particles are reset
-		Particles.reset();
-
-		// generate storage entities, etc
-		this.generateStorage(xLevel);
-
-		// html output
-		let nextEl = window.render({
-				match,
-				template: "level-puzzle",
-				append: window.find(".game-view"),
-			});
-
-		// appear animation
-		nextEl.cssSequence("appear", "animationend", el => el.addClass("active").removeClass("appear"));
-		
-		// update window title
-		window.title = `Witness - Level ${this.levelIndex}`;
-
-		// center puzzle
-		this.el = nextEl.find(".puzzle");
-		let top = (window.innerHeight - +this.el.prop("offsetHeight")) >> 1,
-			left = (window.innerWidth - +this.el.prop("offsetWidth")) >> 1;
-		this.el.css({ top, left });
-
-		let base = window.bluePrint.selectSingleNode(`//Palette[@id="${xLevel.getAttribute("palette")}"]/c[@key="base"]`),
-			show = id === "0.1" ? "start-view" : "game-view";
-		window.find("content").data({ show }).css({ "--base": base.getAttribute("val") });
-
-		// broadcast event
-		window.emit("render-level");
 	}
 
 	initializeSnake(data) {

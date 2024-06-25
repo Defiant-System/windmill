@@ -20,6 +20,7 @@
 	dispatch(event) {
 		let APP = witness,
 			Self = APP.edit,
+			xNode,
 			data,
 			value,
 			el;
@@ -41,14 +42,14 @@
 				break;
 			case "output-xml":
 				break;
-			// case "create-clone":
-			// 	// remove old clones first
-			// 	window.bluePrint.selectNodes(`//Data/Level[@clone]`).map(xClone => xClone.parentNode.removeChild(xClone));
-			// 	// append new clone to bluePrint
-			// 	let xLevel = window.bluePrint.selectSingleNode(`//Data/Level[@id="${Game.grid.levelIndex}"]`);
-			// 	Self.levelClone = xLevel.parentNode.appendChild(xLevel.cloneNode(true));
-			// 	Self.levelClone.setAttribute("clone", Game.grid.levelIndex);
-			// 	break;
+			case "create-clone":
+				// remove old clones first
+				window.bluePrint.selectNodes(`//Data/Level[@clone]`).map(xClone => xClone.parentNode.removeChild(xClone));
+				// append new clone to bluePrint
+				xNode = window.bluePrint.selectSingleNode(`//Data/Level[@id="${Game.grid.levelIndex}"]`);
+				Self.levelClone = xNode.parentNode.appendChild(xNode.cloneNode(true));
+				Self.levelClone.setAttribute("clone", Game.grid.levelIndex);
+				break;
 			case "init-edit-view":
 				// save reference to level root element
 				Self.els.level = Game.grid.el.parent();
@@ -63,7 +64,7 @@
 				Self.els.iCellHeight.val( parseInt(Self.els.level.cssProp("--gH")) );
 
 				// create level clone
-				// Self.dispatch({ type: "create-clone" });
+				Self.dispatch({ type: "create-clone" });
 				break;
 			case "calculate-puzzle-layout":
 				data = {};
@@ -102,37 +103,45 @@
 				if (event.value > Game.grid.height) {
 					data = [];
 					[...Array(Game.grid.width)].map((c, i) => {
-						data.push(`<span class="ns" style="--x: ${i};--y: ${event.value-1};"></span>`);
-						data.push(`<span class="we" style="--x: ${i};--y: ${event.value};"></span>`);
+						data.push(`<i type="ns" x="${i}" y="${event.value-1}" />`);
+						data.push(`<i type="we" x="${i}" y="${event.value}" />`);
 					});
-					data.push(`<span class="ns" style="--x: ${Game.grid.width};--y: ${event.value-1};"></span>`);
+					data.push(`<i type="ns" x="${Game.grid.width}" y="${event.value-1}" />`);
+					// get grid node
+					xNode = Self.levelClone.selectSingleNode(`./grid`);
+					// insert new nodes to levelClone
+					$.xmlFromString(`<data>${data.join("")}</data>`).selectNodes("//data/i").map(x => xNode.appendChild(x));
 					// add to grid dim
 					Game.grid.height++;
-					// update DOM
-					Self.els.level.find(`.grid-base`).append(data.join(""));
+					// update level node
+					xNode.setAttribute("height", Game.grid.height);
+					// render clone level
+					Game.grid.renderClone(Self.levelClone);
 				} else {
-					console.log("delete elements");
+					console.log("remove nodes");
 				}
-				// update UI
-				Self.dispatch({ type: "calculate-puzzle-layout" });
 				break;
 			case "set-grid-cols":
-				if (event.value > Game.grid.width) {
+				if (event.value > Game.grid.height) {
 					data = [];
 					[...Array(Game.grid.height)].map((c, i) => {
-						data.push(`<span class="ns" style="--x: ${event.value};--y: ${i};"></span>`);
-						data.push(`<span class="we" style="--x: ${event.value-1};--y: ${i};"></span>`);
+						data.push(`<i type="ns" x="${event.value}" y="${i}" />`);
+						data.push(`<i type="we" x="${event.value-1}" y="${i}" />`);
 					});
-					data.push(`<span class="we" style="--x: ${event.value-1};--y: ${Game.grid.height};"></span>`);
+					data.push(`<i type="we" x="${event.value-1}" y="${Game.grid.height}" />`);
+					// get grid node
+					xNode = Self.levelClone.selectSingleNode(`./grid`);
+					// insert new nodes to levelClone
+					$.xmlFromString(`<data>${data.join("")}</data>`).selectNodes("//data/i").map(x => xNode.appendChild(x));
 					// add to grid dim
 					Game.grid.width++;
-					// update DOM
-					Self.els.level.find(`.grid-base`).append(data.join(""));
+					// update level node
+					xNode.setAttribute("width", Game.grid.width);
+					// render clone level
+					Game.grid.renderClone(Self.levelClone);
 				} else {
-					console.log("delete elements");
+					console.log("remove nodes");
 				}
-				// update UI
-				Self.dispatch({ type: "calculate-puzzle-layout" });
 				break;
 			case "set-cell-width":
 				Self.els.level.css({ "--gW": `${event.value}px` });
