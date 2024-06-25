@@ -118,7 +118,18 @@
 					// render clone level
 					Game.grid.renderClone(Self.levelClone);
 				} else {
-					console.log("remove nodes");
+					// get grid node
+					xNode = Self.levelClone.selectSingleNode(`./grid`);
+					// remove nodes
+					xNode.selectNodes(`./i[@y="${Game.grid.height}"]`).map(x => x.parentNode.removeChild(x));
+					xNode.selectNodes(`./i[@type="ns"][@y="${Game.grid.height-1}"]`).map(x => x.parentNode.removeChild(x));
+					xNode.selectNodes(`./i[@type="nsd"][@y="${Game.grid.height-1}"]`).map(x => x.parentNode.removeChild(x));
+					// add to grid dim
+					Game.grid.height--;
+					// update level node
+					xNode.setAttribute("height", Game.grid.height);
+					// render clone level
+					Game.grid.renderClone(Self.levelClone);
 				}
 				break;
 			case "set-grid-cols":
@@ -140,7 +151,18 @@
 					// render clone level
 					Game.grid.renderClone(Self.levelClone);
 				} else {
-					console.log("remove nodes");
+					// get grid node
+					xNode = Self.levelClone.selectSingleNode(`./grid`);
+					// remove nodes
+					xNode.selectNodes(`./i[@x="${Game.grid.width}"]`).map(x => x.parentNode.removeChild(x));
+					xNode.selectNodes(`./i[@type="we"][@x="${Game.grid.width-1}"]`).map(x => x.parentNode.removeChild(x));
+					xNode.selectNodes(`./i[@type="wed"][@x="${Game.grid.width-1}"]`).map(x => x.parentNode.removeChild(x));
+					// add to grid dim
+					Game.grid.width--;
+					// update level node
+					xNode.setAttribute("width", Game.grid.width);
+					// render clone level
+					Game.grid.renderClone(Self.levelClone);
 				}
 				break;
 			case "set-cell-width":
