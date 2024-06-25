@@ -99,28 +99,40 @@
 				Self.dispatch({ type: "set-cell-width", value });
 				break;
 			case "set-grid-rows":
-				data = [];
-				[...Array(Game.grid.width)].map((c, i) => {
-					data.push(`<span class="ns" style="--x: ${i};--y: ${event.value-1};"></span>`);
-					data.push(`<span class="we" style="--x: ${i};--y: ${event.value};"></span>`);
-				});
-				data.push(`<span class="ns" style="--x: ${Game.grid.width};--y: ${event.value-1};"></span>`);
-
-				Game.grid.height++;
-
-				Self.els.level.find(`.grid-base`).append(data.join(""));
+				if (event.value > Game.grid.height) {
+					data = [];
+					[...Array(Game.grid.width)].map((c, i) => {
+						data.push(`<span class="ns" style="--x: ${i};--y: ${event.value-1};"></span>`);
+						data.push(`<span class="we" style="--x: ${i};--y: ${event.value};"></span>`);
+					});
+					data.push(`<span class="ns" style="--x: ${Game.grid.width};--y: ${event.value-1};"></span>`);
+					// add to grid dim
+					Game.grid.height++;
+					// update DOM
+					Self.els.level.find(`.grid-base`).append(data.join(""));
+				} else {
+					console.log("delete elements");
+				}
+				// update UI
+				Self.dispatch({ type: "calculate-puzzle-layout" });
 				break;
 			case "set-grid-cols":
-				data = [];
-				[...Array(Game.grid.height)].map((c, i) => {
-					data.push(`<span class="ns" style="--x: ${event.value};--y: ${i};"></span>`);
-					data.push(`<span class="we" style="--x: ${event.value-1};--y: ${i};"></span>`);
-				});
-				data.push(`<span class="we" style="--x: ${event.value-1};--y: ${Game.grid.height};"></span>`);
-
-				Game.grid.width++;
-
-				Self.els.level.find(`.grid-base`).append(data.join(""));
+				if (event.value > Game.grid.width) {
+					data = [];
+					[...Array(Game.grid.height)].map((c, i) => {
+						data.push(`<span class="ns" style="--x: ${event.value};--y: ${i};"></span>`);
+						data.push(`<span class="we" style="--x: ${event.value-1};--y: ${i};"></span>`);
+					});
+					data.push(`<span class="we" style="--x: ${event.value-1};--y: ${Game.grid.height};"></span>`);
+					// add to grid dim
+					Game.grid.width++;
+					// update DOM
+					Self.els.level.find(`.grid-base`).append(data.join(""));
+				} else {
+					console.log("delete elements");
+				}
+				// update UI
+				Self.dispatch({ type: "calculate-puzzle-layout" });
 				break;
 			case "set-cell-width":
 				Self.els.level.css({ "--gW": `${event.value}px` });
