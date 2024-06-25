@@ -14,6 +14,9 @@ class Grid {
 		// out with the old
 		window.find(".game-view .level").cssSequence("disappear", "animationend", el => el.remove());
 
+		// remove potential clones
+		window.bluePrint.selectNodes(`//Level[@clone]`).map(xClone => xClone.parentNode.removeChild(xClone));
+
 		// prepare xml, template & units
 		let match = `//Data/Level[@id="${this.levelIndex}"]`;
 		let xLevel = window.bluePrint.selectSingleNode(match);
