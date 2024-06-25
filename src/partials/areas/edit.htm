@@ -1,0 +1,147 @@
+
+<div class="edit-view" data-area="edit">
+	<div class="wrapper">
+		<div class="group-row">
+			<legend>Grid</legend>
+			<div class="row compact">
+				<legend>Row / Cols</legend>
+				<div>
+					<input type="number" min="1" max="19" value="4" name="grid-rows-num" data-change="set-grid-rows-num">
+					<div>
+						<span></span>
+						<span></span>
+					</div>
+				</div>
+				<div>
+					<input type="number" min="1" max="19" value="4" name="grid-rows-num" data-change="set-grid-rows-num">
+					<div>
+						<span></span>
+						<span></span>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<legend>Line</legend>
+				<div data-suffix="px">
+					<input type="number" min="13" max="29" value="19" name="grid-rows-num" data-change="set-grid-rows-num">
+					<div>
+						<span></span>
+						<span></span>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<legend>Gap</legend>
+				<div data-suffix="px">
+					<input type="number" min="1" max="19" value="4" name="grid-rows-num" data-change="set-grid-rows-num">
+					<div>
+						<span></span>
+						<span></span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="group-row">
+			<legend>Cell Size</legend>
+			<div class="row">
+				<legend>Width</legend>
+				<div data-suffix="px">
+					<input type="number" value="83" min="30" max="250" data-change="set-cell-width">
+					<div>
+						<span></span>
+						<span></span>
+					</div>
+				</div>
+				<div>
+					<button>Sync</button>
+				</div>
+			</div>
+			<div class="row">
+				<legend>Height</legend>
+				<div data-suffix="px">
+					<input type="number" value="83" min="25" max="150" data-change="set-cell-height">
+					<div>
+						<span></span>
+						<span></span>
+					</div>
+				</div>
+				<div>
+					<button>Sync</button>
+				</div>
+			</div>
+		</div>
+			
+		<div class="group-row">
+			<div class="row select">
+				<legend>Palette</legend>
+				<div>
+					<selectbox class="table-outline" data-menu="grid-palette">
+						<option selected="1" value="none">Orange</option>
+					</selectbox>
+				</div>
+			</div>
+
+			<div class="row select">
+				<legend>Symmetry</legend>
+				<div>
+					<selectbox class="table-outline" data-menu="grid-symmetry">
+						<option selected="1" value="none">No symmetry</option>
+					</selectbox>
+				</div>
+			</div>
+		</div>
+
+		<div class="group-row">
+			<legend>Base</legend>
+			<div class="row options">
+				<div class="option-buttons_">
+					<span>
+						<span class="icon-row"></span>
+					</span>
+					<span>
+						<span class="icon-column"></span>
+					</span>
+					<span>
+						<span class="icon-footer"></span>
+					</span>
+					<span>
+						<span class="icon-footer"></span>
+					</span>
+					<span>
+						<span class="icon-footer"></span>
+					</span>
+				</div>
+			</div>
+
+			<legend>Extras</legend>
+			<div class="row options">
+				<div class="option-buttons_">
+					<span>
+						<span class="icon-row"></span>
+					</span>
+					<span>
+						<span class="icon-column"></span>
+					</span>
+					<span>
+						<span class="icon-column"></span>
+					</span>
+				</div>
+			</div>
+
+			<div class="row">
+				<legend>Color</legend>
+				<div>
+					<div class="color-preset_" data-menu="extras-color" style="--preset-color: #ffffff;"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="button-row">
+			<button data-click="output-xml">Output</button>
+			<button data-click="close-view" class="primary">Close</button>
+		</div>
+	</div>
+</div>

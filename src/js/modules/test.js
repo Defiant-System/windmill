@@ -1,12 +1,14 @@
 
 let Test = {
 	init(APP) {
-		// return;
+
+		setTimeout(() => APP.edit.dispatch({ type: "toggle-edit-view" }), 500);
+		return;
 
 		Game.dispatch({ type: "render-level", arg: "3.0" });
 		// Game.dispatch({ type: "render-level", arg: "1.01" });
-		return;
 
+		return;
 
 		return setTimeout(() => {
 			window.find(".puzzle svg").replace(`<svg width="102" height="185"><g transform="translate(9,9)"><g class="path1">

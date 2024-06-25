@@ -29,6 +29,11 @@ const witness = {
 		Game.init();
 		Particles.init();
 
+		// init all sub-objects
+		Object.keys(this)
+			.filter(i => typeof this[i].init === "function")
+			.map(i => this[i].init(this));
+
 		// temp
 		window.find(".start-view").addClass("no-anim");
 
@@ -62,14 +67,24 @@ const witness = {
 			case "render-level":
 				Game.dispatch(event);
 				break;
+			case "toggle-edit-view":
+				return Self.edit.dispatch(event);
 			case "open-help":
 				karaqu.shell("fs -u '~/help/index.md'");
 				break;
 			default:
+				if (event.el) {
+					let pEl = event.el.parents(`div[data-area]`);
+					if (pEl.length) {
+						let name = pEl.data("area");
+						return Self[name].dispatch(event);
+					}
+				}
 				// proxy to game
 				Game.dispatch(event);
 		}
-	}
+	},
+	edit: @import "./modules/edit.js",
 };
 
 window.exports = witness;

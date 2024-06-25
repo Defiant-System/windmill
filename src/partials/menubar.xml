@@ -5,6 +5,8 @@
 		<Menu name="Quit Witness" shell="win -c"/>
 	</Menu>
 	<Menu name="Levels" for="puzzle-options">
+		<Menu name="Edit View" click="toggle-edit-view"/>
+		<Menu type="divider"/>
 		<Menu name="Start View" check-group="active-level" click="render-level" arg="0.1"/>
 		<Menu type="divider"/>
 		<Menu name="Level 1&#8230;">
@@ -44,5 +46,32 @@
 		<Menu name="Help" click="open-help"/>
 		<Menu type="divider"/>
 		<Menu name="License" shell="win -al"/>
+	</Menu>
+
+	<Menu for="grid-palette">
+		<Menu name="Blue" click="set-palette" arg="blue"/>
+		<Menu name="Gray" click="set-palette" arg="gray"/>
+		<Menu name="Green" click="set-palette" arg="green"/>
+		<Menu name="Orange" click="set-palette" arg="orange"/>
+		<Menu name="Purple" click="set-palette" arg="purple"/>
+	</Menu>
+
+	<Menu for="grid-symmetry">
+		<Menu name="No symmetry" click="set-symmetry" arg="none"/>
+		<Menu name="Horizontal" click="set-symmetry" arg="horizontal"/>
+		<Menu name="Vertical" click="set-symmetry" arg="vertical"/>
+		<Menu name="Rotational" click="set-symmetry" arg="rotational"/>
+	</Menu>
+
+	<Menu for="extras-color">
+		<Menu type="colors" caption="Extras Color:">
+			<Color arg="#157efb" active="1"/>
+			<Color arg="#944194"/>
+			<Color arg="#de3a43"/>
+			<Color arg="#f5822e"/>
+			<Color arg="#fab73b"/>
+			<Color arg="#65b84d"/>
+			<Color arg="#989898"/>
+		</Menu>
 	</Menu>
 </MenuBar>
