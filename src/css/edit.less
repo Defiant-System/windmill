@@ -24,6 +24,27 @@
 		}
 	}
 
+	[class*="icon-"],
+	[class^="icon-"] {
+		position: relative;
+		top: 0;
+		width: 13px;
+		height: 13px;
+		display: inline-block;
+		background-size: contain;
+		background-position: 50% 50%;
+		background-repeat: no-repeat;
+
+		&.icon-start    { background-image: url(~/icons/icon-start.png); }
+		&.icon-end      { background-image: url(~/icons/icon-end.png); }
+		&.icon-hexagon  { background-image: url(~/icons/icon-hexagon.png); }
+		&.icon-disjoint { background-image: url(~/icons/icon-disjoint.png); }
+		&.icon-erase    { background-image: url(~/icons/icon-erase.png); }
+		&.icon-dot      { background-image: url(~/icons/icon-dot.png); }
+		&.icon-star     { background-image: url(~/icons/icon-star.png); }
+		&.icon-lambda   { background-image: url(~/icons/icon-lambda.png); }
+	}
+
 	.wrapper {
 		position: absolute;
 		top: 0;
