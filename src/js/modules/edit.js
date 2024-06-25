@@ -41,6 +41,14 @@
 				break;
 			case "output-xml":
 				break;
+			// case "create-clone":
+			// 	// remove old clones first
+			// 	window.bluePrint.selectNodes(`//Data/Level[@clone]`).map(xClone => xClone.parentNode.removeChild(xClone));
+			// 	// append new clone to bluePrint
+			// 	let xLevel = window.bluePrint.selectSingleNode(`//Data/Level[@id="${Game.grid.levelIndex}"]`);
+			// 	Self.levelClone = xLevel.parentNode.appendChild(xLevel.cloneNode(true));
+			// 	Self.levelClone.setAttribute("clone", Game.grid.levelIndex);
+			// 	break;
 			case "init-edit-view":
 				// save reference to level root element
 				Self.els.level = Game.grid.el.parent();
@@ -53,6 +61,9 @@
 				Self.els.iGap.val( parseInt(Self.els.level.cssProp("--gap")) );
 				Self.els.iCellWidth.val( parseInt(Self.els.level.cssProp("--gW")) );
 				Self.els.iCellHeight.val( parseInt(Self.els.level.cssProp("--gH")) );
+
+				// create level clone
+				// Self.dispatch({ type: "create-clone" });
 				break;
 			case "calculate-puzzle-layout":
 				data = {};
@@ -88,8 +99,28 @@
 				Self.dispatch({ type: "set-cell-width", value });
 				break;
 			case "set-grid-rows":
+				data = [];
+				[...Array(Game.grid.width)].map((c, i) => {
+					data.push(`<span class="ns" style="--x: ${i};--y: ${event.value-1};"></span>`);
+					data.push(`<span class="we" style="--x: ${i};--y: ${event.value};"></span>`);
+				});
+				data.push(`<span class="ns" style="--x: ${Game.grid.width};--y: ${event.value-1};"></span>`);
+
+				Game.grid.height++;
+
+				Self.els.level.find(`.grid-base`).append(data.join(""));
+				break;
 			case "set-grid-cols":
-				console.log(event);
+				data = [];
+				[...Array(Game.grid.height)].map((c, i) => {
+					data.push(`<span class="ns" style="--x: ${event.value};--y: ${i};"></span>`);
+					data.push(`<span class="we" style="--x: ${event.value-1};--y: ${i};"></span>`);
+				});
+				data.push(`<span class="we" style="--x: ${event.value-1};--y: ${Game.grid.height};"></span>`);
+
+				Game.grid.width++;
+
+				Self.els.level.find(`.grid-base`).append(data.join(""));
 				break;
 			case "set-cell-width":
 				Self.els.level.css({ "--gW": `${event.value}px` });
