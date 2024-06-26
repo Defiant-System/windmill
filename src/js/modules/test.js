@@ -5,7 +5,7 @@ let Test = {
 
 		setTimeout(() => APP.edit.dispatch({ type: "toggle-edit-view" }), 500);
 
-		Game.dispatch({ type: "render-level", arg: "2.0" });
+		Game.dispatch({ type: "render-level", arg: "1.2" });
 		// Game.dispatch({ type: "render-level", arg: "1.01" });
 
 		return;

@@ -65,6 +65,8 @@
 
 				// create level clone
 				Self.dispatch({ type: "create-clone" });
+				// insert elements to facilitate editing
+				// Self.dispatch({ type: "add-edit-elements" });
 				break;
 			case "calculate-puzzle-layout":
 				data = {};
@@ -73,6 +75,21 @@
 				data.top = (window.innerHeight - data.height) >> 1;
 				data.left = (window.innerWidth - data.width) >> 1;
 				Self.els.puzzle.css(data);
+				break;
+				
+			case "add-edit-elements":
+				Self.els.puzzle.find(".ns, .nsd, .we, .wed").map(elem => {
+					let str = [
+							`<s class="edit-head"></s>`,
+							`<s class="edit-body"></s>`,
+							`<s class="edit-foot"></s>`,
+						];
+					$(elem).append(str.join(""));
+				});
+				break;
+				
+			case "clear-edit-elements":
+				Self.els.el.find(".edit-head, .edit-body, .edit-foot").remove();
 				break;
 
 			case "sync-cell-width":
