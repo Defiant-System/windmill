@@ -53,6 +53,7 @@
 		<Menu name="Gray" click="set-palette" arg="gray"/>
 		<Menu name="Green" click="set-palette" arg="green"/>
 		<Menu name="Orange" click="set-palette" arg="orange"/>
+		<Menu name="Pink" click="set-palette" arg="pink"/>
 		<Menu name="Purple" click="set-palette" arg="purple"/>
 	</Menu>
 

@@ -75,20 +75,6 @@
 				Self.els.puzzle.css(data);
 				break;
 
-			case "select-base-tool":
-				el = $(event.target);
-				if (el.hasClass("active_")) return;
-				// ui update
-				Self.els.el.find(`.option-buttons_[data-click="select-base-tool"] .active_`).removeClass("active_");
-				el.addClass("active_");
-				break;
-			case "select-extras-tool":
-				el = $(event.target);
-				if (el.hasClass("active_")) return;
-				// ui update
-				Self.els.el.find(`.option-buttons_[data-click="select-extras-tool"] .active_`).removeClass("active_");
-				el.addClass("active_");
-				break;
 			case "sync-cell-width":
 				value = +event.el.parents(".row:first").find("input").val();
 				Self.els.iCellHeight.val(value);
@@ -192,7 +178,38 @@
 				Self.dispatch({ type: "calculate-puzzle-layout" });
 				break;
 			case "set-symmetry":
+				// update UI
+				Self.els.el.find(`selectbox[data-menu="grid-symmetry"]`).val(event.arg);
+				break;
 			case "set-palette":
+				// update UI
+				Self.els.el.find(`selectbox[data-menu="grid-palette"]`).val(event.arg);
+				// transfer color values
+				data = {};
+				xNode = window.bluePrint.selectSingleNode(`//Palette[@id="${event.arg}"]`);
+				xNode.selectNodes(`./c`).map(xColor => {
+					let key = xColor.getAttribute("key");
+					if (key) data[`--${key}`] = xColor.getAttribute("val");
+				});
+				// level update
+				Self.els.level.css(data);
+				// base bg color
+				Self.els.level.parents("content").css({ "--base": data["--base"] });
+				break;
+			case "select-base-tool":
+				el = $(event.target);
+				if (el.hasClass("active_")) return;
+				// ui update
+				Self.els.el.find(`.option-buttons_[data-click="select-base-tool"] .active_`).removeClass("active_");
+				el.addClass("active_");
+				break;
+			case "select-extras-tool":
+				el = $(event.target);
+				if (el.hasClass("active_")) return;
+				// ui update
+				Self.els.el.find(`.option-buttons_[data-click="select-extras-tool"] .active_`).removeClass("active_");
+				el.addClass("active_");
+				break;
 			case "set-extras-color":
 				console.log(event);
 				break;

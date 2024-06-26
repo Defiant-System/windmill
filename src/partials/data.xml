@@ -5,6 +5,7 @@
 	@import "palettes/lobby.xml"
 	@import "palettes/orange.xml"
 	@import "palettes/purple.xml"
+	@import "palettes/pink.xml"
 
 	@import "levels/level 0.1.xml"
 
