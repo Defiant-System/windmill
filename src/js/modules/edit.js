@@ -78,13 +78,15 @@
 				break;
 				
 			case "add-edit-elements":
+				// for cells
 				value = [...Array(Game.grid.width * Game.grid.height)].map((c, i) => {
 					let x = i % Game.grid.width,
 						y = (i / Game.grid.width) | 0;
-					return `<s class="cell" style="--x: ${x}; --y: ${y};"></s>`;
+					return `<s class="edit-cell" style="--x: ${x}; --y: ${y};"></s>`;
 				});
 				Self.els.puzzle.find(".grid-base").append(value.join(""));
 
+				// for grid lines
 				Self.els.puzzle.find(".ns, .nsd, .we, .wed").map(elem => {
 					let str = [
 							`<s class="edit-head"></s>`,
@@ -96,7 +98,7 @@
 				break;
 				
 			case "clear-edit-elements":
-				Self.els.el.find(".edit-head, .edit-body, .edit-foot").remove();
+				Self.els.el.find("edit-cell, .edit-head, .edit-body, .edit-foot").remove();
 				break;
 
 			case "sync-cell-width":
@@ -222,16 +224,26 @@
 				break;
 			case "select-base-tool":
 				el = $(event.target);
-				if (el.hasClass("active_")) return;
+				// turn off tool
+				if (el.hasClass("active_")) {
+					// turn off tool
+					el.removeClass("active_");
+					return;
+				}
+				Self.els.el.find(`.option-buttons_ .active_`).removeClass("active_");
 				// ui update
-				Self.els.el.find(`.option-buttons_[data-click="select-base-tool"] .active_`).removeClass("active_");
 				el.addClass("active_");
 				break;
 			case "select-extras-tool":
 				el = $(event.target);
-				if (el.hasClass("active_")) return;
+				// turn off tool
+				if (el.hasClass("active_")) {
+					// turn off tool
+					el.removeClass("active_");
+					return;
+				}
+				Self.els.el.find(`.option-buttons_ .active_`).removeClass("active_");
 				// ui update
-				Self.els.el.find(`.option-buttons_[data-click="select-extras-tool"] .active_`).removeClass("active_");
 				el.addClass("active_");
 				break;
 			case "set-extras-color":
