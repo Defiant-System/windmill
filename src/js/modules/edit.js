@@ -78,6 +78,13 @@
 				break;
 				
 			case "add-edit-elements":
+				value = [...Array(Game.grid.width * Game.grid.height)].map((c, i) => {
+					let x = i % Game.grid.width,
+						y = (i / Game.grid.width) | 0;
+					return `<s class="cell" style="--x: ${x}; --y: ${y};"></s>`;
+				});
+				Self.els.puzzle.find(".grid-base").append(value.join(""));
+
 				Self.els.puzzle.find(".ns, .nsd, .we, .wed").map(elem => {
 					let str = [
 							`<s class="edit-head"></s>`,
