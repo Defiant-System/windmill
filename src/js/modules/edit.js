@@ -66,7 +66,7 @@
 				// create level clone
 				Self.dispatch({ type: "create-clone" });
 				// insert elements to facilitate editing
-				// Self.dispatch({ type: "add-edit-elements" });
+				Self.dispatch({ type: "add-edit-elements" });
 				break;
 			case "calculate-puzzle-layout":
 				data = {};

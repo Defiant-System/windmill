@@ -3,22 +3,87 @@
 	.puzzle {
 		.grid-base {
 			s {
-				background: rgba(#f00,.5);
 				position: absolute;
-				display: inline-block;
-				width: 19px;
-				height: 19px;
+				z-index: 4;
+				cursor: pointer;
 
-				.edit-head {
-					
+				&:before {
+					content: "";
+					position: absolute;
+					top: -5px;
+					left: -5px;
+					right: -5px;
+					bottom: -5px;
 				}
 
-				.edit-body {
-
+				&:hover:before {
+					background: rgba(#fff,.5);
 				}
+			}
 
-				.edit-foot {
+			.ns, .nsd {
+				s {
+					&.edit-head {
+						// background: rgba(#2d2,.5);
+						width: var( --line );
+						height: var( --line );
+						top: 0;
+						left: 0;
+					}
 
+					&.edit-body {
+						// background: rgba(#fff,.5);
+						width: var( --line );
+						top: var( --line );
+						bottom: var( --line );
+						left: 0;
+
+						&:before {
+							top: 0;
+							bottom: 0;
+						}
+					}
+
+					&.edit-foot {
+						// background: rgba(#00f,.5);
+						width: var( --line );
+						height: var( --line );
+						bottom: 0;
+						left: 0;
+					}
+				}
+			}
+
+			.we, .wed {
+				s {
+					&.edit-head {
+						// background: rgba(#2d2,.5);
+						width: var( --line );
+						height: var( --line );
+						top: 0;
+						left: 0;
+					}
+
+					&.edit-body {
+						// background: rgba(#fff,.5);
+						height: var( --line );
+						left: var( --line );
+						right: var( --line );
+						top: 0;
+
+						&:before {
+							left: 0;
+							right: 0;
+						}
+					}
+
+					&.edit-foot {
+						// background: rgba(#00f,.5);
+						width: var( --line );
+						height: var( --line );
+						right: 0;
+						top: 0;
+					}
 				}
 			}
 		}
