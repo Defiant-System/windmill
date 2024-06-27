@@ -27,6 +27,7 @@
 			xNode,
 			data,
 			value,
+			target,
 			el;
 		// console.log(event);
 		switch (event.type) {
@@ -325,9 +326,9 @@
 				break;
 
 			case "do-edit-tool":
-				el = $(event.target);
+				target = $(event.target);
+				el = target.parents("?span");
 				data = {
-					offset: el.offset(".level"),
 					junction: el.parents(`?[data-junction]`).data("junction"),
 					x: +el.cssProp("--x"),
 					y: +el.cssProp("--y"),
@@ -335,10 +336,20 @@
 				// console.log(event);
 				switch (Self.activeTool) {
 					case "start":
+						data.sEl = Self.els.level.find(`.start[style*="--x: ${data.x};--y: ${data.y};"]`);
+						if (data.sEl.length) {
+							// remove existing start
+							data.sEl.remove();
+						} else {
+							// insert new element
+							value = `<span class="start" style="--x: ${data.x};--y: ${data.y};" data-click="init-snake"></span>`;
+							Self.els.level.find(".grid-base").append(value);
+						}
 						break;
 					case "end":
 						data.cEl = Self.els.level.find(".ends-compass");
 						data.cOffset = data.cEl.offset();
+						data.offset = target.offset(".level");
 						// reset directions
 						data.cEl.find(".disabled").removeClass("disabled");
 						// exit if clicked item is not a junction
@@ -359,8 +370,21 @@
 							.removeClass("hidden");
 						break;
 					case "hexagon":
+						// change classname
+						switch (true) {
+							case target.hasClass("edit-head"): console.log("head"); break;
+							case target.hasClass("edit-body"): console.log("body"); break;
+							case target.hasClass("edit-foot"): console.log("foot"); break;
+						}
 						break;
 					case "disjoint":
+						// change classname
+						switch (true) {
+							case el.hasClass("we"):  el.removeClass("we").addClass("wed"); break;
+							case el.hasClass("wed"): el.removeClass("wed").addClass("we"); break;
+							case el.hasClass("ns"):  el.removeClass("ns").addClass("nsd"); break;
+							case el.hasClass("nsd"): el.removeClass("nsd").addClass("ns"); break;
+						}
 						break;
 					case "dot":
 						break;
