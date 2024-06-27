@@ -296,8 +296,8 @@
 							x = +el.cssProp("--x"),
 							y = +el.cssProp("--y");
 						if (el.hasClass("ns") || el.hasClass("nsd")) {
-							grid[y][x] += "0";
-							if (y < gHeight) grid[y+1][x] += "4";
+							grid[y][x] += "4";
+							if (y < gHeight) grid[y+1][x] += "0";
 						}
 						if (el.hasClass("we") || el.hasClass("wed")) {
 							grid[y][x] += "2";
@@ -339,19 +339,22 @@
 					case "end":
 						data.cEl = Self.els.level.find(".ends-compass");
 						data.cOffset = data.cEl.offset();
+						// reset directions
+						data.cEl.find(".disabled").removeClass("disabled");
+						// exit if clicked item is not a junction
+						if (!data.junction) return;
 						// loop end points
 						data.junction.split("").map(i => {
-							let no = +i;
-							data.cEl.find(`span[data-no="${no - 1}"]`).addClass("disabled");
-							data.cEl.find(`span[data-no="${no + 1}"]`).addClass("disabled");
-							data.cEl.find(`span[data-no="${no}"]`).addClass("disabled");
-							// console.log(i);
+							let no = +i + 8;
+							data.cEl.find(`span[data-no="${(no - 1) % 8}"]`).addClass("disabled");
+							data.cEl.find(`span[data-no="${(no + 1) % 8}"]`).addClass("disabled");
+							data.cEl.find(`span[data-no="${no % 8}"]`).addClass("disabled");
 						});
 						// show compass
 						data.cEl
 							.css({
-								top: data.offset.top - ((data.cOffset.width - data.offset.width) >> 1),  // 110
-								left: data.offset.left - ((data.cOffset.height - data.offset.height) >> 1), // 475
+								top: data.offset.top - ((data.cOffset.width - data.offset.width) >> 1),
+								left: data.offset.left - ((data.cOffset.height - data.offset.height) >> 1),
 							})
 							.removeClass("hidden");
 						break;
