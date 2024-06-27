@@ -78,7 +78,7 @@ const witness = {
 				el = event.el;
 				if (!el && event.origin) el = event.origin.el;
 				if (el) {
-					let pEl = el.parents(`div[data-area]`);
+					let pEl = el.parents(`?div[data-area]`);
 					if (pEl.length) {
 						let name = pEl.data("area");
 						return Self[name].dispatch(event);

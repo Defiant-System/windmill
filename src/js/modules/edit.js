@@ -13,8 +13,10 @@
 			iCellWidth: window.find(`input[data-change="set-cell-width"]`),
 			iCellHeight: window.find(`input[data-change="set-cell-height"]`),
 		};
-
-		this.editNames = [".edit-cell", ".edit-head", ".edit-body", ".edit-foot", ".edit-endpoints"];
+		// keep track of selected edit tool
+		this.activeTool = false;
+		// names collected here
+		this.editNames = [".edit-cell", ".edit-head", ".edit-body", ".edit-foot"];
 
 		// subscribe to events
 		window.on("render-level", this.dispatch);
@@ -55,7 +57,7 @@
 			case "init-edit-view":
 				// save reference to level root element
 				Self.els.level = Game.grid.el.parent();
-				Self.els.puzzle = Self.els.level.find("> .puzzle")
+				Self.els.puzzle = Self.els.level.find("> .puzzle");
 
 				Self.els.iGridRows.val(Game.grid.width);
 				Self.els.iGridCols.val(Game.grid.height);
@@ -112,12 +114,19 @@
 						];
 					$(elem).append(str.join(""));
 				});
+
+				// add click event handler
+				Self.els.puzzle.data({
+					area: "edit",
+					click: "do-edit-tool",
+				});
 				break;
 			case "clear-edit-elements":
-				Self.els.puzzle.find(Self.editNames.join(",")).remove();
-				break;
-			case "rotate-endpoint":
-				console.log(event);
+				// cleansing
+				Self.els.puzzle
+					.removeAttr("data-area")
+					.removeAttr("data-click")
+					.find(Self.editNames.join(",")).remove();
 				break;
 
 			case "sync-cell-width":
@@ -250,6 +259,8 @@
 					el.removeClass("active_");
 					// remove edit elements
 					Self.dispatch({ type: "clear-edit-elements" });
+					// reset selected tool
+					Self.activeTool = false;
 					return;
 				}
 				
@@ -261,6 +272,8 @@
 				Self.els.el.find(`.option-buttons_ .active_`).removeClass("active_");
 				// ui update
 				el.addClass("active_");
+				// set active edit tool
+				Self.activeTool = el.data("arg");
 				
 				// clear old hovers
 				value = ["cells", "lines", "starts", "end"].map(e => `hover-${e}`).join(" ");
@@ -303,6 +316,40 @@
 
 			case "set-extras-color":
 				console.log(event);
+				break;
+
+			case "rotate-endpoint":
+				console.log(event);
+				break;
+
+			case "do-edit-tool":
+				el = $(event.target);
+				data = {
+					junction: el.data("junction"),
+					x: +el.cssProp("--x"),
+					y: +el.cssProp("--y"),
+				};
+				// console.log(event);
+				switch (Self.activeTool) {
+					case "start":
+						break;
+					case "end":
+						Self.els.level.find(".ends-compass")
+							.removeClass("hidden");
+						break;
+					case "hexagon":
+						break;
+					case "disjoint":
+						break;
+					case "dot":
+						break;
+					case "star":
+						break;
+					case "lambda":
+						break;
+					case "erase":
+						break;
+				}
 				break;
 		}
 	}

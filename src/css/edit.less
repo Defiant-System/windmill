@@ -1,6 +1,14 @@
 
 .game-view {
 	.puzzle {
+		&[class*="hover-"] {
+			// "disable" game play ux-wise
+			.start {
+				&:before { cursor: default; }
+				&:after { display: none; }
+			}
+		}
+
 		&.hover-cells {
 			s.edit-cell {
 				cursor: pointer;
@@ -24,14 +32,26 @@
 		}
 
 		&.hover-ends {
-			span[data-junction="0"] {}
-			span[data-junction="02"] {}
-			span[data-junction="024"] {}
-			span[data-junction="0246"] {}
-			
-			// corners only
-			s {
-				&.edit-endpoints {
+			// endpoint only
+			span[data-junction="0"],
+			span[data-junction="02"],
+			span[data-junction="24"],
+			span[data-junction="046"],
+			span[data-junction="6"],
+			span[data-junction="026"],
+			span[data-junction="024"],
+			span[data-junction="246"] {
+				s.edit-head {
+					cursor: pointer;
+
+					&:hover:before {
+						background: rgba(#fff,.5);
+					}
+				}
+			}
+
+			span[data-junction="046"] {
+				s.edit-foot {
 					cursor: pointer;
 
 					&:hover:before {
