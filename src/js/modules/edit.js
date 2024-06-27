@@ -5,6 +5,7 @@
 	init() {
 		// fast references
 		this.els = {
+			doc: $(document),
 			el: window.find(".edit-view"),
 			iGridRows: window.find(`input[data-change="set-grid-rows"]`),
 			iGridCols: window.find(`input[data-change="set-grid-cols"]`),
@@ -277,7 +278,7 @@
 				Self.activeTool = el.data("arg");
 				
 				// clear old hovers
-				value = ["cells", "lines", "starts", "end"].map(e => `hover-${e}`).join(" ");
+				value = ["cells", "lines", "starts", "ends"].map(e => `hover-${e}`).join(" ");
 				Game.grid.el.removeClass(value);
 				
 				// toggle hover areas
@@ -322,7 +323,8 @@
 			case "rotate-endpoint":
 				event.el.find(".active").removeClass("active");
 				el = $(event.target).addClass("active");
-				console.log(el);
+				// update exit direction
+				Self.activeExit.css({ "--d": el.data("no") });
 				break;
 
 			case "do-edit-tool":
@@ -338,11 +340,16 @@
 				// console.log(event);
 				switch (Self.activeTool) {
 					case "start":
+						if (!el.length) return;
+						if (target.hasClass("edit-foot")) data.y++;
+
 						data.sEl = Self.els.level.find(`.start[style*="--x: ${data.x};--y: ${data.y};"]`);
 						if (data.sEl.length) {
 							// remove existing start
 							data.sEl.remove();
 						} else {
+							// remove end-points, if any
+							Self.els.level.find(`.exit[style*="--x: ${data.x};--y: ${data.y};"]`).remove();
 							// insert new element
 							value = `<span class="start" style="--x: ${data.x};--y: ${data.y};" data-click="init-snake"></span>`;
 							Self.els.level.find(".grid-base").append(value);
@@ -356,6 +363,8 @@
 						data.cEl.find(".disabled").removeClass("disabled");
 						// exit if clicked item is not a junction
 						if (!data.junction) return;
+						// remove starts, if any
+						Self.els.level.find(`.start[style*="--x: ${data.x};--y: ${data.y};"]`).remove();
 						// loop end points
 						data.junction.split("").map(i => {
 							let no = +i + 8;
@@ -366,10 +375,41 @@
 						// show compass
 						data.cEl
 							.css({
-								top: data.offset.top - ((data.cOffset.width - data.offset.width) >> 1),
-								left: data.offset.left - ((data.cOffset.height - data.offset.height) >> 1),
+								top: data.offset.top - ((data.cOffset.width - data.offset.width) >> 1) - 1,
+								left: data.offset.left - ((data.cOffset.height - data.offset.height) >> 1) - 1,
 							})
 							.removeClass("hidden");
+						
+						// save reference to active exit
+						Self.activeExit = Self.els.level.find(`.exit[style*="--x: ${data.x};--y: ${data.y};"]`);
+						// another try
+						if (!Self.activeExit.length) Self.activeExit = Self.els.level.find(`.exit[style*="--x: ${data.x}; --y: ${data.y};"]`);
+
+						if (!Self.activeExit.length) {
+							// available directions
+							let taken = data.junction.split(""),
+								available = "0246".split("").filter(a => !taken.includes(a));
+							// insert new element
+							value = `<span class="exit" style="--x: ${data.x};--y: ${data.y};--d: ${available[0]};" data-junction="${data.junction}"></span>`;
+							Self.activeExit = Self.els.level.find(".grid-base").append(value);
+						}
+						// make direction active on compass
+						data.cEl.find(`span[data-no="${Self.activeExit.cssProp("--d")}"]`).addClass("active");
+
+						// next click listener
+						let func = e => {
+								let el = $(e.target).parents("?.ends-compass");
+								if (!el.length) {
+									// hide compass
+									data.cEl.addClass("hidden");
+									// reset compass
+									data.cEl.find(".active, .disabled").removeClass("active disabled");
+									// unbind event handler
+									Self.els.doc.off("click", func);
+								}
+							};
+						// bind event handler
+						Self.els.doc.on("click", func);
 						break;
 					case "hexagon":
 						// change classname
@@ -417,7 +457,7 @@
 						// disabled for now
 						break;
 					case "erase":
-						
+						// TODO:
 						break;
 				}
 				break;

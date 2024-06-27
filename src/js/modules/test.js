@@ -5,7 +5,7 @@ let Test = {
 
 		setTimeout(() => {
 			APP.edit.dispatch({ type: "toggle-edit-view" });
-			APP.edit.els.el.find(`.option-buttons_ span[data-arg="hexagon"]`).trigger("click");
+			APP.edit.els.el.find(`.option-buttons_ span[data-arg="end"]`).trigger("click");
 		}, 500);
 
 		Game.dispatch({ type: "render-level", arg: "2.0" });
