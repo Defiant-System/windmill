@@ -249,6 +249,10 @@
 				// toggle hover areas
 				value = el.data("hover").split(" ").map(e => `hover-${e}`).join(" ");
 				Game.grid.el.addClass(value);
+
+				if (Game.grid.el.hasClass("hover-ends")) {
+					// edit-endpoints
+				}
 				break;
 
 			case "set-extras-color":

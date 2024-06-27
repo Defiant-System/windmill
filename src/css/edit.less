@@ -25,7 +25,15 @@
 
 		&.hover-ends {
 			// corners only
-			
+			s {
+				&.edit-endpoints {
+					cursor: pointer;
+
+					&:hover:before {
+						background: rgba(#fff,.5);
+					}
+				}
+			}
 		}
 
 		&.hover-starts {
