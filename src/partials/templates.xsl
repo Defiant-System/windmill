@@ -99,15 +99,15 @@
 
 
 <xsl:template name="endpoint-compass">
-	<div class="ends-compass hidden" data-click="rotate-endpoint">
-		<span class="n"></span>
-		<span class="nw active"></span>
-		<span class="w"></span>
-		<span class="ws"></span>
-		<span class="s"></span>
-		<span class="se disabled"></span>
-		<span class="e disabled"></span>
-		<span class="ne disabled"></span>
+	<div class="ends-compass hidden" data-area="edit" data-click="rotate-endpoint">
+		<span data-no="0" class="n"></span>
+		<span data-no="1" class="nw"></span>
+		<span data-no="2" class="w"></span>
+		<span data-no="3" class="ws"></span>
+		<span data-no="4" class="s"></span>
+		<span data-no="5" class="se"></span>
+		<span data-no="6" class="e"></span>
+		<span data-no="7" class="ne"></span>
 	</div>
 </xsl:template>
 

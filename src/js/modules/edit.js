@@ -319,13 +319,16 @@
 				break;
 
 			case "rotate-endpoint":
-				console.log(event);
+				event.el.find(".active").removeClass("active");
+				el = $(event.target).addClass("active");
+				console.log(el);
 				break;
 
 			case "do-edit-tool":
 				el = $(event.target);
 				data = {
-					junction: el.data("junction"),
+					offset: el.offset(".level"),
+					junction: el.parents(`?[data-junction]`).data("junction"),
 					x: +el.cssProp("--x"),
 					y: +el.cssProp("--y"),
 				};
@@ -334,7 +337,22 @@
 					case "start":
 						break;
 					case "end":
-						Self.els.level.find(".ends-compass")
+						data.cEl = Self.els.level.find(".ends-compass");
+						data.cOffset = data.cEl.offset();
+						// loop end points
+						data.junction.split("").map(i => {
+							let no = +i;
+							data.cEl.find(`span[data-no="${no - 1}"]`).addClass("disabled");
+							data.cEl.find(`span[data-no="${no + 1}"]`).addClass("disabled");
+							data.cEl.find(`span[data-no="${no}"]`).addClass("disabled");
+							// console.log(i);
+						});
+						// show compass
+						data.cEl
+							.css({
+								top: data.offset.top - ((data.cOffset.width - data.offset.width) >> 1),  // 110
+								left: data.offset.left - ((data.cOffset.height - data.offset.height) >> 1), // 475
+							})
 							.removeClass("hidden");
 						break;
 					case "hexagon":
