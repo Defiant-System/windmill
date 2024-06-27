@@ -260,7 +260,28 @@
 				Game.grid.el.addClass(value);
 
 				if (Game.grid.el.hasClass("hover-ends")) {
-					// edit-endpoints
+					// count junction edit-endpoints
+					let gHeight = Game.grid.height + 1,
+						gWidth = Game.grid.width + 1,
+						grid = [...Array(gHeight)];
+					grid.map((row, y) => grid[y] = [...Array(gWidth)].map(col => 0));
+
+					// get all lines
+					Self.els.puzzle.find(".ns, .nsd, .nse, .we, .wed, .wee").map(elem => {
+						let el = $(elem),
+							x = +el.cssProp("--x"),
+							y = +el.cssProp("--y");
+						if (el.hasClass("ns") || el.hasClass("nsd")) {
+							grid[y][x]++;
+							if (y < gHeight) grid[y+1][x]++;
+						}
+						if (el.hasClass("we") || el.hasClass("wed")) {
+							grid[y][x]++;
+							if (x < gWidth) grid[y][x+1]++;
+						}
+					});
+
+					console.log(grid);
 				}
 				break;
 
