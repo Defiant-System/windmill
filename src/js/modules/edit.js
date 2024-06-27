@@ -328,11 +328,13 @@
 			case "do-edit-tool":
 				target = $(event.target);
 				el = target.parents("?span");
-				data = {
-					junction: el.parents(`?[data-junction]`).data("junction"),
-					x: +el.cssProp("--x"),
-					y: +el.cssProp("--y"),
-				};
+				// collect info
+				data = {};
+				if (el.length) {
+					data.junction = el.parents(`?[data-junction]`).data("junction");
+					data.x = +el.cssProp("--x");
+					data.y = +el.cssProp("--y");
+				}
 				// console.log(event);
 				switch (Self.activeTool) {
 					case "start":
@@ -372,9 +374,20 @@
 					case "hexagon":
 						// change classname
 						switch (true) {
-							case target.hasClass("edit-head"): console.log("head"); break;
-							case target.hasClass("edit-body"): console.log("body"); break;
-							case target.hasClass("edit-foot"): console.log("foot"); break;
+							case target.hasClass("edit-head"):
+								if (el.find("i.hex.top").length) el.find("i.hex.top").remove();
+								else el.prepend(`<i class="hex top"></i>`);
+								break;
+							case target.hasClass("edit-body"):
+								if (el.hasClass("nsd")) el.removeClass("nsd").addClass("ns");
+								if (el.hasClass("wed")) el.removeClass("wed").addClass("we");
+								if (el.find("i.hex.middle").length) el.find("i.hex.middle").remove();
+								else el.prepend(`<i class="hex middle"></i>`);
+								break;
+							case target.hasClass("edit-foot"):
+								if (el.find("i.hex.bottom").length) el.find("i.hex.bottom").remove();
+								else el.prepend(`<i class="hex bottom"></i>`);
+								break;
 						}
 						break;
 					case "disjoint":
@@ -387,12 +400,24 @@
 						}
 						break;
 					case "dot":
-						break;
 					case "star":
+						if (!el.length && target.hasClass("edit-cell")) {
+							data.x = +target.cssProp("--x");
+							data.y = +target.cssProp("--y");
+							el = Self.els.level.find(`.${Self.activeTool}[style*="--x: ${data.x};--y: ${data.y};"]`);
+						}
+						if (el.length) {
+							el.remove();
+						} else {
+							value = `<span class="${Self.activeTool}" style="--x: ${data.x};--y: ${data.y};--c: #fff;"></span>`;
+							Self.els.level.find(".grid-base").append(value);
+						}
 						break;
 					case "lambda":
+						// disabled for now
 						break;
 					case "erase":
+						
 						break;
 				}
 				break;
