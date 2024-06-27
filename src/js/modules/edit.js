@@ -63,6 +63,13 @@
 				Self.els.iCellWidth.val( parseInt(Self.els.level.cssProp("--gW")) );
 				Self.els.iCellHeight.val( parseInt(Self.els.level.cssProp("--gH")) );
 
+				// update palette selectbox
+				Self.els.el.find(`selectbox[data-menu="grid-palette"]`).val(Self.els.level.data("palette"));
+
+				// update symmetry selectbox
+				value = Self.els.level.data("symmetry") || 1;
+				Self.els.el.find(`selectbox[data-menu="grid-symmetry"]`).val(value);
+
 				// create level clone
 				Self.dispatch({ type: "create-clone" });
 				// insert elements to facilitate editing
@@ -235,7 +242,7 @@
 				// ui update
 				el.addClass("active_");
 				
-				// toggle hover areas
+				// clear old hovers
 				value = ["cells", "lines", "starts", "end"].map(e => `hover-${e}`).join(" ");
 				Game.grid.el.removeClass(value);
 				

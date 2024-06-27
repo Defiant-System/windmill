@@ -58,10 +58,10 @@
 	</Menu>
 
 	<Menu for="grid-symmetry">
-		<Menu name="No symmetry" click="set-symmetry" arg="none"/>
-		<Menu name="Horizontal" click="set-symmetry" arg="horizontal"/>
-		<Menu name="Vertical" click="set-symmetry" arg="vertical"/>
-		<Menu name="Rotational" click="set-symmetry" arg="rotational"/>
+		<Menu name="No symmetry" click="set-symmetry" arg="1"/>
+		<Menu name="Horizontal" click="set-symmetry" arg="2"/>
+		<Menu name="Vertical" click="set-symmetry" arg="3"/>
+		<Menu name="Rotational" click="set-symmetry" arg="4"/>
 	</Menu>
 
 	<Menu for="extras-color">

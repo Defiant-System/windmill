@@ -7,6 +7,8 @@
 
 	<div class="level appear">
 		<xsl:attribute name="data-id"><xsl:value-of select="@id"/></xsl:attribute>
+		<xsl:attribute name="data-palette"><xsl:value-of select="@palette"/></xsl:attribute>
+		<xsl:attribute name="data-symmetry"><xsl:value-of select="grid/@symmetry"/></xsl:attribute>
 		<xsl:attribute name="style">
 			--width: <xsl:value-of select="grid/@width"/>;
 			--height: <xsl:value-of select="grid/@height"/>;
