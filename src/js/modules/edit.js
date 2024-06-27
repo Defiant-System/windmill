@@ -223,17 +223,6 @@
 				Self.els.level.parents("content").css({ "--base": data["--base"] });
 				break;
 			case "select-base-tool":
-				el = $(event.target);
-				// turn off tool
-				if (el.hasClass("active_")) {
-					// turn off tool
-					el.removeClass("active_");
-					return;
-				}
-				Self.els.el.find(`.option-buttons_ .active_`).removeClass("active_");
-				// ui update
-				el.addClass("active_");
-				break;
 			case "select-extras-tool":
 				el = $(event.target);
 				// turn off tool
@@ -245,7 +234,16 @@
 				Self.els.el.find(`.option-buttons_ .active_`).removeClass("active_");
 				// ui update
 				el.addClass("active_");
+				
+				// toggle hover areas
+				value = ["cells", "lines", "starts", "end"].map(e => `hover-${e}`).join(" ");
+				Game.grid.el.removeClass(value);
+				
+				// toggle hover areas
+				value = el.data("hover").split(" ").map(e => `hover-${e}`).join(" ");
+				Game.grid.el.addClass(value);
 				break;
+
 			case "set-extras-color":
 				console.log(event);
 				break;

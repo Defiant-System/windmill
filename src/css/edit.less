@@ -1,11 +1,49 @@
 
 .game-view {
 	.puzzle {
+		&.hover-cells {
+			s.edit-cell {
+				cursor: pointer;
+
+				&:hover:before {
+					background: rgba(#fff,.5);
+				}
+			}
+		}
+
+		&.hover-lines {
+			s {
+				&.edit-body {
+					cursor: pointer;
+
+					&:hover:before {
+						background: rgba(#fff,.5);
+					}
+				}
+			}
+		}
+
+		&.hover-ends {
+
+		}
+
+		&.hover-starts {
+			s {
+				&.edit-head,
+				&.edit-foot {
+					cursor: pointer;
+
+					&:hover:before {
+						background: rgba(#fff,.5);
+					}
+				}
+			}
+		}
+
 		.grid-base {
 			s {
 				position: absolute;
 				z-index: 4;
-				cursor: pointer;
 
 				&.edit-cell {
 					// background: rgba(#f00,.35);
@@ -23,10 +61,7 @@
 					right: -5px;
 					bottom: -5px;
 					border-radius: 3px;
-				}
-
-				&:hover:before {
-					background: rgba(#fff,.5);
+					pointer-events: none;
 				}
 			}
 
