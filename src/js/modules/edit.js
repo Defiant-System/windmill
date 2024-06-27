@@ -14,6 +14,8 @@
 			iCellHeight: window.find(`input[data-change="set-cell-height"]`),
 		};
 
+		this.editNames = [".edit-cell", ".edit-head", ".edit-body", ".edit-foot", ".edit-endpoints"];
+
 		// subscribe to events
 		window.on("render-level", this.dispatch);
 	},
@@ -103,9 +105,8 @@
 					$(elem).append(str.join(""));
 				});
 				break;
-				
 			case "clear-edit-elements":
-				Self.els.el.find("edit-cell, .edit-head, .edit-body, .edit-foot").remove();
+				Self.els.puzzle.find(Self.editNames.join(",")).remove();
 				break;
 
 			case "sync-cell-width":
@@ -236,8 +237,16 @@
 				if (el.hasClass("active_")) {
 					// turn off tool
 					el.removeClass("active_");
+					// remove edit elements
+					Self.dispatch({ type: "clear-edit-elements" });
 					return;
 				}
+				
+				if (!Self.els.puzzle.find(Self.editNames.join(",")).length) {
+					// remove edit elements
+					Self.dispatch({ type: "add-edit-elements" });
+				}
+
 				Self.els.el.find(`.option-buttons_ .active_`).removeClass("active_");
 				// ui update
 				el.addClass("active_");
