@@ -97,4 +97,18 @@
 	</xsl:for-each>
 </xsl:template>
 
+
+<xsl:template name="endpoint-compass">
+	<div class="ends-compass hidden" data-click="rotate-endpoint">
+		<span class="n"></span>
+		<span class="nw active"></span>
+		<span class="w"></span>
+		<span class="ws"></span>
+		<span class="s"></span>
+		<span class="se disabled"></span>
+		<span class="e disabled"></span>
+		<span class="ne disabled"></span>
+	</div>
+</xsl:template>
+
 </xsl:stylesheet>

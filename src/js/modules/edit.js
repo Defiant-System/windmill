@@ -76,6 +76,14 @@
 				Self.dispatch({ type: "create-clone" });
 				// insert elements to facilitate editing
 				Self.dispatch({ type: "add-edit-elements" });
+
+				// add endpoint compass
+				if (!Self.els.level.find(".ends-compass").length) {
+					window.render({
+						template: "endpoint-compass",
+						append: Self.els.level,
+					});
+				}
 				break;
 			case "calculate-puzzle-layout":
 				data = {};
@@ -107,6 +115,9 @@
 				break;
 			case "clear-edit-elements":
 				Self.els.puzzle.find(Self.editNames.join(",")).remove();
+				break;
+			case "rotate-endpoint":
+				console.log(event);
 				break;
 
 			case "sync-cell-width":
@@ -264,7 +275,7 @@
 					let gHeight = Game.grid.height + 1,
 						gWidth = Game.grid.width + 1,
 						grid = [...Array(gHeight)];
-					grid.map((row, y) => grid[y] = [...Array(gWidth)].map(col => 0));
+					grid.map((row, y) => grid[y] = [...Array(gWidth)].map(col => ""));
 
 					// get all lines
 					Self.els.puzzle.find(".ns, .nsd, .nse, .we, .wed, .wee").map(elem => {
@@ -272,16 +283,21 @@
 							x = +el.cssProp("--x"),
 							y = +el.cssProp("--y");
 						if (el.hasClass("ns") || el.hasClass("nsd")) {
-							grid[y][x]++;
-							if (y < gHeight) grid[y+1][x]++;
+							grid[y][x] += "0";
+							if (y < gHeight) grid[y+1][x] += "4";
 						}
 						if (el.hasClass("we") || el.hasClass("wed")) {
-							grid[y][x]++;
-							if (x < gWidth) grid[y][x+1]++;
+							grid[y][x] += "2";
+							if (x < gWidth) grid[y][x+1] += "6";
 						}
 					});
 
-					console.log(grid);
+					// transform to css class name
+					grid.map((r, y) => r.map((c, x) => {
+						let junction = grid[y][x].split("").sort((a,b) => +a - +b).join("");
+						Self.els.puzzle.find(`.grid-base span[style*="--x: ${x};--y: ${y};"]`).data({ junction });
+					}));
+					// console.log(grid);
 				}
 				break;
 

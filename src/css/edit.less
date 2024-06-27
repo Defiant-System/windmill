@@ -24,6 +24,11 @@
 		}
 
 		&.hover-ends {
+			span[data-junction="0"] {}
+			span[data-junction="02"] {}
+			span[data-junction="024"] {}
+			span[data-junction="0246"] {}
+			
 			// corners only
 			s {
 				&.edit-endpoints {
@@ -139,6 +144,63 @@
 					}
 				}
 			}
+		}
+	}
+
+	.ends-compass {
+		position: absolute;
+		top: 110px;
+		left: 475px;
+		width: 100px;
+		height: 100px;
+		z-index: 5;
+		border-radius: 50%;
+		
+		&:before {
+			content: "";
+			background: rgba(#fff,.5);
+			position: absolute;
+			top: calc( 50% - 8px );
+			left: calc( 50% - 8px );
+			width: 16px;
+			height: 16px;
+			border-radius: 50%;
+		}
+
+		&.hidden {
+			display: none;
+		}
+
+		span {
+			position: absolute;
+			width: inherit;
+			height: inherit;
+			border: 17px solid #fff;
+			border-radius: 50%;
+			clip-path: polygon(50% 50%, 31% 0, 69% 0);
+			cursor: pointer;
+			opacity: .5;
+
+			&.disabled {
+				display: none;
+			}
+
+			&.active {
+				opacity: 1;
+			}
+
+			&:hover:not(.active) {
+				opacity: .75;
+			}
+
+			&.n  { transform: rotate(0deg); }
+			&.nw { transform: rotate(45deg); }
+			&.w  { transform: rotate(90deg); }
+			&.ws { transform: rotate(135deg); }
+			&.s  { transform: rotate(180deg); }
+			&.se { transform: rotate(225deg); }
+			&.e  { transform: rotate(270deg); }
+			&.ne { transform: rotate(315deg); }
 		}
 	}
 }
