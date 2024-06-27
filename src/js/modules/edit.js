@@ -96,7 +96,7 @@
 				Self.els.puzzle.find(".grid-base").append(value.join(""));
 
 				// for grid lines
-				Self.els.puzzle.find(".ns, .nsd, .we, .wed").map(elem => {
+				Self.els.puzzle.find(".ns, .nsd, .nse, .we, .wed, .wee").map(elem => {
 					let str = [
 							`<s class="edit-head"></s>`,
 							`<s class="edit-body"></s>`,
