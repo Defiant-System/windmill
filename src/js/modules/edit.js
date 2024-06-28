@@ -244,8 +244,10 @@
 				data = {};
 				xNode = window.bluePrint.selectSingleNode(`//Palette[@id="${event.arg}"]`);
 				xNode.selectNodes(`./c`).map(xColor => {
-					let key = xColor.getAttribute("key");
+					let key = xColor.getAttribute("key"),
+						id = xColor.getAttribute("id");
 					if (key) data[`--${key}`] = xColor.getAttribute("val");
+					else if (id) data[`--c${id}`] = xColor.getAttribute("val");
 				});
 				// level update
 				Self.els.level.css(data);

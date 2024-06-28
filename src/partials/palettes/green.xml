@@ -2,14 +2,14 @@
 	<c key="base" val="#0d4c32"/>
 	<c key="bg" val="#00a971"/>
 	<c key="gr" val="#00fbb8"/>
-	<c key="fg" val="#00433e"/>
+	<c key="fg" val="#1e7f55"/>
 	<c key="hl" val="#acc2c8"/>
 	<c key="error" val="#ff0000"/>
 	<c key="snake1" val="#ffffff"/>
 	<c key="snake2" val="#ffffff"/>
 
-	<c id="1" val="#005650" name="black"/>
-	<c id="2" val="#fffaec" name="white"/>
+	<c id="1" val="#18573c" name="black"/>
+	<c id="2" val="#e7ffed" name="white"/>
 	<c id="3" val="#0ff" name="cyan"/>
 	<c id="4" val="#f0f" name="magenta"/>
 	<c id="5" val="#ff0" name="yellow"/>

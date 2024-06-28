@@ -40,8 +40,8 @@
 						<xsl:attribute name="style">
 							--x: <xsl:value-of select="@x"/>;
 							--y: <xsl:value-of select="@y"/>;
-							<xsl:if test="@c">--c: <xsl:value-of select="$palette/c[@id = current()/@c]/@val"/>;</xsl:if>
 							<xsl:if test="@d">--d: <xsl:value-of select="@d"/>;</xsl:if>
+							<xsl:if test="@c">--c: var( --c<xsl:value-of select="@c"/> );</xsl:if>
 						</xsl:attribute>
 						<xsl:if test="@type = 'start'">
 							<xsl:attribute name="data-click">init-snake</xsl:attribute>

@@ -8,7 +8,7 @@
 	<c key="snake1" val="#88ffff"/>
 	<c key="snake2" val="#ffffff"/>
 
-	<c id="1" val="#005650" name="black"/>
+	<c id="1" val="#8b4916" name="black"/>
 	<c id="2" val="#fffaec" name="white"/>
 	<c id="3" val="#0ff" name="cyan"/>
 	<c id="4" val="#f0f" name="magenta"/>
