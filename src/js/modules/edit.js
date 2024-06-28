@@ -133,8 +133,8 @@
 				Self.els.level = Game.grid.el.parent();
 				Self.els.puzzle = Self.els.level.find("> .puzzle");
 
-				Self.els.iGridRows.val(Game.grid.width);
-				Self.els.iGridCols.val(Game.grid.height);
+				Self.els.iGridRows.val(Game.grid.height);
+				Self.els.iGridCols.val(Game.grid.width);
 				
 				Self.els.iLine.val( parseInt(Self.els.level.cssProp("--line")) );
 				Self.els.iGap.val( parseInt(Self.els.level.cssProp("--gap")) );
@@ -256,7 +256,7 @@
 				Self.dispatch({ type: "init-edit-view" });
 				break;
 			case "set-grid-cols":
-				if (event.value > Game.grid.height) {
+				if (event.value > Game.grid.width) {
 					data = [];
 					[...Array(Game.grid.height)].map((c, i) => {
 						data.push(`<i type="ns" x="${event.value}" y="${i}" />`);
