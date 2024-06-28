@@ -60,7 +60,9 @@ let Game = {
 				break;
 			// custom events
 			case "render-level":
-				Self.grid.render(event.arg);
+				data = event.arg;
+				if (!data && event.xMenu) data = event.xMenu.getAttribute("name");
+				Self.grid.render(data);
 				break;
 			case "goto-next-level":
 				if (APP.edit.els.el.hasClass("show")) {

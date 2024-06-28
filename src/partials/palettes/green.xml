@@ -2,11 +2,11 @@
 	<c key="base" val="#0d4c32"/>
 	<c key="bg" val="#00a971"/>
 	<c key="gr" val="#00fbb8"/>
-	<c key="fg" val="#1e7f55"/>
+	<c key="fg" val="#077042"/>
 	<c key="hl" val="#acc2c8"/>
 	<c key="error" val="#ff0000"/>
 	<c key="snake1" val="#ffffff"/>
-	<c key="snake2" val="#ffffff"/>
+	<c key="snake2" val="#ffff00"/>
 
 	<c id="1" val="#18573c" name="black"/>
 	<c id="2" val="#e7ffed" name="white"/>

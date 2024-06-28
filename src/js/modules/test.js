@@ -1,11 +1,11 @@
 
 let Test = {
 	init(APP) {
-		// return;
+		return;
 
 		setTimeout(() => {
 			APP.edit.dispatch({ type: "toggle-edit-view" });
-		return;
+			return;
 			APP.edit.els.el.find(`.option-buttons_ span[data-arg="disjoint"]`).trigger("click");
 
 			setTimeout(() => {

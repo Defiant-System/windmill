@@ -48,14 +48,18 @@
 				value = Self.els.el.hasClass("show");
 				Self.els.el.toggleClass("show", value);
 				// if in lobby, render template level
-				if (Game.grid.levelIndex === "0.1") {
+				if (Game.grid.levelId === "0.1") {
 					return APP.dispatch({ type: "render-level", arg: "template" });
 				}
 				// init edit view, if not already initiated
 				if (!value) Self.dispatch({ type: "init-edit-view" });
 				break;
 			case "output-xml":
-				console.log( Self.levelClone.xml );
+				xNode = Self.levelClone.cloneNode(true);
+				// minor clean up
+				xNode.removeAttribute("clone");
+				xNode.removeAttribute("type");
+				console.log( xNode.xml );
 				break;
 			case "sync-ui-level":
 				// push nodes in to array
@@ -124,9 +128,9 @@
 				// remove old clones first
 				window.bluePrint.selectNodes(`//Data/Level[@clone]`).map(xClone => xClone.parentNode.removeChild(xClone));
 				// append new clone to bluePrint
-				xNode = window.bluePrint.selectSingleNode(`//Data/Level[@id="${Game.grid.levelIndex}"]`);
+				xNode = window.bluePrint.selectSingleNode(`//Data/Level[@id="${Game.grid.levelId}"]`);
 				Self.levelClone = xNode.parentNode.appendChild(xNode.cloneNode(true));
-				Self.levelClone.setAttribute("clone", Game.grid.levelIndex);
+				Self.levelClone.setAttribute("clone", Game.grid.levelId);
 				break;
 			case "init-edit-view":
 				// save reference to level root element

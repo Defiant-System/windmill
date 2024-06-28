@@ -10,36 +10,35 @@
 		<Menu name="Start View" check-group="active-level" click="render-level" arg="0.1"/>
 		<Menu type="divider"/>
 		<Menu name="Level 1&#8230;">
-			<!-- <Menu name="1.01" check-group="active-level" click="render-level" arg="1.01"/> -->
-			<Menu name="1.0" check-group="active-level" click="render-level" arg="1.0"/>
-			<Menu name="1.1" check-group="active-level" click="render-level" arg="1.1"/>
-			<Menu name="1.2" check-group="active-level" click="render-level" arg="1.2"/>
-			<Menu name="1.3" check-group="active-level" click="render-level" arg="1.3"/>
-			<Menu name="1.4" check-group="active-level" click="render-level" arg="1.4"/>
-			<Menu name="1.5" check-group="active-level" click="render-level" arg="1.5"/>
-			<Menu name="1.6" check-group="active-level" click="render-level" arg="1.6"/>
-			<Menu name="1.7" check-group="active-level" click="render-level" arg="1.7"/>
-			<Menu name="1.8" check-group="active-level" click="render-level" arg="1.8"/>
-			<Menu name="1.9" check-group="active-level" click="render-level" arg="1.9"/>
-			<Menu name="1.9.1" check-group="active-level" click="render-level" arg="1.91"/>
+			<Menu name="1.0" check-group="active-level" click="render-level"/>
+			<Menu name="1.1" check-group="active-level" click="render-level"/>
 		</Menu>
 		<Menu name="Level 2&#8230;">
-			<Menu name="2.0" check-group="active-level" click="render-level" arg="2.0"/>
-			<Menu name="2.1" check-group="active-level" click="render-level" arg="2.1"/>
+			<Menu name="2.0" check-group="active-level" click="render-level"/>
+			<Menu name="2.1" check-group="active-level" click="render-level"/>
+			<Menu name="2.2" check-group="active-level" click="render-level"/>
+			<Menu name="2.3" check-group="active-level" click="render-level"/>
 		</Menu>
 		<Menu name="Level 3&#8230;">
-			<Menu name="3.0" check-group="active-level" click="render-level" arg="3.0"/>
-			<Menu name="3.1" check-group="active-level" click="render-level" arg="3.1"/>
-			<Menu name="3.2" check-group="active-level" click="render-level" arg="3.2"/>
-			<Menu name="3.3" check-group="active-level" click="render-level" arg="3.3"/>
+			<Menu name="3.0" check-group="active-level" click="render-level"/>
+			<Menu name="3.1" check-group="active-level" click="render-level"/>
+			<Menu name="3.2" check-group="active-level" click="render-level"/>
+			<Menu name="3.3" check-group="active-level" click="render-level"/>
+			<Menu name="3.4" check-group="active-level" click="render-level"/>
+			<Menu name="3.5" check-group="active-level" click="render-level"/>
+			<Menu name="3.6" check-group="active-level" click="render-level"/>
+			<Menu name="3.7" check-group="active-level" click="render-level"/>
+			<Menu name="3.8" check-group="active-level" click="render-level"/>
+			<Menu name="3.9" check-group="active-level" click="render-level"/>
+			<Menu name="3.10" check-group="active-level" click="render-level"/>
 		</Menu>
 		<Menu name="Level 4&#8230;">
-			<Menu name="4.0" check-group="active-level" click="render-level" arg="4.0"/>
-			<Menu name="4.1" check-group="active-level" click="render-level" arg="4.1"/>
-			<Menu name="4.2" check-group="active-level" click="render-level" arg="4.2"/>
-			<Menu name="4.3" check-group="active-level" click="render-level" arg="4.3"/>
-			<Menu name="4.4" check-group="active-level" click="render-level" arg="4.4"/>
-			<Menu name="4.5" check-group="active-level" click="render-level" arg="4.5"/>
+			<Menu name="4.0" check-group="active-level" click="render-level"/>
+			<Menu name="4.1" check-group="active-level" click="render-level"/>
+			<Menu name="4.2" check-group="active-level" click="render-level"/>
+			<Menu name="4.3" check-group="active-level" click="render-level"/>
+			<Menu name="4.4" check-group="active-level" click="render-level"/>
+			<Menu name="4.5" check-group="active-level" click="render-level"/>
 		</Menu>
 	</Menu>
 	<Menu name="Help">

@@ -1,22 +1,26 @@
-<Level id="1.0" palette="purple">
-	<grid type="base" width="1" height="2">
+<Level id="3.2" palette="purple">
+	<grid width="1" height="3">
 		<!-- lines -->
 		<i type="ns" x="0" y="0" />
 		<i type="ns" x="0" y="1" />
+		<i type="ns" x="0" y="2" />
 
 		<i type="we" x="0" y="0" />
 		<i type="we" x="0" y="1" />
 		<i type="we" x="0" y="2" />
+		<i type="we" x="0" y="3" />
 
 		<i type="ns" x="1" y="0" />
 		<i type="ns" x="1" y="1" />
+		<i type="ns" x="1" y="2" />
 
 		<!-- start & exit -->
-		<i type="start" x="0" y="1" />
-		<i type="exit" x="1" y="1" d="2" />
+		<i type="start" x="0" y="3" />
+		<i type="exit" x="1" y="0" d="1" />
 
 		<!-- cell contents -->
 		<i type="dot" x="0" y="0" c="1" />
-		<i type="dot" x="0" y="1" c="2" />
+		<i type="dot" x="0" y="1" c="1" />
+		<i type="dot" x="0" y="2" c="2" />
 	</grid>
 </Level>

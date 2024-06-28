@@ -1,5 +1,5 @@
-<Level id="3.3" palette="orange">
-	<grid type="base" width="6" height="6" grid="62" line="23" gap="6">
+<Level id="2.3" palette="orange">
+	<grid width="6" height="6" grid="62" line="23" gap="6">
 		<!-- lines -->
 		<i type="ns" x="0" y="0" />
 		<i type="ns" x="0" y="1" />

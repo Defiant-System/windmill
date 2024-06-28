@@ -1,16 +1,13 @@
 
 class Grid {
-	constructor(index) {
-		// level info
-		this.levelIndex = index;
-
+	constructor() {
 		// sub objects
 		this.navigationSelector = new NavigationSelector(this);
 	}
 
 	render(id) {
 		// save value
-		this.levelIndex = id;
+		this.levelId = id;
 		// out with the old
 		window.find(".game-view .level").cssSequence("disappear", "animationend", el => el.remove());
 
@@ -18,8 +15,9 @@ class Grid {
 		window.bluePrint.selectNodes(`//Level[@clone]`).map(xClone => xClone.parentNode.removeChild(xClone));
 
 		// prepare xml, template & units
-		let match = `//Data/Level[@id="${this.levelIndex}"]`;
+		let match = `//Data/Level[@id="${id}"]`;
 		let xLevel = window.bluePrint.selectSingleNode(match);
+		return console.log( match, xLevel );
 		let xGrid = xLevel.selectSingleNode("./grid");
 		// values from xLevel to UI contants
 		this.syncConstants(xGrid);
@@ -38,7 +36,7 @@ class Grid {
 		// appear animation
 		nextEl.cssSequence("appear", "animationend", el => el.addClass("active").removeClass("appear"));
 		// update window title
-		window.title = `Witness - Level ${this.levelIndex}`;
+		window.title = `Witness - Level ${id}`;
 
 		// center puzzle
 		this.el = nextEl.find(".puzzle");
