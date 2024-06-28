@@ -66,7 +66,9 @@
 				// minor clean up
 				xNode.removeAttribute("clone");
 				xNode.removeAttribute("type");
-				console.log( Self.levelClone.xml );
+				// mroe clean up
+				xNode.selectSingleNode("./grid").removeAttribute("error");
+				console.log( xNode.xml );
 				break;
 			case "sync-ui-level":
 				// push nodes in to array
@@ -557,6 +559,8 @@
 						Self.els.doc.on("click", func);
 						break;
 					case "hexagon":
+						// for right bottom corner
+						console.log(event);
 						// change classname
 						switch (true) {
 							case target.hasClass("edit-head"):

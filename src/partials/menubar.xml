@@ -17,6 +17,7 @@
 			<Menu name="1.3" check-group="active-level" click="render-level"/>
 		</Menu>
 		<Menu name="Level 2&#8230;">
+			<Menu name="2.0" check-group="active-level" click="render-level"/>
 			<Menu name="2.5" check-group="active-level" click="render-level"/>
 		</Menu>
 		<Menu name="Level 3&#8230;">
