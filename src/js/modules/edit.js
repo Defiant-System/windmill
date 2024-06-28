@@ -55,9 +55,70 @@
 				if (!value) Self.dispatch({ type: "init-edit-view" });
 				break;
 			case "output-xml":
-				// TODO
+				console.log( Self.levelClone.xml );
 				break;
 			case "sync-ui-level":
+				// push nodes in to array
+				data = [];
+				// iterate all nodes
+				Self.els.puzzle.find(".grid-base > span").map(elem => {
+					let el = $(elem),
+						x = el.cssProp("--x"),
+						y = el.cssProp("--y"),
+						d = el.cssProp("--d"),
+						hex = el.find(".hex"),
+						attr = [];
+					if (hex.length) {
+						attr = hex.map(h => {
+							let pos;
+							switch (true) {
+								case h.classList.contains("top"): pos = "Top"; break;
+								case h.classList.contains("middle"): pos = "Mid"; break;
+								case h.classList.contains("bottom"): pos = "Bot"; break;
+							}
+							return `hex${pos}="1"`;
+						});
+					}
+					// action based on class name
+					switch (elem.className) {
+						case "ns":
+						case "nsd":
+						case "nse":
+						case "we":
+						case "wed":
+						case "wee":
+							data.push(`<i type="${elem.className}" x="${x}" y="${y}" ${attr.join(" ")}/>`);
+							break;
+						case "start":
+							data.push(`<i type="${elem.className}" x="${x}" y="${y}" />`);
+							break;
+						case "exit":
+							data.push(`<i type="${elem.className}" x="${x}" y="${y}" d="${d}" />`);
+							break;
+						case "dot":
+							data.push(`<i type="${elem.className}" x="${x}" y="${y}" />`);
+							break;
+						case "star":
+							data.push(`<i type="${elem.className}" x="${x}" y="${y}" />`);
+							break;
+						default:
+							console.log(elem);
+					}
+				});
+				// reference to grid node
+				xNode = Self.levelClone.selectSingleNode(`./grid`);
+				// remove all old nodes
+				while (xNode.hasChildNodes()) {
+					xNode.removeChild(xNode.firstChild);
+				}
+				// insert new nodes into level clone
+				$.xmlFromString(`<data>${data.join("")}</data>`)
+					.selectNodes(`//data/*`)
+					.map(x => xNode.appendChild(x));
+				// render clone level
+				Game.grid.renderClone(Self.levelClone);
+				// refresh references
+				Self.dispatch({ type: "init-edit-view" });
 				break;
 			case "create-clone":
 				// remove old clones first
@@ -115,6 +176,8 @@
 				break;
 				
 			case "add-edit-elements":
+				// remove old, if any
+				Self.els.puzzle.find(Self.editNames.join(",")).remove();
 				// for cells
 				value = [...Array(Game.grid.width * Game.grid.height)].map((c, i) => {
 					let x = i % Game.grid.width,
@@ -189,6 +252,8 @@
 					// render clone level
 					Game.grid.renderClone(Self.levelClone);
 				}
+				// refresh references
+				Self.dispatch({ type: "init-edit-view" });
 				break;
 			case "set-grid-cols":
 				if (event.value > Game.grid.height) {
@@ -222,6 +287,8 @@
 					// render clone level
 					Game.grid.renderClone(Self.levelClone);
 				}
+				// refresh references
+				Self.dispatch({ type: "init-edit-view" });
 				break;
 			case "set-cell-width":
 				Self.els.level.css({ "--gW": `${event.value}px` });
@@ -287,19 +354,19 @@
 				if (el.hasClass("active_")) {
 					// turn off tool
 					el.removeClass("active_");
-					// remove edit elements
-					Self.dispatch({ type: "clear-edit-elements" });
 					// make sure changes are reflected in xml + game grid
 					Self.dispatch({ type: "sync-ui-level" });
+					// remove edit elements
+					Self.dispatch({ type: "clear-edit-elements" });
 					// reset selected tool
 					Self.activeTool = false;
 					return;
 				}
 				
-				if (!Self.els.puzzle.find(Self.editNames.join(",")).length) {
+				// if (!Self.els.puzzle.find(Self.editNames.join(",")).length) {
 					// remove edit elements
 					Self.dispatch({ type: "add-edit-elements" });
-				}
+				// }
 
 				Self.els.el.find(`.option-buttons_ .active_`).removeClass("active_");
 				// ui update

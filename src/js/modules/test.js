@@ -5,9 +5,15 @@ let Test = {
 
 		setTimeout(() => {
 			APP.edit.dispatch({ type: "toggle-edit-view" });
+		return;
 			APP.edit.els.el.find(`.option-buttons_ span[data-arg="disjoint"]`).trigger("click");
 
-			setTimeout(() => window.find(`.we[style*="--x: 0;--y: 3;"]`).trigger("click"), 500);
+			setTimeout(() => {
+				window.find(`.we[style*="--x: 0;--y: 3;"]`).trigger("click");
+				window.find(`.we[style="--x: 0;--y: 2;"]`).append(`<i class="hex middle"></i>`);
+				window.find(`.we[style="--x: 1;--y: 2;"]`).append(`<i class="hex top"></i>`);
+				window.find(`.ns[style="--x: 1;--y: 2;"]`).append(`<i class="hex middle"></i>`);
+			}, 500);
 			setTimeout(() => APP.edit.els.el.find(`.option-buttons_ span[data-arg="disjoint"]`).trigger("click"), 600);
 		}, 500);
 
