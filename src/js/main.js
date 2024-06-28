@@ -69,6 +69,7 @@ const witness = {
 			case "render-level":
 				Game.dispatch(event);
 				break;
+			case "blank-template":
 			case "toggle-edit-view":
 				return Self.edit.dispatch(event);
 			case "open-help":

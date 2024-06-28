@@ -70,6 +70,9 @@
 				xNode.selectSingleNode("./grid").removeAttribute("error");
 				console.log( xNode.xml );
 				break;
+			case "blank-template":
+				APP.dispatch({ type: "render-level", arg: "template" });
+				break;
 			case "sync-ui-level":
 				// push nodes in to array
 				data = [];
@@ -270,6 +273,7 @@
 					xNode.selectNodes(`./i[@y="${Game.grid.height}"]`).map(x => x.parentNode.removeChild(x));
 					xNode.selectNodes(`./i[@type="ns"][@y="${Game.grid.height-1}"]`).map(x => x.parentNode.removeChild(x));
 					xNode.selectNodes(`./i[@type="nsd"][@y="${Game.grid.height-1}"]`).map(x => x.parentNode.removeChild(x));
+					xNode.selectNodes(`./i[@type="nse"][@y="${Game.grid.height-1}"]`).map(x => x.parentNode.removeChild(x));
 					// add to grid dim
 					Game.grid.height--;
 					// update level node
@@ -305,6 +309,7 @@
 					xNode.selectNodes(`./i[@x="${Game.grid.width}"]`).map(x => x.parentNode.removeChild(x));
 					xNode.selectNodes(`./i[@type="we"][@x="${Game.grid.width-1}"]`).map(x => x.parentNode.removeChild(x));
 					xNode.selectNodes(`./i[@type="wed"][@x="${Game.grid.width-1}"]`).map(x => x.parentNode.removeChild(x));
+					xNode.selectNodes(`./i[@type="wee"][@x="${Game.grid.width-1}"]`).map(x => x.parentNode.removeChild(x));
 					// add to grid dim
 					Game.grid.width--;
 					// update level node
