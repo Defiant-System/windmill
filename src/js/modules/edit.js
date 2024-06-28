@@ -47,14 +47,15 @@
 			case "toggle-edit-view":
 				value = Self.els.el.hasClass("show");
 				Self.els.el.toggleClass("show", value);
-
+				// if in lobby, render template level
 				if (Game.grid.levelIndex === "0.1") {
 					return APP.dispatch({ type: "render-level", arg: "template" });
 				}
-
+				// init edit view, if not already initiated
 				if (!value) Self.dispatch({ type: "init-edit-view" });
 				break;
 			case "output-xml":
+				// TODO
 				break;
 			case "create-clone":
 				// remove old clones first
@@ -274,6 +275,7 @@
 			case "select-base-tool":
 			case "select-extras-tool":
 				el = $(event.target);
+				if (!el.parent().hasClass("option-buttons_")) return;
 				
 				// clear old hovers
 				value = ["cells", "lines", "starts", "ends"].map(e => `hover-${e}`).join(" ");
@@ -505,7 +507,34 @@
 						// disabled for now
 						break;
 					case "erase":
-						// TODO:
+						// erase depending on what is clicked
+						switch (true) {
+							case el.hasClass("ns"): // remove line
+							case el.hasClass("nsd"):
+								el.removeClass("ns nsd").addClass("nse");
+								break;
+							case el.hasClass("nse"): // add line
+								el.removeClass("nse").addClass("ns");
+								break;
+							case el.hasClass("we"): // remove line
+							case el.hasClass("wed"):
+								el.removeClass("we wed").addClass("wee");
+								break;
+							case el.hasClass("wee"): // add line
+								el.removeClass("wee").addClass("we");
+								break;
+							case target.hasClass("edit-cell"): // empty cell
+								data.x = target.cssProp("--x");
+								data.y = target.cssProp("--y");
+								value = [
+									`.dot[style*="--x: ${data.x};--y: ${data.y};"]`,
+									`.star[style*="--x: ${data.x};--y: ${data.y};"]`,
+									`.lambda[style*="--x: ${data.x};--y: ${data.y};"]`,
+								];
+								Self.els.puzzle.find(value.join(",")).remove();
+								break;
+						}
+						// console.log(target);
 						break;
 				}
 				break;

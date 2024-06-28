@@ -5,7 +5,10 @@ let Test = {
 
 		setTimeout(() => {
 			APP.edit.dispatch({ type: "toggle-edit-view" });
-			// APP.edit.els.el.find(`.option-buttons_ span[data-arg="end"]`).trigger("click");
+			APP.edit.els.el.find(`.option-buttons_ span[data-arg="disjoint"]`).trigger("click");
+
+			setTimeout(() => window.find(`.we[style*="--x: 0;--y: 3;"]`).trigger("click"), 500);
+			setTimeout(() => APP.edit.els.el.find(`.option-buttons_ span[data-arg="disjoint"]`).trigger("click"), 600);
 		}, 500);
 
 		// setTimeout(() => window.find(`.ns[data-junction="46"] .edit-head`).trigger("click"), 600);
