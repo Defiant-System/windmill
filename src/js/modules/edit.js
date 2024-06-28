@@ -57,6 +57,8 @@
 			case "output-xml":
 				// TODO
 				break;
+			case "sync-ui-level":
+				break;
 			case "create-clone":
 				// remove old clones first
 				window.bluePrint.selectNodes(`//Data/Level[@clone]`).map(xClone => xClone.parentNode.removeChild(xClone));
@@ -287,6 +289,8 @@
 					el.removeClass("active_");
 					// remove edit elements
 					Self.dispatch({ type: "clear-edit-elements" });
+					// make sure changes are reflected in xml + game grid
+					Self.dispatch({ type: "sync-ui-level" });
 					// reset selected tool
 					Self.activeTool = false;
 					return;
