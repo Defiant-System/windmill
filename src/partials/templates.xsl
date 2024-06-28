@@ -23,6 +23,9 @@
 			<xsl:for-each select="$palette/*[@key]">
 				--<xsl:value-of select="@key"/>: <xsl:value-of select="@val"/>;
 			</xsl:for-each>
+			<xsl:for-each select="$palette/*[@id]">
+				--c<xsl:value-of select="@id"/>: <xsl:value-of select="@val"/>;
+			</xsl:for-each>
 		</xsl:attribute>
 
 		<div class="puzzle">

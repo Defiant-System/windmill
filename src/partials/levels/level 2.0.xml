@@ -24,18 +24,16 @@
 		<i type="ns" x="2" y="2" />
 
 		<i type="we" x="2" y="0" />
-		<i type="wee" x="2" y="1" />
+		<i type="we" x="2" y="1" />
 		<i type="we" x="2" y="2" />
 		<i type="we" x="2" y="3" />
 
-		<i type="nse" x="3" y="0" />
+		<i type="ns" x="3" y="0" />
 		<i type="ns" x="3" y="1" />
 		<i type="nsd" x="3" y="2" />
 
 		<!-- start & exit -->
 		<i type="start" x="0" y="3" />
 		<i type="exit" x="3" y="0" d="1" />
-
-		<!-- <i type="lambda" x="2" y="2" /> -->
 	</grid>
 </Level>

@@ -8,8 +8,8 @@ let Test = {
 			APP.edit.els.el.find(`.option-buttons_ span[data-arg="end"]`).trigger("click");
 		}, 500);
 
-		Game.dispatch({ type: "render-level", arg: "2.0" });
-		// Game.dispatch({ type: "render-level", arg: "1.01" });
+		// Game.dispatch({ type: "render-level", arg: "2.0" });
+		Game.dispatch({ type: "render-level", arg: "1.01" });
 
 		return;
 

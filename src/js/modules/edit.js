@@ -309,10 +309,11 @@
 
 					// transform to css class name
 					grid.map((r, y) => r.map((c, x) => {
-						let junction = grid[y][x].split("").sort((a,b) => +a - +b).join("");
-						Self.els.puzzle.find(`.grid-base span[style*="--x: ${x};--y: ${y};"]`).data({ junction });
+						let junction = grid[y][x].split("").sort((a,b) => +a - +b).join(""),
+							jEl = Self.els.puzzle.find(`.grid-base span[style*="--x: ${x};--y: ${y};"]`);
+						if (!jEl.length) jEl = Self.els.puzzle.find(`.grid-base span[style*="--x: ${x};--y: ${y-1};"] s.edit-foot`);
+						jEl.data({ junction });
 					}));
-					// console.log(grid);
 				}
 				break;
 
@@ -363,6 +364,11 @@
 						data.cEl.find(".disabled").removeClass("disabled");
 						// exit if clicked item is not a junction
 						if (!data.junction) return;
+						// for right bottom corner
+						if (target.hasClass("edit-foot") && target.data("junction")) {
+							data.junction = target.data("junction");
+							data.y++;
+						}
 						// remove starts, if any
 						Self.els.level.find(`.start[style*="--x: ${data.x};--y: ${data.y};"]`).remove();
 						// loop end points
