@@ -73,6 +73,8 @@
 			<Color arg="#fab73b"/>
 			<Color arg="#65b84d"/>
 			<Color arg="#989898"/>
+			<Color arg="#ff9900"/>
+			<Color arg="#336699"/>
 		</Menu>
 	</Menu>
 </MenuBar>

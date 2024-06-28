@@ -14,8 +14,9 @@
 			iCellWidth: window.find(`input[data-change="set-cell-width"]`),
 			iCellHeight: window.find(`input[data-change="set-cell-height"]`),
 		};
-		// keep track of selected edit tool
+		// keep track of selected edit tool + defaults
 		this.activeTool = false;
+		this.activeColor = "#ff";
 		// names collected here
 		this.editNames = [".edit-cell", ".edit-head", ".edit-body", ".edit-foot"];
 
@@ -70,7 +71,12 @@
 				Self.els.iCellHeight.val( parseInt(Self.els.level.cssProp("--gH")) );
 
 				// update palette selectbox
-				Self.els.el.find(`selectbox[data-menu="grid-palette"]`).val(Self.els.level.data("palette"));
+				value = Self.els.level.data("palette");
+				Self.els.el.find(`selectbox[data-menu="grid-palette"]`).val(value);
+
+				// color preset
+				xNode = window.bluePrint.selectSingleNode(`//Palette[@id="${value}"]/c[@id="1"]`);
+				Self.dispatch({ type: "set-extras-color", arg: xNode.getAttribute("val") });
 
 				// update symmetry selectbox
 				value = Self.els.level.data("symmetry") || 1;
@@ -253,6 +259,10 @@
 				Self.els.level.css(data);
 				// base bg color
 				Self.els.level.parents("content").css({ "--base": data["--base"] });
+
+				// color preset
+				xNode = xNode.selectSingleNode(`./c[@id="1"]`);
+				Self.dispatch({ type: "set-extras-color", arg: xNode.getAttribute("val") });
 				break;
 			case "select-base-tool":
 			case "select-extras-tool":
@@ -319,8 +329,21 @@
 				}
 				break;
 
+			case "before-menu:extras-color":
+				value = Self.els.level.data("palette");
+				window.bluePrint.selectNodes(`//Palette[@id="${value}"]/c[@id]`).map(xColor => {
+					let id = xColor.getAttribute("id"),
+						val = xColor.getAttribute("val"),
+						xpath = `//Menu[@for="extras-color"]/Menu[@click="set-extras-color"]/Color[${id}]`,
+						xMenu = window.bluePrint.selectSingleNode(xpath);
+					xMenu.setAttribute("arg", val)
+				});
+				break;
 			case "set-extras-color":
-				console.log(event);
+				// UI update
+				Self.els.el.find(`.color-preset_[data-menu="extras-color"]`).css({ "--preset-color": event.arg });
+				// save reference to color
+				Self.activeColor = event.arg;
 				break;
 
 			case "rotate-endpoint":
@@ -457,7 +480,7 @@
 						if (el.length) {
 							el.remove();
 						} else {
-							value = `<span class="${Self.activeTool}" style="--x: ${data.x};--y: ${data.y};--c: #fff;"></span>`;
+							value = `<span class="${Self.activeTool}" style="--x: ${data.x};--y: ${data.y};--c: ${Self.activeColor};"></span>`;
 							Self.els.level.find(".grid-base").append(value);
 						}
 						break;
