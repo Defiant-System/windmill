@@ -7,6 +7,7 @@
 	@import "palettes/purple.xml"
 	@import "palettes/pink.xml"
 
+	@import "levels/_template.xml"
 	@import "levels/level 0.1.xml"
 
 	@import "levels/level 1.0.xml"

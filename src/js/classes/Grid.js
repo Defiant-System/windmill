@@ -146,6 +146,8 @@ class Grid {
 					el.removeClass("fade-out-snake glow-snake");
 					// empty snake body
 					el.find("svg > g").html("");
+					// remove "locked" class
+					this.el.removeClass("locked");
 				});
 			};
 		// reset started flag

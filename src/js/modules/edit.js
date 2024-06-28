@@ -40,10 +40,17 @@
 				}
 				break;
 			// custom events
+			case "reset-level":
+				// anything to do?
+				break;
 			case "close-view":
 			case "toggle-edit-view":
 				value = Self.els.el.hasClass("show");
 				Self.els.el.toggleClass("show", value);
+
+				if (Game.grid.levelIndex === "0.1") {
+					return APP.dispatch({ type: "render-level", arg: "template" });
+				}
 
 				if (!value) Self.dispatch({ type: "init-edit-view" });
 				break;
@@ -85,7 +92,7 @@
 				// create level clone
 				Self.dispatch({ type: "create-clone" });
 				// insert elements to facilitate editing
-				Self.dispatch({ type: "add-edit-elements" });
+				// Self.dispatch({ type: "add-edit-elements" });
 
 				// add endpoint compass
 				if (!Self.els.level.find(".ends-compass").length) {
@@ -267,6 +274,11 @@
 			case "select-base-tool":
 			case "select-extras-tool":
 				el = $(event.target);
+				
+				// clear old hovers
+				value = ["cells", "lines", "starts", "ends"].map(e => `hover-${e}`).join(" ");
+				Game.grid.el.removeClass(value);
+
 				// turn off tool
 				if (el.hasClass("active_")) {
 					// turn off tool
@@ -288,11 +300,7 @@
 				el.addClass("active_");
 				// set active edit tool
 				Self.activeTool = el.data("arg");
-				
-				// clear old hovers
-				value = ["cells", "lines", "starts", "ends"].map(e => `hover-${e}`).join(" ");
-				Game.grid.el.removeClass(value);
-				
+								
 				// toggle hover areas
 				value = el.data("hover").split(" ").map(e => `hover-${e}`).join(" ");
 				Game.grid.el.addClass(value);

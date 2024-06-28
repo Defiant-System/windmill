@@ -12,7 +12,8 @@ let Game = {
 		// console.log( this.level.list )
 	},
 	dispatch(event) {
-		let Self = Game,
+		let APP = witness,
+			Self = Game,
 			data,
 			el;
 		switch (event.type) {
@@ -62,6 +63,10 @@ let Game = {
 				Self.grid.render(event.arg);
 				break;
 			case "goto-next-level":
+				if (APP.edit.els.el.hasClass("show")) {
+					// if in edit mode, do not go to next level
+					return APP.edit.dispatch({ type: "reset-level" });
+				}
 				Self.level.index = Self.level.list.indexOf(Self.grid.levelIndex) + 1;
 				if (Self.level.index > Self.level.list.length - 1) Self.level.index = 0;
 				Self.grid.render(Self.level.list[Self.level.index]);

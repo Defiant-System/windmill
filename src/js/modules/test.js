@@ -5,15 +5,15 @@ let Test = {
 
 		setTimeout(() => {
 			APP.edit.dispatch({ type: "toggle-edit-view" });
-			APP.edit.els.el.find(`.option-buttons_ span[data-arg="end"]`).trigger("click");
+			// APP.edit.els.el.find(`.option-buttons_ span[data-arg="end"]`).trigger("click");
 		}, 500);
 
 		// setTimeout(() => window.find(`.ns[data-junction="46"] .edit-head`).trigger("click"), 600);
+		return;
 
 		// Game.dispatch({ type: "render-level", arg: "2.0" });
 		Game.dispatch({ type: "render-level", arg: "1.01" });
 
-		return;
 
 		return setTimeout(() => {
 			window.find(".puzzle svg").replace(`<svg width="102" height="185"><g transform="translate(9,9)"><g class="path1">
