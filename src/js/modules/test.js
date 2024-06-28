@@ -1,10 +1,10 @@
 
 let Test = {
 	init(APP) {
-		// return;
 
-		Game.dispatch({ type: "render-level", arg: "2.1" });
-		// Game.dispatch({ type: "render-level", arg: "4.6" });
+		// Game.dispatch({ type: "render-level", arg: "2.1" });
+		Game.dispatch({ type: "render-level", arg: "0.2" });
+		return;
 
 		setTimeout(() => {
 			APP.edit.dispatch({ type: "toggle-edit-view" });

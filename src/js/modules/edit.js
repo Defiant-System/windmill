@@ -137,6 +137,13 @@
 				// refresh references
 				Self.els.level = Game.grid.el.parent();
 				Self.els.puzzle = Self.els.level.find("> .puzzle");
+				// add endpoint compass
+				if (!Self.els.level.find(".ends-compass").length) {
+					window.render({
+						template: "endpoint-compass",
+						append: Self.els.level,
+					});
+				}
 				break;
 			case "create-clone":
 				// remove old clones first

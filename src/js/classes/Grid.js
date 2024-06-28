@@ -371,6 +371,9 @@ class Grid {
 				case "we":
 					if (hexTop) storage.entity[index].type = Type.HEXAGON;
 					if (hexMid) storage.entity[index + 1].type = Type.HEXAGON;
+					if (hexBot) {
+						storage.entity[index + 2].type = Type.HEXAGON;
+					}
 					break;
 				case "start":
 					storage.entity[index].type = Type.START;
@@ -384,6 +387,7 @@ class Grid {
 					break;
 				case "wed":
 					storage.entity[index + 1].type = Type.DISJOINT;
+					if (hexTop) storage.entity[index].type = Type.HEXAGON;
 					break;
 				case "nse":
 					storage.entity[index + storage.width].type = Type.NONE;
@@ -398,9 +402,9 @@ class Grid {
 			}
 		});
 
-		if (xLevel.getAttribute("id") === "1.01") {
+		if (xLevel.getAttribute("id") === "2.1") {
 			// console.log( storage.entity );
-			// storage.entity.map((e, i) => console.log( i, JSON.stringify(e) + (i % 9 == 8 ? "---" : "") ));
+			storage.entity.map((e, i) => console.log( i, JSON.stringify(e) + (i % storage.width == (storage.width-1) ? "---" : "") ));
 		}
 
 		// tmp object
