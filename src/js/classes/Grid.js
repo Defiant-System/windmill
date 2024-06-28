@@ -17,7 +17,6 @@ class Grid {
 		// prepare xml, template & units
 		let match = `//Data/Level[@id="${id}"]`;
 		let xLevel = window.bluePrint.selectSingleNode(match);
-		return console.log( match, xLevel );
 		let xGrid = xLevel.selectSingleNode("./grid");
 		// values from xLevel to UI contants
 		this.syncConstants(xGrid);
@@ -143,7 +142,7 @@ class Grid {
 					// reset grid path
 					el.removeClass("fade-out-snake glow-snake");
 					// empty snake body
-					el.find("svg > g").html("");
+					if (!this.keepSnake) el.find("svg > g").html("");
 					// remove "locked" class
 					this.el.removeClass("locked");
 				});

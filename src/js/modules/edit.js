@@ -47,6 +47,10 @@
 			case "toggle-edit-view":
 				value = Self.els.el.hasClass("show");
 				Self.els.el.toggleClass("show", value);
+
+				// if in edit mode, keep snake to facilitate puzzle making
+				Game.grid.keepSnake = !value;
+
 				// if in lobby, render template level
 				if (Game.grid.levelId === "0.1") {
 					return APP.dispatch({ type: "render-level", arg: "template" });
@@ -55,11 +59,14 @@
 				if (!value) Self.dispatch({ type: "init-edit-view" });
 				break;
 			case "output-xml":
+				// make sure changes are reflected in xml + game grid
+				Self.dispatch({ type: "sync-ui-level" });
+				// "clone" the clone
 				xNode = Self.levelClone.cloneNode(true);
 				// minor clean up
 				xNode.removeAttribute("clone");
 				xNode.removeAttribute("type");
-				console.log( xNode.xml );
+				console.log( Self.levelClone.xml );
 				break;
 			case "sync-ui-level":
 				// push nodes in to array
@@ -122,7 +129,8 @@
 				// render clone level
 				Game.grid.renderClone(Self.levelClone);
 				// refresh references
-				Self.dispatch({ type: "init-edit-view" });
+				Self.els.level = Game.grid.el.parent();
+				Self.els.puzzle = Self.els.level.find("> .puzzle");
 				break;
 			case "create-clone":
 				// remove old clones first
@@ -242,7 +250,7 @@
 					xNode.setAttribute("height", Game.grid.height);
 					// render clone level
 					Game.grid.renderClone(Self.levelClone);
-				} else {
+				} else if (Game.grid.height > 1) {
 					// get grid node
 					xNode = Self.levelClone.selectSingleNode(`./grid`);
 					// remove nodes
@@ -257,7 +265,8 @@
 					Game.grid.renderClone(Self.levelClone);
 				}
 				// refresh references
-				Self.dispatch({ type: "init-edit-view" });
+				Self.els.level = Game.grid.el.parent();
+				Self.els.puzzle = Self.els.level.find("> .puzzle");
 				break;
 			case "set-grid-cols":
 				if (event.value > Game.grid.width) {
@@ -277,7 +286,7 @@
 					xNode.setAttribute("width", Game.grid.width);
 					// render clone level
 					Game.grid.renderClone(Self.levelClone);
-				} else {
+				} else if (Game.grid.width > 1) {
 					// get grid node
 					xNode = Self.levelClone.selectSingleNode(`./grid`);
 					// remove nodes
@@ -292,10 +301,13 @@
 					Game.grid.renderClone(Self.levelClone);
 				}
 				// refresh references
-				Self.dispatch({ type: "init-edit-view" });
+				Self.els.level = Game.grid.el.parent();
+				Self.els.puzzle = Self.els.level.find("> .puzzle");
 				break;
 			case "set-cell-width":
 				Self.els.level.css({ "--gW": `${event.value}px` });
+				// transfer value to xml
+				Self.levelClone.selectSingleNode(`./grid`).setAttribute("gW", event.value);
 				// update "constants"
 				UI.CELL_WIDTH = event.value;
 				// update UI
@@ -303,6 +315,8 @@
 				break;
 			case "set-cell-height":
 				Self.els.level.css({ "--gH": `${event.value}px` });
+				// transfer value to xml
+				Self.levelClone.selectSingleNode(`./grid`).setAttribute("gH", event.value);
 				// update "constants"
 				UI.CELL_HEIGHT = event.value;
 				// update UI
@@ -310,11 +324,15 @@
 				break;
 			case "set-grid-gap":
 				Self.els.level.css({ "--gap": `${event.value}px` });
+				// transfer value to xml
+				Self.levelClone.selectSingleNode(`./grid`).setAttribute("gap", event.value);
 				// update "constants"
 				UI.DISJOINT_LENGTH = event.value;
 				break;
 			case "set-grid-line":
 				Self.els.level.css({ "--line": `${event.value}px` });
+				// transfer value to xml
+				Self.levelClone.selectSingleNode(`./grid`).setAttribute("line", event.value);
 				// update "constants"
 				UI.GRID_LINE = event.value;
 				// update UI
@@ -327,6 +345,8 @@
 			case "set-palette":
 				// update UI
 				Self.els.el.find(`selectbox[data-menu="grid-palette"]`).val(event.arg);
+				// transfer value to xml
+				Self.levelClone.setAttribute("palette", event.arg);
 				// transfer color values
 				data = {};
 				xNode = window.bluePrint.selectSingleNode(`//Palette[@id="${event.arg}"]`);

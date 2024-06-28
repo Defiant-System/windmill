@@ -6,18 +6,18 @@
 	</Menu>
 	<Menu name="Levels" for="puzzle-options">
 		<Menu name="Edit View" click="toggle-edit-view"/>
+		<!-- <Menu name="Keep Snake" check-group="keep-snake" click="toggle-keep-snake"/> -->
 		<Menu type="divider"/>
 		<Menu name="Start View" check-group="active-level" click="render-level" arg="0.1"/>
 		<Menu type="divider"/>
 		<Menu name="Level 1&#8230;">
 			<Menu name="1.0" check-group="active-level" click="render-level"/>
 			<Menu name="1.1" check-group="active-level" click="render-level"/>
+			<Menu name="1.2" check-group="active-level" click="render-level"/>
+			<Menu name="1.3" check-group="active-level" click="render-level"/>
 		</Menu>
 		<Menu name="Level 2&#8230;">
-			<Menu name="2.0" check-group="active-level" click="render-level"/>
-			<Menu name="2.1" check-group="active-level" click="render-level"/>
-			<Menu name="2.2" check-group="active-level" click="render-level"/>
-			<Menu name="2.3" check-group="active-level" click="render-level"/>
+			<Menu name="2.5" check-group="active-level" click="render-level"/>
 		</Menu>
 		<Menu name="Level 3&#8230;">
 			<Menu name="3.0" check-group="active-level" click="render-level"/>
@@ -39,6 +39,7 @@
 			<Menu name="4.3" check-group="active-level" click="render-level"/>
 			<Menu name="4.4" check-group="active-level" click="render-level"/>
 			<Menu name="4.5" check-group="active-level" click="render-level"/>
+			<Menu name="4.6" check-group="active-level" click="render-level"/>
 		</Menu>
 	</Menu>
 	<Menu name="Help">

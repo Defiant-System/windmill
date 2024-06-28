@@ -1,4 +1,4 @@
-<Level id="2.3" palette="orange">
+<Level id="1.3" palette="green">
 	<grid width="6" height="6" grid="62" line="23" gap="6">
 		<!-- lines -->
 		<i type="ns" x="0" y="0" />
