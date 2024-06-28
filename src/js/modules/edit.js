@@ -130,6 +130,10 @@
 					.map(x => xNode.appendChild(x));
 				// render clone level
 				Game.grid.renderClone(Self.levelClone);
+				
+				Self.dispatch({ type: "refresh-references" });
+				break;
+			case "refresh-references":
 				// refresh references
 				Self.els.level = Game.grid.el.parent();
 				Self.els.puzzle = Self.els.level.find("> .puzzle");
@@ -266,9 +270,8 @@
 					// render clone level
 					Game.grid.renderClone(Self.levelClone);
 				}
-				// refresh references
-				Self.els.level = Game.grid.el.parent();
-				Self.els.puzzle = Self.els.level.find("> .puzzle");
+				
+				Self.dispatch({ type: "refresh-references" });
 				break;
 			case "set-grid-cols":
 				if (event.value > Game.grid.width) {
@@ -302,9 +305,8 @@
 					// render clone level
 					Game.grid.renderClone(Self.levelClone);
 				}
-				// refresh references
-				Self.els.level = Game.grid.el.parent();
-				Self.els.puzzle = Self.els.level.find("> .puzzle");
+				
+				Self.dispatch({ type: "refresh-references" });
 				break;
 			case "set-cell-width":
 				Self.els.level.css({ "--gW": `${event.value}px` });
