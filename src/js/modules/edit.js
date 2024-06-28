@@ -385,6 +385,7 @@
 						data.cEl = Self.els.level.find(".ends-compass");
 						data.cOffset = data.cEl.offset();
 						data.offset = target.offset(".level");
+
 						// reset directions
 						data.cEl.find(".disabled").removeClass("disabled");
 						// exit if clicked item is not a junction
@@ -416,7 +417,27 @@
 						// another try
 						if (!Self.activeExit.length) Self.activeExit = Self.els.level.find(`.exit[style*="--x: ${data.x}; --y: ${data.y};"]`);
 
-						if (!Self.activeExit.length) {
+						// next click listener
+						let func = e => {
+								let el = $(e.target).parents("?.ends-compass");
+								if (!el.length) {
+									// clear reference
+									delete Self.activeExit;
+									// hide compass
+									data.cEl.addClass("hidden");
+									// reset compass
+									data.cEl.find(".active, .disabled").removeClass("active disabled");
+									// unbind event handler
+									Self.els.doc.off("click", func);
+								}
+							};
+
+						if (target.hasClass("edit-head") && Self.activeExit.length) {
+							// remove exit element
+							Self.activeExit.remove();
+							// clears compass
+							return func(event);
+						} else {
 							// available directions
 							let taken = data.junction.split(""),
 								available = "0246".split("").filter(a => !taken.includes(a));
@@ -427,18 +448,6 @@
 						// make direction active on compass
 						data.cEl.find(`span[data-no="${Self.activeExit.cssProp("--d")}"]`).addClass("active");
 
-						// next click listener
-						let func = e => {
-								let el = $(e.target).parents("?.ends-compass");
-								if (!el.length) {
-									// hide compass
-									data.cEl.addClass("hidden");
-									// reset compass
-									data.cEl.find(".active, .disabled").removeClass("active disabled");
-									// unbind event handler
-									Self.els.doc.off("click", func);
-								}
-							};
 						// bind event handler
 						Self.els.doc.on("click", func);
 						break;
