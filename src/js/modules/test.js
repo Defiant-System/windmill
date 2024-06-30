@@ -1,15 +1,16 @@
 
 let Test = {
 	init(APP) {
+		// return;
 
-		Game.dispatch({ type: "render-level", arg: "1.8" });
-		// Game.dispatch({ type: "render-level", arg: "0.2" });
+		// Game.dispatch({ type: "render-level", arg: "1.7" });
+		Game.dispatch({ type: "render-level", arg: "0.2" });
 
 		setTimeout(() => {
 			APP.edit.dispatch({ type: "toggle-edit-view" });
-		return;
+			return;
 			
-			APP.edit.els.el.find(`.option-buttons_ span[data-arg="hexagon"]`).trigger("click");
+			APP.edit.els.el.find(`.option-buttons_ span[data-arg="end"]`).trigger("click");
 			return;
 
 			setTimeout(() => {
