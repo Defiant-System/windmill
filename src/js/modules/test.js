@@ -5,13 +5,13 @@ let Test = {
 
 		// Game.dispatch({ type: "render-level", arg: "1.7" });
 		// Game.dispatch({ type: "render-level", arg: "1.1" });
-		Game.dispatch({ type: "render-level", arg: "0.2" });
-			return;
+		Game.dispatch({ type: "render-level", arg: "2.13" });
+			// return;
 
 		setTimeout(() => {
 			APP.edit.dispatch({ type: "toggle-edit-view" });
 			
-			APP.edit.els.el.find(`.option-buttons_ span[data-arg="end"]`).trigger("click");
+			APP.edit.els.el.find(`.option-buttons_ span[data-arg="hexagon"]`).trigger("click");
 			return;
 
 			setTimeout(() => {

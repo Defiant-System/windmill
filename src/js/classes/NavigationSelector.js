@@ -15,10 +15,12 @@ class NavigationSelector {
 				// if (line.type == Type.NONE || current.i == 0 && current.j == 1 && current.i + di == 1 && current.j + dj == 1) {
 				if (line.type == Type.NONE) {
 					if (thisEntity.type == Type.END) {
-						if (thisEntity.rotation == 0 && dj == -1) return "end-up";
-						if (thisEntity.rotation == 4 && dj == 1) return "end-down";
-						if (thisEntity.rotation == 6 && di == -1) return "end-left";
-						if (thisEntity.rotation == 2 && di == 1) return "end-right";
+						switch (true) {
+							case (thisEntity.rotation == 0 && dj == -1): return "end-up";
+							case (thisEntity.rotation == 4 && dj == 1): return "end-down";
+							case (thisEntity.rotation == 6 && di == -1): return "end-left";
+							case (thisEntity.rotation == 2 && di == 1): return "end-right";
+						}
 					}
 					return "no";
 				} else if (line.type == Type.DISJOINT) {
@@ -32,10 +34,12 @@ class NavigationSelector {
 			// let o = grid.getEndPlacement(current.i, current.j);
 			// if (o.horizontal == di && o.vertical == dj) {
 			if (thisEntity.rotation !== undefined) {
-				if (thisEntity.rotation == 0) return "end-up";
-				if (thisEntity.rotation == 4) return "end-down";
-				if (thisEntity.rotation == 6) return "end-left";
-				if (thisEntity.rotation == 2) return "end-right";
+				switch (true) {
+					case (thisEntity.rotation == 0): return "end-up";
+					case (thisEntity.rotation == 4): return "end-down";
+					case (thisEntity.rotation == 6): return "end-left";
+					case (thisEntity.rotation == 2): return "end-right";
+				}
 				return "end-"+ (thisEntity.rotation % 4 == 0 ? "vertical" : "horizontal");
 			}
 		}
@@ -151,6 +155,9 @@ class NavigationSelector {
 			result.maxProgress = horizontalProgress;
 		}
 		if (select.j != current.j && verticalProgress != -1) {
+			// let entity = grid.pointEntity(current.i, current.j);
+			// console.log( entity );
+			// return result;
 			result.maxProgress = verticalProgress;
 		}
 		// HACK HACK HACK

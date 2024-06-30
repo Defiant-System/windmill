@@ -291,6 +291,7 @@ class Snake {
 			this.progress = params.preferHorizontal ? this.MAX_PROGRESS_W : this.MAX_PROGRESS_H;
 		} else {
 			if (select.i == current.i && select.j == current.j) throw Error();
+			// console.log( select );
 			
 			this.target = select;
 			this.targetMaxProgress = response.maxProgress !== undefined ? response.maxProgress : null;

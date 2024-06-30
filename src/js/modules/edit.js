@@ -267,6 +267,8 @@
 					Game.grid.height++;
 					// update level node
 					xNode.setAttribute("height", Game.grid.height);
+					// prevents wrongfully places hexagons
+					Self.dispatch({ type: "clear-all-hexagons", xNode });
 					// render clone level
 					Game.grid.renderClone(Self.levelClone);
 				} else if (Game.grid.height > 1) {
@@ -281,10 +283,12 @@
 					Game.grid.height--;
 					// update level node
 					xNode.setAttribute("height", Game.grid.height);
+					// prevents wrongfully places hexagons
+					Self.dispatch({ type: "clear-all-hexagons", xNode });
 					// render clone level
 					Game.grid.renderClone(Self.levelClone);
 				}
-				
+				// referesh internal references
 				Self.dispatch({ type: "refresh-references" });
 				break;
 			case "set-grid-cols":
@@ -303,6 +307,8 @@
 					Game.grid.width++;
 					// update level node
 					xNode.setAttribute("width", Game.grid.width);
+					// prevents wrongfully places hexagons
+					Self.dispatch({ type: "clear-all-hexagons", xNode });
 					// render clone level
 					Game.grid.renderClone(Self.levelClone);
 				} else if (Game.grid.width > 1) {
@@ -317,11 +323,19 @@
 					Game.grid.width--;
 					// update level node
 					xNode.setAttribute("width", Game.grid.width);
+					// prevents wrongfully places hexagons
+					Self.dispatch({ type: "clear-all-hexagons", xNode });
 					// render clone level
 					Game.grid.renderClone(Self.levelClone);
 				}
-				
+				// referesh internal references
 				Self.dispatch({ type: "refresh-references" });
+				break;
+			case "clear-all-hexagons":
+				// clear hex when grid resize
+				event.xNode.selectNodes(`./i[@hexTop]`).map(x => x.removeAttribute("hexTop"));
+				event.xNode.selectNodes(`./i[@hexMid]`).map(x => x.removeAttribute("hexMid"));
+				event.xNode.selectNodes(`./i[@hexBot]`).map(x => x.removeAttribute("hexBot"));
 				break;
 			case "set-cell-width":
 				Self.els.level.css({ "--gW": `${event.value}px` });
@@ -577,7 +591,7 @@
 						break;
 					case "hexagon":
 						// for right bottom corner
-						console.log(event);
+						// console.log(event.target);
 						// change classname
 						switch (true) {
 							case target.hasClass("edit-head"):
