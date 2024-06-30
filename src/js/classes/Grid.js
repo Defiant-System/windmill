@@ -402,9 +402,9 @@ class Grid {
 			}
 		});
 
-		if (xLevel.getAttribute("id") === "2.1") {
+		if (xLevel.getAttribute("id") === "0.2") {
 			// console.log( storage.entity );
-			storage.entity.map((e, i) => console.log( i, JSON.stringify(e) + (i % storage.width == (storage.width-1) ? "---" : "") ));
+			// storage.entity.map((e, i) => console.log( i, JSON.stringify(e) + (i % storage.width == (storage.width-1) ? "---" : "") ));
 		}
 
 		// tmp object

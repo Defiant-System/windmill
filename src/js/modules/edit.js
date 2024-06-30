@@ -68,7 +68,10 @@
 				xNode.removeAttribute("type");
 				// mroe clean up
 				xNode.selectSingleNode("./grid").removeAttribute("error");
-				console.log( xNode.xml );
+				// output string
+				value = xNode.xml;
+				value = value.replace(/    /g, "\t");
+				console.log( value );
 				break;
 			case "blank-template":
 				APP.dispatch({ type: "render-level", arg: "template" });

@@ -14,6 +14,12 @@ class NavigationSelector {
 			if (line != null) {
 				// if (line.type == Type.NONE || current.i == 0 && current.j == 1 && current.i + di == 1 && current.j + dj == 1) {
 				if (line.type == Type.NONE) {
+					if (thisEntity.type == Type.END) {
+						if (dj == -1) return "end-up";
+						if (dj == 1) return "end-down";
+						if (di == -1) return "end-left";
+						if (di == 1) return "end-right";
+					}
 					return "no";
 				} else if (line.type == Type.DISJOINT) {
 					return (di == 1 || di == -1) ? "disjoint-w" : "disjoint-h";
@@ -23,10 +29,15 @@ class NavigationSelector {
 		}
 		// If point is not there, we can go to the end.
 		if (thisEntity.type == Type.END) {
-			// let o = grid.getEndPlacement(current.i, current.j);
+			let o = grid.getEndPlacement(current.i, current.j);
 			// if (o.horizontal == di && o.vertical == dj) {
 			if (thisEntity.rotation !== undefined) {
-				return "end-"+ (thisEntity.rotation % 4 == 0 ? "vertical" : "horizontal");
+
+				if (thisEntity.rotation == 0) return "end-up";
+				if (thisEntity.rotation == 4) return "end-down";
+				if (thisEntity.rotation == 6) return "end-left";
+				if (thisEntity.rotation == 2) return "end-right";
+				// return "end-"+ (thisEntity.rotation % 4 == 0 ? "vertical" : "horizontal");
 			}
 		}
 		return "no";
@@ -37,7 +48,7 @@ class NavigationSelector {
 		let symmetry;
 		// Select something
 		let current = movement[movement.length - 1];
-		let select = { i: current.i, j: current.j };
+		let select = { ...current };
 		// First, at start, can stay still within circle.
 		let result = {}
 		// Determine where we can go and how far.
@@ -57,7 +68,7 @@ class NavigationSelector {
 				current: secondaryMovement[secondaryMovement.length - 1]
 			};
 		}
-		let crossesPath = function(di, dj) {
+		let crossesPath = (di, dj) => {
 			let blocker = movement.find(coord => {
 				let targetIsCoord = coord.i == current.i + di && coord.j == current.j + dj;
 				let isBacktrack = di == diBack && dj == djBack;
@@ -81,7 +92,7 @@ class NavigationSelector {
 			}
 			return null;
 		}
-		let calcProgress = function(di, dj) {
+		let calcProgress = (di, dj) => {
 			if (di == 0 && dj == 0) return "no";
 			
 			// TODO: Clean this up, so length is calculated at the very
@@ -90,9 +101,10 @@ class NavigationSelector {
 			if (reach == "no") {
 				return 0;
 			} else if (reach.startsWith("end-")) {
-			// } else if (reach == "end") {
-				if (di == 0 && reach.endsWith("-horizontal")) return 0;
-				if (dj == 0 && reach.endsWith("-vertical")) return 0;
+				if (reach.endsWith("-up")) return dj == -1 ? UI.END_LENGTH : 0;
+				if (reach.endsWith("-down")) return dj == 1 ? UI.END_LENGTH : 0;
+				if (reach.endsWith("-left")) return di == -1 ? UI.END_LENGTH : 0;
+				if (reach.endsWith("-right")) return di == 1 ? UI.END_LENGTH : 0;
 				return UI.END_LENGTH;
 			} else if (reach.startsWith("disjoint")) {
 				return reach.endsWith("-w") ? UI.DISJOINT_W : UI.DISJOINT_H;
@@ -124,21 +136,17 @@ class NavigationSelector {
 			}
 			return -1;
 		}
-		let horizontalProgress = calcProgress.call(this, di, 0);
-		let verticalProgress = calcProgress.call(this, 0, dj);
+		let horizontalProgress = calcProgress(di, 0);
+		let verticalProgress = calcProgress(0, dj);
 		// Optimization: Snap to line if closeby.
 		// The most basic selection.
 		if (horizontalProgress && verticalProgress) {
-			if (preferHorizontal) {
-				select.i += di;
-			} else {
-				select.j += dj;
-			}
+			if (preferHorizontal) select.i += di;
+			else select.j += dj;
 		} else if (horizontalProgress) {
 			select.i += di;
 		} else if (verticalProgress) {
 			select.j += dj;
-		} else {
 		}
 		if (select.i != current.i && horizontalProgress != -1) {
 			result.maxProgress = horizontalProgress;
