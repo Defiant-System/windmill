@@ -16,7 +16,10 @@
 		};
 		// keep track of selected edit tool + defaults
 		this.activeTool = false;
-		this.activeColor = "#ff";
+		this.activeColor = "#fff";
+		this.activeColorIndex = 1;
+		// palette (numbered eventually)
+		this.palette = {};
 		// names collected here
 		this.editNames = [".edit-cell", ".edit-head", ".edit-body", ".edit-foot"];
 
@@ -61,6 +64,8 @@
 			case "output-xml":
 				// make sure changes are reflected in xml + game grid
 				Self.dispatch({ type: "sync-ui-level" });
+				// if any active tool, turn it "off"
+				Self.els.el.find(`.option-buttons_ > span.active_`).trigger("click");
 				// "clone" the clone
 				xNode = Self.levelClone.cloneNode(true);
 				// minor clean up
@@ -115,10 +120,10 @@
 							data.push(`<i type="${elem.className}" x="${x}" y="${y}" d="${d}" />`);
 							break;
 						case "dot":
-							data.push(`<i type="${elem.className}" x="${x}" y="${y}" />`);
+							data.push(`<i type="${elem.className}" x="${x}" y="${y}" c="${el.data("c")}" />`);
 							break;
 						case "star":
-							data.push(`<i type="${elem.className}" x="${x}" y="${y}" />`);
+							data.push(`<i type="${elem.className}" x="${x}" y="${y}" c="${el.data("c")}" />`);
 							break;
 						default:
 							console.log(elem);
@@ -174,7 +179,8 @@
 
 				// update palette selectbox
 				value = Self.els.level.data("palette");
-				Self.els.el.find(`selectbox[data-menu="grid-palette"]`).val(value);
+				// Self.els.el.find(`selectbox[data-menu="grid-palette"]`).val(value);
+				Self.dispatch({ type: "set-palette", arg: value });
 
 				// color preset
 				xNode = window.bluePrint.selectSingleNode(`//Palette[@id="${value}"]/c[@id="1"]`);
@@ -379,7 +385,9 @@
 				// update UI
 				Self.els.el.find(`selectbox[data-menu="grid-palette"]`).val(event.arg);
 				// transfer value to xml
-				Self.levelClone.setAttribute("palette", event.arg);
+				if (Self.levelClone) Self.levelClone.setAttribute("palette", event.arg);
+				// update UI element
+				Self.els.level.data({ palette: event.arg });
 				// transfer color values
 				data = {};
 				xNode = window.bluePrint.selectSingleNode(`//Palette[@id="${event.arg}"]`);
@@ -387,7 +395,11 @@
 					let key = xColor.getAttribute("key"),
 						id = xColor.getAttribute("id");
 					if (key) data[`--${key}`] = xColor.getAttribute("val");
-					else if (id) data[`--c${id}`] = xColor.getAttribute("val");
+					else if (id) {
+						data[`--c${id}`] = xColor.getAttribute("val");
+						// save reference for later use
+						Self.palette[id] = xColor.getAttribute("val");
+					}
 				});
 				// level update
 				Self.els.level.css(data);
@@ -476,12 +488,18 @@
 						xMenu = window.bluePrint.selectSingleNode(xpath);
 					xMenu.setAttribute("arg", val)
 				});
+				// console.log( window.bluePrint.selectSingleNode(`//Menu[@for="extras-color"]/Menu`) );
 				break;
 			case "set-extras-color":
 				// UI update
 				Self.els.el.find(`.color-preset_[data-menu="extras-color"]`).css({ "--preset-color": event.arg });
 				// save reference to color
 				Self.activeColor = event.arg;
+				Object.keys(Self.palette).map(k => {
+					if (Self.palette[k] === event.arg) {
+						Self.activeColorIndex = k;
+					}
+				});
 				break;
 
 			case "rotate-endpoint":
@@ -505,7 +523,7 @@
 				switch (Self.activeTool) {
 					case "start":
 						if (!el.length) return;
-						if (target.hasClass("edit-foot")) data.y++;
+						if (target.hasClass("edit-foot")) data.x++;
 
 						data.sEl = Self.els.level.find(`.start[style*="--x: ${data.x};--y: ${data.y};"]`);
 						if (data.sEl.length) {
@@ -629,7 +647,7 @@
 						if (el.length) {
 							el.remove();
 						} else {
-							value = `<span class="${Self.activeTool}" style="--x: ${data.x};--y: ${data.y};--c: ${Self.activeColor};"></span>`;
+							value = `<span class="${Self.activeTool}" data-c="${Self.activeColorIndex}" style="--x: ${data.x};--y: ${data.y};--c: ${Self.activeColor};"></span>`;
 							Self.els.level.find(".grid-base").append(value);
 						}
 						break;

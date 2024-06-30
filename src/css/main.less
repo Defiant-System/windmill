@@ -184,6 +184,7 @@ content {
 	// defaults
 	--c: #000;
 	--d: 0;
+	--cM: 23px;
 
 	.level {
 		position: absolute;
@@ -522,19 +523,21 @@ content {
 			}
 
 			&.dot {
-				top: calc( calc( var( --grid ) * var( --y ) ) + calc( var( --grid ) * .2 ) );
-				left: calc( calc( var( --grid ) * var( --x ) ) + calc( var( --grid ) * .2 ) );
-				width: calc( var( --grid ) * .825 );
-				height: calc( var( --grid ) * .825 );
+				// background: rgba(#fff,.1);
+				top: calc( calc( var( --gH ) * var( --y ) ) + calc( var( --line ) * .5 ) );
+				left: calc( calc( var( --gW ) * var( --x ) ) + calc( var( --line ) * .5 ) );
+				width: var( --gW );
+				height: var( --gH );
+				border-radius: 0;
 
 				&:before {
 					content: "";
 					opacity: 0;
 					position: absolute;
-					top: var( --line );
-					left: var( --line );
-					right: var( --line );
-					bottom: var( --line );
+					top: var( --cM );
+					left: var( --cM );
+					right: var( --cM );
+					bottom: var( --cM );
 					border-radius: 50%;
 					box-shadow: 0 0 13px var( --error ),
 								0 0 13px var( --error ),
@@ -545,11 +548,11 @@ content {
 				&:after {
 					content: "";
 					position: absolute;
-					top: var( --line );
-					left: var( --line );
-					right: var( --line );
-					bottom: var( --line );
-					border-radius: calc( var( --line ) * .6 );
+					top: var( --cM );
+					left: var( --cM );
+					right: var( --cM );
+					bottom: var( --cM );
+					border-radius: calc( var( --cM ) * .5 );
 					background: var(--c);
 				}
 
@@ -561,19 +564,19 @@ content {
 			}
 
 			&.star {
-				top: calc( calc( var( --grid ) * var( --y ) ) + calc( var( --grid ) * .2 ) );
-				left: calc( calc( var( --grid ) * var( --x ) ) + calc( var( --grid ) * .2 ) );
-				width: calc( var( --grid ) * .825 );
-				height: calc( var( --grid ) * .825 );
+				top: calc( calc( var( --gH ) * var( --y ) ) + calc( var( --line ) * .5 ) );
+				left: calc( calc( var( --gW ) * var( --x ) ) + calc( var( --line ) * .5 ) );
+				width: var( --gW );
+				height: var( --gH );
 
 				&:before,
 				&:after {
 					content: "";
 					position: absolute;
-					top: calc( var( --line ) * 1.2 );
-					left: calc( var( --line ) * 1.2 );
-					right: calc( var( --line ) * 1.2 );
-					bottom: calc( var( --line ) * 1.2 );
+					top: var( --cM );
+					left: var( --cM );
+					right: var( --cM );
+					bottom: var( --cM );
 					background: var(--c);
 				}
 

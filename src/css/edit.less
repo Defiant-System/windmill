@@ -32,6 +32,10 @@
 		}
 
 		&.hover-ends {
+			span { pointer-events:none; }
+			s.edit-head,
+			s.edit-foot { pointer-events: all; }
+
 			// endpoint only
 			span[data-junction="0"],
 			span[data-junction="02"],
@@ -43,6 +47,8 @@
 			span[data-junction="026"],
 			span[data-junction="024"],
 			span[data-junction="246"] {
+				z-index: 7;
+
 				s.edit-head {
 					cursor: pointer;
 
@@ -52,8 +58,10 @@
 				}
 			}
 
-			span.ns[data-junction="46"] {
-				z-index: 5;
+			span.ns[data-junction="46"],
+			span.ns[data-junction="046"],
+			span.ns[data-junction="246"] {
+				z-index: 9;
 			}
 
 			span[data-junction="046"] {

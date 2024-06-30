@@ -50,6 +50,7 @@
 			<Menu name="3.8" check-group="active-level" click="render-level"/>
 			<Menu name="3.9" check-group="active-level" click="render-level"/>
 			<Menu name="3.10" check-group="active-level" click="render-level"/>
+			<Menu name="3.11" check-group="active-level" click="render-level"/>
 		</Menu>
 		<Menu name="Level 4&#8230;">
 			<Menu name="4.0" check-group="active-level" click="render-level"/>
@@ -59,6 +60,7 @@
 			<Menu name="4.4" check-group="active-level" click="render-level"/>
 			<Menu name="4.5" check-group="active-level" click="render-level"/>
 			<Menu name="4.6" check-group="active-level" click="render-level"/>
+			<Menu name="4.7" check-group="active-level" click="render-level"/>
 		</Menu>
 	</Menu>
 	<Menu name="Help">
@@ -69,7 +71,7 @@
 
 	<Menu for="grid-palette">
 		<Menu name="Blue" click="set-palette" arg="blue"/>
-		<Menu name="Gray" click="set-palette" arg="gray"/>
+		<Menu name="Grey" click="set-palette" arg="grey"/>
 		<Menu name="Green" click="set-palette" arg="green"/>
 		<Menu name="Orange" click="set-palette" arg="orange"/>
 		<Menu name="Pink" click="set-palette" arg="pink"/>

@@ -48,6 +48,7 @@
 	@import "levels/3/8.xml"
 	@import "levels/3/9.xml"
 	@import "levels/3/10.xml"
+	@import "levels/3/11.xml"
 
 	@import "levels/4/0.xml"
 	@import "levels/4/1.xml"
@@ -56,4 +57,5 @@
 	@import "levels/4/4.xml"
 	@import "levels/4/5.xml"
 	@import "levels/4/6.xml"
+	@import "levels/4/7.xml"
 </Data>

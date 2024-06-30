@@ -14,6 +14,7 @@
 			--height: <xsl:value-of select="grid/@height"/>;
 			<xsl:if test="grid/@line">--line: <xsl:value-of select="grid/@line"/>px;</xsl:if>
 			<xsl:if test="grid/@gap">--gap: <xsl:value-of select="grid/@gap"/>px;</xsl:if>
+			<xsl:if test="grid/@cM">--cM: <xsl:value-of select="grid/@cM"/>px;</xsl:if>
 			<xsl:if test="grid/@gW">--gW: <xsl:value-of select="grid/@gW"/>px;</xsl:if>
 			<xsl:if test="grid/@gH">--gH: <xsl:value-of select="grid/@gH"/>px;</xsl:if>
 			<xsl:if test="grid/@grid">
@@ -43,6 +44,7 @@
 							<xsl:if test="@d">--d: <xsl:value-of select="@d"/>;</xsl:if>
 							<xsl:if test="@c">--c: var( --c<xsl:value-of select="@c"/> );</xsl:if>
 						</xsl:attribute>
+						<xsl:if test="@c"><xsl:attribute name="data-c"><xsl:value-of select="@c"/></xsl:attribute></xsl:if>
 						<xsl:if test="@type = 'start'">
 							<xsl:attribute name="data-click">init-snake</xsl:attribute>
 						</xsl:if>
