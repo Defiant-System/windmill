@@ -1,0 +1,56 @@
+
+.progression {
+	position: absolute;
+	top: 17px;
+	right: 11px;
+	z-index: 5;
+	mix-blend-mode: plus-lighter;
+
+	ul {
+		position: relative;
+		font-size: 0;
+		white-space: nowrap;
+		text-align: right;
+
+		li {
+			background: rgba(#fff,.1);
+			display: inline-block;
+			margin: 0 2px;
+			width: 11px;
+			height: 11px;
+			border-radius: 11px;
+
+			&.expanded {
+				width: 83px;
+
+				div {
+					position: relative;
+					width: 83px;
+					height: 11px;
+					border-radius: inherit;
+
+					&:before {
+						content: "";
+						background: rgba(#fff,.2);
+						position: absolute;
+						top: -2px;
+						left: -2px;
+						right: -2px;
+						bottom: -2px;
+						border-radius: inherit;
+					}
+
+					span {
+						background: rgba(#fff,.35);
+						position: absolute;
+						top: 0;
+						left: 0;
+						bottom: 0;
+						width: 37px;
+						border-radius: 11px;
+					}
+				}
+			}
+		}
+	}
+}
