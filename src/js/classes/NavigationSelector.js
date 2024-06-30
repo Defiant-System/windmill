@@ -15,10 +15,10 @@ class NavigationSelector {
 				// if (line.type == Type.NONE || current.i == 0 && current.j == 1 && current.i + di == 1 && current.j + dj == 1) {
 				if (line.type == Type.NONE) {
 					if (thisEntity.type == Type.END) {
-						if (dj == -1) return "end-up";
-						if (dj == 1) return "end-down";
-						if (di == -1) return "end-left";
-						if (di == 1) return "end-right";
+						if (thisEntity.rotation == 0 && dj == -1) return "end-up";
+						if (thisEntity.rotation == 4 && dj == 1) return "end-down";
+						if (thisEntity.rotation == 6 && di == -1) return "end-left";
+						if (thisEntity.rotation == 2 && di == 1) return "end-right";
 					}
 					return "no";
 				} else if (line.type == Type.DISJOINT) {
@@ -29,15 +29,14 @@ class NavigationSelector {
 		}
 		// If point is not there, we can go to the end.
 		if (thisEntity.type == Type.END) {
-			let o = grid.getEndPlacement(current.i, current.j);
+			// let o = grid.getEndPlacement(current.i, current.j);
 			// if (o.horizontal == di && o.vertical == dj) {
 			if (thisEntity.rotation !== undefined) {
-
 				if (thisEntity.rotation == 0) return "end-up";
 				if (thisEntity.rotation == 4) return "end-down";
 				if (thisEntity.rotation == 6) return "end-left";
 				if (thisEntity.rotation == 2) return "end-right";
-				// return "end-"+ (thisEntity.rotation % 4 == 0 ? "vertical" : "horizontal");
+				return "end-"+ (thisEntity.rotation % 4 == 0 ? "vertical" : "horizontal");
 			}
 		}
 		return "no";
