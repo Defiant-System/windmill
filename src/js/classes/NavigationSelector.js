@@ -37,7 +37,9 @@ class NavigationSelector {
 				switch (true) {
 					case (thisEntity.rotation == 0): return "end-up";
 					case (thisEntity.rotation == 4): return "end-down";
+					case (thisEntity.rotation == 5):
 					case (thisEntity.rotation == 6): return "end-left";
+					case (thisEntity.rotation == 3):
 					case (thisEntity.rotation == 2): return "end-right";
 				}
 				return "end-"+ (thisEntity.rotation % 4 == 0 ? "vertical" : "horizontal");
