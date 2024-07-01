@@ -58,4 +58,18 @@
 	@import "levels/4/5.xml"
 	@import "levels/4/6.xml"
 	@import "levels/4/7.xml"
+
+	@import "levels/5/0.xml"
+	@import "levels/5/1.xml"
+	@import "levels/5/2.xml"
+	@import "levels/5/3.xml"
+	@import "levels/5/4.xml"
+	@import "levels/5/5.xml"
+	@import "levels/5/6.xml"
+	@import "levels/5/7.xml"
+	@import "levels/5/8.xml"
+	@import "levels/5/9.xml"
+	@import "levels/5/10.xml"
+	@import "levels/5/11.xml"
+	@import "levels/5/12.xml"
 </Data>

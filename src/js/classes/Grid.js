@@ -399,12 +399,16 @@ class Grid {
 					storage.entity[index + storage.width + 1].type = Type.SQUARE;
 					storage.entity[index + storage.width + 1].color = +xNode.getAttribute("c");
 					break;
+				case "star":
+					storage.entity[index + storage.width + 1].type = Type.STAR;
+					storage.entity[index + storage.width + 1].color = +xNode.getAttribute("c");
+					break;
 			}
 		});
 
-		if (xLevel.getAttribute("id") === "0.2") {
+		if (xLevel.getAttribute("id") === "5.0") {
 			// console.log( storage.entity );
-			// storage.entity.map((e, i) => console.log( i, JSON.stringify(e) + (i % storage.width == (storage.width-1) ? "---" : "") ));
+			storage.entity.map((e, i) => console.log( i, JSON.stringify(e) + (i % storage.width == (storage.width-1) ? "---" : "") ));
 		}
 
 		// tmp object

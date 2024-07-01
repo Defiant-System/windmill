@@ -287,6 +287,7 @@
 					xNode.selectNodes(`./i[@type="ns"][@y="${Game.grid.height-1}"]`).map(x => x.parentNode.removeChild(x));
 					xNode.selectNodes(`./i[@type="nsd"][@y="${Game.grid.height-1}"]`).map(x => x.parentNode.removeChild(x));
 					xNode.selectNodes(`./i[@type="nse"][@y="${Game.grid.height-1}"]`).map(x => x.parentNode.removeChild(x));
+					xNode.selectNodes(`./i[@type="star" or @type="dot"][@y="${Game.grid.height-1}"]`).map(x => x.parentNode.removeChild(x));
 					// add to grid dim
 					Game.grid.height--;
 					// update level node
@@ -327,6 +328,7 @@
 					xNode.selectNodes(`./i[@type="we"][@x="${Game.grid.width-1}"]`).map(x => x.parentNode.removeChild(x));
 					xNode.selectNodes(`./i[@type="wed"][@x="${Game.grid.width-1}"]`).map(x => x.parentNode.removeChild(x));
 					xNode.selectNodes(`./i[@type="wee"][@x="${Game.grid.width-1}"]`).map(x => x.parentNode.removeChild(x));
+					xNode.selectNodes(`./i[@type="star" or @type="dot"][@x="${Game.grid.width-1}"]`).map(x => x.parentNode.removeChild(x));
 					// add to grid dim
 					Game.grid.width--;
 					// update level node
