@@ -5,8 +5,8 @@
 	<c key="fg" val="#606060"/>
 	<c key="hl" val="#fff"/>
 	<c key="error" val="#ff0000"/>
-	<c key="snake1" val="#ff9900"/>
-	<c key="snake2" val="#ff9900"/>
+	<c key="snake1" val="#69ffe8"/>
+	<c key="snake2" val="#69ffe8"/>
 
 	<c id="1" val="#404040" name="black"/>
 	<c id="2" val="#fff" name="white"/>

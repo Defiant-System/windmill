@@ -1,0 +1,45 @@
+<Level id="1.10" palette="green">
+	<grid width="10" height="1" gap="6" gW="63" gH="89">
+		<i type="ns" x="0" y="0" hexMid="1"/>
+		<i type="we" x="0" y="0"/>
+		<i type="we" x="0" y="1"/>
+		<i type="ns" x="1" y="0"/>
+		<i type="we" x="1" y="0"/>
+		<i type="we" x="1" y="1" hexMid="1"/>
+		<i type="ns" x="2" y="0"/>
+		<i type="we" x="2" y="0"/>
+		<i type="we" x="2" y="1"/>
+		<i type="ns" x="3" y="0" hexMid="1"/>
+		<i type="ns" x="4" y="0"/>
+		<i type="wed" x="3" y="0"/>
+		<i type="we" x="3" y="1"/>
+		<i type="nsd" x="5" y="0"/>
+		<i type="we" x="4" y="0"/>
+		<i type="wed" x="4" y="1"/>
+		<i type="ns" x="6" y="0"/>
+		<i type="we" x="5" y="0"/>
+		<i type="we" x="5" y="1"/>
+		<i type="ns" x="7" y="0"/>
+		<i type="we" x="6" y="0" hexMid="1"/>
+		<i type="we" x="6" y="1" hexMid="1"/>
+		<i type="ns" x="8" y="0"/>
+		<i type="we" x="7" y="0"/>
+		<i type="we" x="7" y="1"/>
+		<i type="ns" x="9" y="0"/>
+		<i type="we" x="8" y="0"/>
+		<i type="we" x="8" y="1"/>
+		<i type="ns" x="10" y="0" hexMid="1"/>
+		<i type="we" x="9" y="0"/>
+		<i type="we" x="9" y="1"/>
+		<i type="start" x="9" y="1"/>
+		<i type="start" x="8" y="0"/>
+		<i type="start" x="6" y="1"/>
+		<i type="start" x="4" y="0"/>
+		<i type="start" x="1" y="0"/>
+		<i type="start" x="2" y="1"/>
+		<i type="exit" x="10" y="1" d="2"/>
+		<i type="exit" x="10" y="0" d="2"/>
+		<i type="exit" x="0" y="0" d="6"/>
+		<i type="exit" x="0" y="1" d="6"/>
+	</grid>
+</Level>

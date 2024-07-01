@@ -34,6 +34,7 @@ class Snake {
 		this.target = null;
 		this.targetMaxProgress = null;
 		this.targetIsEnd = null;
+		this.isAtEnd = null;
 
 		// An ongoing path addition or subtraction.
 		// Progress is from 0 to MAX_PROGRESS, target == null <=> progress == 0.
@@ -63,10 +64,10 @@ class Snake {
 		return this.targetIsEnd && this.progress === this.targetMaxProgress;
 	}
 
-	markSuccessful() {
-		if (this.snakeEl) this.snakeEl.addClass("glow");
-		if (this.secondarySnakeEl) this.secondarySnakeEl.addClass("glow");
-	}
+	// markSuccessful() {
+	// 	if (this.snakeEl) this.snakeEl.addClass("glow");
+	// 	if (this.secondarySnakeEl) this.secondarySnakeEl.addClass("glow");
+	// }
 
 	setMouseDiff(mouseX, mouseY) {
 		this.mouseX += mouseX;
@@ -221,13 +222,20 @@ class Snake {
 			}
 			// Now artifical caps, only if making progress.
 			if (makingProgress && this.targetMaxProgress != null) {
-				actualMovement = Math.min(
-						actualMovement,
-						this.targetMaxProgress - this.progress);
+				actualMovement = Math.min(actualMovement, this.targetMaxProgress - this.progress);
 			}
 			this.progress += makingProgress ? actualMovement : -actualMovement;
 			break;
 		}
+
+		// let isMaxProgress = this.progress === this.targetMaxProgress;
+		// if (isMaxProgress && this.isAtEnd !== isMaxProgress) {
+		// 	this.isAtEnd = !isMaxProgress;
+		// 	console.log( "true" );
+		// } else {
+		// 	console.log( "false" );
+		// }
+
 		// If we were stopped for any reason, we wouldn't be able to reach
 		// a target decision.
 		if (actualMovement < maxMovement) return;
@@ -254,6 +262,7 @@ class Snake {
 			// console.log("Forwards, target null!");
 			if (remainingProgress == 0 || !this.discoverTarget(selector, params)) return;
 		}
+
 		return remainingProgress;
 	}
 
@@ -291,14 +300,13 @@ class Snake {
 			this.progress = params.preferHorizontal ? this.MAX_PROGRESS_W : this.MAX_PROGRESS_H;
 		} else {
 			if (select.i == current.i && select.j == current.j) throw Error();
-			// console.log( select );
 			
 			this.target = select;
 			this.targetMaxProgress = response.maxProgress !== undefined ? response.maxProgress : null;
 			this.targetIsEnd = !!response.isEnd;
 			this.progress = 0;
-
 		}
+
 		return true;
 	}
 

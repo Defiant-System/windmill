@@ -3,11 +3,11 @@ let Test = {
 	init(APP) {
 		// return;
 
-		console.log( window.bluePrint.selectNodes(`//Level`).length );
+		// console.log( window.bluePrint.selectNodes(`//Level`).length );
 
-		Game.dispatch({ type: "render-level", arg: "5.12" });
+		Game.dispatch({ type: "render-level", arg: "3.22" });
 		// Game.dispatch({ type: "render-level", arg: "0.2" });
-		return;
+		// return;
 
 		setTimeout(() => {
 			APP.edit.dispatch({ type: "toggle-edit-view" });
