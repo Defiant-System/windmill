@@ -48,8 +48,8 @@
 		<i type="wee" x="0" y="1" />
 		<i type="we" x="0" y="2" />
 
-		<i type="nse" x="1" y="0" />
-		<i type="ns" x="1" y="1" />
+		<i type="ns" x="1" y="0" />
+		<i type="nse" x="1" y="1" />
 
 		<i type="we" x="1" y="0" />
 		<i type="wee" x="1" y="1" />
@@ -58,11 +58,16 @@
 		<i type="ns" x="2" y="0" />
 		<i type="ns" x="2" y="1" />
 
-		<i type="start" x="1" y="2" />
+		<i type="start" x="1" y="0" />
 		<i type="exit" x="0" y="0" d="7" />
+		<i type="exit" x="1" y="2" d="0" />
+		<i type="exit" x="2" y="1" d="2" />
+		<i type="exit" x="0" y="1" d="6" />
 
-		<i type="exit" x="1" y="1" d="1" />
+		<i type="exit" x="1" y="1" d="5" />
 		<i type="exit" x="2" y="0" d="1" />
+		<i type="exit" x="2" y="2" d="3" />
+		<i type="exit" x="0" y="2" d="5" />
 	</grid>
 
 	<!-- <grid width="1" height="2">
@@ -76,12 +81,12 @@
 		<i type="nse" x="1" y="0" />
 		<i type="ns" x="1" y="1" />
 
-		<i type="start" x="1" y="2" />
+		<i type="start" x="0" y="2" />
 		<i type="exit" x="1" y="0" d="1" />
 		<i type="exit" x="0" y="1" d="6" />
 		<i type="exit" x="1" y="1" d="1" />
 		<i type="exit" x="0" y="0" d="7" />
-		<i type="exit" x="0" y="2" d="4" />
+		<i type="exit" x="1" y="2" d="3" />
 	</grid> -->
 
 

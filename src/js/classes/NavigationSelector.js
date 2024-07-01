@@ -18,7 +18,11 @@ class NavigationSelector {
 						switch (true) {
 							case (thisEntity.rotation == 0 && dj == -1): return "end-up";
 							case (thisEntity.rotation == 4 && dj == 1): return "end-down";
+							case (thisEntity.rotation == 7 && di == -1):
+							case (thisEntity.rotation == 5 && di == -1):
 							case (thisEntity.rotation == 6 && di == -1): return "end-left";
+							case (thisEntity.rotation == 1 && di == 1):
+							case (thisEntity.rotation == 3 && di == 1):
 							case (thisEntity.rotation == 2 && di == 1): return "end-right";
 						}
 					}
