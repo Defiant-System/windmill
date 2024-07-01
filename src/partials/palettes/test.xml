@@ -1,15 +1,15 @@
-<Palette id="pink">
-	<c key="base" val="#a43898"/>
-	<c key="bg" val="#df61d6"/>
-	<c key="gr" val="#ffb2f2"/>
-	<c key="fg" val="#ca5cb9"/>
-	<c key="hl" val="#fbd1ff"/>
-	<c key="error" val="#ff0000"/>
+<Palette id="test">
+	<c key="base" val="#80457e"/>
+	<c key="bg" val="#af70c6"/>
+	<c key="gr" val="#d69acc"/>
+	<c key="fg" val="#a760bc"/>
+	<c key="hl" val="#fff2c9"/>
+	<c key="error" val="#ffff00"/>
 	<c key="snake1" val="#ffffff"/>
 	<c key="snake2" val="#88ffff"/>
 
-	<c id="1" val="#a730a3" name="black"/>
-	<c id="2" val="#ffd5fe" name="white"/>
+	<c id="1" val="#6e356c" name="black"/>
+	<c id="2" val="#ffe2fe" name="white"/>
 	<c id="3" val="#0ff" name="cyan"/>
 	<c id="4" val="#f0f" name="magenta"/>
 	<c id="5" val="#ff0" name="yellow"/>
