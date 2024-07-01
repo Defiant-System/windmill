@@ -527,7 +527,10 @@
 				switch (Self.activeTool) {
 					case "start":
 						if (!el.length) return;
-						if (target.hasClass("edit-foot")) data.x++;
+						if (target.hasClass("edit-foot")) {
+							// data.x--;
+							data.y++;
+						}
 
 						data.sEl = Self.els.level.find(`.start[style*="--x: ${data.x};--y: ${data.y};"]`);
 						if (data.sEl.length) {
