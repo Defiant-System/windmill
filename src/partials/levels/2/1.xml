@@ -13,6 +13,6 @@
 		<i type="ns" x="2" y="0" hexTop="1"/>
 		<i type="ns" x="2" y="1"/>
 		<i type="start" x="0" y="0"/>
-		<i type="exit" x="2" y="2" d="2"/>
+		<i type="exit" x="2" y="2" d="3"/>
 	</grid>
 </Level>

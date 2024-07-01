@@ -85,6 +85,6 @@
 		<i type="we" x="5" y="5"/>
 		<i type="we" x="5" y="6"/>
 		<i type="start" x="4" y="4"/>
-		<i type="exit" x="2" y="0" d="0"/>
+		<i type="exit" x="2" y="0" d="1"/>
 	</grid>
 </Level>
