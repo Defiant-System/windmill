@@ -46,6 +46,23 @@
 			<Menu name="2.17" check-group="active-level" click="render-level"/>
 			<Menu name="2.18" check-group="active-level" click="render-level"/>
 			<Menu name="2.19" check-group="active-level" click="render-level"/>
+			<Menu name="2.20" check-group="active-level" click="render-level"/>
+			<Menu name="2.21" check-group="active-level" click="render-level"/>
+			<Menu name="2.22" check-group="active-level" click="render-level"/>
+			<Menu name="2.23" check-group="active-level" click="render-level"/>
+			<Menu name="2.24" check-group="active-level" click="render-level"/>
+			<Menu name="2.25" check-group="active-level" click="render-level"/>
+			<Menu name="2.26" check-group="active-level" click="render-level"/>
+			<Menu name="2.27" check-group="active-level" click="render-level"/>
+			<Menu name="2.28" check-group="active-level" click="render-level"/>
+			<Menu name="2.29" check-group="active-level" click="render-level"/>
+			<Menu name="2.30" check-group="active-level" click="render-level"/>
+			<Menu name="2.31" check-group="active-level" click="render-level"/>
+			<Menu name="2.32" check-group="active-level" click="render-level"/>
+			<Menu name="2.33" check-group="active-level" click="render-level"/>
+			<Menu name="2.34" check-group="active-level" click="render-level"/>
+			<Menu name="2.35" check-group="active-level" click="render-level"/>
+			<Menu name="2.36" check-group="active-level" click="render-level"/>
 		</Menu>
 		<Menu name="Level 3&#8230;">
 			<Menu name="3.0" check-group="active-level" click="render-level"/>
@@ -89,6 +106,8 @@
 			<Menu name="4.5" check-group="active-level" click="render-level"/>
 			<Menu name="4.6" check-group="active-level" click="render-level"/>
 			<Menu name="4.7" check-group="active-level" click="render-level"/>
+			<Menu name="4.8" check-group="active-level" click="render-level"/>
+			<Menu name="4.9" check-group="active-level" click="render-level"/>
 		</Menu>
 		<Menu name="Level 5&#8230;">
 			<Menu name="5.0" check-group="active-level" click="render-level"/>
@@ -107,6 +126,21 @@
 		</Menu>
 		<Menu name="Level 6&#8230;">
 			<Menu name="6.0" check-group="active-level" click="render-level"/>
+			<Menu name="6.1" check-group="active-level" click="render-level"/>
+			<Menu name="6.2" check-group="active-level" click="render-level"/>
+			<Menu name="6.3" check-group="active-level" click="render-level"/>
+			<Menu name="6.4" check-group="active-level" click="render-level"/>
+			<Menu name="6.5" check-group="active-level" click="render-level"/>
+			<Menu name="6.6" check-group="active-level" click="render-level"/>
+			<Menu name="6.7" check-group="active-level" click="render-level"/>
+			<Menu name="6.8" check-group="active-level" click="render-level"/>
+			<Menu name="6.9" check-group="active-level" click="render-level"/>
+			<Menu name="6.10" check-group="active-level" click="render-level"/>
+			<Menu name="6.11" check-group="active-level" click="render-level"/>
+			<Menu name="6.12" check-group="active-level" click="render-level"/>
+			<Menu name="6.13" check-group="active-level" click="render-level"/>
+			<Menu name="6.14" check-group="active-level" click="render-level"/>
+			<Menu name="6.15" check-group="active-level" click="render-level"/>
 		</Menu>
 	</Menu>
 	<Menu name="Help">

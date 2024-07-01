@@ -648,7 +648,7 @@
 							data.y = +target.cssProp("--y");
 							el = Self.els.level.find(`.${Self.activeTool}[style*="--x: ${data.x};--y: ${data.y};"]`);
 						}
-						if (el.length) {
+						if (el.hasClass("dot") && el.length) {
 							el.remove();
 						} else {
 							value = `<span class="${Self.activeTool}" data-c="${Self.activeColorIndex}" style="--x: ${data.x};--y: ${data.y};--c: ${Self.activeColor};"></span>`;

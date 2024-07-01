@@ -1,0 +1,30 @@
+<Level id="6.1" palette="grey">
+	<grid width="1" height="7" gW="73" gH="63">
+		<i type="ns" x="0" y="0"/>
+		<i type="ns" x="0" y="1"/>
+		<i type="ns" x="0" y="2"/>
+		<i type="we" x="0" y="0" hexMid="1"/>
+		<i type="we" x="0" y="1"/>
+		<i type="we" x="0" y="2"/>
+		<i type="we" x="0" y="3"/>
+		<i type="ns" x="1" y="0"/>
+		<i type="ns" x="1" y="1"/>
+		<i type="ns" x="1" y="2"/>
+		<i type="ns" x="0" y="3"/>
+		<i type="we" x="0" y="4"/>
+		<i type="ns" x="1" y="3"/>
+		<i type="ns" x="0" y="4"/>
+		<i type="we" x="0" y="5"/>
+		<i type="ns" x="1" y="4"/>
+		<i type="ns" x="0" y="5"/>
+		<i type="we" x="0" y="6"/>
+		<i type="ns" x="1" y="5"/>
+		<i type="ns" x="0" y="6"/>
+		<i type="we" x="0" y="7" hexMid="1"/>
+		<i type="ns" x="1" y="6"/>
+		<i type="start" x="0" y="5"/>
+		<i type="exit" x="0" y="2" d="6"/>
+		<i type="dot" x="0" y="4" c="1"/>
+		<i type="dot" x="0" y="1" c="2"/>
+	</grid>
+</Level>
