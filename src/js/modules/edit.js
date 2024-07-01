@@ -40,6 +40,8 @@
 			case "render-level":
 				if (Self.els.el.hasClass("show")) {
 					Self.dispatch({ type: "init-edit-view" });
+					// if any active tool, turn it "off"
+					Self.els.el.find(`.option-buttons_ > span.active_`).trigger("click");
 				}
 				break;
 			// custom events

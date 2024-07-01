@@ -4,15 +4,14 @@ let Test = {
 		// return;
 
 		// Game.dispatch({ type: "render-level", arg: "1.7" });
-		// Game.dispatch({ type: "render-level", arg: "1.1" });
-		Game.dispatch({ type: "render-level", arg: "4.7" });
-			// return;
+		Game.dispatch({ type: "render-level", arg: "0.2" });
+		return;
 
 		setTimeout(() => {
 			APP.edit.dispatch({ type: "toggle-edit-view" });
+			return;
 			
 			APP.edit.els.el.find(`.option-buttons_ span[data-arg="end"]`).trigger("click");
-			return;
 
 			setTimeout(() => {
 				window.find(`.we[style*="--x: 0;--y: 3;"]`).trigger("click");

@@ -608,7 +608,7 @@ content {
 				position: absolute;
 				top: 2px;
 				left: 2px;
-				z-index: 4;
+				z-index: 7;
 				width: calc( var( --line ) - 4px );
 				height: calc( var( --line ) - 4px );
 				filter: drop-shadow(0 1px 0 rgba(#000,.1));
@@ -631,6 +631,7 @@ content {
 					right: 2px;
 					bottom: 2px;
 					border-radius: 50%;
+					pointer-events: none;
 					box-shadow: 0 0 11px var( --error ),
 								0 0 11px var( --error ),
 								0 0 11px var( --error ),
@@ -646,6 +647,7 @@ content {
 					bottom: 1px;
 					background: var( --gr );
 					clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+					pointer-events: none;
 				}
 			}
 		}
