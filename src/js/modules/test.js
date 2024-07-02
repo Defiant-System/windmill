@@ -8,15 +8,15 @@ let Test = {
 
 		// console.log( window.bluePrint.selectNodes(`//Level`).length );
 
-		Game.dispatch({ type: "render-level", arg: "0.2" });
-		// Game.dispatch({ type: "render-level", arg: "2.10" });
-		return;
+		// Game.dispatch({ type: "render-level", arg: "0.2" });
+		Game.dispatch({ type: "render-level", arg: "4.26" });
+		// return;
 
 		setTimeout(() => {
 			APP.edit.dispatch({ type: "toggle-edit-view" });
 			return;
 			
-			APP.edit.els.el.find(`.option-buttons_ span[data-arg="end"]`).trigger("click");
+			APP.edit.els.el.find(`.option-buttons_ span[data-arg="start"]`).trigger("click");
 
 			setTimeout(() => {
 				window.find(`.we[style*="--x: 0;--y: 3;"]`).trigger("click");

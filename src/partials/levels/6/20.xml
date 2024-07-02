@@ -1,0 +1,107 @@
+<Level id="6.20" palette="grey">
+	<grid width="7" height="6" line="19" grid="73">
+		<i type="ns" x="0" y="0"/>
+		<i type="ns" x="0" y="1"/>
+		<i type="ns" x="0" y="2"/>
+		<i type="we" x="0" y="0" hexTop="1"/>
+		<i type="we" x="0" y="1" hexTop="1"/>
+		<i type="we" x="0" y="2" hexTop="1"/>
+		<i type="we" x="0" y="3"/>
+		<i type="ns" x="1" y="0"/>
+		<i type="ns" x="1" y="1"/>
+		<i type="ns" x="1" y="2"/>
+		<i type="we" x="1" y="0" hexTop="1"/>
+		<i type="we" x="1" y="1" hexTop="1"/>
+		<i type="we" x="1" y="2" hexTop="1"/>
+		<i type="we" x="1" y="3"/>
+		<i type="ns" x="2" y="0"/>
+		<i type="ns" x="2" y="1"/>
+		<i type="ns" x="2" y="2"/>
+		<i type="we" x="2" y="0" hexTop="1"/>
+		<i type="we" x="2" y="1" hexTop="1"/>
+		<i type="we" x="2" y="2" hexTop="1"/>
+		<i type="we" x="2" y="3"/>
+		<i type="ns" x="3" y="0"/>
+		<i type="ns" x="3" y="1"/>
+		<i type="ns" x="3" y="2"/>
+		<i type="ns" x="0" y="3"/>
+		<i type="we" x="0" y="4"/>
+		<i type="ns" x="1" y="3" hexTop="1"/>
+		<i type="we" x="1" y="4"/>
+		<i type="ns" x="2" y="3" hexTop="1"/>
+		<i type="we" x="2" y="4"/>
+		<i type="ns" x="3" y="3"/>
+		<i type="ns" x="0" y="4" hexTop="1"/>
+		<i type="we" x="0" y="5"/>
+		<i type="ns" x="1" y="4" hexTop="1"/>
+		<i type="we" x="1" y="5"/>
+		<i type="ns" x="2" y="4" hexTop="1"/>
+		<i type="we" x="2" y="5"/>
+		<i type="ns" x="3" y="4"/>
+		<i type="ns" x="0" y="5" hexTop="1"/>
+		<i type="we" x="0" y="6" hexTop="1"/>
+		<i type="ns" x="1" y="5" hexTop="1"/>
+		<i type="we" x="1" y="6" hexTop="1"/>
+		<i type="ns" x="2" y="5" hexTop="1"/>
+		<i type="we" x="2" y="6" hexTop="1"/>
+		<i type="ns" x="3" y="5"/>
+		<i type="ns" x="4" y="0"/>
+		<i type="we" x="3" y="0" hexTop="1"/>
+		<i type="ns" x="4" y="1"/>
+		<i type="we" x="3" y="1" hexTop="1"/>
+		<i type="ns" x="4" y="2"/>
+		<i type="we" x="3" y="2" hexTop="1"/>
+		<i type="ns" x="4" y="3"/>
+		<i type="we" x="3" y="3"/>
+		<i type="ns" x="4" y="4"/>
+		<i type="we" x="3" y="4" hexTop="1"/>
+		<i type="ns" x="4" y="5"/>
+		<i type="we" x="3" y="5" hexTop="1"/>
+		<i type="we" x="3" y="6" hexTop="1"/>
+		<i type="ns" x="5" y="0"/>
+		<i type="we" x="4" y="0" hexTop="1"/>
+		<i type="ns" x="5" y="1"/>
+		<i type="we" x="4" y="1" hexTop="1"/>
+		<i type="ns" x="5" y="2"/>
+		<i type="we" x="4" y="2" hexTop="1"/>
+		<i type="ns" x="5" y="3"/>
+		<i type="we" x="4" y="3"/>
+		<i type="ns" x="5" y="4"/>
+		<i type="we" x="4" y="4" hexTop="1"/>
+		<i type="ns" x="5" y="5"/>
+		<i type="we" x="4" y="5" hexTop="1"/>
+		<i type="we" x="4" y="6" hexTop="1"/>
+		<i type="ns" x="6" y="0"/>
+		<i type="we" x="5" y="0" hexTop="1"/>
+		<i type="ns" x="6" y="1"/>
+		<i type="we" x="5" y="1" hexTop="1"/>
+		<i type="ns" x="6" y="2"/>
+		<i type="we" x="5" y="2" hexTop="1"/>
+		<i type="ns" x="6" y="3"/>
+		<i type="we" x="5" y="3" hexTop="1"/>
+		<i type="ns" x="6" y="4"/>
+		<i type="we" x="5" y="4" hexTop="1"/>
+		<i type="ns" x="6" y="5"/>
+		<i type="we" x="5" y="5" hexTop="1"/>
+		<i type="we" x="5" y="6" hexTop="1"/>
+		<i type="ns" x="7" y="0"/>
+		<i type="we" x="6" y="0" hexTop="1" hexBot="1"/>
+		<i type="ns" x="7" y="1"/>
+		<i type="we" x="6" y="1" hexTop="1" hexBot="1"/>
+		<i type="ns" x="7" y="2"/>
+		<i type="we" x="6" y="2" hexTop="1" hexBot="1"/>
+		<i type="ns" x="7" y="3"/>
+		<i type="we" x="6" y="3" hexTop="1"/>
+		<i type="ns" x="7" y="4"/>
+		<i type="we" x="6" y="4" hexTop="1" hexBot="1"/>
+		<i type="ns" x="7" y="5"/>
+		<i type="we" x="6" y="5" hexTop="1" hexBot="1"/>
+		<i type="we" x="6" y="6" hexTop="1" hexBot="1"/>
+		<i type="start" x="3" y="3"/>
+		<i type="start" x="4" y="3"/>
+		<i type="exit" x="7" y="3" d="2"/>
+		<i type="exit" x="0" y="3" d="6"/>
+		<i type="star" x="3" y="5" c="5"/>
+		<i type="star" x="3" y="0" c="5"/>
+	</grid>
+</Level>

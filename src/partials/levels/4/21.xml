@@ -1,0 +1,72 @@
+<Level id="4.21" palette="blue">
+	<grid width="5" height="5" gap="12" symmetry="4">
+		<i type="ns" x="0" y="0"/>
+		<i type="ns" x="0" y="1"/>
+		<i type="ns" x="0" y="2"/>
+		<i type="we" x="0" y="0"/>
+		<i type="we" x="0" y="1"/>
+		<i type="we" x="0" y="2"/>
+		<i type="we" x="0" y="3"/>
+		<i type="ns" x="1" y="0"/>
+		<i type="ns" x="1" y="1"/>
+		<i type="ns" x="1" y="2"/>
+		<i type="we" x="1" y="0"/>
+		<i type="we" x="1" y="1"/>
+		<i type="we" x="1" y="2"/>
+		<i type="we" x="1" y="3"/>
+		<i type="ns" x="2" y="0"/>
+		<i type="ns" x="2" y="1"/>
+		<i type="ns" x="2" y="2"/>
+		<i type="we" x="2" y="0"/>
+		<i type="we" x="2" y="1"/>
+		<i type="we" x="2" y="2"/>
+		<i type="we" x="2" y="3"/>
+		<i type="ns" x="3" y="0"/>
+		<i type="ns" x="3" y="1"/>
+		<i type="ns" x="3" y="2"/>
+		<i type="ns" x="4" y="0"/>
+		<i type="we" x="3" y="0"/>
+		<i type="ns" x="4" y="1"/>
+		<i type="we" x="3" y="1"/>
+		<i type="ns" x="4" y="2"/>
+		<i type="we" x="3" y="2"/>
+		<i type="we" x="3" y="3"/>
+		<i type="ns" x="0" y="3"/>
+		<i type="we" x="0" y="4"/>
+		<i type="ns" x="1" y="3"/>
+		<i type="we" x="1" y="4"/>
+		<i type="ns" x="2" y="3"/>
+		<i type="we" x="2" y="4"/>
+		<i type="ns" x="3" y="3"/>
+		<i type="we" x="3" y="4"/>
+		<i type="ns" x="4" y="3"/>
+		<i type="ns" x="0" y="4"/>
+		<i type="we" x="0" y="5"/>
+		<i type="ns" x="1" y="4"/>
+		<i type="we" x="1" y="5"/>
+		<i type="ns" x="2" y="4"/>
+		<i type="we" x="2" y="5"/>
+		<i type="ns" x="3" y="4"/>
+		<i type="we" x="3" y="5"/>
+		<i type="ns" x="4" y="4"/>
+		<i type="ns" x="5" y="0"/>
+		<i type="we" x="4" y="0"/>
+		<i type="ns" x="5" y="1"/>
+		<i type="we" x="4" y="1"/>
+		<i type="ns" x="5" y="2"/>
+		<i type="we" x="4" y="2"/>
+		<i type="ns" x="5" y="3"/>
+		<i type="we" x="4" y="3"/>
+		<i type="ns" x="5" y="4"/>
+		<i type="we" x="4" y="4"/>
+		<i type="we" x="4" y="5"/>
+		<i type="start" x="2" y="2"/>
+		<i type="start" x="3" y="3"/>
+		<i type="exit" x="3" y="0" d="0"/>
+		<i type="exit" x="2" y="5" d="4"/>
+		<i type="dot" x="3" y="0" c="1"/>
+		<i type="dot" x="4" y="3" c="1"/>
+		<i type="dot" x="1" y="2" c="2"/>
+		<i type="dot" x="4" y="0" c="2"/>
+	</grid>
+</Level>
