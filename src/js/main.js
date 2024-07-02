@@ -34,8 +34,22 @@ const witness = {
 			.filter(i => typeof this[i].init === "function")
 			.map(i => this[i].init(this));
 
-		// start view / first "level"
-		Game.dispatch({ type: "render-level", arg: "0.1" });
+		// reference to progression node
+		this.xProgression = window.bluePrint.selectSingleNode(`//Data/Progression`);
+		// get saved progression, if any
+		let progression = window.settings.getItem("progression");
+		if (progression) {
+			// replace saved progression with default in "Data"
+			this.xProgression.parentNode.replaceChild(progression, this.xProgression);
+		}
+
+		if (this.xProgression.selectNodes("./*").length) {
+			// go to last saved state
+			this.dispatch({ type: "apply-saved-state" });
+		} else {
+			// start view / first "level"
+			Game.dispatch({ type: "render-level", arg: "0.1" });
+		}
 
 		// DEV-ONLY-START
 		Test.init(this);
@@ -59,6 +73,18 @@ const witness = {
 				Bg.dispatch({ type: "pause" });
 				break;
 			// custom events
+			case "apply-saved-state":
+				// map out levels
+				Game.level.list.map(entry => {
+
+				});
+				// render progression nav
+				window.render({
+					template: "game-progression",
+					match: "//Data/Progression",
+					target: window.find(".progression"),
+				});
+				break;
 			case "show-view":
 				window.find("content").data({ show: event.arg });
 				break;

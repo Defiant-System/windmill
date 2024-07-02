@@ -1,4 +1,17 @@
 <Data>
+	<Progression>
+		<World id="1" total="12" />
+		<World id="2" total="36" />
+		<World id="3" total="30" />
+		<World id="4" total="26" />
+		<World id="5" total="12" />
+		<World id="6" total="20" />
+	</Progression>
+
+	@import "levels/_template.xml"
+	@import "levels/lobby.xml"
+	@import "levels/temp.xml"
+
 	@import "palettes/blue.xml"
 	@import "palettes/grey.xml"
 	@import "palettes/green.xml"
@@ -6,10 +19,6 @@
 	@import "palettes/orange.xml"
 	@import "palettes/purple.xml"
 	@import "palettes/pink.xml"
-
-	@import "levels/_template.xml"
-	@import "levels/lobby.xml"
-	@import "levels/temp.xml"
 
 	@import "levels/1/0.xml"
 	@import "levels/1/1.xml"
@@ -158,5 +167,4 @@
 	@import "levels/6/18.xml"
 	@import "levels/6/19.xml"
 	@import "levels/6/20.xml"
-
 </Data>

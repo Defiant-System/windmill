@@ -1,5 +1,24 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
+
+<xsl:template name="game-progression">
+	<ul>
+		<li>
+			<div class="progress"><span></span></div>
+		</li>
+		<li>
+			<div class="progress"><span></span></div>
+		</li>
+		<li class="expanded">
+			<div class="progress"><span></span></div>
+		</li>
+		<li class="disabled">
+			<div class="progress"><span></span></div>
+		</li>
+	</ul>
+</xsl:template>
+
+
 <xsl:template name="level-puzzle">
 	<xsl:variable name="palette" select="ancestor::Data/Palette[@id = current()/@palette]" />
 	<xsl:variable name="puzzleWidth" select="(grid/@width * grid/@gW) + grid/@line" />
