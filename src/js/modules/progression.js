@@ -18,6 +18,22 @@
 		// console.log(event);
 		switch (event.type) {
 			// custom events
+			case "apply-saved-state":
+				// prevent lobby anim
+				window.find(".start-view").addClass("no-anim");
+				// map out levels
+				Game.level.list.map(entry => {
+					let [w, i] = entry.split(".").map(i => +i);
+				});
+				// render progression nav
+				window.render({
+					template: "game-progression",
+					match: "//Data/Progression",
+					target: window.find(".progression"),
+				});
+				// auto jump to "last" level
+				Game.dispatch({ type: "render-level", arg: "1.0" });
+				break;
 			case "select-world":
 				event.el.find(".expanded").removeClass("expanded");
 				$(event.target).addClass("expanded");

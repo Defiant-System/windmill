@@ -18,21 +18,6 @@
 			</span></div>
 		</li>
 		</xsl:for-each>
-		<!-- <li>
-			<div class="progress"><span></span></div>
-		</li>
-		<li class="expanded">
-			<div class="progress"><span></span></div>
-		</li>
-		<li class="disabled">
-			<div class="progress"><span></span></div>
-		</li>
-		<li class="disabled">
-			<div class="progress"><span></span></div>
-		</li>
-		<li class="disabled">
-			<div class="progress"><span></span></div>
-		</li> -->
 	</ul>
 </xsl:template>
 

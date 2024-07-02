@@ -45,7 +45,7 @@ const witness = {
 
 		if (this.xProgression.selectNodes("./*").length) {
 			// go to last saved state
-			this.dispatch({ type: "apply-saved-state" });
+			this.progression.dispatch({ type: "apply-saved-state" });
 		} else {
 			// start view / first "level"
 			Game.dispatch({ type: "render-level", arg: "0.1" });
@@ -73,22 +73,6 @@ const witness = {
 				Bg.dispatch({ type: "pause" });
 				break;
 			// custom events
-			case "apply-saved-state":
-				// prevent lobby anim
-				window.find(".start-view").addClass("no-anim");
-				// map out levels
-				Game.level.list.map(entry => {
-					let [w, i] = entry.split(".").map(i => +i);
-				});
-				// render progression nav
-				window.render({
-					template: "game-progression",
-					match: "//Data/Progression",
-					target: window.find(".progression"),
-				});
-				// auto jump to "last" level
-				Game.dispatch({ type: "render-level", arg: "1.0" });
-				break;
 			case "show-view":
 				window.find("content").data({ show: event.arg });
 				break;

@@ -389,6 +389,7 @@ class Grid {
 					break;
 				case "nsd":
 					storage.entity[index + storage.width].type = Type.DISJOINT;
+					if (hexTop) storage.entity[index].type = Type.HEXAGON;
 					break;
 				case "wed":
 					storage.entity[index + 1].type = Type.DISJOINT;
@@ -396,9 +397,11 @@ class Grid {
 					break;
 				case "nse":
 					storage.entity[index + storage.width].type = Type.NONE;
+					if (hexTop) storage.entity[index].type = Type.HEXAGON;
 					break;
 				case "wee":
 					storage.entity[index + 1].type = Type.NONE;
+					if (hexTop) storage.entity[index].type = Type.HEXAGON;
 					break;
 				case "dot":
 					storage.entity[index + storage.width + 1].type = Type.SQUARE;
