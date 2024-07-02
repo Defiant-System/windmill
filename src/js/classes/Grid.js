@@ -220,6 +220,8 @@ class Grid {
 		Particles.reset();
 		// start fire flies
 		Particles.start(this, this.snake.snakeEl, colors[0], fnNext);
+		// progression power up
+		Game.dispatch({ type: "progress-power-up" })
 		// for secondary snake
 		if (this.getSymmetry()) {
 			Particles.start(this, this.snake.secondarySnakeEl, colors[1]);

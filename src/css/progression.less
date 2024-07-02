@@ -58,6 +58,11 @@
 				width: 83px;
 				transition-duration: 500ms;
 
+				&.power-up {
+					opacity: 1;
+					animation: powerUp 500ms alternate 6 forwards;
+				}
+
 				div {
 					position: relative;
 					width: inherit;
@@ -78,4 +83,9 @@
 			}
 		}
 	}
+}
+
+@keyframes powerUp {
+	0% { opacity: 1; }
+	100% { opacity: .25; }
 }

@@ -1,6 +1,6 @@
 <Data>
 	<Progression>
-		<World id="1" total="12" solved="1" state="active" />
+		<World id="1" total="12" solved="3" state="active" />
 		<World id="2" total="37" state="locked" />
 		<World id="3" total="30" state="locked" />
 		<World id="4" total="26" state="locked" />
