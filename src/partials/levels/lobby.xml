@@ -1,4 +1,4 @@
-<Level id="0.1" palette="lobby">
+<Level id="0.1" palette="lobby" type="lobby">
 	<grid width="2" height="0">
 		<!-- lines -->
 		<i type="we" x="0" y="0" />

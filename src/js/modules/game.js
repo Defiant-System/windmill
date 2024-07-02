@@ -4,12 +4,34 @@ let Game = {
 		// fast references
 		this.doc = $(document);
 		this.grid = new Grid();
+		// levels list
+		this.level = { index: 0, list: [] };
 
-		this.level = {
-				index: 0,
-				list: window.bluePrint.selectNodes(`//Data/Level[not(@type)]`).map(x => x.getAttribute("id")).sort((a,b) => a - b),
-			};
-		// console.log( this.level.list )
+		// populate menu
+		let world = 0,
+			xStr = [];
+		window.bluePrint.selectNodes(`//Data/Level[not(@type)]`).map(x => {
+			let xId = x.getAttribute("id"),
+				xWorld = +xId.split(".")[0];
+			if (world > 0 && world !== xWorld) xStr.push(`</Menu>`);
+			if (world !== xWorld) xStr.push(`<Menu name="Level ${xWorld}&#8230;">`);
+			xStr.push(`<Menu name="${xId}" check-group="active-level" click="render-level"/>`);
+			if (world !== xWorld) world = xWorld;
+			// add to level list
+			this.level.list.push(xId);
+		});
+		// close last world "node"
+		xStr.push(`</Menu>`);
+
+		// insert "real" menu options
+		let xLevels = window.bluePrint.selectSingleNode(`//Menu[@for="puzzle-options"]`);
+		$.xmlFromString(`<data>${xStr.join("")}</data>`).selectNodes(`/data/Menu`)
+			.map(xMenu => xLevels.appendChild(xMenu));
+		// finalize / commit menu changes to bluePrint
+		window.menuBar.commit();
+
+		// make sure level list is sorted
+		this.level.list.sort((a,b) => a - b);
 	},
 	dispatch(event) {
 		let APP = witness,

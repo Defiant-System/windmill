@@ -1,13 +1,16 @@
 
 let Test = {
 	init(APP) {
-		// return;
+		// temp
+		window.find(".start-view").addClass("no-anim");
+		
+		return;
 
-		console.log( window.bluePrint.selectNodes(`//Level`).length );
+		// console.log( window.bluePrint.selectNodes(`//Level`).length );
 
-		Game.dispatch({ type: "render-level", arg: "6.15" });
+		Game.dispatch({ type: "render-level", arg: "1.6" });
 		// Game.dispatch({ type: "render-level", arg: "0.2" });
-		// return;
+		return;
 
 		setTimeout(() => {
 			APP.edit.dispatch({ type: "toggle-edit-view" });
