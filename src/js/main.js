@@ -85,7 +85,7 @@ const witness = {
 					target: window.find(".progression"),
 				});
 				// auto jump to "last" level
-				Game.dispatch({ type: "render-level", arg: "2.20" });
+				Game.dispatch({ type: "render-level", arg: "2.23" });
 				break;
 			case "show-view":
 				window.find("content").data({ show: event.arg });

@@ -1,7 +1,7 @@
 <Data>
 	<Progression>
 		<World id="1" total="12" solved="10" />
-		<World id="2" total="36" solved="14" />
+		<World id="2" total="37" solved="14" />
 		<World id="3" total="30" solved="3" />
 		<World id="4" total="26" />
 		<World id="5" total="12" />
@@ -71,6 +71,7 @@
 	@import "levels/2/34.xml"
 	@import "levels/2/35.xml"
 	@import "levels/2/36.xml"
+	@import "levels/2/37.xml"
 
 	@import "levels/3/0.xml"
 	@import "levels/3/1.xml"
