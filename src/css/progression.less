@@ -11,19 +11,23 @@
 		font-size: 0;
 		white-space: nowrap;
 		text-align: right;
+		pointer-events: none;
 
 		li {
-			background: rgba(#fff,.15);
+			background: rgba(#fff,.2);
 			position: relative;
 			display: inline-block;
 			margin: 0 3px;
-			width: 11px;
-			height: 11px;
-			border-radius: 11px;
-			cursor: pointer;
+			width: 13px;
+			height: 13px;
+			border-radius: 13px;
+			transition: width 200ms ease-in-out;
 
-			&:not(.disabled, .expanded):hover {
-				&:before {
+			&:not(.disabled, .expanded) {
+				pointer-events: all;
+				cursor: pointer;
+				
+				&:hover:before {
 					content: "";
 					position: absolute;
 					top: -1px;
@@ -37,7 +41,6 @@
 
 			&.disabled {
 				background: transparent;
-				cursor: default;
 
 				&:before {
 					content: "";
@@ -53,24 +56,15 @@
 
 			&.expanded {
 				width: 83px;
-				cursor: default;
+				transition-duration: 500ms;
 
 				div {
 					position: relative;
-					width: 83px;
-					height: 11px;
+					width: inherit;
+					height: 13px;
+					overflow: hidden;
 					border-radius: inherit;
-
-					&:before {
-						content: "";
-						background: rgba(#fff,.2);
-						position: absolute;
-						top: -2px;
-						left: -2px;
-						right: -2px;
-						bottom: -2px;
-						border-radius: inherit;
-					}
+					box-shadow: 0 0 0 2px rgba(#fff,.1);
 
 					span {
 						background: rgba(#fff,.35);
@@ -78,8 +72,7 @@
 						top: 0;
 						left: 0;
 						bottom: 0;
-						width: 37px;
-						border-radius: 11px;
+						transition: width 100ms ease-in-out;
 					}
 				}
 			}

@@ -3,10 +3,22 @@
 
 <xsl:template name="game-progression">
 	<ul data-click="select-world">
+		<xsl:for-each select="./World">
 		<li>
-			<div class="progress"><span></span></div>
+			<xsl:if test="@state = 'active'">
+				<xsl:attribute name="class">expanded</xsl:attribute>
+			</xsl:if>
+			<xsl:if test="@state = 'locked'">
+				<xsl:attribute name="class">disabled</xsl:attribute>
+			</xsl:if>
+			<div class="progress"><span>
+				<xsl:attribute name="style">
+					width: <xsl:value-of select="format-number( @solved div @total, '##0.0%' )"/>
+				</xsl:attribute>
+			</span></div>
 		</li>
-		<li>
+		</xsl:for-each>
+		<!-- <li>
 			<div class="progress"><span></span></div>
 		</li>
 		<li class="expanded">
@@ -20,7 +32,7 @@
 		</li>
 		<li class="disabled">
 			<div class="progress"><span></span></div>
-		</li>
+		</li> -->
 	</ul>
 </xsl:template>
 

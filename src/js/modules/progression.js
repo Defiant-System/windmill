@@ -19,7 +19,8 @@
 		switch (event.type) {
 			// custom events
 			case "select-world":
-				console.log(event);
+				event.el.find(".expanded").removeClass("expanded");
+				$(event.target).addClass("expanded");
 				break;
 		}
 	}
