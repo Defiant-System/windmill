@@ -4,12 +4,12 @@ let Test = {
 		// temp
 		window.find(".start-view").addClass("no-anim");
 		
-		return;
+		// return;
 
 		// console.log( window.bluePrint.selectNodes(`//Level`).length );
 
-		Game.dispatch({ type: "render-level", arg: "1.6" });
 		// Game.dispatch({ type: "render-level", arg: "0.2" });
+		Game.dispatch({ type: "render-level", arg: "2.10" });
 		return;
 
 		setTimeout(() => {

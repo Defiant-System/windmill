@@ -163,7 +163,7 @@ class Grid {
 		// show errors
 		if (err.errors.length) {
 			let errors = err.errors.concat(err.allowedErrors);
-			
+
 			// create error nodes
 			errors.map(err => {
 				let x = err.coord.i,
@@ -178,6 +178,7 @@ class Grid {
 					case DrawType.POINT:
 						el = this.el.find(`.grid-base span[style*="--x: ${x};--y: ${y};"] .hex.top`);
 						if (!el.length) el = this.el.find(`.grid-base span[style*="--x: ${x};--y: ${y-1};"] .hex.bottom`);
+						if (!el.length) el = this.el.find(`.grid-base span[style*="--x: ${x-1};--y: ${y};"] .hex.bottom`);
 						break;
 					case DrawType.VLINE:
 					case DrawType.HLINE:
@@ -191,7 +192,7 @@ class Grid {
 			// sound fx
 			window.audio.play("fail");
 			// reset level
-			fadeOutSnake();
+			fadeOutSnake("failure");
 			return;
 		}
 

@@ -9,18 +9,34 @@
 		<i type="exit" x="1" y="0" d="1" />
 	</grid> -->
 
-	<!-- <grid width="2" height="1">
-		<i type="ns" x="0" y="0" />
-		<i type="we" x="0" y="0" />
-		<i type="we" x="0" y="1" />
-		<i type="ns" x="1" y="0" />
-		<i type="we" x="1" y="0" hexMid="1" />
-		<i type="we" x="1" y="1" hexMid="1" />
-		<i type="ns" x="2" y="0" hexTop="1" hexMid="1" />
-
-		<i type="start" x="1" y="1" />
-		<i type="exit" x="2" y="1" d="3" />
-	</grid> -->
+	<grid width="3" height="3" line="19" gW="83" gH="83" gap="22">
+		<i type="ns" x="0" y="0"/>
+		<i type="ns" x="0" y="1"/>
+		<i type="ns" x="0" y="2"/>
+		<i type="we" x="0" y="0"/>
+		<i type="we" x="0" y="1"/>
+		<i type="we" x="0" y="2"/>
+		<i type="we" x="0" y="3"/>
+		<i type="ns" x="1" y="0"/>
+		<i type="ns" x="1" y="1"/>
+		<i type="ns" x="1" y="2"/>
+		<i type="we" x="1" y="0"/>
+		<i type="we" x="1" y="1"/>
+		<i type="we" x="1" y="2"/>
+		<i type="we" x="1" y="3"/>
+		<i type="ns" x="2" y="0"/>
+		<i type="ns" x="2" y="1"/>
+		<i type="ns" x="2" y="2"/>
+		<i type="we" x="2" y="0"/>
+		<i type="we" x="2" y="1" hexBot="1"/>
+		<i type="we" x="2" y="2"/>
+		<i type="we" x="2" y="3"/>
+		<i type="ns" x="3" y="0"/>
+		<i type="ns" x="3" y="1"/>
+		<i type="ns" x="3" y="2"/>
+		<i type="start" x="0" y="3"/>
+		<i type="exit" x="3" y="0" d="1" />
+	</grid>
 
 	<!-- <grid width="1" height="2">
 		<i type="ns" x="0" y="0" />
@@ -40,7 +56,7 @@
 		<i type="lambda" x="0" y="1" c="2" />
 	</grid> -->
 
-	<grid width="2" height="2">
+	<!-- <grid width="2" height="2">
 		<i type="ns" x="0" y="0" />
 		<i type="ns" x="0" y="1" />
 
@@ -68,7 +84,7 @@
 		<i type="exit" x="2" y="0" d="1" />
 		<i type="exit" x="2" y="2" d="3" />
 		<i type="exit" x="0" y="2" d="5" />
-	</grid>
+	</grid> -->
 
 	<!-- <grid width="1" height="2">
 		<i type="ns" x="0" y="0" />
