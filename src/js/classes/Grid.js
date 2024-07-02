@@ -134,7 +134,8 @@ class Grid {
 	}
 
 	finishSnake() {
-		let fadeOutSnake = (sequence="fade-out") => {
+		let APP = witness,
+			fadeOutSnake = (sequence="fade-out") => {
 				// UI update
 				this.el.removeClass("snake-active");
 				// fade out snake and empty its contents
@@ -221,7 +222,7 @@ class Grid {
 		// start fire flies
 		Particles.start(this, this.snake.snakeEl, colors[0], fnNext);
 		// progression power up
-		Game.dispatch({ type: "progress-power-up" })
+		APP.progression.dispatch({ type: "progress-power-up" });
 		// for secondary snake
 		if (this.getSymmetry()) {
 			Particles.start(this, this.snake.secondarySnakeEl, colors[1]);

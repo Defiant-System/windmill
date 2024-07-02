@@ -3,7 +3,6 @@ let Game = {
 	init() {
 		// fast references
 		this.doc = $(document);
-		this.prog = window.find(".progression");
 		this.grid = new Grid();
 		// levels list
 		this.level = { index: 0, list: [] };
@@ -95,11 +94,6 @@ let Game = {
 				Self.level.index = Self.level.list.indexOf(Self.grid.levelId) + 1;
 				if (Self.level.index > Self.level.list.length - 1) Self.level.index = 0;
 				Self.grid.render(Self.level.list[Self.level.index]);
-				break;
-			case "progress-power-up":
-				// flash progression
-				Self.prog.find("li.expanded")
-					.cssSequence("power-up", "animationend", el => el.removeClass("power-up"));
 				break;
 
 		}

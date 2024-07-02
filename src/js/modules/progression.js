@@ -22,6 +22,11 @@
 				event.el.find(".expanded").removeClass("expanded");
 				$(event.target).addClass("expanded");
 				break;
+			case "progress-power-up":
+				// flash progression
+				Self.els.el.find("li.expanded")
+					.cssSequence("power-up", "animationend", el => el.removeClass("power-up"));
+				break;
 		}
 	}
 }
