@@ -1,8 +1,8 @@
 <Data>
 	<Progression>
-		<World id="1" total="12" />
-		<World id="2" total="36" />
-		<World id="3" total="30" />
+		<World id="1" total="12" solved="10" />
+		<World id="2" total="36" solved="14" />
+		<World id="3" total="30" solved="3" />
 		<World id="4" total="26" />
 		<World id="5" total="12" />
 		<World id="6" total="20" />

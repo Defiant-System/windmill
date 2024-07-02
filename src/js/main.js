@@ -76,7 +76,7 @@ const witness = {
 			case "apply-saved-state":
 				// map out levels
 				Game.level.list.map(entry => {
-
+					let [w, i] = entry.split(".").map(i => +i);
 				});
 				// render progression nav
 				window.render({
@@ -84,6 +84,8 @@ const witness = {
 					match: "//Data/Progression",
 					target: window.find(".progression"),
 				});
+				// auto jump to "last" level
+				Game.dispatch({ type: "render-level", arg: "2.20" });
 				break;
 			case "show-view":
 				window.find("content").data({ show: event.arg });
