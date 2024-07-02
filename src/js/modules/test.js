@@ -8,8 +8,8 @@ let Test = {
 
 		// console.log( window.bluePrint.selectNodes(`//Level`).length );
 
-		// Game.dispatch({ type: "render-level", arg: "0.2" });
-		Game.dispatch({ type: "render-level", arg: "2.10" });
+		Game.dispatch({ type: "render-level", arg: "0.2" });
+		// Game.dispatch({ type: "render-level", arg: "2.10" });
 		return;
 
 		setTimeout(() => {

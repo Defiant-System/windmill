@@ -140,7 +140,7 @@ class Grid {
 				// fade out snake and empty its contents
 				this.el.find(".grid-path").cssSequence(`${sequence}-snake`, "transitionend", el => {
 					// reset grid path
-					el.removeClass("fade-out-snake glow-snake");
+					el.removeClass("fade-out-snake failure-snake glow-snake");
 					// empty snake body
 					if (!this.keepSnake) el.find("svg > g").html("");
 					// remove "locked" class
@@ -174,6 +174,7 @@ class Grid {
 				switch (err.drawType) {
 					case DrawType.CELL:
 						el = this.el.find(`.grid-base .dot[style*="--x: ${x};--y: ${y};"]`);
+						if (!el.length) el = this.el.find(`.grid-base .star[style*="--x: ${x};--y: ${y};"]`);
 						break;
 					case DrawType.POINT:
 						el = this.el.find(`.grid-base span[style*="--x: ${x};--y: ${y};"] .hex.top`);
@@ -409,7 +410,7 @@ class Grid {
 
 		if (xLevel.getAttribute("id") === "5.0") {
 			// console.log( storage.entity );
-			storage.entity.map((e, i) => console.log( i, JSON.stringify(e) + (i % storage.width == (storage.width-1) ? "---" : "") ));
+			// storage.entity.map((e, i) => console.log( i, JSON.stringify(e) + (i % storage.width == (storage.width-1) ? "---" : "") ));
 		}
 
 		// tmp object
