@@ -2,7 +2,7 @@
 
 
 <xsl:template name="game-progression">
-	<ul>
+	<ul data-click="select-world">
 		<li>
 			<div class="progress"><span></span></div>
 		</li>
@@ -10,6 +10,12 @@
 			<div class="progress"><span></span></div>
 		</li>
 		<li class="expanded">
+			<div class="progress"><span></span></div>
+		</li>
+		<li class="disabled">
+			<div class="progress"><span></span></div>
+		</li>
+		<li class="disabled">
 			<div class="progress"><span></span></div>
 		</li>
 		<li class="disabled">

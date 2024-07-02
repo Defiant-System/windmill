@@ -74,6 +74,8 @@ const witness = {
 				break;
 			// custom events
 			case "apply-saved-state":
+				// prevent lobby anim
+				window.find(".start-view").addClass("no-anim");
 				// map out levels
 				Game.level.list.map(entry => {
 					let [w, i] = entry.split(".").map(i => +i);
@@ -85,7 +87,7 @@ const witness = {
 					target: window.find(".progression"),
 				});
 				// auto jump to "last" level
-				Game.dispatch({ type: "render-level", arg: "2.23" });
+				Game.dispatch({ type: "render-level", arg: "2.10" });
 				break;
 			case "show-view":
 				window.find("content").data({ show: event.arg });
@@ -114,6 +116,7 @@ const witness = {
 		}
 	},
 	edit: @import "./modules/edit.js",
+	progression: @import "./modules/progression.js",
 };
 
 window.exports = witness;
