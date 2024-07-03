@@ -166,6 +166,7 @@ class Grid {
 		// show errors
 		if (err.errors.length) {
 			let errors = err.errors.concat(err.allowedErrors);
+			// console.log( errors );
 
 			// create error nodes
 			errors.map(err => {
@@ -396,6 +397,7 @@ class Grid {
 				case "wed":
 					storage.entity[index + 1].type = Type.DISJOINT;
 					if (hexTop) storage.entity[index].type = Type.HEXAGON;
+					if (hexBot) storage.entity[index + 2].type = Type.HEXAGON;
 					break;
 				case "nse":
 					storage.entity[index + storage.width].type = Type.NONE;
@@ -404,6 +406,7 @@ class Grid {
 				case "wee":
 					storage.entity[index + 1].type = Type.NONE;
 					if (hexTop) storage.entity[index].type = Type.HEXAGON;
+					if (hexBot) storage.entity[index + 2].type = Type.HEXAGON;
 					break;
 				case "dot":
 					storage.entity[index + storage.width + 1].type = Type.SQUARE;

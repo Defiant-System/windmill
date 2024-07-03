@@ -39,11 +39,13 @@
 					el.addClass("expanded");
 				}
 
-				console.log(w, l);
 				// update "solved" attribute
-				// el.data({ solved: Math.max(+el.data("solved"), l-1, 0) });
+				el.data({ solved: Math.max(+el.data("solved"), l) });
 
 				// update menu
+				xNode = window.bluePrint.selectSingleNode(`//Menu[@worldId="${w}"]`);
+				if (xNode) xNode.removeAttribute("disabled");
+				// update level
 				xNode = window.bluePrint.selectSingleNode(`//Menu[@levelId="${w}.${l}"]`);
 				window.bluePrint.selectNodes(`//Menu[@check-group="active-level"]`).map(x => x.removeAttribute("is-checked"));
 				if (xNode) {
@@ -116,8 +118,8 @@
 			case "progress-power-up":
 				// check if progressed
 				value = Self.dispatch({ type: "serialize-progress" });
-				console.log( value );
-				console.log( APP.state.progression );
+				// console.log( value );
+				// console.log( APP.state.progression );
 				// if (APP.state.progression) {
 				// 	return;
 				// }
@@ -129,11 +131,12 @@
 
 						let xWorld = window.bluePrint.selectSingleNode(`//Data/Progression/World[@id="${Self.active.world}"]`),
 							total = +xWorld.getAttribute("total"),
-							wEl = Self.els.el.find(`ul li.expanded`);
+							wEl = Self.els.el.find(`ul li.expanded`),
+							solved = Math.max(+wEl.data("solved"), Self.active.level+1, 0);
 						if (Self.active.level < total) {
 							Self.active.level++;
 							// update progress bar
-							let width = Math.round(((Self.active.level+1) / total) * 100) +"%";
+							let width = Math.round((solved / total) * 100) +"%";
 							wEl.find(`.progress span`).css({ width });
 						} else {
 							Self.active.world++;
@@ -142,7 +145,6 @@
 							wEl.removeClass("expanded");
 							wEl = Self.els.el.find(`ul li`).get(Self.active.world-1).addClass("expanded");
 						}
-						let solved = Math.max(+wEl.data("solved"), Self.active.level+1, 0);
 						wEl.data({ solved });
 					});
 				break;

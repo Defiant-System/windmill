@@ -1,6 +1,6 @@
 <Level id="1.12" palette="green">
 	<grid width="10" height="4" line="17" gW="57" gH="83" gap="8">
-		<i type="ns" x="0" y="0" hexMid="1"/>
+		<i type="ns" x="0" y="0"/>
 		<i type="nsd" x="0" y="1"/>
 		<i type="ns" x="0" y="2"/>
 		<i type="we" x="0" y="0"/>
@@ -86,7 +86,7 @@
 		<i type="we" x="8" y="3"/>
 		<i type="wed" x="8" y="4"/>
 		<i type="ns" x="10" y="0"/>
-		<i type="we" x="9" y="0"/>
+		<i type="wed" x="9" y="0"/>
 		<i type="nsd" x="10" y="1"/>
 		<i type="we" x="9" y="1"/>
 		<i type="ns" x="10" y="2"/>
