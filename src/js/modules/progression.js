@@ -39,11 +39,17 @@
 					el.addClass("expanded");
 				}
 
+				console.log(w, l);
+				// update "solved" attribute
+				// el.data({ solved: Math.max(+el.data("solved"), l-1, 0) });
+
 				// update menu
 				xNode = window.bluePrint.selectSingleNode(`//Menu[@levelId="${w}.${l}"]`);
 				window.bluePrint.selectNodes(`//Menu[@check-group="active-level"]`).map(x => x.removeAttribute("is-checked"));
-				xNode.removeAttribute("disabled");
-				xNode.setAttribute("is-checked", "1");
+				if (xNode) {
+					xNode.removeAttribute("disabled");
+					xNode.setAttribute("is-checked", "1");
+				}
 				break;
 			// custom events
 			case "apply-saved-state":
@@ -108,6 +114,13 @@
 				}
 				break;
 			case "progress-power-up":
+				// check if progressed
+				value = Self.dispatch({ type: "serialize-progress" });
+				console.log( value );
+				console.log( APP.state.progression );
+				// if (APP.state.progression) {
+				// 	return;
+				// }
 				// flash progression
 				Self.els.el.find("li.expanded")
 					.cssSequence("power-up", "animationend", el => {
@@ -129,7 +142,7 @@
 							wEl.removeClass("expanded");
 							wEl = Self.els.el.find(`ul li`).get(Self.active.world-1).addClass("expanded");
 						}
-						let solved = Math.max(+wEl.data("solved"), Self.active.level+1);
+						let solved = Math.max(+wEl.data("solved"), Self.active.level+1, 0);
 						wEl.data({ solved });
 					});
 				break;

@@ -5,10 +5,12 @@
 		<Menu name="Quit Witness" shell="win -c"/>
 	</Menu>
 	<Menu name="Levels" for="puzzle-options">
-		<Menu name="Edit View" click="toggle-edit-view"/>
-		<Menu name="Blank Tempate" click="blank-template"/>
-		<Menu type="divider"/>
 		<Menu name="Start View" check-group="active-level" click="render-level" arg="0.1"/>
+		<Menu type="divider"/>
+		<Menu name="Edit&#8230;">
+			<Menu name="Edit View" click="toggle-edit-view"/>
+			<Menu name="Blank Tempate" click="blank-template"/>
+		</Menu>
 		<Menu type="divider"/>
 	</Menu>
 	<Menu name="Help">
