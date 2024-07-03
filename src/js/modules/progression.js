@@ -42,6 +42,7 @@
 				// update menu
 				xNode = window.bluePrint.selectSingleNode(`//Menu[@levelId="${w}.${l}"]`);
 				window.bluePrint.selectNodes(`//Menu[@check-group="active-level"]`).map(x => x.removeAttribute("is-checked"));
+				xNode.removeAttribute("disabled");
 				xNode.setAttribute("is-checked", "1");
 				break;
 			// custom events
@@ -135,12 +136,11 @@
 			case "select-world":
 				event.el.find(".expanded").removeClass("expanded");
 				el = $(event.target).addClass("expanded");
-
-				if (!el.nextAll("li:not(.disabled)").length) {
-					console.log(`last level: ${el.data("id")}.1`);
-				} else {
-					console.log(`prev world: ${el.data("id")}.0`);
-				}
+				// if "last" world, go to last level
+				value = el.nextAll("li:not(.disabled)").length
+						? `${el.data("id")}.0`
+						: `${el.data("id")}.${el.data("solved")}`;
+				Game.dispatch({ type: "render-level", arg: value });
 				break;
 			case "serialize-progress":
 				value = Self.els.el.find("ul li").map(elem => +elem.getAttribute("data-solved")).filter(i => i);
