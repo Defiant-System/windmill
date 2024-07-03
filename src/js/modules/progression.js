@@ -38,7 +38,7 @@
 						if ((Self.active.world < 0 && APP.state.progression[i+1] === undefined) || solved === 0) {
 							if (attr.length === 1 && attr[0] === `state="locked"`) attr = [];
 							attr.push(`state="active"`);
-							attr.push(`percent="${Math.round((solved / total) * 100)}%"`);
+							attr.push(`percent="${Math.round(((solved+1) / total) * 100)}%"`);
 							Self.active.world = i+1;
 						}
 						return `<World id="${i+1}" total="${total}" ${attr.join(" ")}/>`;
@@ -84,7 +84,7 @@
 						if (Self.active.level < total-1) {
 							Self.active.level++;
 							// update progress bar
-							let width = Math.round((Self.active.level / total) * 100) +"%";
+							let width = Math.round(((Self.active.level+1) / total) * 100) +"%";
 							Self.els.el.find(`ul li.expanded .progress span`).css({ width })
 						} else {
 							Self.active.world++;

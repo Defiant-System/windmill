@@ -23,7 +23,7 @@
 
 
 const DefaultState = {
-	progression: [12]
+	// progression: [12, 7]
 };
 
 
@@ -63,6 +63,9 @@ const witness = {
 			// system events
 			case "window.init":
 				break;
+			case "window.close":
+				console.log("save state");
+				break;
 			case "window.focus":
 				// resume background worker
 				Bg.dispatch({ type: "resume" });
@@ -71,12 +74,13 @@ const witness = {
 				// resume background worker
 				Bg.dispatch({ type: "pause" });
 				break;
+			// from menu
+			case "render-level":
+				Game.dispatch(event);
+				break;
 			// custom events
 			case "show-view":
 				window.find("content").data({ show: event.arg });
-				break;
-			case "render-level":
-				Game.dispatch(event);
 				break;
 			case "blank-template":
 			case "toggle-edit-view":

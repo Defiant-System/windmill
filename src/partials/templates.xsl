@@ -27,7 +27,7 @@
 	<xsl:variable name="puzzleWidth" select="(grid/@width * grid/@gW) + grid/@line" />
 	<xsl:variable name="puzzleHeight" select="(grid/@height * grid/@gH) + grid/@line" />
 
-	<div class="level appear">
+	<div class="level">
 		<xsl:attribute name="data-id"><xsl:value-of select="@id"/></xsl:attribute>
 		<xsl:attribute name="data-palette"><xsl:value-of select="@palette"/></xsl:attribute>
 		<xsl:attribute name="data-symmetry"><xsl:value-of select="grid/@symmetry"/></xsl:attribute>

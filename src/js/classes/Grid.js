@@ -30,12 +30,15 @@ class Grid {
 				match,
 				template: "level-puzzle",
 				append: window.find(".game-view"),
-			});
+			}),
+			appearFn = () => {
+				// appear animation
+				nextEl.cssSequence("appear", "animationend", el => el.addClass("active").removeClass("appear"));
+			};
 
-		// appear animation
-		nextEl.cssSequence("appear", "animationend", el => el.addClass("active").removeClass("appear"));
-		// update window title
-		// window.title = `Witness - Level ${id}`;
+		if (id === "1.0") setTimeout(appearFn, 500);
+		else appearFn();
+		
 		// set title of progression element
 		witness.progression.els.el.attr({ title: `Level ${id}` });
 
