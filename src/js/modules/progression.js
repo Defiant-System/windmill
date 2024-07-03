@@ -18,6 +18,7 @@
 	dispatch(event) {
 		let APP = witness,
 			Self = APP.progression,
+			xNode,
 			value,
 			el;
 		// console.log(event);
@@ -31,11 +32,17 @@
 				Self.active.world = w;
 				Self.active.level = l;
 
+				// update UI
 				el = Self.els.el.find(`ul li[data-id="${w}"]`);
 				if (!el.hasClass("expanded")) {
 					Self.els.el.find(`li.expanded`).removeClass("expanded");
 					el.addClass("expanded");
 				}
+
+				// update menu
+				xNode = window.bluePrint.selectSingleNode(`//Menu[@levelId="${w}.${l}"]`);
+				window.bluePrint.selectNodes(`//Menu[@check-group="active-level"]`).map(x => x.removeAttribute("is-checked"));
+				xNode.setAttribute("is-checked", "1");
 				break;
 			// custom events
 			case "apply-saved-state":
