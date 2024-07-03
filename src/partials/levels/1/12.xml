@@ -1,98 +1,98 @@
 <Level id="1.12" palette="green">
 	<grid width="10" height="4" line="17" gW="57" gH="83" gap="8">
-		<i type="ns" x="0" y="0" hexMid="1"/>
-		<i type="nsd" x="0" y="1"/>
+		<i type="ns" x="0" y="0"/>
+		<i type="ns" x="0" y="1"/>
 		<i type="ns" x="0" y="2"/>
 		<i type="we" x="0" y="0"/>
 		<i type="we" x="0" y="1"/>
 		<i type="we" x="0" y="2"/>
-		<i type="wed" x="0" y="3"/>
-		<i type="nsd" x="1" y="0"/>
+		<i type="we" x="0" y="3"/>
+		<i type="ns" x="1" y="0"/>
 		<i type="ns" x="1" y="1"/>
-		<i type="nsd" x="1" y="2"/>
+		<i type="ns" x="1" y="2"/>
 		<i type="we" x="1" y="0"/>
-		<i type="wed" x="1" y="1"/>
-		<i type="wed" x="1" y="2"/>
-		<i type="wed" x="1" y="3"/>
-		<i type="nsd" x="2" y="0"/>
+		<i type="we" x="1" y="1"/>
+		<i type="we" x="1" y="2"/>
+		<i type="we" x="1" y="3"/>
+		<i type="ns" x="2" y="0"/>
 		<i type="ns" x="2" y="1"/>
 		<i type="ns" x="2" y="2"/>
 		<i type="we" x="2" y="0"/>
 		<i type="we" x="2" y="1"/>
-		<i type="wed" x="2" y="2"/>
-		<i type="wed" x="2" y="3"/>
-		<i type="nsd" x="3" y="0"/>
+		<i type="we" x="2" y="2"/>
+		<i type="we" x="2" y="3"/>
+		<i type="ns" x="3" y="0"/>
 		<i type="ns" x="3" y="1"/>
 		<i type="ns" x="3" y="2"/>
 		<i type="ns" x="0" y="3"/>
 		<i type="we" x="0" y="4"/>
-		<i type="nsd" x="1" y="3"/>
+		<i type="ns" x="1" y="3"/>
 		<i type="we" x="1" y="4"/>
 		<i type="ns" x="2" y="3"/>
-		<i type="wed" x="2" y="4"/>
+		<i type="we" x="2" y="4"/>
 		<i type="ns" x="3" y="3"/>
-		<i type="nsd" x="4" y="0"/>
+		<i type="ns" x="4" y="0"/>
 		<i type="we" x="3" y="0"/>
 		<i type="ns" x="4" y="1"/>
-		<i type="wed" x="3" y="1"/>
+		<i type="we" x="3" y="1"/>
 		<i type="ns" x="4" y="2"/>
-		<i type="wed" x="3" y="2"/>
+		<i type="we" x="3" y="2"/>
 		<i type="ns" x="4" y="3"/>
-		<i type="wed" x="3" y="3"/>
+		<i type="we" x="3" y="3"/>
 		<i type="we" x="3" y="4"/>
-		<i type="nsd" x="5" y="0"/>
+		<i type="ns" x="5" y="0"/>
 		<i type="we" x="4" y="0"/>
-		<i type="nsd" x="5" y="1"/>
+		<i type="ns" x="5" y="1"/>
 		<i type="we" x="4" y="1"/>
 		<i type="ns" x="5" y="2"/>
-		<i type="wed" x="4" y="2"/>
+		<i type="we" x="4" y="2"/>
 		<i type="ns" x="5" y="3"/>
-		<i type="wed" x="4" y="3"/>
-		<i type="wed" x="4" y="4"/>
-		<i type="nsd" x="6" y="0"/>
+		<i type="we" x="4" y="3"/>
+		<i type="we" x="4" y="4"/>
+		<i type="ns" x="6" y="0"/>
 		<i type="we" x="5" y="0"/>
-		<i type="nsd" x="6" y="1"/>
+		<i type="ns" x="6" y="1"/>
 		<i type="we" x="5" y="1"/>
-		<i type="nsd" x="6" y="2"/>
+		<i type="ns" x="6" y="2"/>
 		<i type="we" x="5" y="2"/>
 		<i type="ns" x="6" y="3"/>
-		<i type="wed" x="5" y="3"/>
+		<i type="we" x="5" y="3"/>
 		<i type="we" x="5" y="4"/>
-		<i type="nsd" x="7" y="0"/>
+		<i type="ns" x="7" y="0"/>
 		<i type="we" x="6" y="0"/>
-		<i type="nsd" x="7" y="1"/>
+		<i type="ns" x="7" y="1"/>
 		<i type="we" x="6" y="1"/>
-		<i type="nsd" x="7" y="2"/>
+		<i type="ns" x="7" y="2"/>
 		<i type="we" x="6" y="2"/>
 		<i type="ns" x="7" y="3"/>
 		<i type="we" x="6" y="3"/>
-		<i type="wed" x="6" y="4"/>
-		<i type="nsd" x="8" y="0"/>
+		<i type="we" x="6" y="4"/>
+		<i type="ns" x="8" y="0"/>
 		<i type="we" x="7" y="0"/>
 		<i type="ns" x="8" y="1"/>
 		<i type="we" x="7" y="1"/>
-		<i type="nsd" x="8" y="2"/>
+		<i type="ns" x="8" y="2"/>
 		<i type="we" x="7" y="2"/>
 		<i type="ns" x="8" y="3"/>
-		<i type="wed" x="7" y="3"/>
+		<i type="we" x="7" y="3"/>
 		<i type="we" x="7" y="4"/>
-		<i type="nsd" x="9" y="0"/>
+		<i type="ns" x="9" y="0"/>
 		<i type="we" x="8" y="0"/>
 		<i type="ns" x="9" y="1"/>
-		<i type="wed" x="8" y="1"/>
-		<i type="nsd" x="9" y="2"/>
-		<i type="wed" x="8" y="2"/>
+		<i type="we" x="8" y="1"/>
+		<i type="ns" x="9" y="2"/>
+		<i type="we" x="8" y="2"/>
 		<i type="ns" x="9" y="3"/>
 		<i type="we" x="8" y="3"/>
-		<i type="wed" x="8" y="4"/>
+		<i type="we" x="8" y="4"/>
 		<i type="ns" x="10" y="0"/>
 		<i type="we" x="9" y="0"/>
-		<i type="nsd" x="10" y="1"/>
+		<i type="ns" x="10" y="1"/>
 		<i type="we" x="9" y="1"/>
 		<i type="ns" x="10" y="2"/>
 		<i type="we" x="9" y="2"/>
 		<i type="ns" x="10" y="3"/>
-		<i type="wed" x="9" y="3"/>
+		<i type="we" x="9" y="3"/>
 		<i type="we" x="9" y="4"/>
 		<i type="start" x="0" y="0"/>
 		<i type="exit" x="10" y="0" d="1"/>

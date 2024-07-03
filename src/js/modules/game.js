@@ -31,7 +31,12 @@ let Game = {
 		window.menuBar.commit();
 
 		// make sure level list is sorted
-		this.level.list.sort((a,b) => a - b);
+		this.level.list.sort((a, b) => {
+			let [a1, a2] = a.split(".").map(i => +i),
+				[b1, b2] = b.split(".").map(i => +i);
+			return a1 > b1 && a2 > b2;
+		});
+		// console.log( this.level.list.join("\n") );
 	},
 	dispatch(event) {
 		let APP = witness,

@@ -7,11 +7,15 @@
 		this.els = {
 			el: window.find(".progression"),
 		};
+		// keep track of active world / level
+		this.active = {
+			world: -1,
+			level: -1,
+		};
 	},
 	dispatch(event) {
 		let APP = witness,
 			Self = APP.progression,
-			data,
 			el;
 		// console.log(event);
 		switch (event.type) {
@@ -20,7 +24,7 @@
 				// prevent lobby anim
 				window.find(".start-view").addClass("no-anim");
 
-				data = [];
+				let data = [];
 				// map out levels
 				Game.level.list.map(entry => {
 					let [w, i] = entry.split(".").map(i => +i);
@@ -28,18 +32,19 @@
 					data[w-1].push(i);
 				});
 
-				let active = { world: -1 },
-					xProgression = window.bluePrint.selectSingleNode(`//Data/Progression`),
+				let xProgression = window.bluePrint.selectSingleNode(`//Data/Progression`),
 					nodes = data.map((w, i) => {
-						let solved = APP.state.progression[i],
+						let total = Math.max(...w),
+							solved = APP.state.progression[i],
 							attr = [`state="locked"`];
 						if (solved) attr = [`solved="${solved}"`];
-						if ((active.world < 0 && APP.state.progression[i+1] === undefined) || solved === 0) {
+						if ((Self.active.world < 0 && APP.state.progression[i+1] === undefined) || solved === 0) {
 							if (attr.length === 1 && attr[0] === `state="locked"`) attr = [];
 							attr.push(`state="active"`);
-							active.world = i+1;
+							attr.push(`percent="${Math.round((solved / total) * 100)}%"`);
+							Self.active.world = i+1;
 						}
-						return `<World id="${i+1}" total="${Math.max(...w)}" ${attr.join(" ")}/>`;
+						return `<World id="${i+1}" total="${total}" ${attr.join(" ")}/>`;
 					});
 				// console.log( `<data>${nodes.join("\n")}</data>` );
 
@@ -48,7 +53,7 @@
 					.selectNodes("/data/World").map(xWorld => xProgression.appendChild(xWorld));
 
 				// complete last active level string
-				active.level = APP.state.progression[active.world-1];
+				Self.active.level = APP.state.progression[Self.active.world-1];
 
 				// render progression nav
 				window.render({
@@ -57,7 +62,7 @@
 					target: window.find(".progression"),
 				});
 				// auto jump to "last" level
-				Game.dispatch({ type: "render-level", arg: `${active.world}.${active.level}` });
+				Game.dispatch({ type: "render-level", arg: `${Self.active.world}.${Self.active.level}` });
 				break;
 			case "select-world":
 				event.el.find(".expanded").removeClass("expanded");
@@ -66,7 +71,22 @@
 			case "progress-power-up":
 				// flash progression
 				Self.els.el.find("li.expanded")
-					.cssSequence("power-up", "animationend", el => el.removeClass("power-up"));
+					.cssSequence("power-up", "animationend", el => {
+						// reset element
+						el.removeClass("power-up");
+
+						let xWorld = window.bluePrint.selectSingleNode(`//Data/Progression/World[@id="${Self.active.world}"]`),
+							total = +xWorld.getAttribute("total");
+						if (Self.active.level < total) {
+							Self.active.level++;
+							// update progress bar
+							let width = Math.round((Self.active.level / total) * 100) +"%";
+							Self.els.el.find(`ul li.expanded .progress span`).css({ width })
+						} else {
+							Self.active.world++;
+							Self.active.level = 0;
+						}
+					});
 				break;
 		}
 	}

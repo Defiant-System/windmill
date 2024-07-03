@@ -23,7 +23,7 @@
 
 
 const DefaultState = {
-	progression: [11, 1]
+	progression: [12]
 };
 
 

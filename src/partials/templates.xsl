@@ -13,7 +13,7 @@
 			</xsl:if>
 			<div class="progress"><span>
 				<xsl:attribute name="style">
-					width: <xsl:value-of select="format-number( @solved div @total, '##0.0%' )"/>
+					width: <xsl:value-of select="@percent"/>
 				</xsl:attribute>
 			</span></div>
 		</li>

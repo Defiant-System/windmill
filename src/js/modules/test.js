@@ -1,6 +1,13 @@
 
 let Test = {
 	init(APP) {
+		
+		return;
+		
+		setTimeout(() => {
+			APP.progression.dispatch({ type: "progress-power-up" });
+		}, 300);
+
 		return;
 
 		// temp
