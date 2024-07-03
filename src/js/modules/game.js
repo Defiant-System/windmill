@@ -96,6 +96,10 @@ let Game = {
 					// if in edit mode, do not go to next level
 					return APP.edit.dispatch({ type: "reset-level" });
 				}
+				if (Self.grid.levelId === "0.1") {
+					APP.state.progression = [-1];
+					APP.progression.dispatch({ type: "apply-saved-state", noJump: true });
+				}
 				Self.level.index = Self.level.list.indexOf(Self.grid.levelId) + 1;
 				if (Self.level.index > Self.level.list.length - 1) Self.level.index = 0;
 				Self.grid.render(Self.level.list[Self.level.index]);

@@ -21,9 +21,6 @@
 		switch (event.type) {
 			// custom events
 			case "apply-saved-state":
-				// prevent lobby anim
-				window.find(".start-view").addClass("no-anim");
-
 				let data = [];
 				// map out levels
 				Game.level.list.map(entry => {
@@ -59,10 +56,17 @@
 				window.render({
 					template: "game-progression",
 					match: "//Data/Progression",
-					target: window.find(".progression"),
+					target: Self.els.el,
 				});
-				// auto jump to "last" level
-				Game.dispatch({ type: "render-level", arg: `${Self.active.world}.${Self.active.level}` });
+				// show progression UI
+				Self.els.el.addClass("show-up");
+				
+				if (!event.noJump) {
+					// prevent lobby anim
+					window.find(".start-view").addClass("no-anim");
+					// auto jump to "latest" level
+					Game.dispatch({ type: "render-level", arg: `${Self.active.world}.${Self.active.level}` });
+				}
 				break;
 			case "select-world":
 				event.el.find(".expanded").removeClass("expanded");
@@ -77,7 +81,7 @@
 
 						let xWorld = window.bluePrint.selectSingleNode(`//Data/Progression/World[@id="${Self.active.world}"]`),
 							total = +xWorld.getAttribute("total");
-						if (Self.active.level < total) {
+						if (Self.active.level < total-1) {
 							Self.active.level++;
 							// update progress bar
 							let width = Math.round((Self.active.level / total) * 100) +"%";
@@ -85,6 +89,9 @@
 						} else {
 							Self.active.world++;
 							Self.active.level = 0;
+							// change "expanded"
+							Self.els.el.find(`ul li.expanded`).removeClass("expanded");
+							Self.els.el.find(`ul li`).get(Self.active.world-1).addClass("expanded");
 						}
 					});
 				break;

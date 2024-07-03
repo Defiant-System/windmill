@@ -39,15 +39,6 @@ const witness = {
 			.filter(i => typeof this[i].init === "function")
 			.map(i => this[i].init(this));
 
-		// // reference to progression node
-		// this.xProgression = window.bluePrint.selectSingleNode(`//Data/Progression`);
-		// // get saved progression, if any
-		// let progression = window.settings.getItem("progression");
-		// if (progression) {
-		// 	// replace saved progression with default in "Data"
-		// 	this.xProgression.parentNode.replaceChild(progression, this.xProgression);
-		// }
-
 		// get saved progression, if any
 		this.state = window.settings.getItem("progression") || DefaultState;
 

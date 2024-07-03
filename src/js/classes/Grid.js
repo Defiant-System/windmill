@@ -35,7 +35,9 @@ class Grid {
 		// appear animation
 		nextEl.cssSequence("appear", "animationend", el => el.addClass("active").removeClass("appear"));
 		// update window title
-		window.title = `Witness - Level ${id}`;
+		// window.title = `Witness - Level ${id}`;
+		// set title of progression element
+		witness.progression.els.el.attr({ title: `Level ${id}` });
 
 		// center puzzle
 		this.el = nextEl.find(".puzzle");
