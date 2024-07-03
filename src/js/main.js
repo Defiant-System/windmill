@@ -23,7 +23,8 @@
 
 
 const DefaultState = {
-	// progression: [12, 7]
+	// progression: [12, 37, 30, 26, 7]
+	progression: [1]
 };
 
 
@@ -64,7 +65,8 @@ const witness = {
 			case "window.init":
 				break;
 			case "window.close":
-				console.log("save state");
+				value = Self.progression.dispatch({ type: "serialize-progress" });
+				console.log( value );
 				break;
 			case "window.focus":
 				// resume background worker

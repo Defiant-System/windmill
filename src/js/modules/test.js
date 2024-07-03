@@ -5,7 +5,7 @@ let Test = {
 		return;
 		
 		setTimeout(() => {
-			APP.progression.dispatch({ type: "progress-power-up" });
+			APP.progression.dispatch({ type: "serialize-progress" });
 		}, 300);
 
 		return;

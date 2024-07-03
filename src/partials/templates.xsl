@@ -5,6 +5,8 @@
 	<ul data-click="select-world">
 		<xsl:for-each select="./World">
 		<li>
+			<xsl:attribute name="data-id"><xsl:value-of select="@id"/></xsl:attribute>
+			<xsl:attribute name="data-solved"><xsl:value-of select="@solved"/></xsl:attribute>
 			<xsl:if test="@state = 'active'">
 				<xsl:attribute name="class">expanded</xsl:attribute>
 			</xsl:if>

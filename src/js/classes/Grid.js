@@ -39,9 +39,6 @@ class Grid {
 		if (id === "1.0") setTimeout(appearFn, 500);
 		else appearFn();
 		
-		// set title of progression element
-		witness.progression.els.el.attr({ title: `Level ${id}` });
-
 		// center puzzle
 		this.el = nextEl.find(".puzzle");
 		let top = (window.innerHeight - +this.el.prop("offsetHeight")) >> 1,
@@ -52,7 +49,7 @@ class Grid {
 			show = id === "0.1" ? "start-view" : "game-view";
 		window.find("content").data({ show }).css({ "--base": base.getAttribute("val") });
 		// broadcast event
-		window.emit("render-level");
+		window.emit("render-level", { id });
 	}
 
 	renderClone(xClone) {

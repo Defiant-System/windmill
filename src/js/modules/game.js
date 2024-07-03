@@ -12,10 +12,14 @@ let Game = {
 			xStr = [];
 		window.bluePrint.selectNodes(`//Data/Level[not(@type)]`).map(x => {
 			let xId = x.getAttribute("id"),
-				xWorld = +xId.split(".")[0];
+				xWorld = +xId.split(".")[0],
+				worldDisabled = true,
+				levelDisabled = true;
 			if (world > 0 && world !== xWorld) xStr.push(`</Menu>`);
-			if (world !== xWorld) xStr.push(`<Menu name="Level ${xWorld}&#8230;">`);
-			xStr.push(`<Menu name="${xId}" check-group="active-level" click="render-level"/>`);
+			if (world !== xWorld) {
+				xStr.push(`<Menu name="Level ${xWorld}&#8230;" ${worldDisabled ? `disabled="1"` : ""}>`);
+			}
+			xStr.push(`<Menu name="${xId}" check-group="active-level" click="render-level" ${levelDisabled ? `disabled="1"` : ""}/>`);
 			if (world !== xWorld) world = xWorld;
 			// add to level list
 			this.level.list.push(xId);
