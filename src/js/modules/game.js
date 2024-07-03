@@ -6,41 +6,8 @@ let Game = {
 		this.grid = new Grid();
 		// levels list
 		this.level = { index: 0, list: [] };
-
-		// populate menu
-		let world = 0,
-			xStr = [];
-		window.bluePrint.selectNodes(`//Data/Level[not(@type)]`).map(x => {
-			let xId = x.getAttribute("id"),
-				xWorld = +xId.split(".")[0],
-				worldDisabled = true,
-				levelDisabled = true;
-			if (world > 0 && world !== xWorld) xStr.push(`</Menu>`);
-			if (world !== xWorld) {
-				xStr.push(`<Menu name="Level ${xWorld}&#8230;" ${worldDisabled ? `disabled="1"` : ""}>`);
-			}
-			xStr.push(`<Menu name="${xId}" check-group="active-level" click="render-level" ${levelDisabled ? `disabled="1"` : ""}/>`);
-			if (world !== xWorld) world = xWorld;
-			// add to level list
-			this.level.list.push(xId);
-		});
-		// close last world "node"
-		xStr.push(`</Menu>`);
-
-		// insert "real" menu options
-		let xLevels = window.bluePrint.selectSingleNode(`//Menu[@for="puzzle-options"]`);
-		$.xmlFromString(`<data>${xStr.join("")}</data>`).selectNodes(`/data/Menu`)
-			.map(xMenu => xLevels.appendChild(xMenu));
-		// finalize / commit menu changes to bluePrint
-		window.menuBar.commit();
-
-		// make sure level list is sorted
-		this.level.list.sort((a, b) => {
-			let [a1, a2] = a.split(".").map(i => +i),
-				[b1, b2] = b.split(".").map(i => +i);
-			return a1 > b1 && a2 > b2;
-		});
-		// console.log( this.level.list.join("\n") );
+		// populate contextmenu
+		this.dispatch({ type: "populate-contextmenu" });
 	},
 	dispatch(event) {
 		let APP = witness,
@@ -107,6 +74,40 @@ let Game = {
 				Self.level.index = Self.level.list.indexOf(Self.grid.levelId) + 1;
 				if (Self.level.index > Self.level.list.length - 1) Self.level.index = 0;
 				Self.grid.render(Self.level.list[Self.level.index]);
+				break;
+			case "populate-contextmenu":
+				// populate menu
+				let world = 0,
+					xStr = [];
+				window.bluePrint.selectNodes(`//Data/Level[not(@type)]`).map(x => {
+					let xId = x.getAttribute("id"),
+						xWorld = +xId.split(".")[0];
+					if (world > 0 && world !== xWorld) xStr.push(`</Menu>`);
+					if (world !== xWorld) {
+						xStr.push(`<Menu name="Level ${xWorld}&#8230;" worldId="${xWorld}" disabled="1">`);
+					}
+					xStr.push(`<Menu name="${xId}" check-group="active-level" click="render-level" levelId="${xId}" disabled="1"/>`);
+					if (world !== xWorld) world = xWorld;
+					// add to level list
+					Self.level.list.push(xId);
+				});
+				// close last world "node"
+				xStr.push(`</Menu>`);
+
+				// insert "real" menu options
+				let xLevels = window.bluePrint.selectSingleNode(`//Menu[@for="puzzle-options"]`);
+				$.xmlFromString(`<data>${xStr.join("")}</data>`).selectNodes(`/data/Menu`)
+					.map(xMenu => xLevels.appendChild(xMenu));
+				// finalize / commit menu changes to bluePrint
+				window.menuBar.commit();
+
+				// make sure level list is sorted
+				Self.level.list.sort((a, b) => {
+					let [a1, a2] = a.split(".").map(i => +i),
+						[b1, b2] = b.split(".").map(i => +i);
+					return a1 > b1 && a2 > b2;
+				});
+				// console.log( this.level.list.join("\n") );
 				break;
 
 		}

@@ -5,8 +5,9 @@ let Test = {
 		return;
 		
 		setTimeout(() => {
-			APP.progression.dispatch({ type: "serialize-progress" });
-		}, 300);
+			Game.dispatch({ type: "render-level", arg: "1.2" });
+			// APP.progression.dispatch({ type: "serialize-progress" });
+		}, 2e3);
 
 		return;
 

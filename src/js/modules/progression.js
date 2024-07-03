@@ -30,6 +30,12 @@
 				let [w, l] = event.detail.id.split(".").map(i => +i);
 				Self.active.world = w;
 				Self.active.level = l;
+
+				el = Self.els.el.find(`ul li[data-id="${w}"]`);
+				if (!el.hasClass("expanded")) {
+					Self.els.el.find(`li.expanded`).removeClass("expanded");
+					el.addClass("expanded");
+				}
 				break;
 			// custom events
 			case "apply-saved-state":
@@ -48,11 +54,24 @@
 							attr = [`state="locked"`];
 						if (solved) attr = [`solved="${solved}"`];
 						if ((Self.active.world < 0 && APP.state.progression[i+1] === undefined) || solved === 0) {
-							if (attr.length === 1 && attr[0] === `state="locked"`) attr = [];
+							if (attr[0] === `state="locked"`) attr = [];
 							attr.push(`state="active"`);
-							attr.push(`percent="${Math.round((solved / total) * 100)}%"`);
 							Self.active.world = i+1;
 						}
+						// solved percentage
+						attr.push(`percent="${Math.round(((solved || 0) / total) * 100)}%"`);
+						// update contextmenu
+						let xMenu = window.bluePrint.selectSingleNode(`//Menu[@worldId="${i+1}"]`);
+						if (solved) {
+							// enable "world" menu
+							xMenu.removeAttribute("disabled");
+							// enable sub-level menus
+							w.slice(0, solved+1).map(l => {
+								let xLevel = xMenu.selectSingleNode(`./*[@levelId="${i+1}.${l}"]`);
+								xLevel.removeAttribute("disabled");
+							});
+						}
+						// "world" node
 						return `<World id="${i+1}" total="${total}" ${attr.join(" ")}/>`;
 					});
 				// console.log( `<data>${nodes.join("\n")}</data>` );
