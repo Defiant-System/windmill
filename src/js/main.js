@@ -23,9 +23,9 @@
 
 
 const DefaultState = {
-	// progression: [12, 37, 30, 26, 7],
+	// progression: [13, 37, 30, 26, 7],
 	// progression: [13, 1],
-	progression: [13],
+	progression: [],
 };
 
 
