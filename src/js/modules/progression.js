@@ -99,6 +99,13 @@
 				// complete last active level string
 				Self.active.level = APP.state.progression[Self.active.world-1];
 
+				// skip to next world, if all puzzles are solved
+				value = `${Self.active.world}.${Self.active.level}`;
+				if (!Game.level.list.includes(value)) {
+					Self.active.world++;
+					Self.active.level = 0;
+				}
+
 				// render progression nav
 				window.render({
 					template: "game-progression",
