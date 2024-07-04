@@ -2,10 +2,31 @@
 [data-ui="karaqu-dark"] {
 	.win-body_ content {
 		.edit-view {
+			border: 1px solid rgba(#000,.25);
+			border-right: 0;
+			border-radius: 6px 0 0 6px;
+
 			.wrapper {
 				background: #6a6a6a;
 				color: #eee;
 				text-shadow: 0 1px 0 rgba(#111,.25);
+			}
+
+			.option-buttons_ {
+				[class*="icon-"],
+				[class^="icon-"] {
+					filter: invert(1) brightness(1) drop-shadow(0 1px 0 rgba(#111,.25));
+				}
+			}
+
+			.group-row {
+				&:before {
+					background: linear-gradient(90deg, transparent, rgba(#000,.2), transparent);
+				}
+
+				&:after {
+					background: linear-gradient(90deg, transparent, rgba(#fff,.175), transparent);
+				}
 			}
 		}
 	}
@@ -36,7 +57,34 @@
 }
 
 [data-ui="royale-purple"] {
+	.win-body_ content {
+		.edit-view {
+			left: -6px;
+			border: 1px solid rgba(#000,.35);
+			border-right: 0;
+			border-radius: 6px 0 0 6px;
 
+			&.show {
+				left: -206px;
+			}
+
+			.wrapper {
+				background: var( --content-bg ) radial-gradient(circle at top center, rgba(#fff,.15) 0, transparent 90%);
+				color: #f2f2f2;
+				text-shadow: 0 1px 0 rgba(#111,.25);
+			}
+
+			.group-row {
+				&:before {
+					background: linear-gradient(90deg, transparent, rgba(#000,.2), transparent);
+				}
+
+				&:after {
+					background: linear-gradient(90deg, transparent, rgba(#fff,.175), transparent);
+				}
+			}
+		}
+	}
 }
 
 [data-ui="royale-pink"] {
