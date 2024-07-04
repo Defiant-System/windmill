@@ -2,24 +2,24 @@
 let Test = {
 	init(APP) {
 		
-		return;
+		// return;
 		// APP.dispatch({ type: "open-help" });
 		
-		setTimeout(() => {
-			Game.dispatch({ type: "render-level", arg: "6.21" });
-			// APP.progression.dispatch({ type: "serialize-progress" });
-		}, 1e3);
+		// setTimeout(() => {
+		// 	Game.dispatch({ type: "render-level", arg: "6.21" });
+		// 	// APP.progression.dispatch({ type: "serialize-progress" });
+		// }, 1e3);
 
-		return;
+		// return;
 
 		// temp
-		window.find(".start-view").addClass("no-anim");
+		// window.find(".start-view").addClass("no-anim");
 		
 		// console.log( window.bluePrint.selectNodes(`//Level`).length );
 
 		// Game.dispatch({ type: "render-level", arg: "0.2" });
-		Game.dispatch({ type: "render-level", arg: "6.20" });
-		return;
+		// Game.dispatch({ type: "render-level", arg: "6.20" });
+		// return;
 
 		setTimeout(() => {
 			APP.edit.dispatch({ type: "toggle-edit-view" });
