@@ -3,9 +3,10 @@ let Test = {
 	init(APP) {
 		
 		return;
+		// APP.dispatch({ type: "open-help" });
 		
 		setTimeout(() => {
-			Game.dispatch({ type: "render-level", arg: "2.0" });
+			Game.dispatch({ type: "render-level", arg: "6.21" });
 			// APP.progression.dispatch({ type: "serialize-progress" });
 		}, 1e3);
 

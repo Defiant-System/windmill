@@ -55,6 +55,9 @@
 				break;
 			// custom events
 			case "apply-saved-state":
+				// exit if already rendered progression UI
+				if (Self.els.el.find("ul li").length) return;
+
 				let data = [];
 				// map out levels
 				Game.level.list.map(entry => {

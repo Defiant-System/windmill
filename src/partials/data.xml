@@ -170,4 +170,5 @@
 	@import "levels/6/18.xml"
 	@import "levels/6/19.xml"
 	@import "levels/6/20.xml"
+	@import "levels/6/21.xml"
 </Data>
