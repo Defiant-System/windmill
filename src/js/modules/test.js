@@ -5,7 +5,7 @@ let Test = {
 		return;
 		
 		setTimeout(() => {
-			Game.dispatch({ type: "render-level", arg: "1.0" });
+			Game.dispatch({ type: "render-level", arg: "2.0" });
 			// APP.progression.dispatch({ type: "serialize-progress" });
 		}, 1e3);
 

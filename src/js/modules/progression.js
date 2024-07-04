@@ -118,11 +118,10 @@
 			case "progress-power-up":
 				// check if progressed
 				value = Self.dispatch({ type: "serialize-progress" });
-				// console.log( value );
-				// console.log( APP.state.progression );
-				// if (APP.state.progression) {
-				// 	return;
-				// }
+				if (value.join() === APP.state.progression.join()) return;
+				// update game state
+				APP.state.progression = value;
+
 				// flash progression
 				Self.els.el.find("li.expanded")
 					.cssSequence("power-up", "animationend", el => {
@@ -136,8 +135,7 @@
 						if (Self.active.level < total) {
 							Self.active.level++;
 							// update progress bar
-							let width = Math.round((solved / total) * 100) +"%";
-							wEl.find(`.progress span`).css({ width });
+							wEl.find(`.progress span`).css({ width: Math.round((solved / total) * 100) +"%" });
 						} else {
 							Self.active.world++;
 							Self.active.level = 0;

@@ -23,8 +23,9 @@
 
 
 const DefaultState = {
-	// progression: [12, 37, 30, 26, 7]
-	progression: [12]
+	// progression: [12, 37, 30, 26, 7],
+	// progression: [13, 1],
+	progression: [],
 };
 
 
@@ -43,7 +44,7 @@ const witness = {
 		// get saved progression, if any
 		this.state = window.settings.getItem("progression") || DefaultState;
 
-		if (this.state.progression) {
+		if (this.state.progression.length) {
 			// go to last saved state
 			this.progression.dispatch({ type: "apply-saved-state" });
 		} else {
@@ -65,8 +66,9 @@ const witness = {
 			case "window.init":
 				break;
 			case "window.close":
+				// save game state
 				value = Self.progression.dispatch({ type: "serialize-progress" });
-				console.log( value );
+				window.settings.setItem("progression", { progression: value });
 				break;
 			case "window.focus":
 				// resume background worker
