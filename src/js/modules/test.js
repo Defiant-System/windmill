@@ -2,13 +2,17 @@
 let Test = {
 	init(APP) {
 		
-		// return;
+		return;
+
+		// return 
+		APP.progression.dispatch({ type: "enable-all-puzzles" });
+
 		// APP.dispatch({ type: "open-help" });
 		
-		// setTimeout(() => {
-		// 	Game.dispatch({ type: "render-level", arg: "6.21" });
-		// 	// APP.progression.dispatch({ type: "serialize-progress" });
-		// }, 1e3);
+		setTimeout(() => {
+			Game.dispatch({ type: "render-level", arg: "4.17" });
+			// APP.progression.dispatch({ type: "serialize-progress" });
+		}, 200);
 
 		// return;
 

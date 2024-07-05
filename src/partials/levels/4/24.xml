@@ -1,61 +1,48 @@
 <Level id="4.24" palette="blue">
-	<grid width="5" height="4" gap="12" symmetry="4">
+	<grid width="4" height="4" symmetry="4" gap="12">
 		<i type="ns" x="0" y="0"/>
-		<i type="nsd" x="0" y="1"/>
-		<i type="ns" x="0" y="2"/>
+		<i type="ns" x="0" y="1"/>
+		<i type="ns" x="0" y="2" hexMid="1"/>
 		<i type="we" x="0" y="0"/>
-		<i type="wed" x="0" y="1"/>
+		<i type="we" x="0" y="1"/>
 		<i type="we" x="0" y="2"/>
 		<i type="we" x="0" y="3"/>
 		<i type="ns" x="1" y="0"/>
 		<i type="ns" x="1" y="1"/>
-		<i type="nsd" x="1" y="2"/>
-		<i type="we" x="1" y="0"/>
+		<i type="ns" x="1" y="2"/>
+		<i type="we" x="1" y="0" hexMid="1"/>
 		<i type="we" x="1" y="1"/>
-		<i type="wed" x="1" y="2"/>
-		<i type="we" x="1" y="3"/>
+		<i type="we" x="1" y="2"/>
+		<i type="wed" x="1" y="3"/>
 		<i type="ns" x="2" y="0"/>
 		<i type="ns" x="2" y="1"/>
 		<i type="ns" x="2" y="2"/>
-		<i type="wed" x="2" y="0"/>
+		<i type="we" x="2" y="0"/>
 		<i type="we" x="2" y="1"/>
 		<i type="we" x="2" y="2"/>
-		<i type="wed" x="2" y="3"/>
+		<i type="we" x="2" y="3"/>
 		<i type="ns" x="3" y="0"/>
-		<i type="nsd" x="3" y="1"/>
+		<i type="ns" x="3" y="1"/>
 		<i type="ns" x="3" y="2"/>
+		<i type="ns" x="0" y="3"/>
+		<i type="we" x="0" y="4"/>
+		<i type="ns" x="1" y="3"/>
+		<i type="we" x="1" y="4"/>
+		<i type="ns" x="2" y="3" hexTop="1"/>
+		<i type="we" x="2" y="4"/>
+		<i type="ns" x="3" y="3"/>
 		<i type="ns" x="4" y="0"/>
 		<i type="we" x="3" y="0"/>
 		<i type="ns" x="4" y="1"/>
 		<i type="we" x="3" y="1"/>
 		<i type="ns" x="4" y="2"/>
 		<i type="we" x="3" y="2"/>
-		<i type="wed" x="3" y="3"/>
-		<i type="nsd" x="0" y="3"/>
-		<i type="we" x="0" y="4"/>
-		<i type="ns" x="1" y="3"/>
-		<i type="we" x="1" y="4"/>
-		<i type="ns" x="2" y="3"/>
-		<i type="we" x="2" y="4"/>
-		<i type="ns" x="3" y="3"/>
-		<i type="we" x="3" y="4"/>
 		<i type="ns" x="4" y="3"/>
-		<i type="nsd" x="5" y="0"/>
-		<i type="we" x="4" y="0"/>
-		<i type="ns" x="5" y="1"/>
-		<i type="we" x="4" y="1"/>
-		<i type="ns" x="5" y="2"/>
-		<i type="we" x="4" y="2"/>
-		<i type="nsd" x="5" y="3"/>
-		<i type="we" x="4" y="3"/>
-		<i type="we" x="4" y="4"/>
-		<i type="start" x="2" y="2"/>
-		<i type="exit" x="0" y="0" d="7"/>
-		<i type="exit" x="5" y="0" d="1"/>
-		<i type="exit" x="5" y="4" d="3"/>
-		<i type="exit" x="0" y="4" d="5"/>
+		<i type="we" x="3" y="3"/>
+		<i type="we" x="3" y="4" hexBot="1"/>
+		<i type="start" x="1" y="2"/>
 		<i type="start" x="3" y="2"/>
-		<i type="dot" x="1" y="0" c="1"/>
-		<i type="dot" x="3" y="0" c="2"/>
+		<i type="exit" x="0" y="4" d="5"/>
+		<i type="exit" x="4" y="0" d="1"/>
 	</grid>
 </Level>

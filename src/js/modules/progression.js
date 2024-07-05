@@ -156,6 +156,9 @@
 						wEl.data({ solved });
 					});
 				break;
+			case "enable-all-puzzles":
+				window.bluePrint.selectNodes(`//Menu[@disabled]`).map(x => x.removeAttribute("disabled"));
+				break;
 			case "select-world":
 				event.el.find(".expanded").removeClass("expanded");
 				el = $(event.target).addClass("expanded");
