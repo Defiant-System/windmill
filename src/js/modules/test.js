@@ -1,12 +1,18 @@
 
 let Test = {
 	init(APP) {
-		return;
 		
-		// console.log( window.bluePrint.selectNodes(`//Level`).length );
-
 		// return 
 		APP.progression.dispatch({ type: "enable-all-puzzles" });
+
+		setTimeout(() => {
+			Game.dispatch({ type: "render-level", arg: "7.28" });
+		}, 200);
+
+
+		console.log( window.bluePrint.selectNodes(`//Level`).length );
+		return;
+		
 
 		// APP.dispatch({ type: "open-help" });
 		

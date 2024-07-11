@@ -609,6 +609,115 @@ content {
 				}
 			}
 
+			&.tetris {
+				top: calc( calc( var( --grid ) * var( --y ) ) + calc( var( --grid ) * .2 ) );
+				left: calc( calc( var( --grid ) * var( --x ) ) + calc( var( --grid ) * .2 ) );
+				width: calc( var( --grid ) * .825 );
+				height: calc( var( --grid ) * .825 );
+
+				s {
+					position: absolute;
+					font-size: 0;
+
+					&.g1x1 {
+						top: 28px;
+						left: 28px;
+						width: 13px;
+						height: 13px;
+					}
+
+					&.g1x2 {
+						top: 22px;
+						left: 28px;
+						width: 13px;
+						height: 26px;
+					}
+
+					&.g2x1 {
+						top: 28px;
+						left: 22px;
+						width: 26px;
+						height: 26px;
+					}
+
+					&.g2x2 {
+						top: 22px;
+						left: 22px;
+						width: 26px;
+						height: 26px;
+					}
+
+					&.g2x3 {
+						top: 14px;
+						left: 22px;
+						width: 26px;
+						height: 39px;
+					}
+
+					&.g3x1 {
+						top: 28px;
+						left: 15px;
+						width: 39px;
+						height: 26px;
+					}
+
+					&.g3x2 {
+						top: 20px;
+						left: 15px;
+						width: 39px;
+						height: 26px;
+					}
+
+					&.g3x3 {
+						top: 15px;
+						left: 15px;
+						width: 39px;
+						height: 26px;
+					}
+
+					&.g4x1 {
+						top: 28px;
+						left: 9px;
+						width: 52px;
+						height: 13px;
+					}
+
+					&.g4x2 {
+						top: 22px;
+						left: 9px;
+						width: 52px;
+						height: 26px;
+					}
+
+					&.g1x3 {
+						top: 15px;
+						left: 28px;
+						width: 12px;
+						height: 48px;
+					}
+
+					&.g1x4 {
+						top: 8px;
+						left: 28px;
+						width: 12px;
+						height: 48px;
+					}
+
+					b {
+						display: inline-block;
+						position: relative;
+						width: 12px;
+						height: 12px;
+						margin: 0 1px 1px 0;
+						border-radius: 1px;
+
+						&[data-v="1"] {
+							background: var(--c);
+						}
+					}
+				}
+			}
+
 			&.lambda {
 				top: calc( calc( var( --grid ) * var( --y ) ) + calc( var( --grid ) * .2 ) );
 				left: calc( calc( var( --grid ) * var( --x ) ) + calc( var( --grid ) * .2 ) );

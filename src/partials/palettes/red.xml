@@ -1,0 +1,20 @@
+<Palette id="red">
+	<c key="base" val="#771010"/>
+	<c key="bg" val="#862e24"/>
+	<c key="gr" val="#cf5949"/>
+	<c key="fg" val="#832c22"/>
+	<c key="hl" val="#ffd1d1"/>
+	<c key="error" val="#ffffff"/>
+	<c key="snake1" val="#fff6bd"/>
+	<c key="snake2" val="#56ffeb"/>
+
+	<c id="1" val="#941c0e" name="black"/>
+	<c id="2" val="#ff0" name="white"/>
+	<c id="3" val="#0ff" name="cyan"/>
+	<c id="4" val="#f0f" name="magenta"/>
+	<c id="5" val="#ff0" name="yellow"/>
+	<c id="6" val="#f00" name="red"/>
+	<c id="7" val="#0f0" name="green"/>
+	<c id="8" val="#00f" name="blue"/>
+	<c id="9" val="#f90" name="orange"/>
+</Palette>

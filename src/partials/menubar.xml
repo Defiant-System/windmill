@@ -26,6 +26,7 @@
 		<Menu name="Orange" click="set-palette" arg="orange"/>
 		<Menu name="Pink" click="set-palette" arg="pink"/>
 		<Menu name="Purple" click="set-palette" arg="purple"/>
+		<Menu name="Red" click="set-palette" arg="red"/>
 	</Menu>
 
 	<Menu for="grid-symmetry">

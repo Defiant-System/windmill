@@ -82,6 +82,16 @@
 						<xsl:if test="@hexBot = 1">
 							<i class="hex bottom"></i>
 						</xsl:if>
+						<xsl:if test="@type = 'tetris'">
+							<s>
+								<xsl:attribute name="class">g<xsl:value-of select="@w"/>x<xsl:value-of select="@h"/></xsl:attribute>
+								<xsl:for-each select="./*">
+									<b>
+										<xsl:attribute name="data-v"><xsl:value-of select="@v"/></xsl:attribute>
+									</b>
+								</xsl:for-each>
+							</s>
+						</xsl:if>
 					</span>
 				</xsl:for-each>
 			</div>

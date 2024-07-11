@@ -1,0 +1,74 @@
+<Level id="7.5" palette="red">
+	<grid width="5" height="5" gap="10">
+		<i type="ns" x="0" y="0"/>
+		<i type="ns" x="0" y="1"/>
+		<i type="nsd" x="0" y="2"/>
+		<i type="we" x="0" y="0"/>
+		<i type="we" x="0" y="1"/>
+		<i type="we" x="0" y="2"/>
+		<i type="we" x="0" y="3"/>
+		<i type="ns" x="1" y="0"/>
+		<i type="ns" x="1" y="1"/>
+		<i type="ns" x="1" y="2"/>
+		<i type="we" x="1" y="0"/>
+		<i type="we" x="1" y="1"/>
+		<i type="we" x="1" y="2"/>
+		<i type="we" x="1" y="3"/>
+		<i type="nsd" x="2" y="0"/>
+		<i type="ns" x="2" y="1"/>
+		<i type="ns" x="2" y="2"/>
+		<i type="we" x="2" y="0"/>
+		<i type="we" x="2" y="1"/>
+		<i type="we" x="2" y="2"/>
+		<i type="we" x="2" y="3"/>
+		<i type="ns" x="3" y="0"/>
+		<i type="ns" x="3" y="1"/>
+		<i type="ns" x="3" y="2"/>
+		<i type="ns" x="0" y="3"/>
+		<i type="we" x="0" y="4"/>
+		<i type="ns" x="1" y="3"/>
+		<i type="wed" x="1" y="4"/>
+		<i type="ns" x="2" y="3"/>
+		<i type="we" x="2" y="4"/>
+		<i type="ns" x="3" y="3"/>
+		<i type="ns" x="0" y="4"/>
+		<i type="we" x="0" y="5"/>
+		<i type="ns" x="1" y="4"/>
+		<i type="we" x="1" y="5"/>
+		<i type="ns" x="2" y="4"/>
+		<i type="we" x="2" y="5"/>
+		<i type="ns" x="3" y="4"/>
+		<i type="nsd" x="4" y="0"/>
+		<i type="we" x="3" y="0"/>
+		<i type="ns" x="4" y="1"/>
+		<i type="we" x="3" y="1"/>
+		<i type="ns" x="4" y="2"/>
+		<i type="we" x="3" y="2"/>
+		<i type="ns" x="4" y="3"/>
+		<i type="we" x="3" y="3"/>
+		<i type="ns" x="4" y="4"/>
+		<i type="we" x="3" y="4"/>
+		<i type="we" x="3" y="5"/>
+		<i type="nsd" x="5" y="0"/>
+		<i type="we" x="4" y="0"/>
+		<i type="ns" x="5" y="1"/>
+		<i type="we" x="4" y="1"/>
+		<i type="ns" x="5" y="2"/>
+		<i type="we" x="4" y="2"/>
+		<i type="ns" x="5" y="3"/>
+		<i type="we" x="4" y="3"/>
+		<i type="ns" x="5" y="4"/>
+		<i type="we" x="4" y="4"/>
+		<i type="wed" x="4" y="5"/>
+		<i type="start" x="0" y="5"/>
+		<i type="exit" x="5" y="0" d="1"/>
+		<i type="tetris" x="2" y="2" c="2" w="2" h="3">
+			<g v="1"/>
+			<g v="1"/>
+			<g v="1"/>
+			<g v="0"/>
+			<g v="1"/>
+			<g v="0"/>
+		</i>
+	</grid>
+</Level>
