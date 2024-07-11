@@ -108,6 +108,11 @@
 					Self.active.world++;
 					Self.active.level = 0;
 				}
+				// if last level, go to first
+				if (!Game.level.list.includes(`${Self.active.world}.${Self.active.level}`)) {
+					Self.active.world = 1;
+					Self.active.level = 0;
+				}
 
 				// render progression nav
 				window.render({

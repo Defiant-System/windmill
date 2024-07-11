@@ -1,8 +1,9 @@
 
 let Test = {
 	init(APP) {
-		
 		return;
+		
+		// console.log( window.bluePrint.selectNodes(`//Level`).length );
 
 		// return 
 		APP.progression.dispatch({ type: "enable-all-puzzles" });
@@ -19,7 +20,6 @@ let Test = {
 		// temp
 		// window.find(".start-view").addClass("no-anim");
 		
-		// console.log( window.bluePrint.selectNodes(`//Level`).length );
 
 		// Game.dispatch({ type: "render-level", arg: "0.2" });
 		// Game.dispatch({ type: "render-level", arg: "6.20" });

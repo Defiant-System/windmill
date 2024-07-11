@@ -24,7 +24,7 @@ let Particles = {
 
 		let Self = this;
 		this.fpsControl = karaqu.FpsControl({
-			fps: 45,
+			fps: 30,
 			callback() {
 				// console.log("tick");
 				Self.update();

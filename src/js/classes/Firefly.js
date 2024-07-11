@@ -18,9 +18,9 @@ class Firefly {
 		let move = this.target.clone(),
 			dir = Vector.subtract(move, this.pos);
 		dir.normalize();
-		dir.multiply(.85);
+		dir.multiply(.95);
 
-		this.orbit *= .985;
+		this.orbit *= .9875;
 		this.velocity.add(dir);
 		this.velocity.limit(this.orbit);
 		this.pos.add(this.velocity);
