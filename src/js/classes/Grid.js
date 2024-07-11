@@ -179,6 +179,7 @@ class Grid {
 					case DrawType.CELL:
 						el = this.el.find(`.grid-base .dot[style*="--x: ${x};--y: ${y};"]`);
 						if (!el.length) el = this.el.find(`.grid-base .star[style*="--x: ${x};--y: ${y};"]`);
+						if (!el.length) el = this.el.find(`.grid-base .tetris[style*="--x: ${x};--y: ${y};"] b`);
 						break;
 					case DrawType.POINT:
 						el = this.el.find(`.grid-base span[style*="--x: ${x};--y: ${y};"] .hex.top`);
@@ -416,10 +417,14 @@ class Grid {
 					storage.entity[index + storage.width + 1].type = Type.STAR;
 					storage.entity[index + storage.width + 1].color = +xNode.getAttribute("c");
 					break;
+				case "tetris":
+					storage.entity[index + storage.width + 1].type = Type.TETRIS;
+					storage.entity[index + storage.width + 1].shape = { width: 1, grid: [true] };
+					break;
 			}
 		});
 
-		if (xLevel.getAttribute("id") === "5.0") {
+		if (xLevel.getAttribute("id") === "7.0") {
 			// console.log( storage.entity );
 			// storage.entity.map((e, i) => console.log( i, JSON.stringify(e) + (i % storage.width == (storage.width-1) ? "---" : "") ));
 		}

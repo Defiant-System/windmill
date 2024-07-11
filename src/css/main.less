@@ -711,8 +711,24 @@ content {
 						margin: 0 1px 1px 0;
 						border-radius: 1px;
 
+						&.error:before {
+							animation: alarm 200ms ease-in-out alternate 6 forwards;
+						}
+
 						&[data-v="1"] {
 							background: var(--c);
+
+							&:before {
+								content: "";
+								position: absolute;
+								top: 0;
+								left: 0;
+								right: 0;
+								bottom: 0;
+								opacity: 0;
+								box-shadow: 0 0 11px var( --error ),
+											0 0 11px var( --error );
+							}
 						}
 					}
 				}

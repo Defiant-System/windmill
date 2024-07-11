@@ -4,6 +4,7 @@
 @import "modules/game.js";
 @import "modules/particles.js";
 @import "modules/validation.js";
+@import "modules/shape.js";
 @import "modules/keys.js";
 @import "modules/misc.js";
 @import "modules/test.js";
@@ -13,6 +14,8 @@
 @import "classes/Firefly.js";
 @import "classes/ElapsedTime.js";
 @import "classes/Orientation.js";
+@import "classes/TetrisState.js";
+@import "classes/TetrisValidationAttempt.js";
 @import "classes/NavigationSelector.js";
 @import "classes/GroupingDisjointSet.js";
 @import "classes/Grouping.js";

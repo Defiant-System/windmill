@@ -49,6 +49,18 @@ let Compass = {
 		EAST: 3,
 	};
 
+let Color = {
+		UNKNOWN: 0,
+		BLACK: 1,
+		WHITE: 2,
+		CYAN: 3,
+		MAGENTA: 4,
+		YELLOW: 5,
+		RED: 6,
+		GREEN: 7,
+		BLUE: 8,
+		ORANGE: 9,
+	};
 
 // Keep everything in simple format.
 let UI = {
@@ -64,6 +76,23 @@ let UI = {
 		DISJOINT_LENGTH: 22,
 		EDIT_R: 20,
 		ERROR_COLOR: "#ff0000",
+	};
+
+let uniqueShapes = shapes => {
+		var uniqueRemaining = [...new Set(shapes)];
+		// goog.array.removeDuplicates(shapes, uniqueRemaining, fullShapeKey);
+		return {
+			uniqueShapes: uniqueRemaining,
+			removeFn: function(shape) {
+				let left = [...shapes];
+				// var left = goog.array.clone(shapes);
+				// if (!goog.array.remove(left, shape)) {
+				if (!left.splice(left.indexOf(shape), 1)) {
+					throw Error();
+				}
+				return left;
+			}
+		}
 	};
 
 
