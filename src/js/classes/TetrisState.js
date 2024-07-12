@@ -12,7 +12,7 @@ class TetrisState {
 		Shape.setMultiple(grid);
 		// All shape information.
 		// this.gridCount = goog.array.count(grid.grid, goog.functions.identity);
-		this.gridCount = grid.grid.length;
+		this.gridCount = grid.grid.filter(i => !!i).length;
 		this.positive = [];
 		this.negative = [];
 		this.positiveCount = 0;
@@ -22,10 +22,10 @@ class TetrisState {
 		// To debug polyominos: 0 for nothing, 1 for success, 2 for all.
 		this.logLevel = 0;
 
-		vals.forEach(function(val) {
+		vals.forEach(val => {
 			var shape = val.cell.shape;
 			// var count = goog.array.count(shape.grid, goog.functions.identity);
-			var count = shape.grid.length;
+			var count = shape.grid.filter(i => !!i).length;
 			var repr = {
 				grid: shape.grid,
 				width: shape.width,
@@ -43,7 +43,8 @@ class TetrisState {
 				this.positive.push(repr);
 				this.positiveCount += count;
 			}
-		}, this);
+		});
+
 		var safetyScore = function(s) {
 			// How safe to try out first?
 			// i.e. Prunes the most future options to try sooner.

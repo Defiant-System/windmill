@@ -289,10 +289,7 @@ let Validation = {
 		var trivialErrorCancellation = tetrisVals.length == expectedErrors;
 		var tetrisState = new TetrisState(tetrisVals, gridShape);
 
-		result.success = Validation.attemptTetris(
-				tetrisState,
-				tetrisState.getValidationAttempts(0)[0],
-				result);
+		result.success = Validation.attemptTetris(tetrisState, tetrisState.getValidationAttempts(0)[0], result);
 		if (expectedErrors == 0 || trivialErrorCancellation) {
 			if (trivialErrorCancellation) {
 				result.allowed = tetrisVals;
@@ -319,8 +316,7 @@ let Validation = {
 	},
 	attemptTetris(tetrisState, attempt, result) {
 		var search = Validation.attemptTetrisSearch(tetrisState, attempt, result);
-		if (typeof search == 'string' && tetrisState.logLevel) {
-			window['_ts'] = tetrisState;
+		if (typeof search == "string" && tetrisState.logLevel) {
 			tetrisState.printSearch(search);
 		}
 		return !!search;
@@ -402,7 +398,8 @@ let Validation = {
 						return;
 					}
 					var remainingNegative = unique.removeFn(tetris);
-					newStates.map(newState => {
+					// goog.array.forEach(newStates, function(newState) {
+					newStates.filter(i => !!i).map(newState => {
 						var newGrid = newState.grid;
 						var newNegativeGrid = newState.negativeGrid;
 						//console.log(`Result -------- ${remainingNegative.length} remaining, id${stateId}`); Shape.print(newGrid);
@@ -427,6 +424,7 @@ let Validation = {
 				var maxNeg = Shape.getDimensions(node.negative);
 				var unique = uniqueShapes(node.remaining);
 				// goog.array.forEach(unique.uniqueShapes, function(tetris) {
+
 				unique.uniqueShapes.map(tetris => {
 					//console.log('Tetris --------' + (tetris.multiple ? 'm' : '.')); Shape.print(tetris);
 					var newStates = Validation.removeTetrisFromGrid(node.grid, tetris, tetrisState.shapeOrientations, maxNeg);
@@ -434,10 +432,10 @@ let Validation = {
 						return;
 					}
 					var remaining = unique.removeFn(tetris);
-					newStates.map(newState => {
+					newStates.filter(i => !!i).map(newState => {
 						var newGrid = newState.grid;
 						//console.log(`Result -------- ${remaining.length} remaining, id${stateId}`); Shape.print(newGrid);
-						var state = {grid: newGrid, remaining: remaining, negative: node.negative};
+						var state = { grid: newGrid, remaining: remaining, negative: node.negative };
 						if (newState.negativeGrid) {
 							state.negativeGrid = newState.negativeGrid;
 						}
@@ -461,12 +459,14 @@ let Validation = {
 		var tetrises = originalTetris.free && shapeOrientations
 				? shapeOrientations[keys.shapeKey(originalTetris)]
 				: [originalTetris];
+		
 		var coords = [];
 		tetrises.map(tetris => {
 			// goog.array.extend(coords, Shape.getGridFits(grid, tetris, negInfo));
 			coords = coords.concat(Shape.getGridFits(grid, tetris, negInfo));
 		});
-		return coords.map((coord, index) => {
+
+		let filtered = coords.map((coord, index) => {
 		// return goog.array.filter(goog.array.map(coords, function(coord, index) {
 			// Actually fill in the grid with the shape.
 			// If we need negatives to do this, fill in the real grid with the caveat
@@ -529,5 +529,7 @@ let Validation = {
 			return answer;
 		});
 		// }), goog.functions.identity);
+
+		return filtered;
 	}
 };

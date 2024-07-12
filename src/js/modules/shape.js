@@ -18,15 +18,13 @@ let Shape = {
 		var expanded = {
 			width: width,
 			height: height,
-			grid: goog.array.map(
-					goog.array.repeat(undefined, width * height),
-					function(ignore, index) {
-						var i = index % width;
-						var j = Math.floor(index / width);
-						return i >= left && j >= top &&
-							i < left + shape.width && j < top + shape.height &&
-							!!shape.grid[(i - left) + shape.width*(j - top)];
-					})
+			grid: [...Array(width * height)].map((ignore, index) => {
+					var i = index % width;
+					var j = Math.floor(index / width);
+					return i >= left && j >= top &&
+						i < left + shape.width && j < top + shape.height &&
+						!!shape.grid[(i - left) + shape.width*(j - top)];
+				})
 		}
 		if (shape.offset) {
 			expanded.offset = {
@@ -35,7 +33,7 @@ let Shape = {
 			}
 		}
 		if (opt_relativeCoords) {
-			goog.array.forEach(opt_relativeCoords, function(coord) {
+			opt_relativeCoords.forEach(coord => {
 				coord.i += left;
 				coord.j += top;
 			});
@@ -68,7 +66,7 @@ let Shape = {
 		var reduced = {
 			width: width,
 			height: height,
-			grid: goog.array.filter(shape.grid, function(value, index) {
+			grid: shape.grid.filter((value, index) => {
 				var i = index % w;
 				var j = Math.floor(index / w);
 				return mini <= i && i <= maxi && minj <= j && j <= maxj;
@@ -81,7 +79,7 @@ let Shape = {
 			}
 		}
 		if (opt_relativeCoords) {
-			goog.array.forEach(opt_relativeCoords, function(coord) {
+			opt_relativeCoords.map(coord => {
 				coord.i -= mini;
 				coord.j -= minj;
 			});
@@ -108,14 +106,15 @@ let Shape = {
 			return null;
 		}
 		var width = -Infinity, height = -Infinity, count = 0;
-		goog.array.forEach(shapes, function(shape) {
+		shapes.forEach(shape => {
 			width = Math.max(width, shape.width);
 			height = Math.max(height, shape.height);
 			if (shape.free) {
 				width = Math.max(width, shape.height);
 				height = Math.max(height, shape.width);
 			}
-			count += goog.array.count(shape.grid, goog.functions.identity);
+			count += shape.grid.length;
+			// count += goog.array.count(shape.grid, goog.functions.identity);
 		});
 		return {width: width, height: height, count: count};
 	},

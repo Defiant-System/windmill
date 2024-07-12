@@ -6,7 +6,7 @@ let Test = {
 		APP.progression.dispatch({ type: "enable-all-puzzles" });
 
 		setTimeout(() => {
-			Game.dispatch({ type: "render-level", arg: "7.0" });
+			Game.dispatch({ type: "render-level", arg: "7.12" });
 		}, 200);
 
 

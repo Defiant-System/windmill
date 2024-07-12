@@ -419,7 +419,10 @@ class Grid {
 					break;
 				case "tetris":
 					storage.entity[index + storage.width + 1].type = Type.TETRIS;
-					storage.entity[index + storage.width + 1].shape = { width: 1, grid: [true] };
+					storage.entity[index + storage.width + 1].shape = {
+						width: +xNode.getAttribute("w"),
+						grid: xNode.selectNodes("./g").map(x => x.getAttribute("v") === "1"),
+					};
 					break;
 			}
 		});
