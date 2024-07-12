@@ -1,7 +1,7 @@
 
 let Test = {
 	init(APP) {
-		// return;
+		return;
 		
 		APP.progression.dispatch({ type: "enable-all-puzzles" });
 
