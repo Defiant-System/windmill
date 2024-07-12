@@ -22,6 +22,7 @@
 	@import "palettes/purple.xml"
 	@import "palettes/pink.xml"
 	@import "palettes/red.xml"
+	@import "palettes/gold.xml"
 
 	@import "levels/1/0.xml"
 	@import "levels/1/1.xml"
