@@ -2,7 +2,7 @@
 let Test = {
 	init(APP) {
 		// console.log( window.bluePrint.selectNodes(`//Level`).length );
-		// return;
+		return;
 
 		
 		APP.progression.dispatch({ type: "enable-all-puzzles" });
