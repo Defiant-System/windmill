@@ -1,10 +1,10 @@
 <Application>
 	<Build>
-		<task action="skip" source="src/js/modules/bg-worker.js" destination="public/js/bg-worker.js"/>
+		<task action1="skip" source="src/js/modules/bg-worker.js" destination="public/js/bg-worker.js"/>
 	</Build>
 	<Head>
 		<meta name="id" value="witness"/>
-		<meta name="title" value="Witness Redux" version="1.28"/>
+		<meta name="title" value="Witness Redux" version="1.29"/>
 		<meta name="author" value="Hakan Bilgin" namespace="ant"/>
 		<meta name="license" value="AGPL-3.0"/>
 		<meta name="repository" value="https://github.com/Defiant-System/witness"/>

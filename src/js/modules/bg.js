@@ -25,7 +25,7 @@ let Bg = {
 				Self.worker.postMessage({ ...event, canvas: value }, [value]);
 				break;
 			case "pause":
-				if (!window.isFocused) Self.worker.postMessage(event);
+				if (!window.isFocused || event.kill) Self.worker.postMessage(event);
 				break;
 			case "resume":
 				if (window.isFocused) Self.worker.postMessage(event);

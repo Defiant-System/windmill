@@ -69,6 +69,8 @@ const witness = {
 			case "window.init":
 				break;
 			case "window.close":
+				// pause background worker
+				Bg.dispatch({ type: "dispose", kill: true });
 				// save game state
 				value = Self.progression.dispatch({ type: "serialize-progress" });
 				window.settings.setItem("progression", { progression: value });
@@ -78,7 +80,7 @@ const witness = {
 				Bg.dispatch({ type: "resume" });
 				break;
 			case "window.blur":
-				// resume background worker
+				// pause background worker
 				Bg.dispatch({ type: "pause" });
 				break;
 			// from menu
